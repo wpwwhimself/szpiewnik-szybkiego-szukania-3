@@ -1,5 +1,4 @@
 import { useEffect } from "react";
-import { useLocation } from "react-router-dom";
 
 declare interface SectionProps{
   title: string,
@@ -7,8 +6,6 @@ declare interface SectionProps{
 }
 
 export function Section({title, children}: SectionProps){
-  const loc = useLocation();
-
   useEffect(() => {
     document.title = `${title} | Szpiewnik Szybkiego Szukania`;
     document.getElementById("page-title")!.textContent = title;

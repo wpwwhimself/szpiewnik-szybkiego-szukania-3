@@ -28,10 +28,6 @@
   }
 }
 
-.App {
-  text-align: center;;
-}
-
 body{
   background-color: var(--bg1);
   font-family: EBGaramond;
@@ -58,6 +54,11 @@ a{
 }
 a:hover{
   color: var(--acc);
+}
+
+#main-wrapper{
+  margin: 0 auto;
+  width: 90vw;
 }
 
 /* misc */
