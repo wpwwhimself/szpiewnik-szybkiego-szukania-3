@@ -1,16 +1,10 @@
 import { Outlet } from "react-router-dom";
 import { Header, Footer } from '../components/HnF';
 
-declare interface LayoutProps{
-  title: string,
-};
-
-export function Layout({title}: LayoutProps){
-  document.title = `${title} | Szpiewnik Szybkiego Szukania`;
-
+export function Layout(){
   return (
     <div className="App">
-      <Header title={title} />
+      <Header />
       <div id="main-wrapper">
         <Outlet />
       </div>

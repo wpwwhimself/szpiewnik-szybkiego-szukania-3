@@ -2,16 +2,12 @@ import "./style.css";
 import { Logo } from "../Logo";
 import { Link } from "react-router-dom";
 
-declare interface HeaderProps{
-  title: string,
-};
-
-export function Header({title}: HeaderProps){
+export function Header(){
   return(
     <header>
       <Logo />
       <div className="titles">
-        <h1>{title}</h1>
+        <h1 id="page-title">XXX</h1>
         <h2>Szpiewnik Szybkiego Szukania 3</h2>
       </div>
       <nav className="flex-down">

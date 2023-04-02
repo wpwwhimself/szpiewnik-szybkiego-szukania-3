@@ -1,4 +1,5 @@
 import "./style.css";
+import { Section } from "../../components/Section";
 
 declare interface ErrorPageProps{
   code: number,
@@ -7,9 +8,11 @@ declare interface ErrorPageProps{
 
 export function ErrorPage({code, desc}: ErrorPageProps){
   return(
-    <div className="flex-down center">
-      <h1 className="error-code">{code}</h1>
-      <p>{desc}</p>
-    </div>
+    <Section title={desc}>
+      <div className="flex-down center">
+        <h1 className="error-code">{code}</h1>
+        <p>{desc}</p>
+      </div>
+    </Section>
   )
 }
