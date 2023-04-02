@@ -1,0 +1,54 @@
+.titles h1, .titles h2, .titles p{
+  margin: 0;
+}
+
+header{
+  background-color: var(--bg2);
+  padding: 1.5em 3em;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  justify-content: left;
+  align-items: center;
+}
+
+header .logo{
+  height: 7em;
+}
+
+header .titles{
+  text-align: left;
+}
+header .titles h2{
+  font-family: EBGaramond;
+}
+
+nav{
+  text-align: right;
+}
+
+footer{
+  background-color: black;
+  color: white;
+  padding: 1em 2em;
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+  position: absolute; bottom: 0; left: 0;
+  width: calc(100vw - 4em);
+  height: var(--footer-height);
+}
+
+footer .titles{
+  text-align: right;
+}
+
+@media screen and (max-width: 600px) {
+  footer{
+    position: static;
+    height: auto;
+    flex-direction: column;
+  }
+  footer .titles{
+    text-align: center;
+  }
+}
