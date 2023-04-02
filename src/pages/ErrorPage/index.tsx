@@ -1,3 +1,5 @@
+import "./style.css";
+
 declare interface ErrorPageProps{
   code: number,
   desc: string,
