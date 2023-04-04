@@ -1,9 +1,19 @@
 input, select, textarea{
   background: none;
+  color: var(--fg);
+  font-family: BaseFont;
+  font-size: 1.1em;
   border: none;
   border-bottom: 1px solid var(--fg);
   resize: vertical;
+  text-align: center;
 }
+textarea{
+  font-size: 0.9em;
+  text-align: left;
+  font-family: monospace;
+}
+
 
 input:focus, select:focus, textarea:focus{
   box-shadow: 0 0 2em var(--acc);
