@@ -14,7 +14,7 @@ header{
 }
 
 header .logo{
-  height: 7em;
+  height: calc(var(--header-height) - 2 * 1.5em);
 }
 
 header .titles{

@@ -32,7 +32,7 @@ body{
   background-color: var(--bg1);
   font-family: BaseFont;
   color: var(--fg);
-  --header-height: 8em;
+  --header-height: 9em;
   --footer-height: 7em;
 }
 
