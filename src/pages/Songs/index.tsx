@@ -1,6 +1,6 @@
 import { Section } from "../../components/Section";
 import "./style.css";
-import { songs, song_categories } from "../../data/songs";
+import { songs, song_categories } from "../../data";
 import { Link } from "react-router-dom";
 import { slugAndDePL } from "../../helpers";
 
