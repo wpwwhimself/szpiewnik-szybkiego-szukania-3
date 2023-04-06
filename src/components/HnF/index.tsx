@@ -13,6 +13,7 @@ export function Header(){
       <nav className="flex-down">
         <Link to="/songs">Pieśni</Link>
         <Link to="/ordinarium">Części stałe</Link>
+        <Link to="/formulas">Formuły</Link>
       </nav>
     </header>
   )

@@ -17,7 +17,6 @@ app.post("/api/save-song", (req, res) => {
     fs.readFileSync(path.join(directoryPath, "../src/data/songs.json"), "utf8")
   );
   const { song, song_id } = req.body;
-  console.log(song_id, song.title);
   allSongs[song_id] = song;
 
   fs.writeFile("src/data/songs.json", JSON.stringify(allSongs, null, 2), (err) => {
