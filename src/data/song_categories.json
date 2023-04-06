@@ -1,0 +1,34 @@
+[
+	{
+		"id" : 1,
+		"kategoria" : "standard"
+	},
+	{
+		"id" : 2,
+		"kategoria" : "niestandard"
+	},
+	{
+		"id" : 3,
+		"kategoria" : "maryjne"
+	},
+	{
+		"id" : 4,
+		"kategoria" : "serce"
+	},
+	{
+		"id" : 5,
+		"kategoria" : "adwent"
+	},
+	{
+		"id" : 6,
+		"kategoria" : "kolędy"
+	},
+	{
+		"id" : 7,
+		"kategoria" : "post"
+	},
+	{
+		"id" : 8,
+		"kategoria" : "wielkanoc"
+	}
+]
