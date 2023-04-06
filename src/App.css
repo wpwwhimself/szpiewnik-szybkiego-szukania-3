@@ -32,10 +32,8 @@ body{
   background-color: var(--bg1);
   font-family: BaseFont;
   color: var(--fg);
-  position: relative;
-  --footer-height: 6em;
-  min-height: calc(100vh - var(--footer-height));
-  padding-bottom: calc(var(--footer-height));
+  --header-height: 8em;
+  --footer-height: 7em;
 }
 
 *{
@@ -58,7 +56,13 @@ a:hover{
 
 #main-wrapper{
   margin: 0 auto;
+  padding: 1em 0;
+  box-sizing: border-box;
   width: 90vw;
+  min-height: calc(100vh - var(--header-height) - var(--footer-height))
+}
+#main-wrapper *:first-child{
+  margin-top: 0;
 }
 
 /* misc */

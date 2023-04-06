@@ -9,6 +9,8 @@ header{
   grid-template-columns: auto 1fr auto;
   justify-content: left;
   align-items: center;
+  height: var(--header-height);
+  box-sizing: border-box;
 }
 
 header .logo{
@@ -33,9 +35,9 @@ footer{
   display: flex;
   flex-direction: row-reverse;
   align-items: center;
-  position: absolute; bottom: 0; left: 0;
-  width: calc(100vw - 4em);
+  width: 100vw;
   height: var(--footer-height);
+  box-sizing: border-box;
 }
 
 footer .titles{
