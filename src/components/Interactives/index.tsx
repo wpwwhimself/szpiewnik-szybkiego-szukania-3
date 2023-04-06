@@ -1,24 +1,31 @@
 import "./style.css";
 import { InputProps, PreferencesProps, SelectProps } from "../../types";
+import { ButtonHTMLAttributes } from "react";
 
-export function Input({type, name, label, value}: InputProps){
+export function Input({type, name, label, value, onChange}: InputProps){
   switch(type){
     case "TEXT": return(
       <div className="input-container">
         <label htmlFor={name}>{label}</label>
-        <textarea name={name} id={name} defaultValue={value ?? undefined} />
+        <textarea name={name} id={name} defaultValue={value ?? undefined} onChange={onChange} />
       </div>
     );
     case "checkbox": return(
       <div className="input-container">
         <label htmlFor={name}>{label}</label>
-        <input type="checkbox" name={name} id={name} defaultChecked={value} />
+        <input type={type} name={name} id={name} defaultChecked={value} onChange={onChange} />
+      </div>
+    );
+    case "text": return(
+      <div className="input-container">
+        <label htmlFor={name}>{label}</label>
+        <input type={type} name={name} id={name} defaultValue={value ?? undefined} onChange={onChange} />
       </div>
     );
     default: return(
       <div className="input-container">
         <label htmlFor={name}>{label}</label>
-        <input type={type ?? "text"} name={name} id={name} defaultValue={value ?? undefined} />
+        <input type={type} name={name} id={name} defaultValue={value ?? undefined} />
       </div>
     );
   }
@@ -36,7 +43,7 @@ export function Select({name, label, value, firstEmpty, options, onChange}: Sele
   )
 }
 
-export function Preferences({preferences}: PreferencesProps){
+export function Preferences({preferences, onChange}: PreferencesProps){
   const place_prefs: boolean[] = [];
   preferences.split("/").forEach(el => {
     switch(el){
@@ -44,24 +51,36 @@ export function Preferences({preferences}: PreferencesProps){
       case "1": place_prefs.push(true); break;
     }
   });
+  let other_prefs: string = preferences.split("/")[5];
+  if(other_prefs === "0") other_prefs = "";
 
   const possibilities = [
-    { label: "Wstęp", name: "pref_wst" },
-    { label: "Dary", name: "pref_dar" },
-    { label: "Komunia", name: "pref_kom" },
-    { label: "Uwielb.", name: "pref_uwi" },
-    { label: "Zakończ.", name: "pref_zak" },
+    { label: "Wstęp", name: "pref0" },
+    { label: "Dary", name: "pref1" },
+    { label: "Komunia", name: "pref2" },
+    { label: "Uwielb.", name: "pref3" },
+    { label: "Zakończ.", name: "pref4" },
   ];
 
   return(
-    <div className="flex-right center">
-    {possibilities.map((labels, ind) =>
-      <Input key={labels.name}
-        type="checkbox"
-        name={labels.name}
-        label={labels.label}
-        value={place_prefs[ind]}
-      />)}
+    <div className="input-container">
+      <Input type="text" name="pref5" label="Uwagi" value={other_prefs} onChange={onChange} />
+      <div className="flex-right center">
+      {possibilities.map((labels, ind) =>
+        <Input key={labels.name}
+          type="checkbox"
+          name={labels.name}
+          label={labels.label}
+          value={place_prefs[ind]}
+          onChange={onChange}
+        />)}
+      </div>
     </div>
+  )
+}
+
+export function Button(props: ButtonHTMLAttributes<HTMLButtonElement>){
+  return(
+    <button {...props}>{props.children}</button>
   )
 }

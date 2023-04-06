@@ -25,6 +25,7 @@ export type InputProps = {
 } | {
   type: "checkbox",
   value?: boolean,
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 } | {
   type?: "text",
   value?: string | number | null,
@@ -42,6 +43,7 @@ export type SelectProps = {
 
 export interface PreferencesProps{
   preferences: string,
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 export interface SelectOption{
