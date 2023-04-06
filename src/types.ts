@@ -16,16 +16,19 @@ export interface OrdinariumProps{
 }
 
 export type InputProps = {
-  type?: string,
   name: string,
   label: string,
-  value?: string | number | null,
 } & ({
-  type?: "text";
-  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
-} | {
   type?: "TEXT";
+  value?: string | number | null,
   onChange?: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
+} | {
+  type: "checkbox",
+  value?: boolean,
+} | {
+  type?: "text",
+  value?: string | number | null,
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 })
 
 export type SelectProps = {
@@ -35,6 +38,10 @@ export type SelectProps = {
   firstEmpty?: boolean,
   options?: SelectOption[],
   onChange?: (e: React.ChangeEvent<HTMLSelectElement>) => void;
+}
+
+export interface PreferencesProps{
+  preferences: string,
 }
 
 export interface SelectOption{

@@ -2,7 +2,7 @@ import "./style.css";
 import { Section } from "../../components/Section";
 import { useState } from "react";
 import { songs, song_categories } from "../../data";
-import { Input, Select } from "../../components/Interactives";
+import { Input, Preferences, Select } from "../../components/Interactives";
 import { SongProps, SelectOption } from "../../types";
 import { useLocation } from "react-router-dom";
 import { Notation } from "react-abc";
@@ -31,7 +31,7 @@ export function SongEdit(){
           <Input type="text" name="categoryDesc" label="Mini-opis" value={song?.categoryDesc ?? ""} />
           <Input type="text" name="numberPreis" label="Numer w projektorze Preis" value={song?.numberPreis} />
           <Input type="text" name="key" label="Tonacja" value={song?.key} />
-          <Input type="text" name="preferences" label="Preferencje" value={song?.preferences} />
+          <Preferences preferences={song?.preferences ?? "0/0/0/0/0/0"} />
         </div>
         <div className="grid-2">
           <Input type="TEXT" name="lyrics" label="Tekst" value={song?.lyrics ?? undefined} />
