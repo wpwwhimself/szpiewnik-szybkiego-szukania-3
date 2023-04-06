@@ -2,18 +2,24 @@ export interface SongProps{
   title: string,
   categoryCode: number,
   categoryDesc: string | null,
-  numberPreis: number | string,
-  key: string,
+  numberPreis: number | string | null,
+  key?: string,
   preferences: string,
   lyrics: string | null,
   sheetMusic: string | null,
 };
 
+export interface OrdinariumProps{
+  colorCode: string,
+  part: string,
+  sheetMusic: string,
+}
+
 export type InputProps = {
   type?: string,
   name: string,
   label: string,
-  value?: string | number,
+  value?: string | number | null,
 } & ({
   type?: "text";
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;

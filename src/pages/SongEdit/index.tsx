@@ -1,20 +1,23 @@
 import "./style.css";
 import { Section } from "../../components/Section";
 import { useState } from "react";
-import songs from "../../data/songs.json";
+import { songs, song_categories } from "../../data/songs";
 import { Input, Select } from "../../components/Interactives";
 import { SongProps, SelectOption } from "../../types";
 import { useLocation } from "react-router-dom";
-// const Editor = require("react-abc");
 import { Editor } from "react-abc";
+import { slugAndDePL } from "../../helpers";
 
 export function SongEdit(){
   const title_match: string = useLocation().pathname.replace(/\/songs\/(.*)/, "$1");
   const [song, setSong] = useState<SongProps | null>(
-    songs.filter(soughtSong =>
-      soughtSong.title.toLocaleLowerCase().replace(/ /g, "_") === title_match
+    songs.filter(function(soughtSong: SongProps){
+      return slugAndDePL(soughtSong.title) === title_match
+    }
     )[0]
   );
+  const song_categories_proc: SelectOption[] = [];
+  song_categories.forEach(item => song_categories_proc.push({key: item.id, label: item.kategoria}));
 
   //todo kategorie jako lista
   //todo preferencje jako checkboxy
@@ -24,7 +27,7 @@ export function SongEdit(){
       <h1>Parametry pieśni</h1>
       <form action="">
         <Input type="text" name="title" label="Tytuł" value={song?.title} />
-        <Input type="text" name="categoryCode" label="Grupa" value={song?.categoryCode} />
+        <Select name="categoryCode" label="Grupa" value={3} options={song_categories_proc} />
         <Input type="text" name="categoryDesc" label="Mini-opis" value={song?.categoryDesc ?? ""} />
         <Input type="text" name="numberPreis" label="Numer w projektorze Preis" value={song?.numberPreis} />
         <Input type="text" name="key" label="Tonacja" value={song?.key} />

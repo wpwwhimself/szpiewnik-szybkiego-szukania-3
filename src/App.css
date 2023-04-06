@@ -35,7 +35,7 @@ body{
   position: relative;
   --footer-height: 6em;
   min-height: calc(100vh - var(--footer-height));
-  padding-bottom: calc(var(--footer-height) + 2em + 1em);
+  padding-bottom: calc(var(--footer-height));
 }
 
 *{

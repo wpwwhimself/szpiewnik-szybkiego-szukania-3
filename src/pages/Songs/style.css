@@ -1,0 +1,7 @@
+.flex-right{
+  gap: 0.5em;
+}
+.flex-right a::first-letter{
+  font-weight: bold;
+  color: var(--acc);
+}

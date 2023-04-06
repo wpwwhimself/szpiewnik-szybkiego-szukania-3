@@ -1,24 +1,21 @@
 import { Section } from "../../components/Section";
 import "./style.css";
-
-import songs from "../../data/songs.json";
-import { SongProps } from "../../types";
+import { songs, song_categories } from "../../data/songs";
 import { Link } from "react-router-dom";
+import { slugAndDePL } from "../../helpers";
 
 export function Songs(){
-  const listSongs: Function = (songs: SongProps[]): JSX.Element[] => {
-    return songs.map(song =>
-      <Link to={`/songs/${song.title.toLocaleLowerCase().replace(/ /g, "_")}`} key={song.title}>
-        {song.title}
-      </Link>
-    )
-  }
-
-  //todo rozbicie na poszczególne grupy pieśni
   return(
     <Section title="Lista pieśni">
-      <h1>Wszystkie pieśni</h1>
-      {listSongs(songs)}
+      {song_categories.map(category => <>
+        <h1>{category.kategoria}</h1>
+        <div className="flex-right wrap center">
+        {songs.filter(song => song.categoryCode === category.id).map(song => 
+          <Link to={`/songs/${slugAndDePL(song.title)}`} key={song.title}>
+            {song.title}
+          </Link>)}
+        </div>
+      </>)}
     </Section>
   )
 }
