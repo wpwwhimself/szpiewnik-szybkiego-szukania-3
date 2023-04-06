@@ -69,6 +69,9 @@ a:hover{
 .accent{
   color: var(--acc) !important;
 }
+.cap-initial::first-letter{
+  text-transform: capitalize;
+}
 
 /* flexing */
 

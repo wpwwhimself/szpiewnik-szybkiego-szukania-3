@@ -8,7 +8,7 @@ export function Songs(){
   return(
     <Section title="Lista pieśni">
       {song_categories.map(category => <>
-        <h1>{category.kategoria}</h1>
+        <h1 className="cap-initial">{category.kategoria}</h1>
         <div className="flex-right wrap center">
         {songs.filter(song => song.categoryCode === category.id).map(song => 
           <Link to={`/songs/${slugAndDePL(song.title)}`} key={song.title}>
