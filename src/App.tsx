@@ -7,6 +7,7 @@ import { Home } from "./pages/Home";
 import { Songs } from "./pages/Songs";
 import { SongEdit } from "./pages/SongEdit";
 import { Ordinarium } from "./pages/Ordinarium";
+import { OrdinariumEdit } from "./pages/OrdinariumEdit";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
           <Route path="songs" element={<Songs />} />
           <Route path="songs/*" element={<SongEdit />} />
           <Route path="ordinarium" element={<Ordinarium />} />
+          <Route path="ordinarium/*" element={<OrdinariumEdit />} />
           <Route path="*" element={<ErrorPage code={404} desc="Nie ma takiej strony" />} />
         </Route>
       </Routes>

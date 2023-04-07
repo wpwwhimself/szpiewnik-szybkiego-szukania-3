@@ -14,7 +14,6 @@ export function Ordinarium(){
         </div>
         <div className="flex-right wrap center">
         {ordinarium
-          .sort((a, b) => a.part.charCodeAt(0) - b.part.charCodeAt(0))
           .filter(part => part.colorCode === color.name)
           .map((part, ind) => 
           <Link to={`${part.colorCode}-${part.part}`} key={ind}>
