@@ -98,6 +98,9 @@ a:hover{
   justify-content: center;
   align-items: center;
 }
+.center-vert{
+  align-items: baseline;
+}
 
 /* gridding */
 

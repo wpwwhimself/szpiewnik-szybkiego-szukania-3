@@ -15,6 +15,13 @@ export interface OrdinariumProps{
   sheetMusic: string,
 }
 
+export interface OrdinariumColorProps{
+  name: string,
+  displayColor?: string,
+  displayName: string,
+  desc: string,
+}
+
 export type InputProps = {
   name: string,
   label: string,

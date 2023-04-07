@@ -16,7 +16,7 @@ textarea{
 button{
   background-color: var(--acc);
   width: 100%;
-  padding: 0.5em 0.75em;
+  padding: 0 0.75em;
   font-family: HeaderFont;
   font-weight: bold;
   font-size: 1.2em;
