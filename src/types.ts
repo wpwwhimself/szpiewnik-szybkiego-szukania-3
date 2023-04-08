@@ -22,6 +22,32 @@ export interface OrdinariumColorProps{
   desc: string,
 }
 
+export interface Extra{
+  songName: string,
+  preWhere?: string,
+}
+
+export interface Formula{
+  name: string,
+  gloriaPresent: boolean,
+  extra?: Extra[],
+}
+
+export interface Set{
+  name: string,
+  formulaName: string,
+  defaultColor: string,
+  sPre?: string,
+  sIntro?: string,
+  pPsalm?: string,
+  pAccl?: string,
+  sOffer?: string,
+  sCommunion?: string[],
+  sAdoration?: string,
+  sDismissal?: string,
+  extra?: Extra[],
+}
+
 export type InputProps = {
   name: string,
   label: string,
@@ -54,6 +80,6 @@ export interface PreferencesProps{
 }
 
 export interface SelectOption{
-  key: number | string,
+  value: number | string,
   label: string,
 }

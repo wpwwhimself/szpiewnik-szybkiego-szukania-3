@@ -15,14 +15,15 @@ app.use(bodyParser.json());
  * Saving song
  */
 app.post("/api/save-song", (req, res) => {
+  const sourcePath = "src/data/songs.json";
   const directoryPath = path.dirname(new URL(import.meta.url).pathname).substring(1);
-  const allSongs = JSON.parse(
-    fs.readFileSync(path.join(directoryPath, "../src/data/songs.json"), "utf8")
+  const allItems = JSON.parse(
+    fs.readFileSync(path.join(directoryPath, `../${sourcePath}`), "utf8")
   );
-  const { song, song_id } = req.body;
-  allSongs[song_id] = song;
+  const { itemToChange, item_id } = req.body;
+  allItems[item_id] = itemToChange;
 
-  fs.writeFile("src/data/songs.json", JSON.stringify(allSongs, null, 2), (err) => {
+  fs.writeFile(sourcePath, JSON.stringify(allItems, null, 2), (err) => {
     if (err) {
       console.error(err);
       res.status(500).send("Error saving data");
@@ -36,14 +37,37 @@ app.post("/api/save-song", (req, res) => {
  * Saving ordinarius
  */
 app.post("/api/save-ordinarius", (req, res) => {
+  const sourcePath = "src/data/ordinarium.json";
   const directoryPath = path.dirname(new URL(import.meta.url).pathname).substring(1);
-  const allOrdinarium = JSON.parse(
-    fs.readFileSync(path.join(directoryPath, "../src/data/ordinarium.json"), "utf8")
+  const allItems = JSON.parse(
+    fs.readFileSync(path.join(directoryPath, `../${sourcePath}`), "utf8")
   );
-  const { ordinarius, ordinarius_id } = req.body;
-  allOrdinarium[ordinarius_id] = ordinarius;
+  const { itemToChange, item_id } = req.body;
+  allItems[item_id] = itemToChange;
 
-  fs.writeFile("src/data/ordinarium.json", JSON.stringify(allOrdinarium, null, 2), (err) => {
+  fs.writeFile(sourcePath, JSON.stringify(allItems, null, 2), (err) => {
+    if (err) {
+      console.error(err);
+      res.status(500).send("Error saving data");
+    } else {
+      res.send("Data saved successfully");
+    }
+  });
+});
+
+/**
+ * Saving formulas
+ */
+app.post("/api/save-formula", (req, res) => {
+  const sourcePath = "src/data/formulas.json";
+  const directoryPath = path.dirname(new URL(import.meta.url).pathname).substring(1);
+  const allItems = JSON.parse(
+    fs.readFileSync(path.join(directoryPath, `../${sourcePath}`), "utf8")
+  );
+  const { itemToChange, item_id } = req.body;
+  allItems[item_id] = itemToChange;
+
+  fs.writeFile(sourcePath, JSON.stringify(allItems, null, 2), (err) => {
     if (err) {
       console.error(err);
       res.status(500).send("Error saving data");
