@@ -21,7 +21,7 @@ function App() {
           <Route path="ordinarium/*" element={<OrdinariumEdit />} />
           <Route path="formulas" element={<Formulas />} />
           <Route path="formulas/*" element={<FormulasEdit />} />
-          <Route path="set/*" element={<MassSet />} />
+          <Route path="sets/show/*" element={<MassSet />} />
           <Route path="*" element={<ErrorPage code={404} desc="Nie ma takiej strony" />} />
         </Route>
       </Routes>

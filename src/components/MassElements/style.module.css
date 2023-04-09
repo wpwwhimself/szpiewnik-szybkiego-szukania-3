@@ -9,14 +9,6 @@
   font-size: 1.2em;
 }
 
-.massElemEraser{
-	position: absolute;
-	right: 0; top: 0;
-}
-.massElemEraser :nth-child(1){
-	display: none;
-}
-
 .lyrics{
 	display: flex;
 	flex-direction: column; flex-wrap: wrap;

@@ -18,7 +18,7 @@ export function Home(){
           <h2>{formula}</h2>
           <div className="flex-right center wrap">
           {sets.filter(el => el.formulaName === formula).map((set, i) => 
-            <Link key={i} to={`set/${slugAndDePL(set.name)}`}>
+            <Link key={i} to={`sets/show/${slugAndDePL(set.name)}`}>
               {set.name}
             </Link>
           )}

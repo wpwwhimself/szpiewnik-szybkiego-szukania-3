@@ -12,7 +12,9 @@ import { Notation } from "react-abc";
 //todo usuwanie elementów
 export const MMod = {
   prepareMassElemErase: (id: string) => {
-    console.log(id);
+    const hide = id.charAt(0) === "!";
+    if(hide) id = id.substring(1);
+    document.querySelector<HTMLElement>(`#${id} .massElemEraser button:nth-child(1)`)!.style.display = (hide) ? "none" : "block";
   },
   eraseMassElem: (id: string) => {
 
@@ -20,7 +22,7 @@ export const MMod = {
 }
 
 export function MassSet(){
-  const title_match: string = useLocation().pathname.replace(/\/set\/(.*)/, "$1");
+  const title_match: string = useLocation().pathname.replace(/\/sets\/show\/(.*)/, "$1");
   const [set, setSet] = useState(sets.filter(sought => slugAndDePL(sought.name) === title_match)[0]);
   const formula = formulas.filter(sought => sought.name === baseFormula(set.formulaName))[0];
 
@@ -126,21 +128,21 @@ export function MassSet(){
     .filter(el => el.content !== undefined)
     .filter(el => el.code !== "pAccl")
     .map((el, i) => 
-    <a key={i} href={`#${el.code}`} className="button">
+    <Button key={i} onClick={() => document.getElementById(el.code)?.scrollIntoView({behavior: "smooth", block: "center"})}>
       <span>{el.label}</span>
       <h3>{
         (el.content!.indexOf("\n") > -1) ?
         el.content!.substring(0, el.content!.indexOf("\n")) :
         el.content
       }</h3>
-    </a>
+    </Button>
   );
 
   return(
     <Section title={`${set.name}`}>
       <div className={`flex-right center ${style.settings}`}>
         <Select name="color" label="Kolor cz.st." options={ordColorOptions} value={set.color} onChange={handleColorChange}/>
-        <Button>Na początek</Button>
+        <Button onClick={() => window.scrollTo({top: 0, behavior: "smooth"})}>Na początek</Button>
       </div>
 
       <div className="flex-down">
