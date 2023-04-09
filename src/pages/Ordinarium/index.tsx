@@ -7,26 +7,56 @@ import { useState } from "react";
 import axios from "axios";
 import { Button, Input } from "../../components/Interactives";
 import { Notation } from "react-abc";
+import { slugAndDePL } from "../../helpers"
 
 export function Ordinarium(){
   return(
     <Section title="Części stałe">
       <div className="grid-3">
-      {ordinarium_colors.map(color => <div className={style.ordTile} key={color.name}>
-        <div className={style.ordTitleBox} style={{ borderColor: color.displayColor ?? color.name }}>
-          <h1>{color.displayName}</h1>
-          <p>{color.desc}</p>
+      {ordinarium_colors.map((color, i) => 
+        <div className={style.ordTile} key={i}>
+          <div className={style.ordTitleBox} style={{ borderColor: color.displayColor ?? color.name }}>
+            <h1>{color.displayName}</h1>
+            <p>{color.desc}</p>
+          </div>
+          <div className="flex-right wrap center">
+          {ordinarium
+            .filter(part => part.colorCode === color.name)
+            .map((part, ind) => 
+            <Link to={`${part.colorCode}_${part.part}`} key={ind}>
+              {part.part}
+            </Link>
+          )}
+          </div>
+        </div>)}
+      </div>
+      <div className="grid-2">
+        <div className={style.ordTile}>
+          <div className={`${style.ordTitleBox}`}>
+            <h1>Uniwersalne</h1>
+            <p>dużo ich nie ma, ale...</p>
+          </div>
+          <div className="flex-right wrap center">
+          {ordinarium.filter(el => el.colorCode === "*").map((ord, i) => 
+            <Link to={`*_${ord.part}`} key={i}>{ord.part}</Link>
+          )}
+          </div>
         </div>
-        <div className="flex-right wrap center">
-        {ordinarium
-          .filter(part => part.colorCode === color.name)
-          .map((part, ind) => 
-          <Link to={`${part.colorCode}-${part.part}`} key={ind}>
-            {part.part}
-          </Link>
-        )}
+        <div className={style.ordTile}>
+          <div className={`${style.ordTitleBox}`}>
+            <h1>Okazjonalne</h1>
+            <p>na potrzeby świąt</p>
+          </div>
+          <div className="flex-right wrap center">
+          {ordinarium
+            .filter(el => el.colorCode.charAt(0).match(/[A-Z]/))
+            .map((el, ind) =>
+              <Link to={`${slugAndDePL(el.colorCode)}_${el.part}`} key={ind}>
+                {el.part} ({el.colorCode})
+              </Link>
+          )}
+          </div>
         </div>
-      </div>)}
       </div>
     </Section>
   )
@@ -34,12 +64,12 @@ export function Ordinarium(){
 
 export function OrdinariumEdit(){
   const navigate = useNavigate();
-  const title_match: string[] = useLocation().pathname.replace(/\/ordinarium\/(.*)/, "$1").split("-");
+  const title_match: string[] = useLocation().pathname.replace(/\/ordinarium\/(.*)/, "$1").split("_");
 
-  const original_ordinarius = ordinarium.filter(sought => sought.colorCode === title_match[0] && sought.part === title_match[1])[0];
+  const original_ordinarius = ordinarium.filter(sought => slugAndDePL(sought.colorCode) === title_match[0] && sought.part === title_match[1])[0];
   const ordinarius_id = ordinarium.indexOf(original_ordinarius);
 
-  const [ordinarius, setOrdinarius] = useState(ordinarium.filter(sought => sought.colorCode === title_match[0] && sought.part === title_match[1])[0]);
+  const [ordinarius, setOrdinarius] = useState(ordinarium.filter(sought => slugAndDePL(sought.colorCode) === title_match[0] && sought.part === title_match[1])[0]);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = event.target;

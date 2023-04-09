@@ -1,3 +1,5 @@
+import { ReactNode } from "react";
+
 export interface SongProps{
   title: string,
   categoryCode: number,
@@ -25,6 +27,7 @@ export interface OrdinariumColorProps{
 export interface Extra{
   songName: string,
   preWhere?: string,
+  replace: boolean,
 }
 
 export interface Formula{
@@ -52,12 +55,24 @@ export interface Set{
 export interface MassElem{
   code: string,
   label: string,
-  content: string,
+  content?: string,
+}
+
+export interface MassElemSectionProps{
+  id: string,
+  uneresable?: boolean,
+  children: ReactNode,
+}
+
+export interface OrdinariumProcessorProps{
+  code: string,
+  colorCode: string,
 }
 
 export type InputProps = {
   name: string,
   label: string,
+  disabled?: boolean,
 } & ({
   type?: "TEXT";
   value?: string | number | null,

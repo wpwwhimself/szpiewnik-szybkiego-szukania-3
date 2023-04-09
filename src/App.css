@@ -40,8 +40,9 @@ body{
   transition-duration: 0.3s;
 }
 
-h1, h2, h3{
+h1, h2, h3, h4{
   font-family: HeaderFont;
+  text-align: center;
 }
 h2{
   color: var(--acc);
@@ -60,9 +61,6 @@ a:hover{
   box-sizing: border-box;
   width: 90vw;
   min-height: calc(100vh - var(--header-height) - var(--footer-height))
-}
-#main-wrapper *:first-child{
-  margin-top: 0;
 }
 
 /* misc */
@@ -88,7 +86,7 @@ input, select, textarea{
   font-family: BaseFont;
   font-size: 1.1em;
   border: none;
-  border-bottom: 1px solid var(--fg);
+  border-bottom: 1px solid var(--bg3);
   resize: vertical;
   text-align: center;
 }
@@ -99,7 +97,7 @@ textarea{
   width: 40vw; height: 30vh;
 }
 button, .button{
-  color: var(--acc);
+  color: var(--fg);
   background-color: var(--bg3);
   /* width: 100%; */
   padding: 0 0.75em;

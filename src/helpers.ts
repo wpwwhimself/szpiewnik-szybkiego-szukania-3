@@ -2,24 +2,32 @@ import { SelectOption } from "./types";
 
 export function slugAndDePL(string: string): string{
   return string
-    .replace(/ą/g, "a")
-    .replace(/ć/g, "c")
-    .replace(/ę/g, "e")
-    .replace(/ł/g, "l")
-    .replace(/ń/g, "n")
-    .replace(/ó/g, "o")
-    .replace(/ś/g, "s")
-    .replace(/[źż]/g, "z")
+    .replace(/([a-z])([A-Z])/g, "$1-$2")
+    .replace(/[Ąą]/g, "a")
+    .replace(/[Ćć]/g, "c")
+    .replace(/[Ęę]/g, "e")
+    .replace(/[Łł]/g, "l")
+    .replace(/[Ńń]/g, "n")
+    .replace(/[Óó]/g, "o")
+    .replace(/[Śś]/g, "s")
+    .replace(/[ŹŻźż]/g, "z")
     .toLocaleLowerCase()
     .replace(/ /g, "-")
     .replace(/[,]/g, "")
+}
+
+export function baseFormula(formula: string): string{
+  return formula.replace(/(.*) \((.*)\)/, "$1");
 }
 
 export const massOrder: SelectOption[] = [
   { value: "sIntro", label: "Wejście" },
   { value: "oKyrie", label: "Kyrie" },
   { value: "oGloria", label: "Gloria" },
+  { value: "xLUP", label: "Módlmy się" },
+  { value: "xReading1", label: "1. czytanie" },
   { value: "pPsalm", label: "Psalm" },
+  { value: "xReading2", label: "2. czytanie" },
   { value: "pAccl", label: "Aklamacja" },
   { value: "xEvang", label: "Ewangelia" },
   { value: "xHomily", label: "Kazanie" },
@@ -28,9 +36,12 @@ export const massOrder: SelectOption[] = [
   { value: "sOffer", label: "Przygotowanie Darów" },
   { value: "oSanctus", label: "Sanctus" },
   { value: "xTransf", label: "Przemienienie" },
-  { value: "xPaterNoster", label: "Ojcze nasz" },
+  { value: "oPaterNoster", label: "Ojcze nasz" },
   { value: "oAgnusDei", label: "Agnus Dei" },
   { value: "sCommunion", label: "Komunia" },
   { value: "sAdoration", label: "Uwielbienie" },
+  { value: "xLUP", label: "Módlmy się" },
+  { value: "xAnnounc", label: "Ogłoszenia" },
+  { value: "xBlessing", label: "Błogosławieństwo" },
   { value: "sDismissal", label: "Zakończenie" },
 ];

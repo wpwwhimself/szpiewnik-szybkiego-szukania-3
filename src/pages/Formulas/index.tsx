@@ -37,13 +37,19 @@ export function FormulasEdit(){
     setFormula({ ...formula, [name]: (name === "gloriaPresent") ? checked : value });
   };
 
-  const handleExtraChange = (event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+  const handleExtraChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value, checked } = event.target;
+    const change_id = +event.target.closest(".formula-change")!.getAttribute("data-id")!;
+    let extra = formula.extra!;
+    extra[change_id][name.replace(/(.*)\[\d\]/, "$1") as keyof Extra] = (name.replace(/(.*)\[\d\]/, "$1") === "replace" ? checked : value) as never;
+    setFormula({ ...formula, extra: extra });
+  }
+  const handleExtraSelectChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     const { name, value } = event.target;
     const change_id = +event.target.closest(".formula-change")!.getAttribute("data-id")!;
     let extra = formula.extra!;
-    extra[change_id][name.replace(/(.*)\[\d\]/, "$1") as keyof Extra] = value;
+    extra[change_id][name.replace(/(.*)\[\d\]/, "$1") as keyof Extra] = value as never;
     setFormula({ ...formula, extra: extra });
-    console.log(formula.extra![change_id]);
   }
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
@@ -67,7 +73,8 @@ export function FormulasEdit(){
         {formula.extra?.map((extra, i) => 
           <div key={i} className="formula-change" data-id={i}>
             <Input type="text" name={`songName[${i}]`} label="Pieśń" value={extra.songName} onChange={handleExtraChange} />
-            <Select name={`preWhere[${i}]`} label="Przed" options={massOrder} firstEmpty value={extra.preWhere} onChange={handleExtraChange} />
+            <Select name={`preWhere[${i}]`} label="Przed" options={massOrder} firstEmpty value={extra.preWhere} onChange={handleExtraSelectChange} />
+            <Input type="checkbox" name={`replace[${i}]`} label="Zastąp" value={extra.replace} onChange={handleExtraChange} />
           </div>
         )}
         </div>

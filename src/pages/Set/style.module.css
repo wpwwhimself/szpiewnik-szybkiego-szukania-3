@@ -1,5 +1,8 @@
 .settings{
   position: sticky; top: 0;
+  background-color: var(--bg2);
+  z-index: 9;
+  padding: 0.5em;
 }
 .settings h2{
   margin: 0;
@@ -11,4 +14,8 @@
 }
 .summary span{
   opacity: 0.5;
+}
+
+.songMeta *{
+  margin: 0;
 }

@@ -2,7 +2,7 @@ import style from "./style.module.css";
 import { InputProps, PreferencesProps, SelectProps } from "../../types";
 import { ButtonHTMLAttributes } from "react";
 
-export function Input({type, name, label, value, onChange}: InputProps){
+export function Input({type, name, label, value, onChange, disabled}: InputProps){
   switch(type){
     case "TEXT": return(
       <div className={style.inputContainer}>
@@ -19,7 +19,7 @@ export function Input({type, name, label, value, onChange}: InputProps){
     case "text": return(
       <div className={style.inputContainer}>
         <label htmlFor={name}>{label}</label>
-        <input type={type} name={name} id={name} defaultValue={value ?? undefined} onChange={onChange} />
+        <input type={type} name={name} id={name} defaultValue={value ?? undefined} onChange={onChange} disabled={disabled} />
       </div>
     );
     default: return(
@@ -67,7 +67,7 @@ export function Preferences({preferences, onChange}: PreferencesProps){
       <Input type="text" name="pref5" label="Uwagi" value={other_prefs} onChange={onChange} />
       <div className="flex-right center">
       {possibilities.map((labels, ind) =>
-        <Input key={labels.name}
+        <Input key={ind}
           type="checkbox"
           name={labels.name}
           label={labels.label}
