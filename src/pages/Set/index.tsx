@@ -5,21 +5,11 @@ import { createContext, useState } from "react";
 import { sets, ordinarium_colors, formulas, songs, ordinarium } from "../../data";
 import { slugAndDePL, massOrder, baseFormula } from "../../helpers";
 import { Button, Input, Select } from "../../components/Interactives";
-import { MassElem, SelectOption, Set } from "../../types";
+import { MModProps, MassElem, SelectOption, Set } from "../../types";
 import { ExtrasProcessor, MassElemSection, OrdinariumProcessor, PsalmLyrics, SongLyrics } from "../../components/MassElements";
 import { Notation } from "react-abc";
 
-//todo usuwanie elementów
-export const MMod = {
-  prepareMassElemErase: (id: string) => {
-    const hide = id.charAt(0) === "!";
-    if(hide) id = id.substring(1);
-    document.querySelector<HTMLElement>(`#${id} .massElemEraser button:nth-child(1)`)!.style.display = (hide) ? "none" : "block";
-  },
-  eraseMassElem: (id: string) => {
-
-  }
-}
+export const MModContext = createContext({} as MModProps);
 
 export function MassSet(){
   const title_match: string = useLocation().pathname.replace(/\/sets\/show\/(.*)/, "$1");
@@ -69,7 +59,9 @@ export function MassSet(){
     else thisMassOrder.push({ code: `sOutro`, label: `Dodatkowo`, content: el.songName });
   });
 
-  const Mass = thisMassOrder.map<React.ReactNode>((el, i) => {
+  if(set.thisMassOrder === undefined) setSet({...set, thisMassOrder: thisMassOrder});
+
+  const Mass = set.thisMassOrder?.map<React.ReactNode>((el, i) => {
     switch(el.code.charAt(0)){
       case "s": // song
         const song = songs.filter(s => s.title === el.content)[0];
@@ -121,11 +113,24 @@ export function MassSet(){
     }
   });
 
+  //deleting
+  const MMod: MModProps = {
+    prepareMassElemErase: (id) => {
+      const hide = id.charAt(0) === "!";
+      if(hide) id = id.substring(1);
+      document.querySelector<HTMLElement>(`#${id} .massElemEraser button:nth-child(1)`)!.style.display = (hide) ? "none" : "block";
+    },
+    eraseMassElem: (id) => {
+      thisMassOrder = set.thisMassOrder!.filter(el => el.code !== id);
+      setSet({...set, thisMassOrder: thisMassOrder});
+    }
+  }
+
   /**
    * Mass' summary
    */
-  const summary = thisMassOrder
-    .filter(el => el.content !== undefined)
+  const summary = set.thisMassOrder
+    ?.filter(el => el.content !== undefined)
     .filter(el => el.code !== "pAccl")
     .map((el, i) => 
     <Button key={i} onClick={() => document.getElementById(el.code)?.scrollIntoView({behavior: "smooth", block: "center"})}>
@@ -146,19 +151,20 @@ export function MassSet(){
       </div>
 
       <div className="flex-down">
-        <MassElemSection id="summary" uneresable>
-          <h1>Skrót</h1>
-          <div className="flex-right wrap center">
-            <Input type="text" name="" label="Formuła" disabled value={set.formulaName} />
-            <Input type="text" name="" label="Utworzony" disabled value={set.createdAt} />
-          </div>
-          <h2>Pieśni i psalm</h2>
-          <div className={`flex-right wrap center ${style.summary}`}>
-            {summary}
-          </div>
-        </MassElemSection>
-
-        {Mass}
+        <MModContext.Provider value={MMod}>
+          <MassElemSection id="summary" uneresable>
+            <h1>Skrót</h1>
+            <div className="flex-right wrap center">
+              <Input type="text" name="" label="Formuła" disabled value={set.formulaName} />
+              <Input type="text" name="" label="Utworzony" disabled value={set.createdAt} />
+            </div>
+            <h2>Pieśni i psalm</h2>
+            <div className={`flex-right wrap center ${style.summary}`}>
+              {summary}
+            </div>
+          </MassElemSection>
+          {Mass}
+        </MModContext.Provider>
       </div>
 
     </Section>

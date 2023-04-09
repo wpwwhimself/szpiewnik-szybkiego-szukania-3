@@ -5,9 +5,11 @@ import { ReactNode, useContext } from "react";
 import { Notation } from "react-abc";
 import { slugAndDePL } from "../../helpers";
 import { Button } from "../Interactives";
-import { MMod } from "../../pages/Set";
+import { MModContext } from "../../pages/Set";
 
 export function MassElemSection({id, uneresable = false, children}: MassElemSectionProps){
+  const MMod = useContext(MModContext);
+
   return(
     <section id={id} className={style.massElemSection}>
     {!uneresable &&

@@ -1,5 +1,10 @@
 import { ReactNode } from "react";
 
+export interface MModProps{
+  prepareMassElemErase: (id: string) => void,
+  eraseMassElem: (id: string) => void,
+}
+
 export interface SongProps{
   title: string,
   categoryCode: number,
@@ -50,6 +55,7 @@ export interface Set{
   sAdoration?: string,
   sDismissal?: string,
   extra?: Extra[],
+  thisMassOrder?: MassElem[],
 }
 
 export interface MassElem{
