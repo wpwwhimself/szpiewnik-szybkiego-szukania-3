@@ -35,17 +35,24 @@ export interface Formula{
 
 export interface Set{
   name: string,
+  createdAt: string,
   formulaName: string,
-  defaultColor: string,
+  color: string,
   sPre?: string,
   sIntro?: string,
   pPsalm?: string,
   pAccl?: string,
   sOffer?: string,
-  sCommunion?: string[],
+  sCommunion?: string,
   sAdoration?: string,
   sDismissal?: string,
   extra?: Extra[],
+}
+
+export interface MassElem{
+  code: string,
+  label: string,
+  content: string,
 }
 
 export type InputProps = {

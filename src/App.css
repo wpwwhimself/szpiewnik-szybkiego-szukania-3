@@ -76,11 +76,64 @@ a:hover{
 .cap-initial::first-letter{
   text-transform: capitalize;
 }
+.sheet-container svg{
+  background-color: white;
+}
+
+/* interactives */
+
+input, select, textarea{
+  background: none;
+  color: var(--fg);
+  font-family: BaseFont;
+  font-size: 1.1em;
+  border: none;
+  border-bottom: 1px solid var(--fg);
+  resize: vertical;
+  text-align: center;
+}
+textarea{
+  font-size: 0.9em;
+  text-align: left;
+  font-family: monospace;
+  width: 40vw; height: 30vh;
+}
+button, .button{
+  color: var(--acc);
+  background-color: var(--bg3);
+  /* width: 100%; */
+  padding: 0 0.75em;
+  font-weight: bold;
+  font-size: 1.2em;
+  border-top: 0.5em double var(--bg1);
+  border-bottom: 0.5em double var(--bg1);
+  border-left: none; border-right: none;
+  text-decoration: none;
+  cursor: pointer;
+}
+button{
+  font-family: HeaderFont;
+}
+button:hover, .button:hover{
+  color: black;
+  background-color: var(--acc);
+}
+
+input:focus, select:focus, textarea:focus{
+  box-shadow: 0 0 2em var(--acc);
+}
+
+label{
+  font-size: 0.8em;
+  font-style: italic;
+  opacity: 0.7;
+}
 
 /* flexing */
 
 .flex-right, .flex-down{
   display: flex;
+  gap: 0.5em;
 }
 
 .flex-right{
@@ -100,6 +153,9 @@ a:hover{
 }
 .center-vert{
   align-items: baseline;
+}
+.stretch *{
+  flex-basis: 100%;
 }
 
 /* gridding */

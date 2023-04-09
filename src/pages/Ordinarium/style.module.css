@@ -1,12 +1,12 @@
-.ord-tile{
+.ordTile{
   text-align: center;
 }
-.ord-title-box{
+.ordTitleBox{
   --border-size: 3px;
   border-bottom: var(--border-size) solid var(--acc);
   padding-bottom: calc(2 * var(--border-size));
   margin-bottom: calc(2 * var(--border-size));
 }
-.ord-title-box *{
+.ordTitleBox *{
   margin: 0;
 }

@@ -1,5 +1,5 @@
 import { Section } from "../../components/Section"
-import "./style.css"
+import style from "./style.module.css"
 import { ordinarium, ordinarium_colors } from "../../data"
 import { Link } from "react-router-dom"
 import { useLocation, useNavigate } from "react-router-dom"
@@ -12,8 +12,8 @@ export function Ordinarium(){
   return(
     <Section title="Części stałe">
       <div className="grid-3">
-      {ordinarium_colors.map(color => <div className="ord-tile" key={color.name}>
-        <div className="ord-title-box" style={{ borderColor: color.displayColor ?? color.name }}>
+      {ordinarium_colors.map(color => <div className={style.ordTile} key={color.name}>
+        <div className={style.ordTitleBox} style={{ borderColor: color.displayColor ?? color.name }}>
           <h1>{color.displayName}</h1>
           <p>{color.desc}</p>
         </div>
@@ -63,10 +63,12 @@ export function OrdinariumEdit(){
         <div>
           <Input type="TEXT" name="sheetMusic" label="Nuty" value={ordinarius.sheetMusic ?? undefined} onChange={handleChange} />
         </div>
-        <div id="sheet-container" className="flex-right center">
+        <div className="flex-right center sheet-container">
           <Notation notation={ordinarius.sheetMusic ?? ""} />
         </div>
-        <Button type="submit">Zatwierdź i wróć</Button>
+        <div className="flex-right stretch">
+          <Button type="submit">Zatwierdź i wróć</Button>
+        </div>
       </form>
     </Section>
   )

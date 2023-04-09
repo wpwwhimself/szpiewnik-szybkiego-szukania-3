@@ -1,29 +1,29 @@
-import "./style.css";
+import style from "./style.module.css";
 import { InputProps, PreferencesProps, SelectProps } from "../../types";
 import { ButtonHTMLAttributes } from "react";
 
 export function Input({type, name, label, value, onChange}: InputProps){
   switch(type){
     case "TEXT": return(
-      <div className="input-container">
+      <div className={style.inputContainer}>
         <label htmlFor={name}>{label}</label>
         <textarea name={name} id={name} defaultValue={value ?? undefined} onChange={onChange} />
       </div>
     );
     case "checkbox": return(
-      <div className="input-container">
+      <div className={style.inputContainer}>
         <label htmlFor={name}>{label}</label>
         <input type={type} name={name} id={name} defaultChecked={value} onChange={onChange} />
       </div>
     );
     case "text": return(
-      <div className="input-container">
+      <div className={style.inputContainer}>
         <label htmlFor={name}>{label}</label>
         <input type={type} name={name} id={name} defaultValue={value ?? undefined} onChange={onChange} />
       </div>
     );
     default: return(
-      <div className="input-container">
+      <div className={style.inputContainer}>
         <label htmlFor={name}>{label}</label>
         <input type={type} name={name} id={name} defaultValue={value ?? undefined} />
       </div>
@@ -33,7 +33,7 @@ export function Input({type, name, label, value, onChange}: InputProps){
 
 export function Select({name, label, value, firstEmpty, options, onChange}: SelectProps){
   return(
-    <div className="input-container">
+    <div className={style.inputContainer}>
       <label htmlFor={name}>{label}</label>
       <select name={name} id={name} onChange={onChange} defaultValue={value}>
         {firstEmpty && <option key="_first"></option>}
@@ -63,7 +63,7 @@ export function Preferences({preferences, onChange}: PreferencesProps){
   ];
 
   return(
-    <div className="input-container">
+    <div className={style.inputContainer}>
       <Input type="text" name="pref5" label="Uwagi" value={other_prefs} onChange={onChange} />
       <div className="flex-right center">
       {possibilities.map((labels, ind) =>

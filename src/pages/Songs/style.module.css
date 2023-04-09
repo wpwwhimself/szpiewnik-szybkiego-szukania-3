@@ -1,0 +1,4 @@
+.boldEm a::first-letter{
+  font-weight: bold;
+  color: var(--acc);
+}

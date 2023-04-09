@@ -1,0 +1,14 @@
+.settings{
+  position: sticky; top: 0;
+}
+.settings h2{
+  margin: 0;
+}
+
+.summary *{
+  margin: 0;
+  text-align: center;
+}
+.summary span{
+  opacity: 0.5;
+}

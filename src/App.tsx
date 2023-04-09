@@ -7,6 +7,7 @@ import { Home } from "./pages/Home";
 import { Songs, SongEdit } from "./pages/Songs";
 import { Ordinarium, OrdinariumEdit } from "./pages/Ordinarium";
 import { Formulas, FormulasEdit } from "./pages/Formulas";
+import { MassSet } from "./pages/Set";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
           <Route path="ordinarium/*" element={<OrdinariumEdit />} />
           <Route path="formulas" element={<Formulas />} />
           <Route path="formulas/*" element={<FormulasEdit />} />
+          <Route path="set/*" element={<MassSet />} />
           <Route path="*" element={<ErrorPage code={404} desc="Nie ma takiej strony" />} />
         </Route>
       </Routes>

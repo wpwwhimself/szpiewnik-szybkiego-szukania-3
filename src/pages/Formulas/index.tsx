@@ -1,5 +1,5 @@
 import { Section } from "../../components/Section";
-import "./style.css";
+import style from "./style.module.css";
 import { formulas } from "../../data";
 import { Link } from "react-router-dom";
 import { slugAndDePL, massOrder } from "../../helpers";
@@ -12,7 +12,7 @@ import axios from "axios";
 export function Formulas(){
   return(
     <Section title="Lista formuł">
-      <div className="flex-right wrap">
+      <div className="flex-right wrap center">
       {formulas.map((formula, i) => 
         <Link to={`${slugAndDePL(formula.name)}`} key={i}>
           {formula.name}
@@ -71,7 +71,9 @@ export function FormulasEdit(){
           </div>
         )}
         </div>
-        <Button type="submit">Zatwierdź i wróć</Button>
+        <div className="flex-right stretch">
+          <Button type="submit">Zatwierdź i wróć</Button>
+        </div>
       </form>
     </Section>
   )

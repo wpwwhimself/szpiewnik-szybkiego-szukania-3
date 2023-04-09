@@ -1,4 +1,4 @@
-import "./style.css";
+import style from "./style.module.css";
 import { Logo } from "../Logo";
 import { Link } from "react-router-dom";
 
@@ -6,7 +6,7 @@ export function Header(){
   return(
     <header>
       <Logo />
-      <div className="titles">
+      <div className={style.titles}>
         <h1 id="page-title">XXX</h1>
         <h2>Szpiewnik Szybkiego Szukania 3</h2>
       </div>
@@ -25,7 +25,7 @@ export function Footer(){
   return(
     <footer>
       <Logo />
-      <div className="titles">
+      <div className={style.titles}>
         <h2>Szpiewnik Szybkiego Szukania 3</h2>
         <p>Projekt i wykonanie: <a href="http://wpww.pl/">Wojciech Przybyła</a></p>
         <p>&copy; 2023 - {today.getFullYear()}</p>

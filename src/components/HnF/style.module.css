@@ -13,10 +13,6 @@ header{
   box-sizing: border-box;
 }
 
-header .logo{
-  height: calc(var(--header-height) - 2 * 1.5em);
-}
-
 header .titles{
   text-align: left;
 }
