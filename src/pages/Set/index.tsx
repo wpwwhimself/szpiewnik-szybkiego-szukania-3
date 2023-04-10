@@ -131,36 +131,48 @@ export function MassSet(){
    */
   const summary = set.thisMassOrder
     ?.filter(el => el.content !== undefined)
-    .filter(el => el.code !== "pAccl")
-    .map((el, i) => 
-    <Button key={i} onClick={() => document.getElementById(el.code)?.scrollIntoView({behavior: "smooth", block: "center"})}>
-      <span>{el.label}</span>
-      <h3>{
-        (el.content!.indexOf("\n") > -1) ?
-        el.content!.substring(0, el.content!.indexOf("\n")) :
-        el.content
-      }</h3>
-    </Button>
-  );
+    .filter(el => el.code !== "pAccl");
 
   return(
     <Section title={`${set.name}`}>
       <div className={`flex-right center ${style.settings}`}>
         <Select name="color" label="Kolor cz.st." options={ordColorOptions} value={set.color} onChange={handleColorChange}/>
-        <Button onClick={() => window.scrollTo({top: 0, behavior: "smooth"})}>Na początek</Button>
+        {summary?.map((el, i) =>
+          <Button
+            onClick={() => document.getElementById(el.code)?.scrollIntoView({behavior: "smooth", block: "center"})}
+            >
+            {el.label.substring(0, 3)}
+          </Button>
+        )}
       </div>
 
       <div className="flex-down">
         <MModContext.Provider value={MMod}>
           <MassElemSection id="summary" uneresable>
             <h1>Skrót</h1>
-            <div className="flex-right wrap center">
-              <Input type="text" name="" label="Formuła" disabled value={set.formulaName} />
-              <Input type="text" name="" label="Utworzony" disabled value={set.createdAt} />
-            </div>
-            <h2>Pieśni i psalm</h2>
-            <div className={`flex-right wrap center ${style.summary}`}>
-              {summary}
+            <div className="grid-2">
+              <div>
+                <h2>Meta</h2>
+                <div className="flex-right wrap center">
+                  <Input type="text" name="" label="Formuła" disabled value={set.formulaName} />
+                  <Input type="text" name="" label="Utworzony" disabled value={set.createdAt} />
+                </div>
+              </div>
+              <div>
+                <h2>Pieśni i psalm</h2>
+                <ol className={style.summary}>
+                {summary?.map((el, i) =>
+                  <li key={i}>
+                    <b>{
+                      (el.content!.indexOf("\n") > -1) ?
+                      el.content!.substring(0, el.content!.indexOf("\n")) :
+                      el.content
+                    }</b>
+                    <span>{el.label}</span>
+                  </li>
+                )}
+                </ol>
+              </div>
             </div>
           </MassElemSection>
           {Mass}

@@ -1,5 +1,4 @@
 import { Section } from "../../components/Section";
-import style from "./style.module.css";
 import { formulas } from "../../data";
 import { Link } from "react-router-dom";
 import { slugAndDePL, massOrder } from "../../helpers";

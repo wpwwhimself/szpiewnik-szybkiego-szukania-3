@@ -8,12 +8,9 @@
   margin: 0;
 }
 
-.summary *{
-  margin: 0;
-  text-align: center;
-}
 .summary span{
   opacity: 0.5;
+  margin-left: 0.5em;
 }
 
 .songMeta *{
