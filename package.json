@@ -26,7 +26,7 @@
     "start": "concurrently \"npm run start:react\" \"npm run start:server\"",
     "start:react": "react-scripts start",
     "start:server": "node server/index.js",
-    "build": "react-scripts build",
+    "build": "react-scripts build --single",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
@@ -50,6 +50,7 @@
   },
   "type": "module",
   "devDependencies": {
-    "concurrently": "^8.0.1"
+    "concurrently": "^8.0.1",
+    "html-webpack-plugin": "^5.5.0"
   }
 }
