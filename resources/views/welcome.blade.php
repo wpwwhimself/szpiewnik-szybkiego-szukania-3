@@ -7,8 +7,8 @@
         <title>SZSZSZ3</title>
     </head>
     <body>
-        <div class="container" id="app"></div>
+        <div class="container" id="root"></div>
         @viteReactRefresh
-        @vite(['resources/js/App.tsx'])
+        @vite(['resources/js/index.tsx'])
     </body>
 </html>
