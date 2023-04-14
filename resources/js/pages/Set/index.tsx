@@ -8,7 +8,7 @@ import { slugAndDePL, massOrder, baseFormula } from "../../helpers";
 import { Button, Input, Select } from "../../components/Interactives";
 import { MModProps, MassElem, SelectOption, Set } from "../../types";
 import { ExtrasProcessor, MassElemSection, OrdinariumProcessor, PsalmLyrics, SongLyrics } from "../../components/MassElements";
-import { Notation } from "react-abc";
+// import { Notation } from "react-abc";
 
 export const MModContext = createContext({} as MModProps);
 

@@ -27,6 +27,7 @@ body{
   color: var(--fg);
   --header-height: 9em;
   --footer-height: 7em;
+  margin: 0;
 }
 
 *{

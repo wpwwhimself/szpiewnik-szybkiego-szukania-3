@@ -2,7 +2,7 @@ import style from "./style.module.css"
 import { MassElem, MassElemSectionProps, OrdinariumProcessorProps } from "../../types"
 import { ordinarium, songs } from "../../data"
 import { ReactNode, useContext } from "react";
-import { Notation } from "react-abc";
+// import { Notation } from "react-abc";
 import { slugAndDePL } from "../../helpers";
 import { Button } from "../Interactives";
 import { MModContext } from "../../pages/Set";
@@ -39,7 +39,7 @@ export function SongLyrics({title}: {title: string}){
 export function PsalmLyrics({lyrics}: {lyrics: string}){
   return(
     <div className={style.psalm}>
-    {lyrics.split(/\n\n/).map((out, i) => 
+    {lyrics.split(/\n\n/).map((out, i) =>
       <p key={i} dangerouslySetInnerHTML={{ __html: out.replace(/\n/g, "<br>")}} />
     )}
     </div>
@@ -62,7 +62,7 @@ export function Alternative({children}: {children: ReactNode}){
       <h4>Wybierz jedno:</h4>
       {children}
     </div>
-  ) 
+  )
 }
 
 export function OrdinariumProcessor({code, colorCode}: OrdinariumProcessorProps){
@@ -306,7 +306,7 @@ export function OrdinariumProcessor({code, colorCode}: OrdinariumProcessorProps)
               Który gładzisz grzechy świata<br />
               Zmiłuj się nad nami
             </p>
-            <p>  
+            <p>
               Baranku Boży<br />
               Który gładzisz grzechy świata<br />
               Obdarz nas pokojem
@@ -379,25 +379,25 @@ export function ExtrasProcessor({elem}: {elem: MassElem}){
           <h1>Przemienienie</h1>
           <Alternative>
             <div className={style.alt_option}>
-              <Antiphon 
+              <Antiphon
               call="Oto wielka tajemnica wiary"
               resp="Głosimy śmierć Twoją, Panie Jezu, <br />wyznajemy Twoje zmartwychwstanie <br />i oczekujemy Twego przyjścia w chwale"
               />
             </div>
             <div className={style.alt_option}>
-              <Antiphon 
+              <Antiphon
               call="Tajemnica wiary"
               resp="Chrystus umarł, <br />Chrystus zmartwychwstał, <br />Chrystus powróci"
               />
             </div>
             <div className={style.alt_option}>
-              <Antiphon 
+              <Antiphon
               call="Wielka jest tajemnica naszej wiary"
               resp="Ile razy ten chleb spożywamy <br />i pijemy z tego kielicha, <br />głosimy śmierć Twoją, Panie, <br />oczekując Twego przyjścia w chwale"
               />
             </div>
             <div className={style.alt_option}>
-              <Antiphon 
+              <Antiphon
               call="Uwielbiajmy tajemnicę wiary"
               resp="Panie, Ty nas wybawiłeś <br />przez krzyż i zmartwychwstanie swoje, <br />Ty jesteś zbawicielem świata"
               />

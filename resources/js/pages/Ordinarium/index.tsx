@@ -6,7 +6,7 @@ import { useLocation, useNavigate } from "react-router-dom"
 import React, { useState } from "react";
 import axios from "axios";
 import { Button, Input } from "../../components/Interactives";
-import { Notation } from "react-abc";
+// import { Notation } from "react-abc";
 import { slugAndDePL } from "../../helpers"
 
 export function Ordinarium(){
