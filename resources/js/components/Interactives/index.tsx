@@ -37,7 +37,7 @@ export function Select({name, label, value, firstEmpty, options, onChange}: Sele
       <label htmlFor={name}>{label}</label>
       <select name={name} id={name} onChange={onChange} defaultValue={value}>
         {firstEmpty && <option key="_first"></option>}
-        {options?.map(el => <option key={el.value} value={el.value}>{el.label}</option>)}
+        {options?.map(el => <option key={el.key ?? el.value} value={el.value}>{el.label}</option>)}
       </select>
     </div>
   )

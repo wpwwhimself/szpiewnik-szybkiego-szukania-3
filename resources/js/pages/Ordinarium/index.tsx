@@ -6,7 +6,7 @@ import { useLocation, useNavigate } from "react-router-dom"
 import React, { useState } from "react";
 import axios from "axios";
 import { Button, Input } from "../../components/Interactives";
-// import { Notation } from "react-abc";
+import Abcjs from "react-abcjs";
 import { slugAndDePL } from "../../helpers"
 
 export function Ordinarium(){
@@ -94,7 +94,7 @@ export function OrdinariumEdit(){
           <Input type="TEXT" name="sheetMusic" label="Nuty" value={ordinarius.sheetMusic ?? undefined} onChange={handleChange} />
         </div>
         <div className="flex-right center sheet-container">
-          <Notation notation={ordinarius.sheetMusic ?? ""} />
+          <Abcjs abcNotation={ordinarius.sheetMusic ?? ""} />
         </div>
         <div className="flex-right stretch">
           <Button type="submit">Zatwierdź i wróć</Button>

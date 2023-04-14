@@ -110,4 +110,5 @@ export interface PreferencesProps{
 export interface SelectOption{
   value: number | string,
   label: string,
+  key?: number,
 }

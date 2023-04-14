@@ -2,7 +2,7 @@ import style from "./style.module.css"
 import { MassElem, MassElemSectionProps, OrdinariumProcessorProps } from "../../types"
 import { ordinarium, songs } from "../../data"
 import { ReactNode, useContext } from "react";
-// import { Notation } from "react-abc";
+import Abcjs from "react-abcjs";
 import { slugAndDePL } from "../../helpers";
 import { Button } from "../Interactives";
 import { MModContext } from "../../pages/Set";
@@ -116,7 +116,7 @@ export function OrdinariumProcessor({code, colorCode}: OrdinariumProcessorProps)
           <h1>Kyrie</h1>
           {parts.map((part, i) =>
             <div className="flex-right center sheet-container" key={i}>
-              <Notation notation={part.sheetMusic} />
+              <Abcjs abcNotation={part.sheetMusic} />
             </div>
           )}
           <div>
@@ -134,7 +134,7 @@ export function OrdinariumProcessor({code, colorCode}: OrdinariumProcessorProps)
           <h1>Gloria</h1>
           {parts.map((part, i) =>
             <div className="flex-right center sheet-container" key={i}>
-              <Notation notation={part.sheetMusic} />
+              <Abcjs abcNotation={part.sheetMusic} />
             </div>
           )}
           <div>
@@ -168,7 +168,7 @@ export function OrdinariumProcessor({code, colorCode}: OrdinariumProcessorProps)
           <h1>Credo</h1>
           {parts.map((part, i) =>
             <div className="flex-right center sheet-container" key={i}>
-              <Notation notation={part.sheetMusic} />
+              <Abcjs abcNotation={part.sheetMusic} />
             </div>
           )}
           <table className={style.credo}><tbody>
@@ -225,7 +225,7 @@ export function OrdinariumProcessor({code, colorCode}: OrdinariumProcessorProps)
           <h1>Sanctus</h1>
           {parts.map((part, i) =>
             <div className="flex-right center sheet-container" key={i}>
-              <Notation notation={part.sheetMusic} />
+              <Abcjs abcNotation={part.sheetMusic} />
             </div>
           )}
           <div>
@@ -255,7 +255,7 @@ export function OrdinariumProcessor({code, colorCode}: OrdinariumProcessorProps)
           <h1>Pater Noster</h1>
           {parts.map((part, i) =>
             <div className="flex-right center sheet-container" key={i}>
-              <Notation notation={part.sheetMusic} />
+              <Abcjs abcNotation={part.sheetMusic} />
             </div>
           )}
           <div>
@@ -292,7 +292,7 @@ export function OrdinariumProcessor({code, colorCode}: OrdinariumProcessorProps)
           <h1>Agnus Dei</h1>
           {parts.map((part, i) =>
             <div className="flex-right center sheet-container" key={i}>
-              <Notation notation={part.sheetMusic} />
+              <Abcjs abcNotation={part.sheetMusic} />
             </div>
           )}
           <div>
