@@ -4,7 +4,7 @@ export interface DataChangeProps{
     (
         fileToChange: string,
         itemToChange: SongProps | OrdinariumProps | Formula,
-        item_id: number,
+        item_id?: number,
     ): void;
 }
 
