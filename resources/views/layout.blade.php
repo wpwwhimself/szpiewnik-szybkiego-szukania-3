@@ -5,6 +5,13 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="shortcut icon" href="sz3_olive.svg" type="image/x-svg">
         <link rel="stylesheet" href="{{ mix('/css/app.css') }}">
+        @env("local")
+        <style>
+        :root{
+            --acc: dodgerblue !important;
+        }
+        </style>
+        @endenv
         <title>SZSZSZ3</title>
     </head>
     <body>
