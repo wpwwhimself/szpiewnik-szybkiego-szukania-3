@@ -5,7 +5,7 @@ import { createContext, useState } from "react";
 import { sets, ordinarius_colors, formulas, songs, ordinarium } from "../data";
 import { slugAndDePL, massOrder, baseFormula } from "../helpers";
 import { Button, Input, Select } from "../components/Interactives";
-import { MModProps, MassElem, SelectOption, Set } from "../types";
+import { Extra, MModProps, MassElem, SelectOption, Set } from "../types";
 import { ExtrasProcessor, MassElemSection, OrdinariumProcessor, PsalmLyrics, SongLyrics } from "../components/MassElements";
 import { SheetMusicRender } from "../components/SheetMusicRender";
 
@@ -45,18 +45,22 @@ export function MassSet(){
   thisMassOrder.splice(thisMassOrder.indexOf(com), 1);
 
   //formula modifications
-  if(!formula.gloriaPresent) thisMassOrder = thisMassOrder.filter(el => el.code !== "oGloria");
-  formula.extra?.forEach((el) => {
-    const pre = thisMassOrder.filter(el2 => el2.code === el.preWhere)[0];
-    const addition = (el.songName.charAt(0) === "x") ?
-      { code: `${el.songName}`, label: `Zanim nastąpi ${pre.label}`, content: undefined } :
-      { code: `sB4${el.preWhere}`, label: `Zanim nastąpi ${pre.label}`, content: el.songName };
+  const formulaInsertExtras = (extra: Extra, massOrder: MassElem[]) => {
+    const pre = massOrder.filter(el2 => el2.code === extra.preWhere)[0];
+    const addition = (extra.songName.charAt(0) === "x") ?
+      { code: `${extra.songName}`, label: `Zanim nastąpi ${pre.label}`, content: undefined } :
+      { code: `sB4${extra.preWhere}`, label: `Zanim nastąpi ${pre.label}`, content: extra.songName };
     if(pre) thisMassOrder.splice(
       thisMassOrder.indexOf(pre),
-      (el.replace) ? 1 : 0,
+      (extra.replace) ? 1 : 0,
       addition
     );
-    else thisMassOrder.push({ code: `sOutro`, label: `Dodatkowo`, content: el.songName });
+    else thisMassOrder.push({ code: `sOutro`, label: `Dodatkowo`, content: extra.songName });
+  }
+
+  if(!formula.gloriaPresent) thisMassOrder = thisMassOrder.filter(el => el.code !== "oGloria");
+  formula.extra?.forEach((el) => {
+    formulaInsertExtras(el, thisMassOrder);
   });
 
   if(set.thisMassOrder === undefined) setSet({...set, thisMassOrder: thisMassOrder});
@@ -122,6 +126,35 @@ export function MassSet(){
     }
   }
 
+  //adding
+  interface ACProps {
+    song?: string,
+    before?: string,
+  }
+  interface HACProps{
+    (updatingField: 'song' | 'before', value?: string): void;
+  }
+  const [addCollector, setAddCollector] = useState({song: undefined, before: undefined} as ACProps);
+  function addModeOn(useCollector: boolean = false){
+    if(useCollector){
+        const newMassOrder = thisMassOrder;
+        formulaInsertExtras(
+            {
+                songName: addCollector.song,
+                preWhere: addCollector.before,
+                replace: false
+            } as Extra,
+            newMassOrder
+        );
+        setSet({...set, thisMassOrder: newMassOrder});
+    }
+    setAddCollector({} as ACProps);
+    document.getElementById("adder")!.classList.toggle("addmode");
+  }
+  const handleAddCollector: HACProps = (updatingField, value) => {
+    setAddCollector({...addCollector, [updatingField]: value});
+  }
+
   /**
    * Mass' summary
    */
@@ -131,7 +164,7 @@ export function MassSet(){
 
   return(
     <Section title={`${set.name}`}>
-      <div className="flex-right center settings">
+      <div className="flex-right center wrap settings">
         <Select name="color" label="Kolor cz.st." options={ordColorOptions} value={set.color} onChange={handleColorChange}/>
         {summary?.map((el, i) =>
           <Button
@@ -141,6 +174,37 @@ export function MassSet(){
             {el.label.substring(0, 3)}
           </Button>
         )}
+        <Button onClick={() => addModeOn()}>+</Button>
+      </div>
+
+      <div id="adder">
+        <h1>Dodaj pieśń</h1>
+        <h2>Wybierz tytuł</h2>
+        <div id="song-list" className="flex-right center wrap">
+        {songs.map((song, i) =>
+            <Button key={i}
+                onClick={() => handleAddCollector("song", song.title)}
+                className={`light-button ${addCollector.song === song.title && "accent-border"}`}
+                >
+                {song.title}
+            </Button>
+        )}
+        </div>
+        <h2>Wstaw przed:</h2>
+        <div className="flex-right center wrap">
+        {thisMassOrder.map((el, i) =>
+            <Button key={i}
+                onClick={() => handleAddCollector("before", el.code)}
+                className={`light-button ${addCollector.before === el.code && "accent-border"}`}
+                >
+                {el.label}
+            </Button>
+        )}
+        </div>
+        <div className="flex-right stretch">
+            <Button onClick={() => addModeOn()}>Anuluj</Button>
+            {addCollector.song && addCollector.before && <Button onClick={() => addModeOn(true)}>Dodaj</Button>}
+        </div>
       </div>
 
       <div className="flex-down">

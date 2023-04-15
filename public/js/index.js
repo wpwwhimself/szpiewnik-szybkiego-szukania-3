@@ -5078,7 +5078,8 @@ function OrdinariumProcessor(_a) {
 function ExtrasProcessor(_a) {
   var elem = _a.elem;
   switch (elem.code.substring(1)) {
-    case "LUP":
+    case "LUP1": //Let us pray
+    case "LUP2":
       //Let us pray
       return (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
         children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(Antiphon, {
@@ -5347,9 +5348,8 @@ var massOrder = [{
   value: "oGloria",
   label: "Gloria"
 }, {
-  value: "xLUP",
-  label: "Módlmy się",
-  key: 100
+  value: "xLUP1",
+  label: "Módlmy się"
 }, {
   value: "xReading1",
   label: "1. czytanie"
@@ -5396,9 +5396,8 @@ var massOrder = [{
   value: "sAdoration",
   label: "Uwielbienie"
 }, {
-  value: "xLUP",
-  label: "Módlmy się",
-  key: 101
+  value: "xLUP2",
+  label: "Módlmy się"
 }, {
   value: "xAnnounc",
   label: "Ogłoszenia"
@@ -6058,27 +6057,30 @@ function MassSet() {
   });
   thisMassOrder.splice(thisMassOrder.indexOf(com), 1);
   //formula modifications
+  var formulaInsertExtras = function formulaInsertExtras(extra, massOrder) {
+    var pre = massOrder.filter(function (el2) {
+      return el2.code === extra.preWhere;
+    })[0];
+    var addition = extra.songName.charAt(0) === "x" ? {
+      code: "".concat(extra.songName),
+      label: "Zanim nast\u0105pi ".concat(pre.label),
+      content: undefined
+    } : {
+      code: "sB4".concat(extra.preWhere),
+      label: "Zanim nast\u0105pi ".concat(pre.label),
+      content: extra.songName
+    };
+    if (pre) thisMassOrder.splice(thisMassOrder.indexOf(pre), extra.replace ? 1 : 0, addition);else thisMassOrder.push({
+      code: "sOutro",
+      label: "Dodatkowo",
+      content: extra.songName
+    });
+  };
   if (!formula.gloriaPresent) thisMassOrder = thisMassOrder.filter(function (el) {
     return el.code !== "oGloria";
   });
   (_a = formula.extra) === null || _a === void 0 ? void 0 : _a.forEach(function (el) {
-    var pre = thisMassOrder.filter(function (el2) {
-      return el2.code === el.preWhere;
-    })[0];
-    var addition = el.songName.charAt(0) === "x" ? {
-      code: "".concat(el.songName),
-      label: "Zanim nast\u0105pi ".concat(pre.label),
-      content: undefined
-    } : {
-      code: "sB4".concat(el.preWhere),
-      label: "Zanim nast\u0105pi ".concat(pre.label),
-      content: el.songName
-    };
-    if (pre) thisMassOrder.splice(thisMassOrder.indexOf(pre), el.replace ? 1 : 0, addition);else thisMassOrder.push({
-      code: "sOutro",
-      label: "Dodatkowo",
-      content: el.songName
-    });
+    formulaInsertExtras(el, thisMassOrder);
   });
   if (set.thisMassOrder === undefined) setSet(__assign(__assign({}, set), {
     thisMassOrder: thisMassOrder
@@ -6189,6 +6191,34 @@ function MassSet() {
       }));
     }
   };
+  var _e = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)({
+      song: undefined,
+      before: undefined
+    }),
+    addCollector = _e[0],
+    setAddCollector = _e[1];
+  function addModeOn(useCollector) {
+    if (useCollector === void 0) {
+      useCollector = false;
+    }
+    if (useCollector) {
+      var newMassOrder = thisMassOrder;
+      formulaInsertExtras({
+        songName: addCollector.song,
+        preWhere: addCollector.before,
+        replace: false
+      }, newMassOrder);
+      setSet(__assign(__assign({}, set), {
+        thisMassOrder: newMassOrder
+      }));
+    }
+    setAddCollector({});
+    document.getElementById("adder").classList.toggle("addmode");
+  }
+  var handleAddCollector = function handleAddCollector(updatingField, value) {
+    var _a;
+    setAddCollector(__assign(__assign({}, addCollector), (_a = {}, _a[updatingField] = value, _a)));
+  };
   /**
    * Mass' summary
    */
@@ -6201,7 +6231,7 @@ function MassSet() {
     title: "".concat(set.name)
   }, {
     children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({
-      className: "flex-right center settings"
+      className: "flex-right center wrap settings"
     }, {
       children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components_Interactives__WEBPACK_IMPORTED_MODULE_5__.Select, {
         name: "color",
@@ -6221,7 +6251,66 @@ function MassSet() {
         }, {
           children: el.label.substring(0, 3)
         }), i);
-      })]
+      }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components_Interactives__WEBPACK_IMPORTED_MODULE_5__.Button, __assign({
+        onClick: function onClick() {
+          return addModeOn();
+        }
+      }, {
+        children: "+"
+      }))]
+    })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({
+      id: "adder"
+    }, {
+      children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("h1", {
+        children: "Dodaj pie\u015B\u0144"
+      }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("h2", {
+        children: "Wybierz tytu\u0142"
+      }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", __assign({
+        id: "song-list",
+        className: "flex-right center wrap"
+      }, {
+        children: _data__WEBPACK_IMPORTED_MODULE_3__.songs.map(function (song, i) {
+          return (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components_Interactives__WEBPACK_IMPORTED_MODULE_5__.Button, __assign({
+            onClick: function onClick() {
+              return handleAddCollector("song", song.title);
+            },
+            className: "light-button ".concat(addCollector.song === song.title && "accent-border")
+          }, {
+            children: song.title
+          }), i);
+        })
+      })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("h2", {
+        children: "Wstaw przed:"
+      }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", __assign({
+        className: "flex-right center wrap"
+      }, {
+        children: thisMassOrder.map(function (el, i) {
+          return (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components_Interactives__WEBPACK_IMPORTED_MODULE_5__.Button, __assign({
+            onClick: function onClick() {
+              return handleAddCollector("before", el.code);
+            },
+            className: "light-button ".concat(addCollector.before === el.code && "accent-border")
+          }, {
+            children: el.label
+          }), i);
+        })
+      })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({
+        className: "flex-right stretch"
+      }, {
+        children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components_Interactives__WEBPACK_IMPORTED_MODULE_5__.Button, __assign({
+          onClick: function onClick() {
+            return addModeOn();
+          }
+        }, {
+          children: "Anuluj"
+        })), addCollector.song && addCollector.before && (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components_Interactives__WEBPACK_IMPORTED_MODULE_5__.Button, __assign({
+          onClick: function onClick() {
+            return addModeOn(true);
+          }
+        }, {
+          children: "Dodaj"
+        }))]
+      }))]
     })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", __assign({
       className: "flex-down"
     }, {

@@ -301,7 +301,8 @@ export function OrdinariumProcessor({code, colorCode}: OrdinariumProcessorProps)
 
 export function ExtrasProcessor({elem}: {elem: MassElem}){
   switch(elem.code.substring(1)){
-    case "LUP": //Let us pray
+    case "LUP1": //Let us pray
+    case "LUP2": //Let us pray
       return(
         <>
           <Antiphon
