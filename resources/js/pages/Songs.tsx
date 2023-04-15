@@ -7,7 +7,7 @@ import { useState } from "react";
 import { Button, Input, Preferences, Select } from "../components/Interactives";
 import { SelectOption } from "../types";
 import { useLocation } from "react-router-dom";
-import Abcjs from "react-abcjs";
+import { SheetMusicRender } from "../components/SheetMusicRender";
 
 export function Songs(){
   return(
@@ -74,9 +74,7 @@ export function SongEdit(){
           <Input type="TEXT" name="lyrics" label="Tekst" value={song.lyrics ?? undefined} onChange={handleChange} />
           <Input type="TEXT" name="sheetMusic" label="Nuty" value={song.sheetMusic ?? undefined} onChange={handleChange} />
         </div>
-        <div className="flex-right center sheet-container">
-          <Abcjs abcNotation={song.sheetMusic ?? ""} />
-        </div>
+        <SheetMusicRender notes={song.sheetMusic} />
         <div className="flex-right stretch">
           <Button type="submit">Zatwierdź i wróć</Button>
         </div>

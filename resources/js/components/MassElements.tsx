@@ -2,10 +2,10 @@
 import { MassElem, MassElemSectionProps, OrdinariumProcessorProps } from "../types"
 import { ordinarium, songs } from "../data"
 import { ReactNode, useContext } from "react";
-import Abcjs from "react-abcjs";
 import { slugAndDePL } from "../helpers";
 import { Button } from "./Interactives";
 import { MModContext } from "../pages/Set";
+import { SheetMusicRender } from "./SheetMusicRender";
 
 export function MassElemSection({id, uneresable = false, children}: MassElemSectionProps){
   const MMod = useContext(MModContext);
@@ -114,11 +114,7 @@ export function OrdinariumProcessor({code, colorCode}: OrdinariumProcessorProps)
           <p className="ksiadz">Niech się zmiłuje nad nami Bóg Wszechmogący i, odpuściwszy nam grzechy, doprowadzi nas do życia wiecznego...</p>
 
           <h1>Kyrie</h1>
-          {parts.map((part, i) =>
-            <div className="flex-right center sheet-container" key={i}>
-              <Abcjs abcNotation={part.sheetMusic} />
-            </div>
-          )}
+          {parts.map((part, i) => <SheetMusicRender notes={part.sheetMusic} key={i} />)}
           <div>
             <p>
               Panie, zmiłuj się nad nami<br />
@@ -132,11 +128,7 @@ export function OrdinariumProcessor({code, colorCode}: OrdinariumProcessorProps)
       return(
         <>
           <h1>Gloria</h1>
-          {parts.map((part, i) =>
-            <div className="flex-right center sheet-container" key={i}>
-              <Abcjs abcNotation={part.sheetMusic} />
-            </div>
-          )}
+          {parts.map((part, i) => <SheetMusicRender notes={part.sheetMusic} key={i} />)}
           <div>
             <p>
               Chwała na wysokości Bogu<br />
@@ -166,11 +158,7 @@ export function OrdinariumProcessor({code, colorCode}: OrdinariumProcessorProps)
         <>
           <p className="ksiadz">Złóżmy wyznanie wiary:</p>
           <h1>Credo</h1>
-          {parts.map((part, i) =>
-            <div className="flex-right center sheet-container" key={i}>
-              <Abcjs abcNotation={part.sheetMusic} />
-            </div>
-          )}
+          {parts.map((part, i) => <SheetMusicRender notes={part.sheetMusic} key={i} />)}
           <table className="credo"><tbody>
             <tr><td>Wierzę w jednego Boga, Ojca wszechmogącego, Stworzyciela nieba i ziemi</td></tr>
             <tr><td>Wszystkich rzeczy widzialnych i niewidzialnych</td></tr>
@@ -223,11 +211,7 @@ export function OrdinariumProcessor({code, colorCode}: OrdinariumProcessorProps)
           <p className="ksiadz">Zaprawdę godne to i sprawiedliwe... ...jednym głosem wołając:</p>
 
           <h1>Sanctus</h1>
-          {parts.map((part, i) =>
-            <div className="flex-right center sheet-container" key={i}>
-              <Abcjs abcNotation={part.sheetMusic} />
-            </div>
-          )}
+          {parts.map((part, i) => <SheetMusicRender notes={part.sheetMusic} key={i} />)}
           <div>
             <p>
               Święty, Święty, Święty<br />
@@ -253,11 +237,7 @@ export function OrdinariumProcessor({code, colorCode}: OrdinariumProcessorProps)
           />
           <p className="ksiadz">Nazywamy się dziećmi Bożymi i nimi jesteśmy, dlatego ośmielamy się mówić:</p>
           <h1>Pater Noster</h1>
-          {parts.map((part, i) =>
-            <div className="flex-right center sheet-container" key={i}>
-              <Abcjs abcNotation={part.sheetMusic} />
-            </div>
-          )}
+          {parts.map((part, i) => <SheetMusicRender notes={part.sheetMusic} key={i} />)}
           <div>
             <p>
               Ojcze nasz, któryś jest w niebie<br />
@@ -290,11 +270,7 @@ export function OrdinariumProcessor({code, colorCode}: OrdinariumProcessorProps)
           <p className="ksiadz">Przekażcie sobie znak pokoju:</p>
 
           <h1>Agnus Dei</h1>
-          {parts.map((part, i) =>
-            <div className="flex-right center sheet-container" key={i}>
-              <Abcjs abcNotation={part.sheetMusic} />
-            </div>
-          )}
+          {parts.map((part, i) => <SheetMusicRender notes={part.sheetMusic} key={i} />)}
           <div>
             <p>
               Baranku Boży<br />

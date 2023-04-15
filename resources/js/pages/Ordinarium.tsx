@@ -4,8 +4,8 @@ import { Link } from "react-router-dom"
 import { useLocation, useNavigate } from "react-router-dom"
 import React, { useState } from "react";
 import { Button, Input } from "../components/Interactives";
-import Abcjs from "react-abcjs";
 import { dataChange, slugAndDePL } from "../helpers"
+import { SheetMusicRender } from "../components/SheetMusicRender";
 
 export function Ordinarium(){
   return(
@@ -89,9 +89,7 @@ export function OrdinariumEdit(){
         <div>
           <Input type="TEXT" name="sheetMusic" label="Nuty" value={ordinarius.sheetMusic ?? undefined} onChange={handleChange} />
         </div>
-        <div className="flex-right center sheet-container">
-          <Abcjs abcNotation={ordinarius.sheetMusic ?? ""} />
-        </div>
+        <SheetMusicRender notes={ordinarius.sheetMusic} />
         <div className="flex-right stretch">
           <Button type="submit">Zatwierdź i wróć</Button>
         </div>

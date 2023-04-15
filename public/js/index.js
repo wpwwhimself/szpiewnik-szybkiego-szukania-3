@@ -4652,10 +4652,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 /* harmony import */ var _data__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../data */ "./resources/js/data/index.ts");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react_abcjs__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-abcjs */ "./node_modules/react-abcjs/es/index.js");
-/* harmony import */ var _helpers__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../helpers */ "./resources/js/helpers.ts");
-/* harmony import */ var _Interactives__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Interactives */ "./resources/js/components/Interactives.tsx");
-/* harmony import */ var _pages_Set__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../pages/Set */ "./resources/js/pages/Set.tsx");
+/* harmony import */ var _helpers__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../helpers */ "./resources/js/helpers.ts");
+/* harmony import */ var _Interactives__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Interactives */ "./resources/js/components/Interactives.tsx");
+/* harmony import */ var _pages_Set__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../pages/Set */ "./resources/js/pages/Set.tsx");
+/* harmony import */ var _SheetMusicRender__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./SheetMusicRender */ "./resources/js/components/SheetMusicRender.tsx");
 var __assign = undefined && undefined.__assign || function () {
   __assign = Object.assign || function (t) {
     for (var s, i = 1, n = arguments.length; i < n; i++) {
@@ -4678,7 +4678,7 @@ function MassElemSection(_a) {
     _b = _a.uneresable,
     uneresable = _b === void 0 ? false : _b,
     children = _a.children;
-  var MMod = (0,react__WEBPACK_IMPORTED_MODULE_2__.useContext)(_pages_Set__WEBPACK_IMPORTED_MODULE_6__.MModContext);
+  var MMod = (0,react__WEBPACK_IMPORTED_MODULE_2__.useContext)(_pages_Set__WEBPACK_IMPORTED_MODULE_5__.MModContext);
   return (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("section", __assign({
     id: id,
     className: "massElemSection"
@@ -4692,13 +4692,13 @@ function MassElemSection(_a) {
         return MMod.prepareMassElemErase("!" + id);
       }
     }, {
-      children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_Interactives__WEBPACK_IMPORTED_MODULE_5__.Button, __assign({
+      children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_Interactives__WEBPACK_IMPORTED_MODULE_4__.Button, __assign({
         onClick: function onClick() {
           return MMod.eraseMassElem(id);
         }
       }, {
         children: "\u2713"
-      })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_Interactives__WEBPACK_IMPORTED_MODULE_5__.Button, {
+      })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_Interactives__WEBPACK_IMPORTED_MODULE_4__.Button, {
         children: "\u2013"
       })]
     })), children]
@@ -4764,7 +4764,7 @@ function OrdinariumProcessor(_a) {
   var code = _a.code,
     colorCode = _a.colorCode;
   var parts = _data__WEBPACK_IMPORTED_MODULE_1__.ordinarium.filter(function (el) {
-    return (el.colorCode === colorCode || el.colorCode === "*") && el.part === (0,_helpers__WEBPACK_IMPORTED_MODULE_4__.slugAndDePL)(code.substring(1));
+    return (el.colorCode === colorCode || el.colorCode === "*") && el.part === (0,_helpers__WEBPACK_IMPORTED_MODULE_3__.slugAndDePL)(code.substring(1));
   });
   switch (code.substring(1)) {
     case "Kyrie":
@@ -4833,13 +4833,9 @@ function OrdinariumProcessor(_a) {
         })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("h1", {
           children: "Kyrie"
         }), parts.map(function (part, i) {
-          return (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", __assign({
-            className: "flex-right center sheet-container"
-          }, {
-            children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(react_abcjs__WEBPACK_IMPORTED_MODULE_3__["default"], {
-              abcNotation: part.sheetMusic
-            })
-          }), i);
+          return (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_SheetMusicRender__WEBPACK_IMPORTED_MODULE_6__.SheetMusicRender, {
+            notes: part.sheetMusic
+          }, i);
         }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
           children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("p", {
             children: ["Panie, zmi\u0142uj si\u0119 nad nami", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("br", {}), "Chryste, zmi\u0142uj si\u0119 nad nami", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("br", {}), "Panie, zmi\u0142uj si\u0119 nad nami"]
@@ -4851,13 +4847,9 @@ function OrdinariumProcessor(_a) {
         children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("h1", {
           children: "Gloria"
         }), parts.map(function (part, i) {
-          return (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", __assign({
-            className: "flex-right center sheet-container"
-          }, {
-            children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(react_abcjs__WEBPACK_IMPORTED_MODULE_3__["default"], {
-              abcNotation: part.sheetMusic
-            })
-          }), i);
+          return (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_SheetMusicRender__WEBPACK_IMPORTED_MODULE_6__.SheetMusicRender, {
+            notes: part.sheetMusic
+          }, i);
         }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
           children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("p", {
             children: ["Chwa\u0142a na wysoko\u015Bci Bogu", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("br", {}), "A na ziemi pok\xF3j ludziom dobrej woli", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("br", {}), "Chwalimy Ci\u0119 \u2022 B\u0142ogos\u0142awimy Ci\u0119", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("br", {}), "Wielbimy Ci\u0119 \u2022 Wys\u0142awiamy Ci\u0119", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("br", {}), "Dzi\u0119ki Ci sk\u0142adamy \u2022 Bo wielka jest chwa\u0142a Twoja"]
@@ -4877,13 +4869,9 @@ function OrdinariumProcessor(_a) {
         })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("h1", {
           children: "Credo"
         }), parts.map(function (part, i) {
-          return (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", __assign({
-            className: "flex-right center sheet-container"
-          }, {
-            children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(react_abcjs__WEBPACK_IMPORTED_MODULE_3__["default"], {
-              abcNotation: part.sheetMusic
-            })
-          }), i);
+          return (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_SheetMusicRender__WEBPACK_IMPORTED_MODULE_6__.SheetMusicRender, {
+            notes: part.sheetMusic
+          }, i);
         }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("table", __assign({
           className: "credo"
         }, {
@@ -5017,13 +5005,9 @@ function OrdinariumProcessor(_a) {
         })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("h1", {
           children: "Sanctus"
         }), parts.map(function (part, i) {
-          return (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", __assign({
-            className: "flex-right center sheet-container"
-          }, {
-            children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(react_abcjs__WEBPACK_IMPORTED_MODULE_3__["default"], {
-              abcNotation: part.sheetMusic
-            })
-          }), i);
+          return (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_SheetMusicRender__WEBPACK_IMPORTED_MODULE_6__.SheetMusicRender, {
+            notes: part.sheetMusic
+          }, i);
         }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
           children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("p", {
             children: ["\u015Awi\u0119ty, \u015Awi\u0119ty, \u015Awi\u0119ty", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("br", {}), "Pan B\xF3g zast\u0119p\xF3w", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("br", {}), "Pe\u0142ne s\u0105 niebiosa", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("br", {}), "I ziema chwa\u0142y Twojej", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("br", {}), "Hosanna na wysoko\u015Bci"]
@@ -5044,13 +5028,9 @@ function OrdinariumProcessor(_a) {
         })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("h1", {
           children: "Pater Noster"
         }), parts.map(function (part, i) {
-          return (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", __assign({
-            className: "flex-right center sheet-container"
-          }, {
-            children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(react_abcjs__WEBPACK_IMPORTED_MODULE_3__["default"], {
-              abcNotation: part.sheetMusic
-            })
-          }), i);
+          return (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_SheetMusicRender__WEBPACK_IMPORTED_MODULE_6__.SheetMusicRender, {
+            notes: part.sheetMusic
+          }, i);
         }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
           children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("p", {
             children: ["Ojcze nasz, kt\xF3ry\u015B jest w niebie", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("br", {}), "\u015Awi\u0119\u0107 si\u0119, imi\u0119 Twoje", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("br", {}), "Przyjd\u017A Kr\xF3lestwo Twoje", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("br", {}), "B\u0105d\u017A wola Twoja", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("br", {}), "Jako w niebie, tak i na ziemi"]
@@ -5074,13 +5054,9 @@ function OrdinariumProcessor(_a) {
         })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("h1", {
           children: "Agnus Dei"
         }), parts.map(function (part, i) {
-          return (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", __assign({
-            className: "flex-right center sheet-container"
-          }, {
-            children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(react_abcjs__WEBPACK_IMPORTED_MODULE_3__["default"], {
-              abcNotation: part.sheetMusic
-            })
-          }), i);
+          return (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_SheetMusicRender__WEBPACK_IMPORTED_MODULE_6__.SheetMusicRender, {
+            notes: part.sheetMusic
+          }, i);
         }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
           children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("p", {
             children: ["Baranku Bo\u017Cy", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("br", {}), "Kt\xF3ry g\u0142adzisz grzechy \u015Bwiata", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("br", {}), "Zmi\u0142uj si\u0119 nad nami"]
@@ -5240,6 +5216,55 @@ function Section(_a) {
   return (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
     children: children
   });
+}
+
+/***/ }),
+
+/***/ "./resources/js/components/SheetMusicRender.tsx":
+/*!******************************************************!*\
+  !*** ./resources/js/components/SheetMusicRender.tsx ***!
+  \******************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "SheetMusicRender": () => (/* binding */ SheetMusicRender)
+/* harmony export */ });
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var react_abcjs__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-abcjs */ "./node_modules/react-abcjs/es/index.js");
+var __assign = undefined && undefined.__assign || function () {
+  __assign = Object.assign || function (t) {
+    for (var s, i = 1, n = arguments.length; i < n; i++) {
+      s = arguments[i];
+      for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p)) t[p] = s[p];
+    }
+    return t;
+  };
+  return __assign.apply(this, arguments);
+};
+
+
+function SheetMusicRender(_a) {
+  var notes = _a.notes;
+  var engraverParams = {
+    responsive: "resize",
+    editable: false,
+    paddingbottom: 15,
+    paddingright: 15
+  };
+  var renderParams = {
+    viewportHorizontal: true
+  };
+  return (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", __assign({
+    className: "flex-right center sheet-container"
+  }, {
+    children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(react_abcjs__WEBPACK_IMPORTED_MODULE_1__["default"], {
+      abcNotation: notes !== null && notes !== void 0 ? notes : "",
+      engraverParams: engraverParams,
+      renderParams: renderParams
+    })
+  }));
 }
 
 /***/ }),
@@ -5767,8 +5792,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/dist/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var _components_Interactives__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../components/Interactives */ "./resources/js/components/Interactives.tsx");
-/* harmony import */ var react_abcjs__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-abcjs */ "./node_modules/react-abcjs/es/index.js");
-/* harmony import */ var _helpers__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../helpers */ "./resources/js/helpers.ts");
+/* harmony import */ var _helpers__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../helpers */ "./resources/js/helpers.ts");
+/* harmony import */ var _components_SheetMusicRender__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../components/SheetMusicRender */ "./resources/js/components/SheetMusicRender.tsx");
 var __assign = undefined && undefined.__assign || function () {
   __assign = Object.assign || function (t) {
     for (var s, i = 1, n = arguments.length; i < n; i++) {
@@ -5871,7 +5896,7 @@ function Ordinarium() {
             return el.colorCode.charAt(0).match(/[A-Z]/);
           }).map(function (el, ind) {
             return (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_7__.Link, __assign({
-              to: "".concat((0,_helpers__WEBPACK_IMPORTED_MODULE_6__.slugAndDePL)(el.colorCode), "_").concat(el.part)
+              to: "".concat((0,_helpers__WEBPACK_IMPORTED_MODULE_5__.slugAndDePL)(el.colorCode), "_").concat(el.part)
             }, {
               children: [el.part, " (", el.colorCode, ")"]
             }), ind);
@@ -5882,18 +5907,18 @@ function Ordinarium() {
   }));
 }
 function OrdinariumEdit() {
-  var _a, _b;
+  var _a;
   var navigate = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_8__.useNavigate)();
   var title_match = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_8__.useLocation)().pathname.replace(/\/ordinarium\/(.*)/, "$1").split("_");
   var original_ordinarius = _data__WEBPACK_IMPORTED_MODULE_2__.ordinarium.filter(function (sought) {
-    return (0,_helpers__WEBPACK_IMPORTED_MODULE_6__.slugAndDePL)(sought.colorCode) === title_match[0] && sought.part === title_match[1];
+    return (0,_helpers__WEBPACK_IMPORTED_MODULE_5__.slugAndDePL)(sought.colorCode) === title_match[0] && sought.part === title_match[1];
   })[0];
   var ordinarius_id = _data__WEBPACK_IMPORTED_MODULE_2__.ordinarium.indexOf(original_ordinarius);
-  var _c = (0,react__WEBPACK_IMPORTED_MODULE_3__.useState)(_data__WEBPACK_IMPORTED_MODULE_2__.ordinarium.filter(function (sought) {
-      return (0,_helpers__WEBPACK_IMPORTED_MODULE_6__.slugAndDePL)(sought.colorCode) === title_match[0] && sought.part === title_match[1];
+  var _b = (0,react__WEBPACK_IMPORTED_MODULE_3__.useState)(_data__WEBPACK_IMPORTED_MODULE_2__.ordinarium.filter(function (sought) {
+      return (0,_helpers__WEBPACK_IMPORTED_MODULE_5__.slugAndDePL)(sought.colorCode) === title_match[0] && sought.part === title_match[1];
     })[0]),
-    ordinarius = _c[0],
-    setOrdinarius = _c[1];
+    ordinarius = _b[0],
+    setOrdinarius = _b[1];
   var handleChange = function handleChange(event) {
     var _a;
     var _b = event.target,
@@ -5903,7 +5928,7 @@ function OrdinariumEdit() {
   };
   var handleSubmit = function handleSubmit(event) {
     event.preventDefault();
-    (0,_helpers__WEBPACK_IMPORTED_MODULE_6__.dataChange)("ordinarium", ordinarius, ordinarius_id);
+    (0,_helpers__WEBPACK_IMPORTED_MODULE_5__.dataChange)("ordinarium", ordinarius, ordinarius_id);
     navigate("/ordinarium");
   };
   var capInit = function capInit(str) {
@@ -5925,13 +5950,9 @@ function OrdinariumEdit() {
           value: (_a = ordinarius.sheetMusic) !== null && _a !== void 0 ? _a : undefined,
           onChange: handleChange
         })
+      }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components_SheetMusicRender__WEBPACK_IMPORTED_MODULE_6__.SheetMusicRender, {
+        notes: ordinarius.sheetMusic
       }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", __assign({
-        className: "flex-right center sheet-container"
-      }, {
-        children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(react_abcjs__WEBPACK_IMPORTED_MODULE_5__["default"], {
-          abcNotation: (_b = ordinarius.sheetMusic) !== null && _b !== void 0 ? _b : ""
-        })
-      })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", __assign({
         className: "flex-right stretch"
       }, {
         children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components_Interactives__WEBPACK_IMPORTED_MODULE_4__.Button, __assign({
@@ -5966,7 +5987,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _helpers__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../helpers */ "./resources/js/helpers.ts");
 /* harmony import */ var _components_Interactives__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../components/Interactives */ "./resources/js/components/Interactives.tsx");
 /* harmony import */ var _components_MassElements__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../components/MassElements */ "./resources/js/components/MassElements.tsx");
-/* harmony import */ var react_abcjs__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react-abcjs */ "./node_modules/react-abcjs/es/index.js");
+/* harmony import */ var _components_SheetMusicRender__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../components/SheetMusicRender */ "./resources/js/components/SheetMusicRender.tsx");
 var __assign = undefined && undefined.__assign || function () {
   __assign = Object.assign || function (t) {
     for (var s, i = 1, n = arguments.length; i < n; i++) {
@@ -6101,13 +6122,9 @@ function MassSet() {
                 value: song.numberPreis,
                 disabled: true
               })]
-            })), song.sheetMusic && (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", __assign({
-              className: "flex-right center sheet-container"
-            }, {
-              children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(react_abcjs__WEBPACK_IMPORTED_MODULE_7__["default"], {
-                abcNotation: song.sheetMusic
-              })
-            })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components_MassElements__WEBPACK_IMPORTED_MODULE_6__.SongLyrics, {
+            })), song.sheetMusic && (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components_SheetMusicRender__WEBPACK_IMPORTED_MODULE_7__.SheetMusicRender, {
+              notes: song.sheetMusic
+            }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components_MassElements__WEBPACK_IMPORTED_MODULE_6__.SongLyrics, {
               title: song.title
             })]
           }))
@@ -6128,15 +6145,11 @@ function MassSet() {
         }, {
           children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("h1", {
             children: el.label
-          }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({
-            className: "flex-down center sheet-container"
-          }, {
-            children: [isNotWielkiPostAklamacja && (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(react_abcjs__WEBPACK_IMPORTED_MODULE_7__["default"], {
-              abcNotation: part.sheetMusic
-            }), formulaPart && (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(react_abcjs__WEBPACK_IMPORTED_MODULE_7__["default"], {
-              abcNotation: formulaPart.sheetMusic
-            })]
-          })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components_MassElements__WEBPACK_IMPORTED_MODULE_6__.PsalmLyrics, {
+          }), isNotWielkiPostAklamacja && (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components_SheetMusicRender__WEBPACK_IMPORTED_MODULE_7__.SheetMusicRender, {
+            notes: part.sheetMusic
+          }), formulaPart && (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components_SheetMusicRender__WEBPACK_IMPORTED_MODULE_7__.SheetMusicRender, {
+            notes: formulaPart.sheetMusic
+          }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components_MassElements__WEBPACK_IMPORTED_MODULE_6__.PsalmLyrics, {
             lyrics: el.content
           })]
         }), i);
@@ -6290,7 +6303,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/dist/index.js");
 /* harmony import */ var _helpers__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../helpers */ "./resources/js/helpers.ts");
 /* harmony import */ var _components_Interactives__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../components/Interactives */ "./resources/js/components/Interactives.tsx");
-/* harmony import */ var react_abcjs__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-abcjs */ "./node_modules/react-abcjs/es/index.js");
+/* harmony import */ var _components_SheetMusicRender__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../components/SheetMusicRender */ "./resources/js/components/SheetMusicRender.tsx");
 var __assign = undefined && undefined.__assign || function () {
   __assign = Object.assign || function (t) {
     for (var s, i = 1, n = arguments.length; i < n; i++) {
@@ -6339,18 +6352,18 @@ function Songs() {
   }));
 }
 function SongEdit() {
-  var _a, _b, _c, _d, _e;
+  var _a, _b, _c, _d;
   var navigate = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_8__.useNavigate)();
   var title_match = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_8__.useLocation)().pathname.replace(/\/songs\/(.*)/, "$1");
   var original_song = _data__WEBPACK_IMPORTED_MODULE_3__.songs.filter(function (soughtSong) {
     return (0,_helpers__WEBPACK_IMPORTED_MODULE_4__.slugAndDePL)(soughtSong.title) === title_match;
   })[0];
   var song_id = _data__WEBPACK_IMPORTED_MODULE_3__.songs.indexOf(original_song);
-  var _f = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(_data__WEBPACK_IMPORTED_MODULE_3__.songs.filter(function (soughtSong) {
+  var _e = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(_data__WEBPACK_IMPORTED_MODULE_3__.songs.filter(function (soughtSong) {
       return (0,_helpers__WEBPACK_IMPORTED_MODULE_4__.slugAndDePL)(soughtSong.title) === title_match;
     })[0]),
-    song = _f[0],
-    setSong = _f[1];
+    song = _e[0],
+    setSong = _e[1];
   var song_categories_proc = [];
   _data__WEBPACK_IMPORTED_MODULE_3__.song_categories.forEach(function (item) {
     return song_categories_proc.push({
@@ -6446,13 +6459,9 @@ function SongEdit() {
           value: (_d = song.sheetMusic) !== null && _d !== void 0 ? _d : undefined,
           onChange: handleChange
         })]
-      })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", __assign({
-        className: "flex-right center sheet-container"
-      }, {
-        children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(react_abcjs__WEBPACK_IMPORTED_MODULE_6__["default"], {
-          abcNotation: (_e = song.sheetMusic) !== null && _e !== void 0 ? _e : ""
-        })
-      })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", __assign({
+      })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components_SheetMusicRender__WEBPACK_IMPORTED_MODULE_6__.SheetMusicRender, {
+        notes: song.sheetMusic
+      }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", __assign({
         className: "flex-right stretch"
       }, {
         children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components_Interactives__WEBPACK_IMPORTED_MODULE_5__.Button, __assign({

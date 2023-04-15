@@ -7,7 +7,7 @@ import { slugAndDePL, massOrder, baseFormula } from "../helpers";
 import { Button, Input, Select } from "../components/Interactives";
 import { MModProps, MassElem, SelectOption, Set } from "../types";
 import { ExtrasProcessor, MassElemSection, OrdinariumProcessor, PsalmLyrics, SongLyrics } from "../components/MassElements";
-import Abcjs from "react-abcjs";
+import { SheetMusicRender } from "../components/SheetMusicRender";
 
 export const MModContext = createContext({} as MModProps);
 
@@ -75,9 +75,7 @@ export function MassSet(){
                 <Input type="text" name="" label="Kategoria" value={song.categoryDesc} disabled />
                 <Input type="text" name="" label="Numer w śpiewniku Preis" value={song.numberPreis} disabled />
               </div>
-              {song.sheetMusic && <div className="flex-right center sheet-container">
-                <Abcjs abcNotation={song.sheetMusic} />
-              </div>}
+              {song.sheetMusic && <SheetMusicRender notes={song.sheetMusic} />}
               <SongLyrics title={song.title} />
             </div>
           </MassElemSection>
@@ -91,10 +89,8 @@ export function MassSet(){
         return(
           <MassElemSection id={el.code} key={i}>
             <h1>{el.label}</h1>
-            <div className="flex-down center sheet-container">
-              {isNotWielkiPostAklamacja && <Abcjs abcNotation={part.sheetMusic} />}
-              {formulaPart && <Abcjs abcNotation={formulaPart.sheetMusic} />}
-            </div>
+            {isNotWielkiPostAklamacja && <SheetMusicRender notes={part.sheetMusic} />}
+            {formulaPart && <SheetMusicRender notes={formulaPart.sheetMusic} />}
             <PsalmLyrics lyrics={el.content!} />
           </MassElemSection>
         )
