@@ -1,4 +1,5 @@
-import { SelectOption } from "./types";
+import axios from "axios";
+import { DataChangeProps, SelectOption } from "./types";
 
 export function slugAndDePL(string: string): string{
   return string
@@ -18,6 +19,13 @@ export function slugAndDePL(string: string): string{
 
 export function baseFormula(formula: string): string{
   return formula.replace(/(.*) \((.*)\)/, "$1");
+}
+
+export const dataChange: DataChangeProps = (fileToChange, itemToChange, item_id) =>{
+    axios.post("/api/data-change", {fileToChange, itemToChange, item_id})
+        .then((response) => {
+            alert("Poprawiono!");
+        });
 }
 
 export const massOrder: SelectOption[] = [

@@ -1,14 +1,13 @@
 import React, { Fragment } from "react";
 import { Section } from "../components/Section";
 import { songs, song_categories } from "../data";
-import { Link } from "react-router-dom";
-import { slugAndDePL } from "../helpers";
+import { Link, useNavigate } from "react-router-dom";
+import { dataChange, slugAndDePL } from "../helpers";
 import { useState } from "react";
 import { Button, Input, Preferences, Select } from "../components/Interactives";
 import { SelectOption } from "../types";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import Abcjs from "react-abcjs";
-import axios from "axios";
 
 export function Songs(){
   return(
@@ -55,9 +54,7 @@ export function SongEdit(){
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    axios.post("http://localhost:5000/api/save-song", { itemToChange: song, item_id: song_id }).then((response) => {
-      console.log(response);
-    });
+    dataChange("songs", song, song_id);
     navigate("/songs");
   };
 

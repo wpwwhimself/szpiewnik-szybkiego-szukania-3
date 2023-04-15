@@ -1,5 +1,13 @@
 import { ReactNode } from "react";
 
+export interface DataChangeProps{
+    (
+        fileToChange: string,
+        itemToChange: SongProps | OrdinariumProps | Formula,
+        item_id: number,
+    ): void;
+}
+
 export interface MModProps{
   prepareMassElemErase: (id: string) => void,
   eraseMassElem: (id: string) => void,

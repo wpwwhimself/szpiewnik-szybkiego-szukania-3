@@ -2,7 +2,7 @@ import React from "react";
 import { useLocation } from "react-router-dom";
 import { Section } from "../components/Section"
 import { createContext, useState } from "react";
-import { sets, ordinarium_colors, formulas, songs, ordinarium } from "../data";
+import { sets, ordinarius_colors, formulas, songs, ordinarium } from "../data";
 import { slugAndDePL, massOrder, baseFormula } from "../helpers";
 import { Button, Input, Select } from "../components/Interactives";
 import { MModProps, MassElem, SelectOption, Set } from "../types";
@@ -17,7 +17,7 @@ export function MassSet(){
   const formula = formulas.filter(sought => sought.name === baseFormula(set.formulaName))[0];
 
   const ordColorOptions: SelectOption[] = [];
-  ordinarium_colors.forEach(color => ordColorOptions.push({ value: color.name, label: color.displayName }));
+  ordinarius_colors.forEach(color => ordColorOptions.push({ value: color.name, label: color.displayName }));
   const handleColorChange = (ev: React.ChangeEvent<HTMLSelectElement>) => {
     setSet({ ...set, color: ev.target.value });
   }
@@ -139,6 +139,7 @@ export function MassSet(){
         <Select name="color" label="Kolor cz.st." options={ordColorOptions} value={set.color} onChange={handleColorChange}/>
         {summary?.map((el, i) =>
           <Button
+            key={i}
             onClick={() => document.getElementById(el.code)?.scrollIntoView({behavior: "smooth", block: "center"})}
             >
             {el.label.substring(0, 3)}

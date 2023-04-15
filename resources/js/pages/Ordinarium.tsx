@@ -1,18 +1,17 @@
 import { Section } from "../components/Section"
-import { ordinarium, ordinarium_colors } from "../data"
+import { ordinarium, ordinarius_colors } from "../data"
 import { Link } from "react-router-dom"
 import { useLocation, useNavigate } from "react-router-dom"
 import React, { useState } from "react";
-import axios from "axios";
 import { Button, Input } from "../components/Interactives";
 import Abcjs from "react-abcjs";
-import { slugAndDePL } from "../helpers"
+import { dataChange, slugAndDePL } from "../helpers"
 
 export function Ordinarium(){
   return(
     <Section title="Części stałe">
       <div className="grid-3">
-      {ordinarium_colors.map((color, i) =>
+      {ordinarius_colors.map((color, i) =>
         <div className="ordTile" key={i}>
           <div className="ordTitleBox" style={{ borderColor: color.displayColor ?? color.name }}>
             <h1>{color.displayName}</h1>
@@ -77,9 +76,7 @@ export function OrdinariumEdit(){
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    axios.post("http://localhost:5000/api/save-ordinarius", { itemToChange: ordinarius, item_id: ordinarius_id }).then((response) => {
-      console.log(response);
-    });
+    dataChange("ordinarium", ordinarius, ordinarius_id);
     navigate("/ordinarium");
   };
 

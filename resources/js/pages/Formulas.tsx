@@ -1,12 +1,11 @@
 import { Section } from "../components/Section";
 import { formulas } from "../data";
 import { Link } from "react-router-dom";
-import { slugAndDePL, massOrder } from "../helpers";
+import { slugAndDePL, massOrder, dataChange } from "../helpers";
 import React, { useState } from "react";
 import { Button, Input, Select } from "../components/Interactives";
 import { Extra } from "../types";
 import { useLocation, useNavigate } from "react-router-dom";
-import axios from "axios";
 
 export function Formulas(){
   return(
@@ -53,9 +52,7 @@ export function FormulasEdit(){
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    axios.post("http://localhost:5000/api/save-formula", { itemToChange: formula, item_id: formula_id }).then((response) => {
-      console.log(response);
-    });
+    dataChange("formulas", formula, formula_id);
     navigate("/formulas");
   };
 
