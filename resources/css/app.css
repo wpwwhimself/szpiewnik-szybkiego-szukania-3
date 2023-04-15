@@ -1,0 +1,373 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel&family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&display=swap');
+
+:root{
+    --acc: #a2d122;
+}
+
+@media (prefers-color-scheme: dark){
+    :root{
+        --fg: white;
+        --bg1: #111;
+        --bg2: #222;
+        --bg3: #333;
+    }
+}
+@media (prefers-color-scheme: light){
+    :root{
+        --fg: black;
+        --bg1: #fff;
+        --bg2: #eee;
+        --bg3: #ddd;
+    }
+}
+
+body{
+    background-color: var(--bg1);
+    font-family: "EB Garamond";
+    color: var(--fg);
+    --header-height: 9em;
+    --footer-height: 7em;
+    margin: 0;
+}
+
+*{
+    transition-duration: 0.3s;
+}
+
+h1, h2, h3, h4{
+    font-family: Cinzel;
+    text-align: center;
+}
+h2{
+    color: var(--acc);
+}
+
+a{
+    color: inherit;
+}
+a:hover{
+    color: var(--acc);
+}
+
+#main-wrapper{
+    margin: 0 auto;
+    padding: 1em 0;
+    box-sizing: border-box;
+    width: 90vw;
+    min-height: calc(100vh - var(--header-height) - var(--footer-height))
+}
+
+/* misc */
+
+.ghost{
+    opacity: 0.4;
+}
+.accent{
+    color: var(--acc) !important;
+}
+.cap-initial::first-letter{
+    text-transform: capitalize;
+}
+.sheet-container svg{
+    background-color: white;
+}
+
+/* flexing */
+
+.flex-right, .flex-down{
+    display: flex;
+    gap: 0.5em;
+}
+
+.flex-right{
+    flex-direction: row;
+}
+.flex-down{
+    flex-direction: column;
+}
+
+.wrap{
+    flex-wrap: wrap;
+}
+
+.center{
+    justify-content: center;
+    align-items: center;
+}
+.center-vert{
+    align-items: baseline;
+}
+.stretch *{
+    flex-basis: 100%;
+}
+
+/* gridding */
+
+.grid-2, .grid-3{
+    display: grid;
+    gap: 0.5em;
+    grid-template-columns: repeat(var(--grid-count), 1fr);
+}
+.grid-2{ --grid-count: 2 }
+.grid-3{ --grid-count: 3 }
+
+/**********************************************************************************
+* * PAGES * *
+***********************************************************************************/
+
+/* ErrorPage */
+
+.errorCode{
+  font-size: min(30vw, 30vh);
+  margin: 0;
+  opacity: 0.3;
+}
+
+/* Ordinarium */
+
+.ordTile{
+  text-align: center;
+}
+.ordTitleBox{
+  --border-size: 3px;
+  border-bottom: var(--border-size) solid var(--acc);
+  padding-bottom: calc(2 * var(--border-size));
+  margin-bottom: calc(2 * var(--border-size));
+}
+.ordTitleBox *{
+  margin: 0;
+}
+
+/* Set */
+
+.settings{
+  position: sticky; top: 0;
+  background-color: var(--bg2);
+  z-index: 9;
+  padding: 0.5em;
+}
+.settings h2{
+  margin: 0;
+}
+
+.summary span{
+  opacity: 0.5;
+  margin-left: 0.5em;
+}
+
+.songMeta *{
+  margin: 0;
+}
+
+/* Songs */
+
+.boldEm a::first-letter{
+  font-weight: bold;
+  color: var(--acc);
+}
+
+/**********************************************************************************
+* * COMPONENTS * *
+***********************************************************************************/
+
+/* Logo */
+
+.logo{
+height: 4em;
+}
+
+header .logo{
+height: calc(var(--header-height) - 2 * 1.5em);
+}
+
+/* HnF */
+
+.titles h1, .titles h2, .titles p{
+    margin: 0;
+}
+
+header{
+    background-color: var(--bg2);
+    padding: 1.5em 3em;
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    justify-content: left;
+    align-items: center;
+    height: var(--header-height);
+    box-sizing: border-box;
+}
+
+header .titles{
+    text-align: left;
+}
+header .titles h2{
+    font-family: "EB Garamond";
+}
+
+nav{
+    text-align: right;
+}
+
+footer{
+    background-color: black;
+    color: white;
+    padding: 1em 2em;
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    width: 100vw;
+    height: var(--footer-height);
+    box-sizing: border-box;
+}
+
+footer .titles{
+    text-align: right;
+}
+
+@media screen and (max-width: 600px) {
+    footer{
+        position: static;
+        height: auto;
+        flex-direction: column;
+    }
+    footer .titles{
+        text-align: center;
+    }
+}
+
+/* Interactives */
+
+input, select, textarea{
+    background: none;
+    color: var(--fg);
+    font-family: "EB Garamond";
+    font-size: 1.1em;
+    border: none;
+    border-bottom: 1px solid var(--bg3);
+    resize: vertical;
+    text-align: center;
+}
+textarea{
+    font-size: 0.9em;
+    text-align: left;
+    font-family: monospace;
+    width: 40vw; height: 30vh;
+}
+button, .button{
+    color: var(--fg);
+    background-color: var(--bg3);
+    /* width: 100%; */
+    padding: 0 0.75em;
+    font-weight: bold;
+    font-size: 1.2em;
+    border-top: 0.5em double var(--bg1);
+    border-bottom: 0.5em double var(--bg1);
+    border-left: none; border-right: none;
+    text-decoration: none;
+    cursor: pointer;
+}
+button{
+    font-family: Cinzel;
+}
+button:hover, .button:hover{
+    color: black;
+    background-color: var(--acc);
+}
+
+input:focus, select:focus, textarea:focus{
+    box-shadow: 0 0 2em var(--acc);
+}
+
+label{
+    font-size: 0.8em;
+    font-style: italic;
+    opacity: 0.7;
+}
+
+.inputContainer{
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: center;
+    align-items: center;
+}
+
+/* MassElements */
+
+.massElemSection{
+	position: relative;
+}
+.massElemSection:not(:last-of-type){
+  border-bottom: 3px solid var(--bg2);
+  padding-bottom: 0.5em;
+}
+.massElemSection h2{
+  font-size: 1.2em;
+}
+
+.lyrics{
+	display: flex;
+	flex-direction: column; flex-wrap: wrap;
+	max-height: calc(100vh - 8em);
+}
+.lyrics li{
+	width: fit-content;
+	margin-bottom: 10px;
+}
+.chorus{
+  font-weight: bold;
+}
+
+.psalm{
+	padding-left: 40px;
+}
+.psalm p:nth-child(odd){
+	font-weight: bold;
+}
+
+.antyfona, .ksiadz{
+	width: fit-content;
+  margin: 0;
+}
+.antyfona :nth-child(1), .ksiadz{
+	color: var(--acc);
+}
+
+.alternative, .alt_group{
+	border: 3px solid var(--bg3);
+	border-radius: 15px;
+	margin: 10px;
+}
+.alt_group{
+	position: relative;
+	border-left: none; border-top: none; border-bottom: none;
+	margin-left: 0; margin-top: 0; margin-bottom: 0;
+}
+.alt_group h4{
+	position: absolute;
+	right: 10px; top: 0;
+	margin: 0;
+	color: var(--bg3);
+}
+.alt_option{
+	border-top: 2px dashed var(--bg3);
+	display: flex;
+	flex-direction: column;
+  padding: 0.5em;
+}
+
+.credo{
+	width: fit-content;
+}
+.credo tr:nth-child(odd){
+	background-color: var(--bg2);
+}
+
+/* misc2 */
+
+.massElemEraser{
+    position: absolute;
+    right: 0; top: 0;
+}
+.massElemEraser :nth-child(1){
+    display: none;
+}

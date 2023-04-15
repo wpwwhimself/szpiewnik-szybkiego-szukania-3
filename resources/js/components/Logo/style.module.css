@@ -1,7 +1,0 @@
-.logo{
-  height: 4em;
-}
-
-header .logo{
-  height: calc(var(--header-height) - 2 * 1.5em);
-}
