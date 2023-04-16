@@ -1,5 +1,4 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-
 import { Layout } from "./pages/Layout";
 import { ErrorPage } from "./pages/ErrorPage";
 import { Home } from "./pages/Home";
