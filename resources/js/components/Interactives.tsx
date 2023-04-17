@@ -1,4 +1,3 @@
-// import style from "./style.module.css";
 import { InputProps, PreferencesProps, SelectProps } from "../types";
 import { ButtonHTMLAttributes } from "react";
 
@@ -16,7 +15,8 @@ export function Input({type, name, label, value, onChange, disabled}: InputProps
         <input type={type} name={name} id={name} defaultChecked={value} onChange={onChange} />
       </div>
     );
-    case "text": return(
+    case "text":
+    case "password": return(
       <div className="inputContainer">
         <label htmlFor={name}>{label}</label>
         <input type={type} name={name} id={name} defaultValue={value ?? undefined} onChange={onChange} disabled={disabled} />

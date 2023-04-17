@@ -64,9 +64,6 @@ a:hover{
 .accent{
     color: var(--acc) !important;
 }
-.accent-border{
-    border-color: var(--acc) !important;
-}
 .cap-initial::first-letter{
     text-transform: capitalize;
 }
@@ -159,26 +156,6 @@ a:hover{
 
 .songMeta *{
   margin: 0;
-}
-
-#adder{
-    display: none;
-    position: fixed;
-    top: 0; left: 0;
-    width: 100vw; height: 100vh;
-    padding: 4em;
-    box-sizing: border-box;
-    z-index: 99;
-    background-color: rgba(0, 0, 0, 0.5);
-    backdrop-filter: blur(10px);
-}
-#adder.addmode{
-    display: block;
-}
-
-#adder #song-list{
-    max-height: 50vh;
-    overflow-y: scroll;
 }
 
 /* Songs */
@@ -287,17 +264,13 @@ button, .button{
     border-left: none; border-right: none;
     text-decoration: none;
     cursor: pointer;
+}
+button{
     font-family: Cinzel;
 }
 button:hover, .button:hover{
     color: black;
     background-color: var(--acc);
-}
-.light-button{
-    font-family: "EB Garamond";
-    font-weight: normal;
-    border: 2px solid var(--bg3);
-    background: none;
 }
 
 input:focus, select:focus, textarea:focus{

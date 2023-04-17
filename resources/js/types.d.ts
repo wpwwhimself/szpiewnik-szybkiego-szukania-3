@@ -1,5 +1,12 @@
 import { ReactNode } from "react";
 
+export type CheckAuthProps = (pass: string) => boolean
+
+export interface AuthProps{
+    auth: boolean,
+    checkAuth: CheckAuthProps,
+}
+
 export interface DataChangeProps{
     (
         fileToChange: string,
@@ -96,7 +103,7 @@ export type InputProps = {
   value?: boolean,
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 } | {
-  type?: "text",
+  type?: "text" | "password",
   value?: string | number | null,
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 })

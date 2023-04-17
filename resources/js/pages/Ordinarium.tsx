@@ -2,12 +2,20 @@ import { Section } from "../components/Section"
 import { ordinarium, ordinarius_colors } from "../data"
 import { Link } from "react-router-dom"
 import { useLocation, useNavigate } from "react-router-dom"
-import React, { useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Button, Input } from "../components/Interactives";
 import { dataChange, slugAndDePL } from "../helpers"
 import { SheetMusicRender } from "../components/SheetMusicRender";
+import { AuthContext } from "../App";
 
 export function Ordinarium(){
+  const navigate = useNavigate();
+  const { auth } = useContext(AuthContext);
+
+  useEffect(() => {
+    if(!auth) navigate("/auth");
+  }, []);
+
   return(
     <Section title="Części stałe">
       <div className="grid-3">

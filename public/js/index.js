@@ -4240,11 +4240,12 @@ function getTargetMatch(matches, location) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "AuthContext": () => (/* binding */ AuthContext),
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/dist/index.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/dist/index.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/dist/index.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/dist/index.js");
 /* harmony import */ var _pages_Layout__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./pages/Layout */ "./resources/js/pages/Layout.tsx");
 /* harmony import */ var _pages_ErrorPage__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./pages/ErrorPage */ "./resources/js/pages/ErrorPage.tsx");
 /* harmony import */ var _pages_Home__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./pages/Home */ "./resources/js/pages/Home.tsx");
@@ -4252,6 +4253,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _pages_Ordinarium__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./pages/Ordinarium */ "./resources/js/pages/Ordinarium.tsx");
 /* harmony import */ var _pages_Formulas__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./pages/Formulas */ "./resources/js/pages/Formulas.tsx");
 /* harmony import */ var _pages_Set__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./pages/Set */ "./resources/js/pages/Set.tsx");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var _pages_Auth__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./pages/Auth */ "./resources/js/pages/Auth.tsx");
 var __assign = undefined && undefined.__assign || function () {
   __assign = Object.assign || function (t) {
     for (var s, i = 1, n = arguments.length; i < n; i++) {
@@ -4271,47 +4274,72 @@ var __assign = undefined && undefined.__assign || function () {
 
 
 
+
+
+var AuthContext = /*#__PURE__*/(0,react__WEBPACK_IMPORTED_MODULE_8__.createContext)({});
 function App() {
-  return (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_8__.BrowserRouter, {
-    children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_9__.Routes, {
-      children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_9__.Route, __assign({
-        path: '/',
-        element: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_pages_Layout__WEBPACK_IMPORTED_MODULE_1__.Layout, {})
-      }, {
-        children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_9__.Route, {
-          index: true,
-          element: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_pages_Home__WEBPACK_IMPORTED_MODULE_3__.Home, {})
-        }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_9__.Route, {
-          path: "songs",
-          element: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_pages_Songs__WEBPACK_IMPORTED_MODULE_4__.Songs, {})
-        }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_9__.Route, {
-          path: "songs/*",
-          element: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_pages_Songs__WEBPACK_IMPORTED_MODULE_4__.SongEdit, {})
-        }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_9__.Route, {
-          path: "ordinarium",
-          element: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_pages_Ordinarium__WEBPACK_IMPORTED_MODULE_5__.Ordinarium, {})
-        }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_9__.Route, {
-          path: "ordinarium/*",
-          element: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_pages_Ordinarium__WEBPACK_IMPORTED_MODULE_5__.OrdinariumEdit, {})
-        }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_9__.Route, {
-          path: "formulas",
-          element: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_pages_Formulas__WEBPACK_IMPORTED_MODULE_6__.Formulas, {})
-        }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_9__.Route, {
-          path: "formulas/*",
-          element: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_pages_Formulas__WEBPACK_IMPORTED_MODULE_6__.FormulasEdit, {})
-        }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_9__.Route, {
-          path: "sets/show/*",
-          element: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_pages_Set__WEBPACK_IMPORTED_MODULE_7__.MassSet, {})
-        }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_9__.Route, {
-          path: "*",
-          element: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_pages_ErrorPage__WEBPACK_IMPORTED_MODULE_2__.ErrorPage, {
-            code: 404,
-            desc: "Nie ma takiej strony"
-          })
-        })]
-      }))
+  var _a = (0,react__WEBPACK_IMPORTED_MODULE_8__.useState)(false),
+    auth = _a[0],
+    setAuth = _a[1];
+  var checkAuth = function checkAuth(pass) {
+    if (pass === "kalafior") {
+      setAuth(true);
+      return true;
+    } else {
+      alert("Hasło niepoprawne");
+      return false;
+    }
+  };
+  return (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(AuthContext.Provider, __assign({
+    value: {
+      auth: auth,
+      checkAuth: checkAuth
+    }
+  }, {
+    children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_10__.BrowserRouter, {
+      children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_11__.Routes, {
+        children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_11__.Route, __assign({
+          path: '/',
+          element: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_pages_Layout__WEBPACK_IMPORTED_MODULE_1__.Layout, {})
+        }, {
+          children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_11__.Route, {
+            index: true,
+            element: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_pages_Home__WEBPACK_IMPORTED_MODULE_3__.Home, {})
+          }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_11__.Route, {
+            path: "auth",
+            element: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_pages_Auth__WEBPACK_IMPORTED_MODULE_9__.Auth, {})
+          }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_11__.Route, {
+            path: "songs",
+            element: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_pages_Songs__WEBPACK_IMPORTED_MODULE_4__.Songs, {})
+          }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_11__.Route, {
+            path: "songs/*",
+            element: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_pages_Songs__WEBPACK_IMPORTED_MODULE_4__.SongEdit, {})
+          }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_11__.Route, {
+            path: "ordinarium",
+            element: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_pages_Ordinarium__WEBPACK_IMPORTED_MODULE_5__.Ordinarium, {})
+          }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_11__.Route, {
+            path: "ordinarium/*",
+            element: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_pages_Ordinarium__WEBPACK_IMPORTED_MODULE_5__.OrdinariumEdit, {})
+          }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_11__.Route, {
+            path: "formulas",
+            element: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_pages_Formulas__WEBPACK_IMPORTED_MODULE_6__.Formulas, {})
+          }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_11__.Route, {
+            path: "formulas/*",
+            element: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_pages_Formulas__WEBPACK_IMPORTED_MODULE_6__.FormulasEdit, {})
+          }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_11__.Route, {
+            path: "sets/show/*",
+            element: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_pages_Set__WEBPACK_IMPORTED_MODULE_7__.MassSet, {})
+          }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_11__.Route, {
+            path: "*",
+            element: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_pages_ErrorPage__WEBPACK_IMPORTED_MODULE_2__.ErrorPage, {
+              code: 404,
+              desc: "Nie ma takiej strony"
+            })
+          })]
+        }))
+      })
     })
-  });
+  }));
 }
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (App);
 
@@ -4465,6 +4493,7 @@ function Input(_a) {
         })]
       }));
     case "text":
+    case "password":
       return (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({
         className: "inputContainer"
       }, {
@@ -5439,6 +5468,86 @@ react_dom__WEBPACK_IMPORTED_MODULE_2__.render((0,react_jsx_runtime__WEBPACK_IMPO
 
 /***/ }),
 
+/***/ "./resources/js/pages/Auth.tsx":
+/*!*************************************!*\
+  !*** ./resources/js/pages/Auth.tsx ***!
+  \*************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "Auth": () => (/* binding */ Auth)
+/* harmony export */ });
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var _App__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../App */ "./resources/js/App.tsx");
+/* harmony import */ var _components_Section__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../components/Section */ "./resources/js/components/Section.tsx");
+/* harmony import */ var _components_Interactives__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../components/Interactives */ "./resources/js/components/Interactives.tsx");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/dist/index.js");
+var __assign = undefined && undefined.__assign || function () {
+  __assign = Object.assign || function (t) {
+    for (var s, i = 1, n = arguments.length; i < n; i++) {
+      s = arguments[i];
+      for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p)) t[p] = s[p];
+    }
+    return t;
+  };
+  return __assign.apply(this, arguments);
+};
+
+
+
+
+
+
+function Auth() {
+  var navigate = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_5__.useNavigate)();
+  var _a = (0,react__WEBPACK_IMPORTED_MODULE_1__.useContext)(_App__WEBPACK_IMPORTED_MODULE_2__.AuthContext),
+    auth = _a.auth,
+    checkAuth = _a.checkAuth;
+  var _b = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(""),
+    password = _b[0],
+    setPassword = _b[1];
+  var handleChange = function handleChange(event) {
+    var value = event.target.value;
+    setPassword(value);
+  };
+  var handleSubmit = function handleSubmit(event) {
+    event.preventDefault();
+    if (checkAuth(password)) {
+      navigate(-1);
+    }
+    ;
+  };
+  return (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components_Section__WEBPACK_IMPORTED_MODULE_3__.Section, __assign({
+    title: "Autoryzacja"
+  }, {
+    children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("form", __assign({
+      onSubmit: handleSubmit
+    }, {
+      children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("h2", {
+        children: "Potwierd\u017A uprawnienia:"
+      }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components_Interactives__WEBPACK_IMPORTED_MODULE_4__.Input, {
+        type: "password",
+        name: "password",
+        label: "Has\u0142o",
+        onChange: handleChange
+      }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", __assign({
+        className: "flex-right center"
+      }, {
+        children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components_Interactives__WEBPACK_IMPORTED_MODULE_4__.Button, __assign({
+          type: "submit"
+        }, {
+          children: "Zaloguj"
+        }))
+      }))]
+    }))
+  }));
+}
+
+/***/ }),
+
 /***/ "./resources/js/pages/ErrorPage.tsx":
 /*!******************************************!*\
   !*** ./resources/js/pages/ErrorPage.tsx ***!
@@ -5787,12 +5896,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 /* harmony import */ var _components_Section__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../components/Section */ "./resources/js/components/Section.tsx");
 /* harmony import */ var _data__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../data */ "./resources/js/data/index.ts");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/dist/index.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/dist/index.js");
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/dist/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var _components_Interactives__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../components/Interactives */ "./resources/js/components/Interactives.tsx");
 /* harmony import */ var _helpers__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../helpers */ "./resources/js/helpers.ts");
 /* harmony import */ var _components_SheetMusicRender__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../components/SheetMusicRender */ "./resources/js/components/SheetMusicRender.tsx");
+/* harmony import */ var _App__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../App */ "./resources/js/App.tsx");
 var __assign = undefined && undefined.__assign || function () {
   __assign = Object.assign || function (t) {
     for (var s, i = 1, n = arguments.length; i < n; i++) {
@@ -5812,7 +5922,13 @@ var __assign = undefined && undefined.__assign || function () {
 
 
 
+
 function Ordinarium() {
+  var navigate = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_8__.useNavigate)();
+  var auth = (0,react__WEBPACK_IMPORTED_MODULE_3__.useContext)(_App__WEBPACK_IMPORTED_MODULE_7__.AuthContext).auth;
+  (0,react__WEBPACK_IMPORTED_MODULE_3__.useEffect)(function () {
+    if (!auth) navigate("/auth");
+  }, []);
   return (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(_components_Section__WEBPACK_IMPORTED_MODULE_1__.Section, __assign({
     title: "Cz\u0119\u015Bci sta\u0142e"
   }, {
@@ -5841,7 +5957,7 @@ function Ordinarium() {
             children: _data__WEBPACK_IMPORTED_MODULE_2__.ordinarium.filter(function (part) {
               return part.colorCode === color.name;
             }).map(function (part, ind) {
-              return (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_7__.Link, __assign({
+              return (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_9__.Link, __assign({
                 to: "".concat(part.colorCode, "_").concat(part.part)
               }, {
                 children: part.part
@@ -5870,7 +5986,7 @@ function Ordinarium() {
           children: _data__WEBPACK_IMPORTED_MODULE_2__.ordinarium.filter(function (el) {
             return el.colorCode === "*";
           }).map(function (ord, i) {
-            return (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_7__.Link, __assign({
+            return (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_9__.Link, __assign({
               to: "*_".concat(ord.part)
             }, {
               children: ord.part
@@ -5894,7 +6010,7 @@ function Ordinarium() {
           children: _data__WEBPACK_IMPORTED_MODULE_2__.ordinarium.filter(function (el) {
             return el.colorCode.charAt(0).match(/[A-Z]/);
           }).map(function (el, ind) {
-            return (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_7__.Link, __assign({
+            return (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_9__.Link, __assign({
               to: "".concat((0,_helpers__WEBPACK_IMPORTED_MODULE_5__.slugAndDePL)(el.colorCode), "_").concat(el.part)
             }, {
               children: [el.part, " (", el.colorCode, ")"]
@@ -65988,7 +66104,7 @@ module.exports = JSON.parse('[{"name":"ślub","gloriaPresent":true,"extra":[{"so
 /***/ ((module) => {
 
 "use strict";
-module.exports = JSON.parse('[{"colorCode":"green","part":"gloria","sheetMusic":"K:F\\nL:1/4\\nF4GF|F4E/F/DC || AB/A/A|G/F/G/ A/A/A ||"},{"colorCode":"green","part":"kyrie","sheetMusic":"K:Cm\\r\\nL:1/8\\r\\n\\"^536\\"\\\\\\r\\nGGGF EFD2C2 !fine! :: GGGA BcA2G2 !D.C.!:|"},{"colorCode":"green","part":"psalm","sheetMusic":"K:F\\r\\nL:1/8\\r\\nM:4/4\\r\\n\\"^552e\\" \\\\\\r\\nF2FF (ED) C2 | GGBAG2F2 || A8 BAG2F2 | D8 CDE2E2 | F8 GBA2A2 | G8 FEF2F2 !D.C! |]\\r\\n%%%%%%%%%%%%%%%%%%%%%\\r\\nK:Eb\\r\\nM:4/4\\r\\n\\"^???\\"\\\\\\r\\nG2EG (F/E/D)C2 | EE (C/D/)E (ED)E2 |: G8 EFF2E2 | C8 AG (EF)F2 :|"},{"colorCode":"green","part":"sanctus","sheetMusic":"K:Bb\\nL:1/8\\nM:4/4\\n\\"^531 (Pawlak)\\"\\\\\\nDDFFG2D2 | F2DDC2D2 | B,B,B,B,E2E E|CCB,CD2D2| GGGF BAG2F2||\\nD2DDF2F2|GGDDCCD2D2|GGGF BAG2F2|]"},{"colorCode":"green","part":"aklamacja","sheetMusic":"K:F\\r\\nL:1/8\\r\\n\\"^556a\\"\\\\\\r\\nFGAF2| (GA)G F(DC2) |  (FG)A (GF)F2 !fine!|| A8GA2F2|A8FGAG2F2 !D.C.! |]"},{"colorCode":"purple","part":"agnus-dei","sheetMusic":"K:Cm\\r\\nL:1/8\\r\\nG2FGA2A2|FFFF BAG2G2 | EDEFG2C2 \\"^x3\\":|"},{"colorCode":"green","part":"agnus-dei","sheetMusic":"K:Cm\\r\\nL:1/8\\r\\nC2GGG2G2|FG AGFE F2G2|EEDDC2C2 !D.C.!|]"},{"colorCode":"purple","part":"aklamacja","sheetMusic":"K:Em\\r\\nL:1/8\\r\\n\\"^557a\\"\\\\\\r\\nG2(FG) ED F2 | EFGE CDED !fine! || G8A2G2 | G8 FGE2D2 !D.C.! |]\\r\\n%%%%%%%%%%%%%%%\\r\\nK:Gm\\r\\nL:1/8\\r\\n\\"^556b\\"\\\\\\r\\nGGA(GF2)| G(BA)F D2 | ABA2G2 !fine! || G8FGA2G2 | G8FGAF2D2 !D.C.! |]"},{"colorCode":"purple","part":"gloria","sheetMusic":"K:Dm\\r\\nL:1/8\\r\\n\\"^533 (Piasecki)\\"\\\\\\r\\nFFFFF DFG2F2|FFGFE2D2|DDFED2C2||"},{"colorCode":"purple","part":"kyrie","sheetMusic":"K:Dm\\r\\nL:1/8\\r\\n\\"^534\\"\\\\\\r\\nD2E2FAGFE2D2 :: A2A2BAGFG2G2 !D.C.!:|"},{"colorCode":"purple","part":"psalm","sheetMusic":"K:Cm\\r\\nL:1/8\\r\\n\\"^552f\\"\\\\\\r\\nG2GGG2F2|EFDB,C2C2 !fine! || G8FEG2G2|G8AB (BA)A2| F8GA (GF)E2 | E8DCD2G2 !D.C.! |]\\r\\nK:Bm\\r\\n\\"^552a\\"\\\\\\r\\nF2BAG2F2|EEFDC2B,2 !fine! |: F8GFE2F2 | E8 GFE2D2 !D.C.!:|"},{"colorCode":"purple","part":"sanctus","sheetMusic":"K:Fm\\r\\nL:1/8\\r\\nM:5/4\\r\\nR:541\\r\\n(EF)F2 (AG)G2 FG | A2 GF(EF) F4 | AAAAB2AG | AAGF G2 F2>E2 | (FG)A2>A2 BG(EF) | F4 ||\\r\\nC2ECF2F2EE | AAGFE2C2>E2|(FG)A2>A2 BG(EF)|F4|]"},{"colorCode":"white","part":"kyrie","sheetMusic":"K:G\\r\\nL:1/8\\r\\nGGDD EE(DC) B,2::DDGG EE(FG)A2 :: BBGG AA(GF)G2 |]"},{"colorCode":"white","part":"gloria","sheetMusic":"K:C\\r\\nL:1/8\\r\\n\\"^537\\"\\\\\\r\\nGGAGF EG c2G2 | AGFE D2D2 | EFGE D2C2||"},{"colorCode":"white","part":"psalm","sheetMusic":"K:Eb\\r\\nL:1/8\\r\\nB,2EFG2G2|FFECE2E2 !fine!|| G8 ABB2F2| E8FGG2D2| C8DEB,2E2|F8EDE2E2 !D.C.! |]"},{"colorCode":"white","part":"aklamacja","sheetMusic":"K:Bb\\r\\nL:1/8\\r\\n\\"^554b\\"\\\\\\r\\nB,B, (DF)F2|FF (GB)B2 | GGE2F2 !fine! || B,DF8 GAB2F2 | B8 GEF2D2 !D.C.! |]"},{"colorCode":"white","part":"sanctus","sheetMusic":"K:C\\r\\nL:1/8\\r\\n\\"^543\\"\\\\\\r\\nCEGG (GA)G2 | (Ac)BG A2G2 ||"},{"colorCode":"white","part":"agnus-dei","sheetMusic":"K:Bb\\r\\nL:1/8\\r\\n\\"^531 (Pawlak)\\"\\\\\\r\\nD2DDF2F2|GGGGFED2D2|FFDDC2D2||"},{"colorCode":"red","part":"kyrie","sheetMusic":"K:Dm\\r\\nL:1/8\\r\\n\\"^533\\"\\\\\\r\\n(FE)D2 DCDFE2D2 :: (FG)A2 BAGFG2A2 !D.C.! :|"},{"colorCode":"red","part":"gloria","sheetMusic":"K:Dm\\r\\nL:1/8\\r\\n\\"^533\\"\\\\\\r\\nFFFFF DFG2F2|FFGFE2D2|DDFED2C2||"},{"colorCode":"red","part":"psalm","sheetMusic":"K:Dm\\r\\nL:1/8\\r\\n\\"^552d\\"\\\\\\r\\nC2FED2C2|GABAG2F2 !fine! || F8F2E2|G8AG (DE)F2 | A8 BAA2G2 | G8 AG (DE)F2 !D.C.! |]\\r\\nK:Eb\\r\\nL:1/8\\r\\n\\"^552c\\"\\\\\\r\\nG2FEF2F2|GBAGF2E2 !fine! |: E8F2E2 | E8 FG (AG)F2 !D.C.!:|"},{"colorCode":"red","part":"aklamacja","sheetMusic":"K:Cm\\r\\nL:1/8\\r\\n\\"^557b\\"\\\\\\r\\nGG(Bc)G2|GG(FE)F2 !fine! || G8BGF2E2 | G8FEF2F2 !D.C.! |]"},{"colorCode":"red","part":"sanctus","sheetMusic":"K:C\\r\\nL:1/8\\r\\n\\"^533\\"\\\\\\r\\nEEDG (FE)D2|F2ECE2D2|DDEF (GF)E2 |C FEDCD2E2||"},{"colorCode":"red","part":"agnus-dei","sheetMusic":"K:C\\r\\nL:1/8\\r\\n\\"^533\\"\\\\\\r\\nCDEE (FE)D2 | (DE)FFGF (ED)E2 | DFED (CB,)C2 \\"^x3\\":|"},{"colorCode":"blue","part":"kyrie","sheetMusic":"K:Bb\\r\\nL:1/8\\r\\n\\"^531\\"\\\\\\r\\nDDFFDCD2D2 !fine! :: GGBBGF (DF)G2 !D.C.! :|"},{"colorCode":"blue","part":"gloria","sheetMusic":"K:Bb\\r\\nL:1/8\\r\\n\\"^531\\"\\\\\\r\\nDDDFF GGF2D2|FFDDC2B,2|EECCD2D2||"},{"colorCode":"blue","part":"psalm","sheetMusic":"K:C\\r\\nL:1/8\\r\\n\\"^552b\\"\\\\\\r\\nE2CEG2G2|FFEGD2E2 !fine! || E8F2F2|D8E2E2|G8F2F2|D8E2E2 !D.C.! |]\\r\\nK:G\\r\\nL:1/8\\r\\n\\"^???\\"\\\\\\r\\nG2GG FDB,2|EECED2D2 !fine! || B,8A,B,D2D2|E8CED2D2|G8AG (FD)B,2|E8CED2D2 !D.C.! |]"},{"colorCode":"blue","part":"aklamacja","sheetMusic":"K:F\\r\\nL:1/8\\r\\n\\"^553\\"\\\\\\r\\nA2(AG) (GF) F2 | D2 (FG) (GF) F2 !fine! || F8 G2F2 | F8 EG2A2 !D.C.! |]"},{"colorCode":"blue","part":"sanctus","sheetMusic":"K:Bb\\r\\nL:1/8\\r\\nM:4/4\\r\\n\\"^531\\"\\\\\\r\\nDDFFG2D2 | F2DDC2D2 ||"},{"colorCode":"blue","part":"agnus-dei","sheetMusic":"K:Bb\\r\\nL:1/8\\r\\n\\"^531\\"\\\\\\r\\nD2DDF2F2|GGGG FED2D2|FFDDC2D2||"},{"colorCode":"gold","part":"kyrie","sheetMusic":"K:Cm\\r\\nL:1/8\\r\\n\\"^532\\"\\\\\\r\\nCB,CEFED2C2|GGAGFE (FA)G2||\\r\\nCB,CEFED2C2|GBcB=AG A2G2||\\r\\nGGAGFE (FA)G2|CB,CEFED2C2|]"},{"colorCode":"gold","part":"gloria","sheetMusic":"K:C\\r\\nL:1/8\\r\\n\\"^532\\"\\\\\\r\\nCEGGG FAG2G2| GGGGGG AGFED2E2 | G2FAG2 | (CE)GG FAG2 | G2FAG2 | GGFAG2 | \\r\\nAGFED2E2 | G GGGFAG2G2 | CEGG (AG)FED2E2 | CEGG FAG2G2 | CEGG (AG)FED2E2 | FAG2G2 |\\r\\nCEGG GFAG2G2 | FAG2G2 |: CEGG GGGG | AGFED2E2 :| CEGGGG FAG2G2 | AGFED2E2|\\r\\nCEGGG FAG2G2| AGFED2E2 | GGFAG2G2 | (AG)(FE)D2E2 | CEGGGG FAG2G2 | (AGFE)D2E2|]"},{"colorCode":"gold","part":"psalm","sheetMusic":"K:Dm\\r\\nL:1/8\\r\\n\\"^548\\"\\\\\\r\\nF2FG (AB)A2 | AGFE (FE)D2 !fine! |: F8G2F2 | F8EG2A2 !D.C.!:|"},{"colorCode":"gold","part":"aklamacja","sheetMusic":"K:Am\\r\\nL:1/8\\r\\n\\"^554a\\"\\\\\\r\\nEF(GA)G2|GA(GF)D2|FGE2E2 !fine! || A8GAB2A2 | A8GAG2E2 !D.C.! |]"},{"colorCode":"gold","part":"sanctus","sheetMusic":"K:C\\r\\nL:1/8\\r\\n\\"^532\\"\\\\\\r\\nGGEC (FA)G2 | G2ABc2A2|GGFEA2G C|DEFE (ED)C2 z E|G2EE DC D2 E2|\\r\\nD2B,CD2D2 | DDEF GFE2D2 zE|G2EE DCD2C2|]"},{"colorCode":"gold","part":"agnus-dei","sheetMusic":"K:Cm\\r\\nL:1/8\\r\\n\\"^532\\"\\\\\\r\\n(CB,)CE (DE)C2 | GGGGFE (FA)G2 | GGFE (DE) C2 !fine! || \\\\\\r\\n(GB)cB (=AB)G2 | GGGGFE (FA)G2 | GGFE (DE) C2 !D.C.!|]"},{"colorCode":"Wielki Post","part":"aklamacja","sheetMusic":"K:D\\nL:1/4\\n\\"^555a\\"\\\\nF (E/D/) GF | A(F/D/)ED !fine!|| F4 B/A/FF | D4E/D/E/FF !D.C.! |]\\n%%%%%%%%%%%\\nK:Dm\\nL:1/8\\n\\"^555b\\"\\\\nFF(GA)G2|(FG)(FE)D2D2 !fine! || F8 EFG2G2 | F8GFE2D2 !D.C.! |]\\n%%%%%%%%%%%%%\\nK:Eb\\nL:1/8\\n\\"^555c\\"\\\\nBB (GF) D2 | FGE2E2 !fine! || G8 AGF2G2 | G8 FEF2E2 !D.C.! |]"},{"colorCode":"Boże Narodzenie","part":"aklamacja","sheetMusic":"K:F\\nL:1/8\\nCCF2F2|EFG2G2|ABc2B2|AGF4 !fine!||F8G2F2|F8EFD2C2!D.C.!||"},{"colorCode":"Boże Narodzenie","part":"psalm","sheetMusic":"K:F\\nL:1/8\\nC2DEF2F2|GBAGG2F2 !fine!|| A8Bcc2G2|F8GAA2E2|D8EFC2F2|G8FEF2F2 !D.C.! |]"},{"colorCode":"Wielkanoc","part":"psalm","sheetMusic":"K:G\\nL:1/4\\n\\"^świątecznie\\"G2FA|(GE)D2|EGFA|G2G2 !fine!||G4GF|A4B/A/ (E/F/)G|B4c/B/BA|A4B/A/ (E/F/)G!D.C.!||"},{"colorCode":"*","part":"credo","sheetMusic":"K:Dm\\nL:1/8\\nFG AAAAA2|| A8GAB2G2|F8AGFE2D2||"},{"colorCode":"*","part":"pater-noster","sheetMusic":"K:C\\nL:1/8\\nCDE2FEEDC2|EDC (CD)E (DE)D2 ||"}]');
+module.exports = JSON.parse('[{"colorCode":"green","part":"gloria","sheetMusic":"K:F\\nL:1/4\\nF4GF|F4E/F/DC || AB/A/A|G/F/G/ A/A/A ||"},{"colorCode":"green","part":"kyrie","sheetMusic":"K:Cm\\r\\nL:1/8\\r\\n\\"^536\\"\\\\\\r\\nGGGF EFD2C2 !fine! :: GGGA BcA2G2 !D.C.!:|"},{"colorCode":"green","part":"psalm","sheetMusic":"K:F\\r\\nL:1/8\\r\\nM:4/4\\r\\n\\"^552e\\" \\\\\\r\\nF2FF (ED) C2 | GGBAG2F2 || A8 BAG2F2 | D8 CDE2E2 | F8 GBA2A2 | G8 FEF2F2 !D.C! |]\\r\\n%%%%%%%%%%%%%%%%%%%%%\\r\\nK:Eb\\r\\nM:4/4\\r\\n\\"^???\\"\\\\\\r\\nG2EG (F/E/D)C2 | EE (C/D/)E (ED)E2 |: G8 EFF2E2 | C8 AG (EF)F2 :|"},{"colorCode":"green","part":"sanctus","sheetMusic":"K:Bb\\nL:1/8\\nM:4/4\\n\\"^531 (Pawlak)\\"\\\\\\nDDFFG2D2 | F2DDC2D2 | B,B,B,B,E2E E|CCB,CD2D2| GGGF BAG2F2||\\nD2DDF2F2|GGDDCCD2D2|GGGF BAG2F2|]"},{"colorCode":"green","part":"aklamacja","sheetMusic":"K:F\\r\\nL:1/8\\r\\n\\"^556a\\"\\\\\\r\\nFGAF2| (GA)G F(DC2) |  (FG)A (GF)F2 !fine!|| A8GA2F2|A8FGAG2F2 !D.C.! |]"},{"colorCode":"purple","part":"agnus-dei","sheetMusic":"K:Cm\\r\\nL:1/8\\r\\nG2FGA2A2|FFFF BAG2G2 | EDEFG2C2 \\"^x3\\":|"},{"colorCode":"green","part":"agnus-dei","sheetMusic":"K:Cm\\r\\nL:1/8\\r\\nC2GGG2G2|FG AGFE F2G2|EEDDC2C2 !D.C.!|]"},{"colorCode":"purple","part":"aklamacja","sheetMusic":"K:Em\\r\\nL:1/8\\r\\n\\"^557a\\"\\\\\\r\\nG2(FG) ED F2 | EFGE CDED !fine! || G8A2G2 | G8 FGE2D2 !D.C.! |]\\r\\n%%%%%%%%%%%%%%%\\r\\nK:Gm\\r\\nL:1/8\\r\\n\\"^556b\\"\\\\\\r\\nGGA(GF2)| G(BA)F D2 | ABA2G2 !fine! || G8FGA2G2 | G8FGAF2D2 !D.C.! |]"},{"colorCode":"purple","part":"gloria","sheetMusic":"K:Dm\\r\\nL:1/8\\r\\n\\"^533 (Piasecki)\\"\\\\\\r\\nFFFFF DFG2F2|FFGFE2D2|DDFED2C2||"},{"colorCode":"purple","part":"kyrie","sheetMusic":"K:Dm\\r\\nL:1/8\\r\\n\\"^534\\"\\\\\\r\\nD2E2FAGFE2D2 :: A2A2BAGFG2G2 !D.C.!:|"},{"colorCode":"purple","part":"psalm","sheetMusic":"K:Cm\\r\\nL:1/8\\r\\n\\"^552f\\"\\\\\\r\\nG2GGG2F2|EFDB,C2C2 !fine! || G8FEG2G2|G8AB (BA)A2| F8GA (GF)E2 | E8DCD2G2 !D.C.! |]\\r\\nK:Bm\\r\\n\\"^552a\\"\\\\\\r\\nF2BAG2F2|EEFDC2B,2 !fine! |: F8GFE2F2 | E8 GFE2D2 !D.C.!:|"},{"colorCode":"purple","part":"sanctus","sheetMusic":"K:Fm\\r\\nL:1/8\\r\\nM:5/4\\r\\nR:541\\r\\n(EF)F2 (AG)G2 FG | A2 GF(EF) F4 | AAAAB2AG | AAGF G2 F2>E2 | (FG)A2>A2 BG(EF) | F4 ||\\r\\nC2ECF2F2EE | AAGFE2C2>E2|(FG)A2>A2 BG(EF)|F4|]"},{"colorCode":"white","part":"kyrie","sheetMusic":"K:G\\r\\nL:1/8\\r\\nGGDD EE(DC) B,2::DDGG EE(FG)A2 :: BBGG AA(GF)G2 |]"},{"colorCode":"white","part":"gloria","sheetMusic":"K:C\\r\\nL:1/8\\r\\n\\"^537\\"\\\\\\r\\nGGAGF EG c2G2 | AGFE D2D2 | EFGE D2C2||"},{"colorCode":"white","part":"psalm","sheetMusic":"K:Eb\\r\\nL:1/8\\r\\nB,2EFG2G2|FFECE2E2 !fine!|| G8 ABB2F2| E8FGG2D2| C8DEB,2E2|F8EDE2E2 !D.C.! |]"},{"colorCode":"white","part":"aklamacja","sheetMusic":"K:Bb\\r\\nL:1/8\\r\\n\\"^554b\\"\\\\\\r\\nB,B, (DF)F2|FF (GB)B2 | GGE2F2 !fine! || B,DF8 GAB2F2 | B8 GEF2D2 !D.C.! |]"},{"colorCode":"white","part":"sanctus","sheetMusic":"K:C\\r\\nL:1/8\\r\\n\\"^543\\"\\\\\\r\\nCEGG (GA)G2 | (Ac)BG A2G2 ||"},{"colorCode":"white","part":"agnus-dei","sheetMusic":"K:Bb\\r\\nL:1/8\\r\\n\\"^531 (Pawlak)\\"\\\\\\r\\nD2DDF2F2|GGGGFED2D2|FFDDC2D2||"},{"colorCode":"red","part":"kyrie","sheetMusic":"K:Dm\\r\\nL:1/8\\r\\n\\"^533\\"\\\\\\r\\n(FE)D2 DCDFE2D2 :: (FG)A2 BAGFG2A2 !D.C.! :|"},{"colorCode":"red","part":"gloria","sheetMusic":"K:Dm\\r\\nL:1/8\\r\\n\\"^533\\"\\\\\\r\\nFFFFF DFG2F2|FFGFE2D2|DDFED2C2||"},{"colorCode":"red","part":"psalm","sheetMusic":"K:Dm\\r\\nL:1/8\\r\\n\\"^552d\\"\\\\\\r\\nC2FED2C2|GABAG2F2 !fine! || F8F2E2|G8AG (DE)F2 | A8 BAA2G2 | G8 AG (DE)F2 !D.C.! |]\\r\\nK:Eb\\r\\nL:1/8\\r\\n\\"^552c\\"\\\\\\r\\nG2FEF2F2|GBAGF2E2 !fine! |: E8F2E2 | E8 FG (AG)F2 !D.C.!:|"},{"colorCode":"red","part":"aklamacja","sheetMusic":"K:Cm\\r\\nL:1/8\\r\\n\\"^557b\\"\\\\\\r\\nGG(Bc)G2|GG(FE)F2 !fine! || G8BGF2E2 | G8FEF2F2 !D.C.! |]"},{"colorCode":"red","part":"sanctus","sheetMusic":"K:C\\r\\nL:1/8\\r\\n\\"^533\\"\\\\\\r\\nEEDG (FE)D2|F2ECE2D2|DDEF (GF)E2 |C FEDCD2E2||"},{"colorCode":"red","part":"agnus-dei","sheetMusic":"K:C\\r\\nL:1/8\\r\\n\\"^533\\"\\\\\\r\\nCDEE (FE)D2 | (DE)FFGF (ED)E2 | DFED (CB,)C2 \\"^x3\\":|"},{"colorCode":"blue","part":"kyrie","sheetMusic":"K:Bb\\r\\nL:1/8\\r\\n\\"^531\\"\\\\\\r\\nDDFFDCD2D2 !fine! :: GGBBGF (DF)G2 !D.C.! :|"},{"colorCode":"blue","part":"gloria","sheetMusic":"K:Bb\\r\\nL:1/8\\r\\n\\"^531\\"\\\\\\r\\nDDDFF GGF2D2|FFDDC2B,2|EECCD2D2||"},{"colorCode":"blue","part":"psalm","sheetMusic":"K:C\\r\\nL:1/8\\r\\n\\"^552b\\"\\\\\\r\\nE2CEG2G2|FFEGD2E2 !fine! || E8F2F2|D8E2E2|G8F2F2|D8E2E2 !D.C.! |]\\r\\nK:G\\r\\nL:1/8\\r\\n\\"^???\\"\\\\\\r\\nG2GG FDB,2|EECED2D2 !fine! || B,8A,B,D2D2|E8CED2D2|G8AG (FD)B,2|E8CED2D2 !D.C.! |]"},{"colorCode":"blue","part":"aklamacja","sheetMusic":"K:F\\r\\nL:1/8\\r\\n\\"^553\\"\\\\\\r\\nA2(AG) (GF) F2 | D2 (FG) (GF) F2 !fine! || F8 G2F2 | F8 EG2A2 !D.C.! |]"},{"colorCode":"blue","part":"sanctus","sheetMusic":"K:Bb\\r\\nL:1/8\\r\\nM:4/4\\r\\n\\"^531\\"\\\\\\r\\nDDFFG2D2 | F2DDC2D2 ||"},{"colorCode":"blue","part":"agnus-dei","sheetMusic":"K:Bb\\r\\nL:1/8\\r\\n\\"^531\\"\\\\\\r\\nD2DDF2F2|GGGG FED2D2|FFDDC2D2||"},{"colorCode":"gold","part":"kyrie","sheetMusic":"K:Cm\\r\\nL:1/8\\r\\n\\"^532\\"\\\\\\r\\nCB,CEFED2C2|GGAGFE (FA)G2||\\r\\nCB,CEFED2C2|GBcB=AG A2G2||\\r\\nGGAGFE (FA)G2|CB,CEFED2C2|]"},{"colorCode":"gold","part":"gloria","sheetMusic":"K:C\\r\\nL:1/8\\r\\n\\"^532\\"\\\\\\r\\nCEGGG FAG2G2| GGGGGG AGFED2E2 | G2FAG2 | (CE)GG FAG2 | G2FAG2 | GGFAG2 | \\r\\nAGFED2E2 | G GGGFAG2G2 | CEGG (AG)FED2E2 | CEGG FAG2G2 | CEGG (AG)FED2E2 | FAG2G2 |\\r\\nCEGG GFAG2G2 | FAG2G2 |: CEGG GGGG | AGFED2E2 :| CEGGGG FAG2G2 | AGFED2E2|\\r\\nCEGGG FAG2G2| AGFED2E2 | GGFAG2G2 | (AG)(FE)D2E2 | CEGGGG FAG2G2 | (AGFE)D2E2|]"},{"colorCode":"gold","part":"psalm","sheetMusic":"K:Dm\\r\\nL:1/8\\r\\n\\"^548\\"\\\\\\r\\nF2FG (AB)A2 | AGFE (FE)D2 !fine! |: F8G2F2 | F8EG2A2 !D.C.!:|"},{"colorCode":"gold","part":"aklamacja","sheetMusic":"K:Am\\r\\nL:1/8\\r\\n\\"^554a\\"\\\\\\r\\nEF(GA)G2|GA(GF)D2|FGE2E2 !fine! || A8GAB2A2 | A8GAG2E2 !D.C.! |]"},{"colorCode":"gold","part":"sanctus","sheetMusic":"K:C\\r\\nL:1/8\\r\\n\\"^532\\"\\\\\\r\\nGGEC (FA)G2 | G2ABc2A2|GGFEA2G C|DEFE (ED)C2 z E|G2EE DC D2 E2|\\r\\nD2B,CD2D2 | DDEF GFE2D2 zE|G2EE DCD2C2|]"},{"colorCode":"gold","part":"agnus-dei","sheetMusic":"K:Cm\\r\\nL:1/8\\r\\n\\"^532\\"\\\\\\r\\n(CB,)CE (DE)C2 | GGGGFE (FA)G2 | GGFE (DE) C2 !fine! || \\\\\\r\\n(GB)cB (=AB)G2 | GGGGFE (FA)G2 | GGFE (DE) C2 !D.C.!|]"},{"colorCode":"Wielki Post","part":"aklamacja","sheetMusic":"K:D\\nL:1/4\\n\\"^555a\\"\\\\nF (E/D/) GF | A(F/D/)ED !fine!|| F4 B/A/FF | D4E/D/E/FF !D.C.! |]\\n%%%%%%%%%%%\\nK:Dm\\nL:1/8\\n\\"^555b\\"\\\\nFF(GA)G2|(FG)(FE)D2D2 !fine! || F8 EFG2G2 | F8GFE2D2 !D.C.! |]\\n%%%%%%%%%%%%%\\nK:Eb\\nL:1/8\\n\\"^555c\\"\\\\nBB (GF) D2 | FGE2E2 !fine! || G8 AGF2G2 | G8 FEF2E2 !D.C.! |]"},{"colorCode":"Boże Narodzenie","part":"aklamacja","sheetMusic":"K:F\\nL:1/8\\nCCF2F2|EFG2G2|ABc2B2|AGF4 !fine!||F8G2F2|F8EFD2C2!D.C.!||"},{"colorCode":"Boże Narodzenie","part":"psalm","sheetMusic":"K:F\\nL:1/8\\nC2DEF2F2|GBAGG2F2 !fine!|| A8Bcc2G2|F8GAA2E2|D8EFC2F2|G8FEF2F2 !D.C.! |]"},{"colorCode":"Wielkanoc","part":"psalm","sheetMusic":"K:G\\nL:1/4\\n\\"^świątecznie\\"G2FA|(GE)D2|EGFA|G2G2 !fine!||G4GF|A4B/A/ (E/F/)G|B4c/B/BA|A4B/A/ (E/F/)G!D.C.!||"},{"colorCode":"*","part":"credo","sheetMusic":"K:Dm\\nL:1/8\\nFG AAAAA2|| A8GAB2G2|F8AGFE2D2||"},{"colorCode":"*","part":"pater-noster","sheetMusic":"K:C\\nL:1/8\\nCDE2FEEDC2|EDC (CD)E (DE)D2 ||"},{"colorCode":"green","part":"gloria","sheetMusic":"K:F\\nL:1/4\\nF4GF|F4E/F/DC || AB/A/A|G/F/G/ A/A/A ||"},{"colorCode":"green","part":"gloria","sheetMusic":"K:F\\nL:1/4\\nF4GF|F4E/F/DC || AB/A/A|G/F/G/ A/A/A ||"}]');
 
 /***/ }),
 
