@@ -25,7 +25,7 @@ export function Input({type, name, label, value, onChange, disabled}: InputProps
     default: return(
       <div className="inputContainer">
         <label htmlFor={name}>{label}</label>
-        <input type={type} name={name} id={name} defaultValue={value ?? undefined} />
+        <span>⚠️Dodaj osobnego case'a z onChange⚠️</span>
       </div>
     );
   }
