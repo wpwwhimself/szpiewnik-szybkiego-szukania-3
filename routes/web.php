@@ -13,4 +13,4 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::view('/{path?}', 'layout')->name("react");
+Route::view('/{path?}/{pathh?}/{pathhh?}', 'layout')->name("react");

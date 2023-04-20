@@ -5,7 +5,7 @@ import { Home } from "./pages/Home";
 import { Songs, SongEdit } from "./pages/Songs";
 import { Ordinarium, OrdinariumEdit } from "./pages/Ordinarium";
 import { Formulas, FormulasEdit } from "./pages/Formulas";
-import { MassSet } from "./pages/Set";
+import { MassSet, MassSetBack } from "./pages/Set";
 import { createContext, useState } from "react";
 import { Auth } from "./pages/Auth";
 import { AuthProps, CheckAuthProps } from "./types";
@@ -38,6 +38,7 @@ function App() {
           <Route path="formulas" element={<Formulas />} />
           <Route path="formulas/*" element={<FormulasEdit />} />
           <Route path="sets/show/*" element={<MassSet />} />
+          <Route path="sets/edit/*" element={<MassSetBack />} />
           <Route path="*" element={<ErrorPage code={404} desc="Nie ma takiej strony" />} />
         </Route>
       </Routes>
