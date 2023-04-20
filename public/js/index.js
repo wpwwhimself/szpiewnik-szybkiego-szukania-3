@@ -4282,7 +4282,7 @@ function App() {
     auth = _a[0],
     setAuth = _a[1];
   var checkAuth = function checkAuth(pass) {
-    if (pass === "kalafior") {
+    if (pass === "viper400S.") {
       setAuth(true);
       return true;
     } else {
