@@ -4518,11 +4518,8 @@ function Input(_a) {
           htmlFor: name
         }, {
           children: label
-        })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("input", {
-          type: type,
-          name: name,
-          id: name,
-          defaultValue: value !== null && value !== void 0 ? value : undefined
+        })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", {
+          children: "\u26A0\uFE0FDodaj osobnego case'a z onChange\u26A0\uFE0F"
         })]
       }));
   }

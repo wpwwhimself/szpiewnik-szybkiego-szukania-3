@@ -103,11 +103,7 @@ export type InputProps = {
   value?: boolean,
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 } | {
-<<<<<<< HEAD
-  type?: "text" | "password",
-=======
   type?: "text" | "email" | "password",
->>>>>>> 880bf99bdce08e02a00395d46c76c32d5ea6bc4e
   value?: string | number | null,
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 })
