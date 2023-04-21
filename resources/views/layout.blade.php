@@ -3,8 +3,8 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="icon" href="/sz3_olive.svg" type="image/svg+xml">
-        <link rel="stylesheet" href="{{ mix('/css/app.css') }}">
+        <link rel="icon" href="{{ asset('sz3_olive.svg') }}" type="image/svg+xml">
+        <link rel="stylesheet" href="{{ asset('/css/app.css') }}">
         @env("local")
         <style>
         :root{
@@ -12,10 +12,15 @@
         }
         </style>
         @endenv
-        <title>SZSZSZ3</title>
+        <title>{{ $title ? "$title | " : "" }}{{ env("APP_NAME") }}</title>
     </head>
     <body>
-        <div class="container" id="root"></div>
-        <script src="{{ mix('/js/index.js') }}"></script>
+        <x-header title="{{ $title }}" />
+        <div id="main-wrapper">
+            @yield("content")
+        </div>
+        <x-footer />
+        {{-- <div class="container" id="root"></div>
+        <script src="{{ mix('/js/index.js') }}"></script> --}}
     </body>
 </html>

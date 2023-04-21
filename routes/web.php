@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,4 +14,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::view('/{path?}/{pathh?}/{pathhh?}', 'layout')->name("react");
+Route::controller(HomeController::class)->group(function(){
+    Route::get("/", "sets")->name("sets");
+
+    Route::get("/songs", "songs")->name("songs");
+    Route::get("/ordinarium", "ordinarium")->name("ordinarium");
+    Route::get("/formulas", "formulas")->name("formulas");
+    Route::get("/places", "places")->name("places");
+});
+
+// Route::view("/auth/register", "auth.register");
+
+// Route::view('/{path?}/{pathh?}/{pathhh?}', 'layout')->name("react");
