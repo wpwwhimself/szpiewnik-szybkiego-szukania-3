@@ -6,7 +6,7 @@ use App\Models\Formula;
 use App\Models\Ordinarius;
 use App\Models\OrdinariusColor;
 use App\Models\SongCategory;
-use Hamcrest\Core\Set;
+use App\Models\Set;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -23,6 +23,15 @@ class HomeController extends Controller
             compact("formulas", "sets")
         ));
     }
+    public function setShow($song_id){
+        $set = Set::findOrFail($song_id);
+
+        return view("set", array_merge(
+            ["title" => $set->name],
+            compact("set")
+        ));
+    }
+
 
     public function songs(){
         $categories = SongCategory::all();

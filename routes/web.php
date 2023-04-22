@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::controller(HomeController::class)->group(function(){
     Route::get("/", "sets")->name("sets");
-    Route::get("/set/{name}", "setShow")->name("set-show");
+    Route::get("/set/{song_id}", "setShow")->name("set-show");
 
     Route::get("/songs", "songs")->name("songs");
     Route::get("/songs/{title}", "song")->name("song");

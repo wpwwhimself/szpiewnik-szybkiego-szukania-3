@@ -1,129 +1,124 @@
 import { ReactNode } from "react";
 
-export type CheckAuthProps = (pass: string) => boolean
-
-export interface AuthProps{
-    auth: boolean,
-    checkAuth: CheckAuthProps,
+export interface AddCollectorProps {
+    song?: string,
+    before?: string,
 }
-
-export interface DataChangeProps{
-    (
-        fileToChange: string,
-        itemToChange: SongProps | OrdinariumProps | Formula,
-        item_id?: number,
-    ): void;
+export interface HandleAddCollectorProps{
+    (updatingField: 'song' | 'before', value?: string): void;
 }
 
 export interface MModProps{
-  prepareMassElemErase: (id: string) => void,
-  eraseMassElem: (id: string) => void,
+    prepareMassElemErase: (id: string) => void,
+    eraseMassElem: (id: string) => void,
 }
 
 export interface SongProps{
-  title: string,
-  categoryCode: number,
-  categoryDesc: string | null,
-  numberPreis: number | string | null,
-  key?: string,
-  preferences: string,
-  lyrics: string | null,
-  sheetMusic: string | null,
+    title: string,
+    song_category_id: number,
+    category_desc: string | null,
+    number_preis: number | string | null,
+    key: string | null,
+    preferences: string,
+    lyrics: string | null,
+    sheet_music: string | null,
 }
 
 export interface OrdinariumProps{
-  colorCode: string,
-  part: string,
-  sheetMusic: string,
+    id: number,
+    color_code: string,
+    part: string,
+    sheet_music: string,
 }
 
 export interface OrdinariumColorProps{
-  name: string,
-  displayColor?: string,
-  displayName: string,
-  desc: string,
+    name: string,
+    display_color: string | null,
+    display_name: string,
+    desc: string,
 }
 
 export interface Extra{
-  songName: string,
-  preWhere?: string,
-  replace: boolean,
+    id: number,
+    formula?: string,
+    place?: string,
+    name: string,
+    before: string | null,
+    replace: boolean,
 }
 
 export interface Formula{
-  name: string,
-  gloriaPresent: boolean,
-  extra?: Extra[],
+    name: string,
+    gloria_present: boolean,
+    extra?: Extra[],
 }
 
 export interface Set{
-  name: string,
-  createdAt: string,
-  formulaName: string,
-  color: string,
-  sPre?: string,
-  sIntro?: string,
-  pPsalm?: string,
-  pAccl?: string,
-  sOffer?: string,
-  sCommunion?: string,
-  sAdoration?: string,
-  sDismissal?: string,
-  extra?: Extra[],
-  thisMassOrder?: MassElem[],
+    name: string,
+    formula: string,
+    color: string,
+    sIntro: string,
+    pPsalm: string,
+    pAccl: string,
+    sOffer: string,
+    sCommunion: string,
+    sAdoration: string,
+    sDismissal: string,
+    extra?: Extra[],
+    thisMassOrder?: MassElem[],
 }
 
 export interface MassElem{
-  code: string,
-  label: string,
-  content?: string,
+    code: string,
+    label: string,
+    content?: string,
 }
 
 export interface MassElemSectionProps{
-  id: string,
-  uneresable?: boolean,
-  children: ReactNode,
+    id: string,
+    uneresable?: boolean,
+    children: ReactNode,
 }
 
 export interface OrdinariumProcessorProps{
-  code: string,
-  colorCode: string,
+    code: string,
+    colorCode: string,
 }
 
 export type InputProps = {
-  name: string,
-  label: string,
-  disabled?: boolean,
+    name: string,
+    label: string,
+    disabled?: boolean,
 } & ({
-  type?: "TEXT";
-  value?: string | number | null,
-  onChange?: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
+    type?: "TEXT";
+    value?: string | number | null,
+    onChange?: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
 } | {
-  type: "checkbox",
-  value?: boolean,
-  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+    type: "checkbox",
+    value?: boolean,
+    onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 } | {
-  type?: "text" | "email" | "password",
-  value?: string | number | null,
-  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+    type?: "text" | "email" | "password",
+    value?: string | number | null,
+    onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 })
 
 export type SelectProps = {
-  name: string,
-  label: string,
-  value?: string | number,
-  firstEmpty?: boolean,
-  options?: SelectOption[],
-  onChange?: (e: React.ChangeEvent<HTMLSelectElement>) => void;
+    name: string,
+    label: string,
+    value?: string | number,
+    firstEmpty?: boolean,
+    options?: SelectOption[],
+    onChange?: (e: React.ChangeEvent<HTMLSelectElement>) => void;
 }
 
 export interface PreferencesProps{
-  preferences: string,
-  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+    preferences: string,
+    onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 export interface SelectOption{
-  value: number | string,
-  label: string,
-  key?: number,
+    value: number | string,
+    label: string,
+    key?: number,
 }

@@ -1,8 +1,8 @@
 <?php
 
+use App\Http\Controllers\DataModController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\FileModController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,11 +15,7 @@ use App\Http\Controllers\FileModController;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
-Route::controller(FileModController::class)->group(function(){
-    // Route::middleware('auth:sanctum')->group(function () {
-        Route::post("/data-change", "dataChange");
-    // });
+Route::controller(DataModController::class)->group(function(){
+    Route::get("/set-data", "setData")->name("get-set-data");
+    Route::get("/ordinarium", "ordinarium")->name("get-ordinarium");
 });

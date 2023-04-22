@@ -15,8 +15,8 @@ class Set extends Model
         "pPsalm", "pAccl",
     ];
 
-    public function formula(){
-        return $this->hasOne(Formula::class);
+    public function formulaData(){
+        return $this->belongsTo(Formula::class, "formula", "name");
     }
     public function color(){
         return $this->hasOne(OrdinariusColor::class);

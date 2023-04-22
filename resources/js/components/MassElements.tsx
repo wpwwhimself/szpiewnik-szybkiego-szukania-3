@@ -1,11 +1,11 @@
 // import style from "./style.module.css"
-import { MassElem, MassElemSectionProps, OrdinariumProcessorProps } from "../types"
-import { ordinarium, songs } from "../data"
-import { ReactNode, useContext } from "react";
+import { MassElem, MassElemSectionProps, OrdinariumProcessorProps, OrdinariumProps } from "../types"
+import { ReactNode, useContext, useState, useEffect } from "react";
 import { slugAndDePL } from "../helpers";
 import { Button } from "./Interactives";
 import { MModContext } from "../pages/Set";
 import { SheetMusicRender } from "./SheetMusicRender";
+import axios from "axios";
 
 export function MassElemSection({id, uneresable = false, children}: MassElemSectionProps){
   const MMod = useContext(MModContext);
@@ -25,22 +25,21 @@ export function MassElemSection({id, uneresable = false, children}: MassElemSect
   )
 }
 
-export function SongLyrics({title}: {title: string}){
-  const lyrics = songs
-    .filter(el => el.title === title)[0].lyrics?.replace(/\*\*\s*\n/g, '</span><br>')
-    .replace(/\*\s*\n/g, `<span class="$"chorus"">`)
+export function SongLyrics({lyrics}: {lyrics: string | null}){
+  const lyrics_processed = lyrics?.replace(/\*\*\s*\r?\n/g, '</span><br>')
+    .replace(/\*\s*\r?\n/g, `<span class="$"chorus"">`)
     .replace(/_(.{1,5})_/g, '<u>$1</u>')
-    .replace(/\d+\.\s*\n/g, match => {return "<li start="+match.substring(0, match.length - 2)+">"})
-    .replace(/\n/g, "<br />");
+    .replace(/\d+\.\s*\r?\n/g, match => {return "<li start="+match.substring(0, match.length - 2)+">"})
+    .replace(/\r?\n/g, "<br />");
 
-  return(<ol className="lyrics" dangerouslySetInnerHTML={{ __html: lyrics ?? ""}} />);
+  return(<ol className="lyrics" dangerouslySetInnerHTML={{ __html: lyrics_processed ?? ""}} />);
 }
 
 export function PsalmLyrics({lyrics}: {lyrics: string}){
   return(
     <div className="psalm">
-    {lyrics.split(/\n\n/).map((out, i) =>
-      <p key={i} dangerouslySetInnerHTML={{ __html: out.replace(/\n/g, "<br>")}} />
+    {lyrics.split(/\r?\n\r?\n/).map((out, i) =>
+      <p key={i} dangerouslySetInnerHTML={{ __html: out.replace(/\r?\n/g, "<br>")}} />
     )}
     </div>
   )
@@ -66,7 +65,15 @@ export function Alternative({children}: {children: ReactNode}){
 }
 
 export function OrdinariumProcessor({code, colorCode}: OrdinariumProcessorProps){
-  const parts = ordinarium.filter(el => (el.colorCode === colorCode || el.colorCode === "*") && el.part === slugAndDePL(code.substring(1)));
+  const [ordinarium, setOrdinarium] = useState([] as OrdinariumProps[]);
+  useEffect(() => {
+    axios.get("/api/ordinarium").then(res => {
+      setOrdinarium(res.data);
+    });
+  }, []);
+  if(ordinarium.length === 0) return <h2>Wczytuję...</h2>;
+
+  const parts = ordinarium.filter(el => (el.color_code === colorCode || el.color_code === "*") && el.part === slugAndDePL(code.substring(1)));
   switch(code.substring(1)){
     case "Kyrie":
       return(
@@ -114,7 +121,7 @@ export function OrdinariumProcessor({code, colorCode}: OrdinariumProcessorProps)
           <p className="ksiadz">Niech się zmiłuje nad nami Bóg Wszechmogący i, odpuściwszy nam grzechy, doprowadzi nas do życia wiecznego...</p>
 
           <h1>Kyrie</h1>
-          {parts.map((part, i) => <SheetMusicRender notes={part.sheetMusic} key={i} />)}
+          {parts.map((part, i) => <SheetMusicRender notes={part.sheet_music} key={i} />)}
           <div>
             <p>
               Panie, zmiłuj się nad nami<br />
@@ -128,7 +135,7 @@ export function OrdinariumProcessor({code, colorCode}: OrdinariumProcessorProps)
       return(
         <>
           <h1>Gloria</h1>
-          {parts.map((part, i) => <SheetMusicRender notes={part.sheetMusic} key={i} />)}
+          {parts.map((part, i) => <SheetMusicRender notes={part.sheet_music} key={i} />)}
           <div>
             <p>
               Chwała na wysokości Bogu<br />
@@ -158,7 +165,7 @@ export function OrdinariumProcessor({code, colorCode}: OrdinariumProcessorProps)
         <>
           <p className="ksiadz">Złóżmy wyznanie wiary:</p>
           <h1>Credo</h1>
-          {parts.map((part, i) => <SheetMusicRender notes={part.sheetMusic} key={i} />)}
+          {parts.map((part, i) => <SheetMusicRender notes={part.sheet_music} key={i} />)}
           <table className="credo"><tbody>
             <tr><td>Wierzę w jednego Boga, Ojca wszechmogącego, Stworzyciela nieba i ziemi</td></tr>
             <tr><td>Wszystkich rzeczy widzialnych i niewidzialnych</td></tr>
@@ -211,7 +218,7 @@ export function OrdinariumProcessor({code, colorCode}: OrdinariumProcessorProps)
           <p className="ksiadz">Zaprawdę godne to i sprawiedliwe... ...jednym głosem wołając:</p>
 
           <h1>Sanctus</h1>
-          {parts.map((part, i) => <SheetMusicRender notes={part.sheetMusic} key={i} />)}
+          {parts.map((part, i) => <SheetMusicRender notes={part.sheet_music} key={i} />)}
           <div>
             <p>
               Święty, Święty, Święty<br />
@@ -237,7 +244,7 @@ export function OrdinariumProcessor({code, colorCode}: OrdinariumProcessorProps)
           />
           <p className="ksiadz">Nazywamy się dziećmi Bożymi i nimi jesteśmy, dlatego ośmielamy się mówić:</p>
           <h1>Pater Noster</h1>
-          {parts.map((part, i) => <SheetMusicRender notes={part.sheetMusic} key={i} />)}
+          {parts.map((part, i) => <SheetMusicRender notes={part.sheet_music} key={i} />)}
           <div>
             <p>
               Ojcze nasz, któryś jest w niebie<br />
@@ -270,7 +277,7 @@ export function OrdinariumProcessor({code, colorCode}: OrdinariumProcessorProps)
           <p className="ksiadz">Przekażcie sobie znak pokoju:</p>
 
           <h1>Agnus Dei</h1>
-          {parts.map((part, i) => <SheetMusicRender notes={part.sheetMusic} key={i} />)}
+          {parts.map((part, i) => <SheetMusicRender notes={part.sheet_music} key={i} />)}
           <div>
             <p>
               Baranku Boży<br />

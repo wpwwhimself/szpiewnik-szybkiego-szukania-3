@@ -4,7 +4,6 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use PhpParser\Node\Expr;
 
 class Formula extends Model
 {
@@ -22,6 +21,6 @@ class Formula extends Model
         return $this->hasMany(Set::class, "formula", "name");
     }
     public function extras(){
-        return $this->hasMany(Extra::class);
+        return $this->hasMany(FormulaExtra::class, "formula", "name");
     }
 }

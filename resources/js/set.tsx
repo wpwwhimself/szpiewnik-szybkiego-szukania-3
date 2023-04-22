@@ -1,11 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { MassSet } from './pages/Set';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <MassSet />
   </React.StrictMode>,
 document.getElementById('root') as HTMLElement
 );
