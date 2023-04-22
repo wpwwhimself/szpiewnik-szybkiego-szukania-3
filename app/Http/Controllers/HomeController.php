@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Formula;
+use App\Models\Ordinarius;
+use App\Models\OrdinariusColor;
 use App\Models\SongCategory;
 use Hamcrest\Core\Set;
 use Illuminate\Http\Request;
@@ -36,7 +38,21 @@ class HomeController extends Controller
     }
 
     public function ordinarium(){
-        return view("ordinarium", ["title" => "Lista części stałych"]);
+        $colors = OrdinariusColor::all();
+        $ordinarium = [];
+        foreach($colors as $color){
+            $ordinarium[$color->name] = $color->ordinarium;
+        }
+        $ordinarium["*"] = Ordinarius::where("color_code", "*")->get();
+        $ordinarium["events"] = Ordinarius::whereIn(
+            "color_code",
+            Formula::get("name")->toArray()
+        )->get();
+
+        return view("ordinarium", array_merge(
+            ["title" => "Lista części stałych"],
+            compact("ordinarium", "colors")
+        ));
     }
 
     public function formulas(){

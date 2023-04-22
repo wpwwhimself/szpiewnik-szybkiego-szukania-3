@@ -7,8 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class Ordinarius extends Model
 {
+    use HasFactory;
 
     protected $table = "ordinarium";
 
-    use HasFactory;
+    protected $fillable = [
+        "color_code", "part",
+        "sheet_music",
+    ];
 }

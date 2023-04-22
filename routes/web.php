@@ -22,6 +22,8 @@ Route::controller(HomeController::class)->group(function(){
     Route::get("/songs/{title}", "song")->name("song");
 
     Route::get("/ordinarium", "ordinarium")->name("ordinarium");
+    Route::get("/ordinarium/{color}_{part}", "ordinarius")->name("ordinarius");
+
     Route::get("/formulas", "formulas")->name("formulas");
     Route::get("/places", "places")->name("places");
 });
