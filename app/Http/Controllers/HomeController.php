@@ -2,14 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Formula;
+use Hamcrest\Core\Set;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
     public function sets(){
-        $formulas = [];
+        $formulas = Formula::all();
         $sets = [];
-        //todo ausfüllen
+        foreach($formulas as $formula){
+            $sets[$formula->name] = $formula->sets;
+        }
 
         return view("sets", array_merge(
             ["title" => "Dostępne zestawy"],
