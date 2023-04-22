@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Formula;
+use App\Models\SongCategory;
 use Hamcrest\Core\Set;
 use Illuminate\Http\Request;
 
@@ -22,7 +23,16 @@ class HomeController extends Controller
     }
 
     public function songs(){
-        return view("songs", ["title" => "Lista pieśni"]);
+        $categories = SongCategory::all();
+        $songs = [];
+        foreach($categories as $cat){
+            $songs[$cat->name] = $cat->songs;
+        }
+
+        return view("songs", array_merge(
+            ["title" => "Lista pieśni"],
+            compact("songs", "categories")
+        ));
     }
 
     public function ordinarium(){
