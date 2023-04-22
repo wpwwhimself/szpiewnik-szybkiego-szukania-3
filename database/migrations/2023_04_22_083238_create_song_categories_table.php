@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateOrdinariusColorsTable extends Migration
+class CreateSongCategoriesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,9 @@ class CreateOrdinariusColorsTable extends Migration
      */
     public function up()
     {
-        Schema::create('ordinarius_colors', function (Blueprint $table) {
-            $table->string("name")->primary();
-            $table->string("display_name")->nullable();
-            $table->string("display_color")->nullable();
-            $table->text("desc")->nullable();
+        Schema::create('song_categories', function (Blueprint $table) {
+            $table->id();
+            $table->string("name");
             $table->timestamps();
         });
     }
@@ -29,6 +27,6 @@ class CreateOrdinariusColorsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('ordinarius_colors');
+        Schema::dropIfExists('song_categories');
     }
 }
