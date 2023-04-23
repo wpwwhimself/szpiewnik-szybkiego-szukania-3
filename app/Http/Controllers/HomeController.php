@@ -7,6 +7,8 @@ use App\Models\Ordinarius;
 use App\Models\OrdinariusColor;
 use App\Models\SongCategory;
 use App\Models\Set;
+use App\Models\Song;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -44,6 +46,49 @@ class HomeController extends Controller
             ["title" => "Lista pieśni"],
             compact("songs", "categories")
         ));
+    }
+    public function song($title_slug){
+        $categories = SongCategory::all()->pluck("name", "id");
+        $song = Song::all()->filter(function($song) use ($title_slug){
+            return Str::slug($song->title) === $title_slug;
+        })->first();
+
+        //prefs
+        $prefs = explode("/", $song->preferences);
+        $prefs = array_combine([
+          "sIntro",
+          "sOffer",
+          "sCommunion",
+          "sAdoration",
+          "sDismissal",
+          "other"
+        ], $prefs);
+
+        return view("song", array_merge(
+            ["title" => $song->title." | Edycja pieśni"],
+            compact("song", "categories", "prefs")
+        ));
+    }
+    public function songEdit(Request $rq){
+        Song::where("title", $rq->title)->first()->update([
+            "title" => $rq->title,
+            "song_category_id" => $rq->song_category_id,
+            "category_desc" => $rq->category_desc,
+            "number_preis" => $rq->number_preis,
+            "key" => $rq->key,
+            "preferences" => implode("/", [
+                intval($rq->has("sIntro")),
+                intval($rq->has("sOffer")),
+                intval($rq->has("sCommunion")),
+                intval($rq->has("sAdoration")),
+                intval($rq->has("sDismissal")),
+                $rq->pref5 ?: "0"
+            ]),
+            "lyrics" => $rq->lyrics,
+            "sheet_music" => $rq->sheet_music,
+        ]);
+
+        return redirect()->route("songs")->with("success", "Pieśń poprawiona");
     }
 
     public function ordinarium(){

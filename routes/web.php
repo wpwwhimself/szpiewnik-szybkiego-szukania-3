@@ -19,7 +19,8 @@ Route::controller(HomeController::class)->group(function(){
     Route::get("/set/{song_id}", "setShow")->name("set-show");
 
     Route::get("/songs", "songs")->name("songs");
-    Route::get("/songs/{title}", "song")->name("song");
+    Route::get("/songs/{title_slug}", "song")->name("song");
+    Route::post("/songs/edit", "songEdit")->name("song-edit");
 
     Route::get("/ordinarium", "ordinarium")->name("ordinarium");
     Route::get("/ordinarium/{color}_{part}", "ordinarius")->name("ordinarius");
