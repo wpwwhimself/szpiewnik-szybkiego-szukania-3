@@ -25,7 +25,6 @@
         @endforeach
       </div>
     </div>
-    <Preferences preferences={song.preferences ?? "0/0/0/0/0/0"} onChange={handlePrefChange} />
   </div>
   <div class="grid-2">
     <x-input type="TEXT" name="lyrics" label="Tekst" value="{!! $song->lyrics !!}" />
