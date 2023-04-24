@@ -29,7 +29,7 @@ export function SheetMusicRender({notes}: SMRProps){
         );
     }
 
-    useEffect(() => render(), []);
+    useEffect(() => render(), [notes]);
 
     return(
         <div className="flex-right center sheet-container">
