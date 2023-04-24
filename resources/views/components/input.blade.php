@@ -2,7 +2,7 @@
   "type",
   "name",
   "label",
-  "value",
+  "value" => null,
   "disabled" => false,
 ])
 

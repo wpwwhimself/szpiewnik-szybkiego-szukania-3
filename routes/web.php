@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HomeController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +15,13 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+Route::controller(AuthController::class)->group(function(){
+    Route::get('/auth', "input")->name("login");
+    Route::post('/auth-back', "authenticate")->name("authenticate");
+    Route::post('/auth/register-back', "register")->name("register");
+    Route::get('/auth/logout', "logout")->name("logout");
+});
 
 Route::controller(HomeController::class)->group(function(){
     Route::get("/", "sets")->name("sets");
