@@ -70,9 +70,6 @@ a:hover{
 .cap-initial::first-letter{
     text-transform: capitalize;
 }
-.sheet-container svg{
-    background-color: white;
-}
 
 /* flexing */
 

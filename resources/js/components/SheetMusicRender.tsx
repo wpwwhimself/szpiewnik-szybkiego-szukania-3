@@ -1,10 +1,13 @@
-import Abcjs from "react-abcjs"
+import abcjs from "abcjs"
+import { useEffect } from "react";
 
 interface SMRProps{
     notes: string | null,
 }
 
 export function SheetMusicRender({notes}: SMRProps){
+    const this_id = Date.now() + Math.random();
+
     const engraverParams = {
         responsive: "resize",
         editable: false,
@@ -15,13 +18,22 @@ export function SheetMusicRender({notes}: SMRProps){
         viewportHorizontal: true
     }
 
+    function render(){
+        const res = abcjs.renderAbc(
+            "sheet-"+this_id,
+            notes ?? "",
+            {
+                responsive: "resize",
+                germanAlphabet: true,
+            }
+        );
+    }
+
+    useEffect(() => render(), []);
+
     return(
         <div className="flex-right center sheet-container">
-            <Abcjs
-                abcNotation={notes ?? ""}
-                engraverParams={engraverParams}
-                renderParams={renderParams}
-                />
+            <div id={`sheet-${this_id}`}></div>
         </div>
     )
 }
