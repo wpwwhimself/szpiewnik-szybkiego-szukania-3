@@ -28,7 +28,3 @@ Route::controller(HomeController::class)->group(function(){
     Route::get("/formulas", "formulas")->name("formulas");
     Route::get("/places", "places")->name("places");
 });
-
-// Route::view("/auth/register", "auth.register");
-
-// Route::view('/{path?}/{pathh?}/{pathhh?}', 'layout')->name("react");
