@@ -1,11 +1,14 @@
-# SzSzSz3, the third iteration of Szpiewnik Szybkiego Szukania
+# The Third Iteration of Szpiewnik Szybkiego Szukania
 
-This is the reimagination of my previous app **Projekt Organista**, which is designed to help the organist manage songs and psalms played.
+The "Quick Querying Qongbook" is an reimagining of my previous app **Projekt Organista**, which is designed to help the organist manage songs and psalms played during service. The changes I've done include:
 
-This time, my goal is to completely abandon PHP and focus on 100% React-based system, which features include:
+- more framework-oriented system
+- proper implementation of React
 
 - building song sets
 - displaying said song sets
 - managing songs and ordinarium
 - responsiveness
-- availability offline
+- personalisation of mass formulas
+
+This app is available at http://sz3.wpww.pl/
