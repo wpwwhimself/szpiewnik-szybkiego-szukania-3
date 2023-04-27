@@ -25915,7 +25915,7 @@ function MassSet() {
   if (!formula.gloria_present) thisMassOrder = thisMassOrder.filter(function (el) {
     return el.code !== "oGloria";
   });
-  (_a = formula.extra) === null || _a === void 0 ? void 0 : _a.forEach(function (el) {
+  (_a = formula.extras) === null || _a === void 0 ? void 0 : _a.forEach(function (el) {
     formulaInsertExtras(el, thisMassOrder);
   });
   if (set.thisMassOrder === undefined) setSet(__assign(__assign({}, set), {

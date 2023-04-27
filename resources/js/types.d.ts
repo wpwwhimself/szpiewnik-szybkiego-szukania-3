@@ -50,7 +50,7 @@ export interface Extra{
 export interface Formula{
     name: string,
     gloria_present: boolean,
-    extra?: Extra[],
+    extras?: Extra[],
 }
 
 export interface Set{

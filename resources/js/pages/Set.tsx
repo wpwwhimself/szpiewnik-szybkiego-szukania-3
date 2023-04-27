@@ -76,7 +76,7 @@ export function MassSet(){
     }
 
     if(!formula.gloria_present) thisMassOrder = thisMassOrder.filter(el => el.code !== "oGloria");
-    formula.extra?.forEach((el) => {
+    formula.extras?.forEach((el) => {
         formulaInsertExtras(el, thisMassOrder);
     });
 
