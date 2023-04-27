@@ -8,7 +8,9 @@
   <div class="login-box">
     <x-input type="password" name="password" label="Hasło" :required="true" />
   </div>
-  <x-button type="submit">Zaloguj się</x-button>
+  <div class="flex-right stretch">
+    <x-button type="submit">Zaloguj się</x-button>
+  </div>
 </form>
 
 @endsection

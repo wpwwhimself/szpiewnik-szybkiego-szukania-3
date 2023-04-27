@@ -2,7 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HomeController;
-use Illuminate\Support\Facades\Auth;
+use Illuminate\Auth\Middleware\Authenticate;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -23,17 +23,20 @@ Route::controller(AuthController::class)->group(function(){
     Route::get('/auth/logout', "logout")->name("logout");
 });
 
-Route::controller(HomeController::class)->group(function(){
+  Route::controller(HomeController::class)->group(function(){
     Route::get("/", "sets")->name("sets");
     Route::get("/set/{song_id}", "setShow")->name("set-show");
 
     Route::get("/songs", "songs")->name("songs");
     Route::get("/songs/{title_slug}", "song")->name("song");
-    Route::post("/songs/edit", "songEdit")->name("song-edit");
 
     Route::get("/ordinarium", "ordinarium")->name("ordinarium");
     Route::get("/ordinarium/{color}_{part}", "ordinarius")->name("ordinarius");
 
     Route::get("/formulas", "formulas")->name("formulas");
     Route::get("/places", "places")->name("places");
+
+    Route::middleware(Authenticate::class)->group(function(){
+      Route::post("/songs/edit", "songEdit")->name("song-edit");
+    });
 });

@@ -16,6 +16,11 @@
     </head>
     <body>
         <x-header title="{{ $title }}" />
+        @foreach (["success", "error"] as $status)
+            @if (session($status))
+                <x-alert :status="$status" />
+            @endif
+        @endforeach
         <div id="main-wrapper">
             @yield("content")
         </div>
