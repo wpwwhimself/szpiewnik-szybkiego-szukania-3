@@ -25937,32 +25937,36 @@ function MassSet() {
             children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("h2", {
               children: el.label
             }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("h1", {
-              children: song.title
-            }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({
+              children: el.content
+            }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", __assign({
               className: "flex-right center"
             }, {
-              children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components_Interactives__WEBPACK_IMPORTED_MODULE_3__.Input, {
-                type: "text",
-                name: "",
-                label: "Tonacja",
-                value: song.key,
-                disabled: true
-              }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components_Interactives__WEBPACK_IMPORTED_MODULE_3__.Input, {
-                type: "text",
-                name: "",
-                label: "Kategoria",
-                value: song.category_desc,
-                disabled: true
-              }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components_Interactives__WEBPACK_IMPORTED_MODULE_3__.Input, {
-                type: "text",
-                name: "",
-                label: "Numer w \u015Bpiewniku Preis",
-                value: song.number_preis,
-                disabled: true
-              })]
-            })), song.sheet_music && (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components_SheetMusicRender__WEBPACK_IMPORTED_MODULE_5__.SheetMusicRender, {
+              children: song ? (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
+                children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components_Interactives__WEBPACK_IMPORTED_MODULE_3__.Input, {
+                  type: "text",
+                  name: "",
+                  label: "Tonacja",
+                  value: song.key,
+                  disabled: true
+                }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components_Interactives__WEBPACK_IMPORTED_MODULE_3__.Input, {
+                  type: "text",
+                  name: "",
+                  label: "Kategoria",
+                  value: song.category_desc,
+                  disabled: true
+                }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components_Interactives__WEBPACK_IMPORTED_MODULE_3__.Input, {
+                  type: "text",
+                  name: "",
+                  label: "Numer w \u015Bpiewniku Preis",
+                  value: song.number_preis,
+                  disabled: true
+                })]
+              }) : (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("p", {
+                children: "Pie\u015B\u0144 niezapisana"
+              })
+            })), (song === null || song === void 0 ? void 0 : song.sheet_music) && (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components_SheetMusicRender__WEBPACK_IMPORTED_MODULE_5__.SheetMusicRender, {
               notes: song.sheet_music
-            }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components_MassElements__WEBPACK_IMPORTED_MODULE_4__.SongLyrics, {
+            }), (song === null || song === void 0 ? void 0 : song.lyrics) && (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components_MassElements__WEBPACK_IMPORTED_MODULE_4__.SongLyrics, {
               lyrics: song.lyrics
             })]
           }))

@@ -90,14 +90,21 @@ export function MassSet(){
                 <MassElemSection id={el.code} key={i}>
                     <div className="songMeta">
                         <h2>{el.label}</h2>
-                        <h1>{song.title}</h1>
+                        <h1>{el.content}</h1>
                         <div className="flex-right center">
+                        {song ?
+                          <>
                             <Input type="text" name="" label="Tonacja" value={song.key} disabled />
                             <Input type="text" name="" label="Kategoria" value={song.category_desc} disabled />
                             <Input type="text" name="" label="Numer w śpiewniku Preis" value={song.number_preis} disabled />
+                          </>
+                          :
+                          <p>Pieśń niezapisana</p>
+                        }
                         </div>
-                        {song.sheet_music && <SheetMusicRender notes={song.sheet_music} />}
-                        <SongLyrics lyrics={song.lyrics} />
+
+                        {song?.sheet_music && <SheetMusicRender notes={song.sheet_music} />}
+                        {song?.lyrics && <SongLyrics lyrics={song.lyrics} />}
                     </div>
                 </MassElemSection>
             )
