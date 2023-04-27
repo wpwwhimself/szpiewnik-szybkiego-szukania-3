@@ -6,6 +6,7 @@ import { AddCollectorProps, Extra, Formula, HandleAddCollectorProps, MModProps, 
 import { ExtrasProcessor, MassElemSection, OrdinariumProcessor, PsalmLyrics, SongLyrics } from "../components/MassElements";
 import { SheetMusicRender } from "../components/SheetMusicRender";
 import axios from "axios";
+import moment from "moment";
 
 export const MModContext = createContext({} as MModProps);
 
@@ -231,7 +232,8 @@ export function MassSet(){
                             <h2>Meta</h2>
                             <div className="flex-right wrap center">
                                 <Input type="text" name="" label="Formuła" disabled value={set.formula} />
-                                {/* <Input type="text" name="" label="Utworzony" disabled value={set.createdAt} /> */}
+                                <Input type="text" name="" label="Utworzony" disabled value={moment(set.created_at).format("DD.MM.YYYY")} />
+                                <Input type="text" name="" label="Zmodyfikowany" disabled value={moment(set.updated_at).format("DD.MM.YYYY")} />
                             </div>
                         </div>
                         <div>
