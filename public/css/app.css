@@ -163,6 +163,7 @@ a:hover{
     position: fixed;
     top: 0; left: 0;
     width: 100vw; height: 100vh;
+    overflow-y: scroll;
     padding: 4em; box-sizing: border-box;
     z-index: 99;
     background-color: rgba(0, 0, 0, 0.5);
@@ -171,10 +172,6 @@ a:hover{
 }
 #adder.addmode{
     display: block;
-}
-#adder #song-list{
-    max-height: 50vh;
-    overflow-y: scroll;
 }
 
 /* Songs */
