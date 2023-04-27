@@ -396,3 +396,23 @@ label{
     display: none;
 }
 
+/*********************
+ * MOBILE!!
+ ****************/
+
+@media screen and (max-width: 600px) {
+  .but-mobile-right{
+    flex-direction: row;
+  }
+  .but-mobile-down{
+    flex-direction: column;
+  }
+  .grid-2, .grid-3{
+    display: block;
+  }
+
+  header{
+    display: flex; flex-direction: column;
+    height: unset;
+  }
+}
