@@ -61,8 +61,8 @@ export function MassSet(){
     });
     thisMassOrder.splice(thisMassOrder.indexOf(com), 1);
 
-    //formula modifications
-    const formulaInsertExtras = (extra: Extra, massOrder: MassElem[]) => {
+    //modifications
+    const insertExtras = (extra: Extra, massOrder: MassElem[]) => {
         const pre = massOrder.filter(el2 => el2.code === extra.before)[0];
         const addition = (extra.name.charAt(0) === "x") ?
             { code: `${extra.name}`, label: `Zanim nastąpi ${pre.label}`, content: undefined } :
@@ -77,7 +77,10 @@ export function MassSet(){
 
     if(!formula.gloria_present) thisMassOrder = thisMassOrder.filter(el => el.code !== "oGloria");
     formula.extras?.forEach((el) => {
-        formulaInsertExtras(el, thisMassOrder);
+        insertExtras(el, thisMassOrder);
+    });
+    set.extras?.forEach((el) => {
+        insertExtras(el, thisMassOrder);
     });
 
     if(set.thisMassOrder === undefined) setSet({...set, thisMassOrder: thisMassOrder});
@@ -154,7 +157,7 @@ export function MassSet(){
     function addModeOn(useCollector: boolean = false){
         if(useCollector){
             const newMassOrder = thisMassOrder;
-            formulaInsertExtras(
+            insertExtras(
                 {
                     name: addCollector.song,
                     before: addCollector.before,

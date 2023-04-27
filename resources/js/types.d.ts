@@ -64,7 +64,7 @@ export interface Set{
     sCommunion: string,
     sAdoration: string,
     sDismissal: string,
-    extra?: Extra[],
+    extras?: Extra[],
     thisMassOrder?: MassElem[],
 }
 

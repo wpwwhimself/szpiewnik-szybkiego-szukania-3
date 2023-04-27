@@ -15,7 +15,10 @@ class DataModController extends Controller
         $set = Set::find($rq->set_id);
 
         return response()->json([
-            "set" => $set,
+            "set" => collect(
+                $set,
+                ["extras" => $set->extras]
+            ),
             "ordinarius_colors" => OrdinariusColor::all(),
             "ordinarium" => Ordinarius::all(),
             "formula" => collect(

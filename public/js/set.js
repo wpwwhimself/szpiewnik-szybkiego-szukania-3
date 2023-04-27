@@ -25814,29 +25814,29 @@ var __assign = undefined && undefined.__assign || function () {
 
 var MModContext = /*#__PURE__*/(0,react__WEBPACK_IMPORTED_MODULE_1__.createContext)({});
 function MassSet() {
-  var _a, _b, _c;
+  var _a, _b, _c, _d;
   var set_id = +window.location.href.replace(/.*\/(\d+)/, "$1");
-  var _d = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)({}),
-    set = _d[0],
-    setSet = _d[1];
-  var _e = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)([]),
-    ordinarium = _e[0],
-    setOrdinarium = _e[1];
+  var _e = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)({}),
+    set = _e[0],
+    setSet = _e[1];
   var _f = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)([]),
-    ordinarius_colors = _f[0],
-    setOrdColors = _f[1];
-  var _g = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)({}),
-    formula = _g[0],
-    setFormula = _g[1];
-  var _h = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)([]),
-    songs = _h[0],
-    setSongs = _h[1];
-  var _j = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)({
+    ordinarium = _f[0],
+    setOrdinarium = _f[1];
+  var _g = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)([]),
+    ordinarius_colors = _g[0],
+    setOrdColors = _g[1];
+  var _h = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)({}),
+    formula = _h[0],
+    setFormula = _h[1];
+  var _j = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)([]),
+    songs = _j[0],
+    setSongs = _j[1];
+  var _k = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)({
       song: undefined,
       before: undefined
     }),
-    addCollector = _j[0],
-    setAddCollector = _j[1];
+    addCollector = _k[0],
+    setAddCollector = _k[1];
   (0,react__WEBPACK_IMPORTED_MODULE_1__.useEffect)(function () {
     axios__WEBPACK_IMPORTED_MODULE_6__["default"].get("/api/set-data", {
       params: {
@@ -25892,8 +25892,8 @@ function MassSet() {
     });
   });
   thisMassOrder.splice(thisMassOrder.indexOf(com), 1);
-  //formula modifications
-  var formulaInsertExtras = function formulaInsertExtras(extra, massOrder) {
+  //modifications
+  var insertExtras = function insertExtras(extra, massOrder) {
     var pre = massOrder.filter(function (el2) {
       return el2.code === extra.before;
     })[0];
@@ -25916,12 +25916,15 @@ function MassSet() {
     return el.code !== "oGloria";
   });
   (_a = formula.extras) === null || _a === void 0 ? void 0 : _a.forEach(function (el) {
-    formulaInsertExtras(el, thisMassOrder);
+    insertExtras(el, thisMassOrder);
+  });
+  (_b = set.extras) === null || _b === void 0 ? void 0 : _b.forEach(function (el) {
+    insertExtras(el, thisMassOrder);
   });
   if (set.thisMassOrder === undefined) setSet(__assign(__assign({}, set), {
     thisMassOrder: thisMassOrder
   }));
-  var Mass = (_b = set.thisMassOrder) === null || _b === void 0 ? void 0 : _b.map(function (el, i) {
+  var Mass = (_c = set.thisMassOrder) === null || _c === void 0 ? void 0 : _c.map(function (el, i) {
     switch (el.code.charAt(0)) {
       case "s":
         // song
@@ -26038,7 +26041,7 @@ function MassSet() {
     }
     if (useCollector) {
       var newMassOrder = thisMassOrder;
-      formulaInsertExtras({
+      insertExtras({
         name: addCollector.song,
         before: addCollector.before,
         replace: false
@@ -26055,7 +26058,7 @@ function MassSet() {
     setAddCollector(__assign(__assign({}, addCollector), (_a = {}, _a[updatingField] = value, _a)));
   };
   // Mass' summary
-  var summary = (_c = set.thisMassOrder) === null || _c === void 0 ? void 0 : _c.filter(function (el) {
+  var summary = (_d = set.thisMassOrder) === null || _d === void 0 ? void 0 : _d.filter(function (el) {
     return el.content !== undefined;
   }).filter(function (el) {
     return el.code !== "pAccl";

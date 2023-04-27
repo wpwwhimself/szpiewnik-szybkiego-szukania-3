@@ -21,4 +21,7 @@ class Set extends Model
     public function color(){
         return $this->hasOne(OrdinariusColor::class);
     }
+    public function extras(){
+        return $this->hasMany(SetExtra::class);
+    }
 }
