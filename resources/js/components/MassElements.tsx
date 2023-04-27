@@ -13,12 +13,8 @@ export function MassElemSection({id, uneresable = false, children}: MassElemSect
   return(
     <section id={id} className="massElemSection">
     {!uneresable &&
-      <div className="massElemEraser flex-right"
-        onMouseOver={() => MMod.prepareMassElemErase(id)}
-        onMouseOut={() => MMod.prepareMassElemErase("!"+id)}
-        >
-        <Button onClick={() => MMod.eraseMassElem(id)}>&#10003;</Button>
-        <Button>–</Button>
+      <div className="massElemEraser flex-right">
+        <Button onClick={() => MMod.eraseMassElem(id)}>×</Button>
       </div>}
       {children}
     </section>

@@ -9,7 +9,7 @@ export interface HandleAddCollectorProps{
 }
 
 export interface MModProps{
-    prepareMassElemErase: (id: string) => void,
+    // prepareMassElemErase: (id: string) => void,
     eraseMassElem: (id: string) => void,
 }
 

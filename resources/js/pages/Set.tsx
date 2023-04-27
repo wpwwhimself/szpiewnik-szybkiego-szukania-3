@@ -143,14 +143,11 @@ export function MassSet(){
 
     //deleting
     const MMod: MModProps = {
-        prepareMassElemErase: (id) => {
-            const hide = id.charAt(0) === "!";
-            if(hide) id = id.substring(1);
-            document.querySelector<HTMLElement>(`#${id} .massElemEraser button:nth-child(1)`)!.style.display = (hide) ? "none" : "block";
-        },
         eraseMassElem: (id) => {
-            thisMassOrder = set.thisMassOrder!.filter(el => el.code !== id);
-            setSet({...set, thisMassOrder: thisMassOrder});
+            if(confirm(`Czy na pewno chcesz usunąć ten element mszy?`)){
+              thisMassOrder = set.thisMassOrder!.filter(el => el.code !== id);
+              setSet({...set, thisMassOrder: thisMassOrder});
+            }
         }
     }
 

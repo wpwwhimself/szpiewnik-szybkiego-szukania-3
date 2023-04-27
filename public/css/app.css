@@ -392,9 +392,6 @@ label{
     position: absolute;
     right: 0; top: 0;
 }
-.massElemEraser :nth-child(1){
-    display: none;
-}
 
 /*********************
  * MOBILE!!

@@ -25106,24 +25106,16 @@ function MassElemSection(_a) {
     id: id,
     className: "massElemSection"
   }, {
-    children: [!uneresable && (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({
-      className: "massElemEraser flex-right",
-      onMouseOver: function onMouseOver() {
-        return MMod.prepareMassElemErase(id);
-      },
-      onMouseOut: function onMouseOut() {
-        return MMod.prepareMassElemErase("!" + id);
-      }
+    children: [!uneresable && (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", __assign({
+      className: "massElemEraser flex-right"
     }, {
-      children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_Interactives__WEBPACK_IMPORTED_MODULE_3__.Button, __assign({
+      children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_Interactives__WEBPACK_IMPORTED_MODULE_3__.Button, __assign({
         onClick: function onClick() {
           return MMod.eraseMassElem(id);
         }
       }, {
-        children: "\u2713"
-      })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_Interactives__WEBPACK_IMPORTED_MODULE_3__.Button, {
-        children: "\u2013"
-      })]
+        children: "\xD7"
+      }))
     })), children]
   }));
 }
@@ -26023,18 +26015,15 @@ function MassSet() {
   });
   //deleting
   var MMod = {
-    prepareMassElemErase: function prepareMassElemErase(id) {
-      var hide = id.charAt(0) === "!";
-      if (hide) id = id.substring(1);
-      document.querySelector("#".concat(id, " .massElemEraser button:nth-child(1)")).style.display = hide ? "none" : "block";
-    },
     eraseMassElem: function eraseMassElem(id) {
-      thisMassOrder = set.thisMassOrder.filter(function (el) {
-        return el.code !== id;
-      });
-      setSet(__assign(__assign({}, set), {
-        thisMassOrder: thisMassOrder
-      }));
+      if (confirm("Czy na pewno chcesz usun\u0105\u0107 ten element mszy?")) {
+        thisMassOrder = set.thisMassOrder.filter(function (el) {
+          return el.code !== id;
+        });
+        setSet(__assign(__assign({}, set), {
+          thisMassOrder: thisMassOrder
+        }));
+      }
     }
   };
   //adding
