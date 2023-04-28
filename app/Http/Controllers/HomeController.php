@@ -52,6 +52,7 @@ class HomeController extends Controller
         $song = Song::all()->filter(function($song) use ($title_slug){
             return Str::slug($song->title) === $title_slug;
         })->first();
+        if(!$song) return abort(404);
 
         //prefs
         $prefs = explode("/", $song->preferences);
@@ -70,25 +71,40 @@ class HomeController extends Controller
         ));
     }
     public function songEdit(Request $rq){
-        Song::where("title", $rq->title)->first()->update([
-            "title" => $rq->title,
-            "song_category_id" => $rq->song_category_id,
-            "category_desc" => $rq->category_desc,
-            "number_preis" => $rq->number_preis,
-            "key" => $rq->key,
-            "preferences" => implode("/", [
-                intval($rq->has("sIntro")),
-                intval($rq->has("sOffer")),
-                intval($rq->has("sCommunion")),
-                intval($rq->has("sAdoration")),
-                intval($rq->has("sDismissal")),
-                $rq->pref5 ?: "0"
-            ]),
-            "lyrics" => $rq->lyrics,
-            "sheet_music" => $rq->sheet_music,
+        if($rq->action === "update"){
+            Song::where("title", $rq->title)->update([
+                "title" => $rq->title,
+                "song_category_id" => $rq->song_category_id,
+                "category_desc" => $rq->category_desc,
+                "number_preis" => $rq->number_preis,
+                "key" => $rq->key,
+                "preferences" => implode("/", [
+                    intval($rq->has("sIntro")),
+                    intval($rq->has("sOffer")),
+                    intval($rq->has("sCommunion")),
+                    intval($rq->has("sAdoration")),
+                    intval($rq->has("sDismissal")),
+                    $rq->pref5 ?: "0"
+                ]),
+                "lyrics" => $rq->lyrics,
+                "sheet_music" => $rq->sheet_music,
+            ]);
+            $response = "Pieśń poprawiona";
+        }else{
+            Song::where("title", $rq->title)->delete();
+            $response = "Pieśń usunięta";
+        }
+
+        return redirect()->route("songs")->with("success", $response);
+    }
+    public function songAdd(){
+        $new_song_title = "--Nowa pieśń--";
+        Song::insert([
+            "title" => $new_song_title,
+            "song_category_id" => 1,
         ]);
 
-        return redirect()->route("songs")->with("success", "Pieśń poprawiona");
+        return redirect()->route("song", ["title_slug" => Str::slug($new_song_title)])->with("success", "Szablon utworzony, dodaj pieśń");
     }
 
     public function ordinarium(){

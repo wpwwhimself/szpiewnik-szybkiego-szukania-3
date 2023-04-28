@@ -47,6 +47,9 @@ a{
 a:hover{
     color: var(--acc);
 }
+a:has(button){
+    text-decoration: none;
+}
 
 #main-wrapper{
     margin: 0 auto;

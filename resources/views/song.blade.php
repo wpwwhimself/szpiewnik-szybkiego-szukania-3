@@ -32,7 +32,8 @@
   </div>
   <div id="sheet-music-container"></div>
   <div class="flex-right stretch">
-    <x-button type="submit">Zatwierdź i wróć</x-button>
+    <x-button type="submit" name="action" value="update">Zatwierdź i wróć</x-button>
+    <x-button type="submit" name="action" value="delete">Usuń</x-button>
   </div>
 </form>
 

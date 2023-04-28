@@ -2,6 +2,10 @@
 
 @section("content")
 
+<a href="{{ route('song-add') }}" class="flex-right stretch">
+    <x-button>Dodaj nową</x-button>
+</a>
+
 @foreach ($categories as $cat)
     <h1 class="cap-initial">{{ $cat->name }}</h1>
     <div class="flex-right wrap center boldEm">

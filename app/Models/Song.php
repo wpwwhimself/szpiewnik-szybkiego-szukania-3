@@ -11,6 +11,7 @@ class Song extends Model
 
     public $incrementing = false;
     protected $keyType = "string";
+    protected $primaryKey = null;
 
     protected $fillable = [
         "title",

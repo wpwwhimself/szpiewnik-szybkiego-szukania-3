@@ -29,8 +29,9 @@ Route::controller(AuthController::class)->group(function(){
 
     Route::middleware(Authenticate::class)->group(function(){
         Route::get("/songs", "songs")->name("songs");
-        Route::get("/songs/{title_slug}", "song")->name("song");
+        Route::get("/songs/show/{title_slug}", "song")->name("song");
         Route::post("/songs/edit", "songEdit")->name("song-edit");
+        Route::get("/songs/add", "songAdd")->name("song-add");
 
         Route::get("/ordinarium", "ordinarium")->name("ordinarium");
         Route::get("/ordinarium/{color}_{part}", "ordinarius")->name("ordinarius");
