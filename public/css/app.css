@@ -70,6 +70,21 @@ a:hover{
 .cap-initial::first-letter{
     text-transform: capitalize;
 }
+.success{
+    --color: 0, 255, 0;
+}
+.error{
+    --color: 255, 0, 0;
+}
+
+/* alert */
+
+.alert{
+    border-top: 5px double rgb(var(--color));
+    border-bottom: 5px double rgb(var(--color));
+    background-color: rgba(var(--color), 0.2);
+    padding: 0.5em;
+}
 
 /* flexing */
 
@@ -188,11 +203,11 @@ a:hover{
 /* Logo */
 
 .logo{
-height: 4em;
+    height: 4em;
 }
 
 header .logo{
-height: calc(var(--header-height) - 2 * 1.5em);
+    height: calc(var(--header-height) - 2 * 1.5em);
 }
 
 /* HnF */
@@ -212,7 +227,7 @@ header{
     box-sizing: border-box;
 }
 
-header .titles{
+header .titles *{
     text-align: left;
 }
 
@@ -224,27 +239,18 @@ footer{
     background-color: black;
     color: white;
     padding: 1em 2em;
-    display: flex;
-    flex-direction: row-reverse;
+    display: grid;
+    grid-template-columns: auto 1fr 5em;
     align-items: center;
     width: 100vw;
     height: var(--footer-height);
     box-sizing: border-box;
 }
-
-footer .titles{
+footer .titles *{
     text-align: right;
 }
+footer .auth{
 
-@media screen and (max-width: 600px) {
-    footer{
-        position: static;
-        height: auto;
-        flex-direction: column;
-    }
-    footer .titles{
-        text-align: center;
-    }
 }
 
 /* Interactives */
@@ -408,5 +414,22 @@ label{
   header{
     display: flex; flex-direction: column;
     height: unset;
+  }
+  header .titles *{
+    text-align: center;
+  }
+
+  #main-wrapper{
+    min-height: auto;
+  }
+
+  footer{
+    position: static;
+    height: auto;
+    display: flex;
+    flex-direction: column-reverse;
+  }
+  footer .titles *, footer .auth *{
+    text-align: center;
   }
 }

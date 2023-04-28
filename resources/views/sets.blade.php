@@ -1,9 +1,6 @@
 @extends("layout")
 
 @section("content")
-@auth
-<h3>Zalogowano jako {{ Auth::user()->name }}</h3>
-@endauth
 <h1>Załaduj mszę</h1>
 <div>
 @foreach ($formulas as $formula) @if(count($formula->sets))

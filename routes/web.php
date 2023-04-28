@@ -27,16 +27,16 @@ Route::controller(AuthController::class)->group(function(){
     Route::get("/", "sets")->name("sets");
     Route::get("/set/{song_id}", "setShow")->name("set-show");
 
-    Route::get("/songs", "songs")->name("songs");
-    Route::get("/songs/{title_slug}", "song")->name("song");
-
-    Route::get("/ordinarium", "ordinarium")->name("ordinarium");
-    Route::get("/ordinarium/{color}_{part}", "ordinarius")->name("ordinarius");
-
-    Route::get("/formulas", "formulas")->name("formulas");
-    Route::get("/places", "places")->name("places");
-
     Route::middleware(Authenticate::class)->group(function(){
-      Route::post("/songs/edit", "songEdit")->name("song-edit");
+        Route::get("/songs", "songs")->name("songs");
+        Route::get("/songs/{title_slug}", "song")->name("song");
+        Route::post("/songs/edit", "songEdit")->name("song-edit");
+
+        Route::get("/ordinarium", "ordinarium")->name("ordinarium");
+        Route::get("/ordinarium/{color}_{part}", "ordinarius")->name("ordinarius");
+
+        Route::get("/formulas", "formulas")->name("formulas");
+        Route::get("/places", "places")->name("places");
+
     });
 });

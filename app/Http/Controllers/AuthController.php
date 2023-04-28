@@ -25,10 +25,10 @@ class AuthController extends Controller
 
         $users = User::all();
         foreach($users as $user){
-            if($credentials === $user->password){
+            if(Hash::check($credentials, $user->password)){
                 Auth::login(User::find($user->id));
                 $request->session()->regenerate();
-                return redirect()->intended("dashboard")->with("success", "Zalogowano");
+                return redirect()->intended("/")->with("success", "Zalogowano");
             }
         }
 
