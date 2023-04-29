@@ -166,10 +166,15 @@ export function MassSet(){
             setSet({...set, thisMassOrder: newMassOrder});
         }
         setAddCollector({} as AddCollectorProps);
-        document.getElementById("adder")!.classList.toggle("addmode");
+        document.getElementById("adder")!.classList.toggle("show");
     }
     const handleAddCollector: HandleAddCollectorProps = (updatingField, value) => {
         setAddCollector({...addCollector, [updatingField]: value});
+    }
+
+    //jumping
+    function jumperOn(){
+        document.getElementById("jumper")!.classList.toggle("show");
     }
 
     // Mass' summary
@@ -180,17 +185,27 @@ export function MassSet(){
     return(<>
         <div className="flex-right center wrap settings">
             <Select name="color" label="Kolor cz.st." options={ordColorOptions} value={set.color} onChange={handleColorChange}/>
-            {summary?.map((el, i) =>
-                <Button key={i}
-                    onClick={() => document.getElementById(el.code)?.scrollIntoView({behavior: "smooth", block: "center"})}
-                    >
-                    {el.label.substring(0, 3)}
-                </Button>
-            )}
+            <Button onClick={() => jumperOn()}>»</Button>
             <Button onClick={() => addModeOn()}>+</Button>
         </div>
 
-        <div id="adder">
+        <div id="jumper" className="modal">
+            <h1>Przejdź do</h1>
+            <div className="flex-right center wrap">
+            {summary?.map((el, i) =>
+                <Button key={i}
+                    onClick={() => {
+                        jumperOn();
+                        document.getElementById(el.code)?.scrollIntoView({behavior: "smooth", block: "center"});
+                    }}
+                    >
+                    {el.label}
+                </Button>
+            )}
+            </div>
+        </div>
+
+        <div id="adder" className="modal">
             <h1>Dodaj pieśń</h1>
             <h2>Wybierz tytuł</h2>
             <div id="song-list" className="flex-right center wrap">

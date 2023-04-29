@@ -26043,12 +26043,16 @@ function MassSet() {
       }));
     }
     setAddCollector({});
-    document.getElementById("adder").classList.toggle("addmode");
+    document.getElementById("adder").classList.toggle("show");
   }
   var handleAddCollector = function handleAddCollector(updatingField, value) {
     var _a;
     setAddCollector(__assign(__assign({}, addCollector), (_a = {}, _a[updatingField] = value, _a)));
   };
+  //jumping
+  function jumperOn() {
+    document.getElementById("jumper").classList.toggle("show");
+  }
   // Mass' summary
   var summary = (_d = set.thisMassOrder) === null || _d === void 0 ? void 0 : _d.filter(function (el) {
     return el.content !== undefined;
@@ -26065,19 +26069,13 @@ function MassSet() {
         options: ordColorOptions,
         value: set.color,
         onChange: handleColorChange
-      }), summary === null || summary === void 0 ? void 0 : summary.map(function (el, i) {
-        return (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components_Interactives__WEBPACK_IMPORTED_MODULE_3__.Button, __assign({
-          onClick: function onClick() {
-            var _a;
-            return (_a = document.getElementById(el.code)) === null || _a === void 0 ? void 0 : _a.scrollIntoView({
-              behavior: "smooth",
-              block: "center"
-            });
-          }
-        }, {
-          children: el.label.substring(0, 3)
-        }), i);
       }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components_Interactives__WEBPACK_IMPORTED_MODULE_3__.Button, __assign({
+        onClick: function onClick() {
+          return jumperOn();
+        }
+      }, {
+        children: "\xBB"
+      })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components_Interactives__WEBPACK_IMPORTED_MODULE_3__.Button, __assign({
         onClick: function onClick() {
           return addModeOn();
         }
@@ -26085,7 +26083,32 @@ function MassSet() {
         children: "+"
       }))]
     })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({
-      id: "adder"
+      id: "jumper",
+      className: "modal"
+    }, {
+      children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("h1", {
+        children: "Przejd\u017A do"
+      }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", __assign({
+        className: "flex-right center wrap"
+      }, {
+        children: summary === null || summary === void 0 ? void 0 : summary.map(function (el, i) {
+          return (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components_Interactives__WEBPACK_IMPORTED_MODULE_3__.Button, __assign({
+            onClick: function onClick() {
+              var _a;
+              jumperOn();
+              (_a = document.getElementById(el.code)) === null || _a === void 0 ? void 0 : _a.scrollIntoView({
+                behavior: "smooth",
+                block: "center"
+              });
+            }
+          }, {
+            children: el.label
+          }), i);
+        })
+      }))]
+    })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({
+      id: "adder",
+      className: "modal"
     }, {
       children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("h1", {
         children: "Dodaj pie\u015B\u0144"

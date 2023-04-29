@@ -176,7 +176,9 @@ a:has(button){
   margin: 0;
 }
 
-#adder{
+/* Modals */
+
+.modal{
     display: none;
     position: fixed;
     top: 0; left: 0;
@@ -185,10 +187,9 @@ a:has(button){
     padding: 4em; box-sizing: border-box;
     z-index: 99;
     background-color: rgba(0, 0, 0, 0.5);
-    -webkit-backdrop-filter: blur(10px);
-            backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
 }
-#adder.addmode{
+.modal.show{
     display: block;
 }
 
