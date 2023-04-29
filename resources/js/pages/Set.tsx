@@ -95,7 +95,7 @@ export function MassSet(){
                     <div className="songMeta">
                         <h2>{el.label}</h2>
                         <h1>{el.content}</h1>
-                        <div className="flex-right but-mobile-down center">
+                        <div className="flex-right center wrap">
                         {song ?
                           <>
                             <Input type="text" name="" label="Tonacja" value={song.key} disabled />
