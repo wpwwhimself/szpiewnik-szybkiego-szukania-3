@@ -3,9 +3,9 @@
 <header>
     <x-logo />
     <div class="titles">
-        <h1 id="page-title">{{ $title ?: "Szpiewnik Szybkiego Szukania 3" }}</h1>
+        <h1 id="page-title">{{ $title ?: env("APP_NAME") }}</h1>
         @if ($title)
-        <h2>Szpiewnik Szybkiego Szukania 3</h2>
+        <h2>{{ env("APP_NAME") }}</h2>
         @endif
     </div>
     <nav class="flex-down but-mobile-right">
