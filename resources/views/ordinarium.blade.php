@@ -11,7 +11,7 @@
         </div>
         <div class="flex-right wrap center">
             @foreach ($ordinarium[$color->name] as $ordinarius)
-            <a href="{{ route('ordinarius', ['color' => $color->name, 'part' => $ordinarius->part]) }}">
+            <a href="{{ route('ordinarius', ['color_code' => $color->name, 'part' => $ordinarius->part]) }}">
                 {{ $ordinarius->part }}
             </a>
             @endforeach
@@ -28,7 +28,7 @@
         </div>
         <div class="flex-right wrap center">
             @foreach ($ordinarium["*"] as $ordinarius)
-            <a href="{{ route('ordinarius', ['color' => "*", 'part' => $ordinarius->part]) }}">
+            <a href="{{ route('ordinarius', ['color_code' => "*", 'part' => $ordinarius->part]) }}">
                 {{ $ordinarius->part }}
             </a>
             @endforeach
@@ -41,7 +41,7 @@
         </div>
         <div class="flex-right wrap center">
             @foreach ($ordinarium["events"] as $ordinarius)
-            <a href="{{ route('ordinarius', ['color' => Str::slug($ordinarius->color_code), 'part' => $ordinarius->part]) }}">
+            <a href="{{ route('ordinarius', ['color_code' => Str::slug($ordinarius->color_code), 'part' => $ordinarius->part]) }}">
                 {{ $ordinarius->part }} ({{ $ordinarius->color_code }})
             </a>
             @endforeach

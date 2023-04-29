@@ -26,4 +26,27 @@ class OrdinariusController extends Controller
             compact("ordinarium", "colors")
         ));
     }
+
+    public function ordinarius($color_code, $part){
+        $colors = OrdinariusColor::all();
+        $ordinarius = Ordinarius::where("color_code", $color_code)
+            ->where("part", $part)
+            ->first();
+
+        return view("ordinarius", array_merge(
+            ["title" => "fdjsklafjkdsl"],
+            compact("ordinarius", "colors")
+        ));
+    }
+
+    public function ordinariusEdit(Request $rq){
+        Ordinarius::where("color_code", $rq->color_code)
+            ->where("part", $rq->part)
+            ->first()
+            ->update([
+                "sheet_music" => $rq->sheet_music,
+            ]);
+
+        return redirect()->route("ordinarium")->with("success", "Część stała poprawiona");
+    }
 }
