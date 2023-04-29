@@ -196,7 +196,7 @@ export function MassSet(){
         <div id="jumper" className="modal">
             <h1>Przejdź do</h1>
             <div className="flex-right center wrap">
-            {summary?.map((el, i) =>
+            {thisMassOrder.map((el, i) =>
                 <Button key={i}
                     onClick={() => {
                         jumperOn();

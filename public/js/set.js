@@ -26098,7 +26098,7 @@ function MassSet() {
       }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", __assign({
         className: "flex-right center wrap"
       }, {
-        children: summary === null || summary === void 0 ? void 0 : summary.map(function (el, i) {
+        children: thisMassOrder.map(function (el, i) {
           return (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components_Interactives__WEBPACK_IMPORTED_MODULE_3__.Button, __assign({
             onClick: function onClick() {
               var _a;
