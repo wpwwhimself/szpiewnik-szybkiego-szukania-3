@@ -32,6 +32,11 @@ Route::controller(HomeController::class)->group(function(){
     Route::get("/", "index")->name("home");
 });
 
+Route::controller(SetController::class)->prefix("sets")->group(function(){
+    Route::get("/list", "sets")->name("sets");
+    Route::get("/show/{set_id}", "setShow")->name("set-show");
+});
+
 Route::middleware(Authenticate::class)->group(function(){
     Route::controller(SongController::class)->prefix("songs")->group(function(){
         Route::get("/list", "songs")->name("songs");
@@ -42,7 +47,7 @@ Route::middleware(Authenticate::class)->group(function(){
 
     Route::controller(OrdinariusController::class)->prefix("ordinarium")->group(function(){
         Route::get("/list", "ordinarium")->name("ordinarium");
-        Route::get("/show/{color}_{part}", "ordinarius")->name("ordinarius");
+        Route::get("/show/{color_code}_{part}", "ordinarius")->name("ordinarius");
         Route::post("/edit", "ordinariusEdit")->name("ordinarius-edit");
     });
 
@@ -55,11 +60,4 @@ Route::middleware(Authenticate::class)->group(function(){
         Route::get("/list", "places")->name("places");
 
     });
-
-    Route::controller(SetController::class)->prefix("sets")->group(function(){
-        Route::get("/list", "sets")->name("sets");
-        Route::get("/show/{set_id}", "setShow")->name("set-show");
-
-    });
-
 });

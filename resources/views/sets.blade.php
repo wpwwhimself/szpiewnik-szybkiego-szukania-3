@@ -7,7 +7,7 @@
     <h2>{{ $formula->name }}</h2>
     <div class="flex-right center wrap">
     @foreach ($sets[$formula->name] as $set)
-        <a href="{{ route('set-show', ['song_id' => $set->id]) }}">{{ $set->name }}</a>
+        <a href="{{ route('set-show', ['set_id' => $set->id]) }}">{{ $set->name }}</a>
     @endforeach
     </div>
 @endif @endforeach
