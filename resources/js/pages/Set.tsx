@@ -150,6 +150,10 @@ export function MassSet(){
             }
         }
     }
+    document.addEventListener("click", (ev) => {
+        document.querySelectorAll(".massElemEraser").forEach((el) => el.classList.remove("show"));
+        (ev.target as HTMLElement).closest("section")?.querySelector(".massElemEraser")?.classList.add("show");
+    });
 
     //adding
     function addModeOn(useCollector: boolean = false){

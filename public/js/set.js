@@ -26026,6 +26026,13 @@ function MassSet() {
       }
     }
   };
+  document.addEventListener("click", function (ev) {
+    var _a, _b;
+    document.querySelectorAll(".massElemEraser").forEach(function (el) {
+      return el.classList.remove("show");
+    });
+    (_b = (_a = ev.target.closest("section")) === null || _a === void 0 ? void 0 : _a.querySelector(".massElemEraser")) === null || _b === void 0 ? void 0 : _b.classList.add("show");
+  });
   //adding
   function addModeOn(useCollector) {
     if (useCollector === void 0) {
