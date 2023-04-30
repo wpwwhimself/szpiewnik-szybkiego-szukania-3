@@ -7,6 +7,7 @@ use App\Models\Ordinarius;
 use App\Models\OrdinariusColor;
 use App\Models\Set;
 use App\Models\Song;
+use App\Models\SongCategory;
 use Illuminate\Http\Request;
 
 class DataModController extends Controller
@@ -26,6 +27,7 @@ class DataModController extends Controller
                 ["extras" => $set->formulaData->extras]
             ),
             "songs" => Song::all(),
+            "categories" => SongCategory::all(),
         ]);
     }
 

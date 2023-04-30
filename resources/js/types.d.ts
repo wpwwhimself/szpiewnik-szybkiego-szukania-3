@@ -4,12 +4,18 @@ export interface AddCollectorProps {
     song?: string,
     before?: string,
 }
+
+export interface AdderFilterProps{
+    categories: number[],
+    position: 0 | 1 | 2 | 3 | 4 | 5,
+}
+
 export interface HandleAddCollectorProps{
     (updatingField: 'song' | 'before', value?: string): void;
 }
 
 export interface MModProps{
-    // prepareMassElemErase: (id: string) => void,
+    addMassElem: (id?: string) => void,
     eraseMassElem: (id: string) => void,
 }
 
@@ -22,6 +28,13 @@ export interface SongProps{
     preferences: string,
     lyrics: string | null,
     sheet_music: string | null,
+}
+
+export interface SongCategoryProps{
+    id: number,
+    name: string,
+    created_at: string | null,
+    updated_at: string | null,
 }
 
 export interface OrdinariumProps{

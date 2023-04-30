@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { createContext, useState } from "react";
 import { massOrder, baseFormula } from "../helpers";
 import { Button, Input, Select } from "../components/Interactives";
-import { AddCollectorProps, Extra, Formula, HandleAddCollectorProps, MModProps, MassElem, OrdinariumColorProps, OrdinariumProps, SelectOption, Set, SongProps } from "../types";
+import { AddCollectorProps, AdderFilterProps, Extra, Formula, HandleAddCollectorProps, MModProps, MassElem, OrdinariumColorProps, OrdinariumProps, SelectOption, Set, SongCategoryProps, SongProps } from "../types";
 import { ExtrasProcessor, MassElemSection, OrdinariumProcessor, PsalmLyrics, SongLyrics } from "../components/MassElements";
 import { SheetMusicRender } from "../components/SheetMusicRender";
 import axios from "axios";
@@ -18,6 +18,8 @@ export function MassSet(){
     const [ordinarius_colors, setOrdColors] = useState([] as OrdinariumColorProps[]);
     const [formula, setFormula] = useState({} as Formula);
     const [songs, setSongs] = useState([] as SongProps[]);
+    const [categories, setCategories] = useState([] as SongCategoryProps[]);
+    const [adderFilters, setAdderFilters] = useState({categories: [1], position: 0} as AdderFilterProps);
 
     const [addCollector, setAddCollector] = useState({song: undefined, before: undefined} as AddCollectorProps);
 
@@ -28,6 +30,7 @@ export function MassSet(){
             setOrdColors(res.data.ordinarius_colors);
             setFormula(res.data.formula);
             setSongs(res.data.songs);
+            setCategories(res.data.categories);
         });
     }, []);
 
@@ -143,6 +146,9 @@ export function MassSet(){
 
     //deleting
     const MMod: MModProps = {
+        addMassElem: (id) => {
+            addModeOn(id);
+        },
         eraseMassElem: (id) => {
             if(confirm(`Czy na pewno chcesz usunąć ten element mszy?`)){
               thisMassOrder = set.thisMassOrder!.filter(el => el.code !== id);
@@ -151,12 +157,12 @@ export function MassSet(){
         }
     }
     document.addEventListener("click", (ev) => {
-        document.querySelectorAll(".massElemEraser").forEach((el) => el.classList.remove("show"));
-        (ev.target as HTMLElement).closest("section")?.querySelector(".massElemEraser")?.classList.add("show");
+        document.querySelectorAll(".massElemEditorElement").forEach((el) => el.classList.remove("show"));
+        (ev.target as HTMLElement).closest("section")?.querySelectorAll(".massElemEditorElement").forEach(el => el.classList.add("show"));
     });
 
     //adding
-    function addModeOn(useCollector: boolean = false){
+    function addModeOn(id?: string, useCollector: boolean = false){
         if(useCollector){
             const newMassOrder = thisMassOrder;
             insertExtras(
@@ -169,8 +175,28 @@ export function MassSet(){
             );
             setSet({...set, thisMassOrder: newMassOrder});
         }
-        setAddCollector({} as AddCollectorProps);
+        setAddCollector({ before: id } as AddCollectorProps);
         document.getElementById("adder")!.classList.toggle("show");
+    }
+    console.log(addCollector);
+
+    function toggleFilters(category: number){
+        if(category === 0){ //tutaj
+            if(adderFilters.position === undefined){ //add position restriction
+                console.log(addCollector.before);
+                setAdderFilters({ ...adderFilters, position: 1 });
+            }else{ //remove position restriction
+                setAdderFilters({ ...adderFilters, position: 0 });
+            }
+        }else{
+            const position = adderFilters.categories.indexOf(category);
+            if(position === -1){ //add to filters
+                setAdderFilters({ ...adderFilters, categories: [...adderFilters.categories, category] });
+            }else{ //delete from filters
+                adderFilters.categories.splice(position, 1);
+                setAdderFilters({ ...adderFilters, categories: adderFilters.categories });
+            }
+        }
     }
     const handleAddCollector: HandleAddCollectorProps = (updatingField, value) => {
         setAddCollector({...addCollector, [updatingField]: value});
@@ -215,9 +241,26 @@ export function MassSet(){
 
         <div id="adder" className="modal">
             <h1>Dodaj pieśń</h1>
-            <h2>Wybierz tytuł</h2>
+            <div id="filters" className="flex-right center wrap">
+                <Button
+                    onClick={() => toggleFilters(0)}
+                    className={adderFilters.position !== 0 ? "accent-border" : ""}
+                    >
+                    Tutaj
+                </Button>
+            {categories.map((el, i) =>
+                <Button key={i}
+                    onClick={() => toggleFilters(el.id)}
+                    className={adderFilters.categories.includes(el.id) ? "accent-border" : ""}
+                    >
+                    {el.name}
+                </Button>
+            )}
+            </div>
             <div id="song-list" className="flex-right center wrap">
-            {songs.map((song, i) =>
+            {songs.filter(el => adderFilters.categories.includes(el.song_category_id))
+                .filter(el => el.preferences.split("/")[adderFilters.position - 1] === "1")
+                .map((song, i) =>
                 <Button key={i}
                     onClick={() => handleAddCollector("song", song.title)}
                     className={`light-button ${addCollector.song === song.title && "accent-border"}`}
@@ -226,20 +269,9 @@ export function MassSet(){
                 </Button>
             )}
             </div>
-            <h2>Wstaw przed:</h2>
-            <div className="flex-right center wrap">
-            {thisMassOrder.map((el, i) =>
-                <Button key={i}
-                    onClick={() => handleAddCollector("before", el.code)}
-                    className={`light-button ${addCollector.before === el.code && "accent-border"}`}
-                    >
-                    {el.label}
-                </Button>
-            )}
-            </div>
             <div className="flex-right stretch">
                 <Button onClick={() => addModeOn()}>Anuluj</Button>
-                {addCollector.song && addCollector.before && <Button onClick={() => addModeOn(true)}>Dodaj</Button>}
+                {addCollector.song && <Button onClick={() => addModeOn(undefined, true)}>Dodaj</Button>}
             </div>
         </div>
 
@@ -261,12 +293,12 @@ export function MassSet(){
                             <ol className="summary">
                             {summary?.map((el, i) =>
                                 <li key={i}>
-                                    <b>{
+                                    <span>{
                                         (el.content!.indexOf("\n") > -1) ?
                                         el.content!.substring(0, el.content!.indexOf("\n")) :
                                         el.content
-                                    }</b>
-                                    <span>{el.label}</span>
+                                    }</span>
+                                    <span className="ghost">{el.label}</span>
                                 </li>
                             )}
                             </ol>

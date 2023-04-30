@@ -167,8 +167,7 @@ a:has(button){
   margin: 0;
 }
 
-.summary span{
-  opacity: 0.5;
+.summary span:last-child{
   margin-left: 0.5em;
 }
 
@@ -400,13 +399,19 @@ label{
 
 /* misc2 */
 
-.massElemEraser{
+.massElemEditorElement{
     display: none;
     position: absolute;
-    right: 0; top: 0;
+    top: 0;
 }
-.massElemEraser.show{
+.massElemEditorElement.show{
     display: block;
+}
+.massElemEraser{
+    right: 0;
+}
+.massElemAdder{
+    left: 0;
 }
 
 /*********************
