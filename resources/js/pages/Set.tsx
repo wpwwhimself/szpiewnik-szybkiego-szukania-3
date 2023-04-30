@@ -54,16 +54,17 @@ export function MassSet(){
         content: set[el.value as keyof Set] as string,
     }));
 
-    //splitting comunnion songs
-    const com = thisMassOrder.filter(el => el.code === "sCommunion")[0];
-    com.content!.split(/\r\n/).forEach((title, i) => {
-        thisMassOrder.splice(
-            thisMassOrder.indexOf(com),
-            0,
-            { code: `${com.code}${i}`, label: com.label, content: title }
-        );
+    //splitting songs
+    thisMassOrder.filter(el => ["sIntro", "sOffer", "sCommunion", "sAdoration", "sDismissal"].includes(el.code)).forEach(el => {
+        el.content!.split(/\r?\n/).forEach((title, i) => {
+            thisMassOrder.splice(
+                thisMassOrder.indexOf(el),
+                0,
+                { code: `${el.code}${i > 0 ? i : "" }`, label: el.label, content: title }
+            );
+        });
+        thisMassOrder.splice(thisMassOrder.indexOf(el), 1);
     });
-    thisMassOrder.splice(thisMassOrder.indexOf(com), 1);
 
     //modifications
     const insertExtras = (extra: Extra, massOrder: MassElem[]) => {

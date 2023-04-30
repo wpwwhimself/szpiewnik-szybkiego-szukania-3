@@ -25904,18 +25904,19 @@ function MassSet() {
       content: set[el.value]
     });
   });
-  //splitting comunnion songs
-  var com = thisMassOrder.filter(function (el) {
-    return el.code === "sCommunion";
-  })[0];
-  com.content.split(/\r\n/).forEach(function (title, i) {
-    thisMassOrder.splice(thisMassOrder.indexOf(com), 0, {
-      code: "".concat(com.code).concat(i),
-      label: com.label,
-      content: title
+  //splitting songs
+  thisMassOrder.filter(function (el) {
+    return ["sIntro", "sOffer", "sCommunion", "sAdoration", "sDismissal"].includes(el.code);
+  }).forEach(function (el) {
+    el.content.split(/\r?\n/).forEach(function (title, i) {
+      thisMassOrder.splice(thisMassOrder.indexOf(el), 0, {
+        code: "".concat(el.code).concat(i > 0 ? i : ""),
+        label: el.label,
+        content: title
+      });
     });
+    thisMassOrder.splice(thisMassOrder.indexOf(el), 1);
   });
-  thisMassOrder.splice(thisMassOrder.indexOf(com), 1);
   //modifications
   var insertExtras = function insertExtras(extra, massOrder) {
     var pre = massOrder.filter(function (el2) {
