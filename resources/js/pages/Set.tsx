@@ -19,7 +19,7 @@ export function MassSet(){
     const [formula, setFormula] = useState({} as Formula);
     const [songs, setSongs] = useState([] as SongProps[]);
     const [categories, setCategories] = useState([] as SongCategoryProps[]);
-    const [adderFilters, setAdderFilters] = useState({categories: [1], position: 0} as AdderFilterProps);
+    const [adderFilters, setAdderFilters] = useState({categories: [1]} as AdderFilterProps);
 
     const [addCollector, setAddCollector] = useState({song: undefined, before: undefined} as AddCollectorProps);
 
@@ -69,8 +69,8 @@ export function MassSet(){
     const insertExtras = (extra: Extra, massOrder: MassElem[]) => {
         const pre = massOrder.filter(el2 => el2.code === extra.before)[0];
         const addition = (extra.name.charAt(0) === "x") ?
-            { code: `${extra.name}`, label: `Zanim nastąpi ${pre.label}`, content: undefined } :
-            { code: `sB4${extra.before}`, label: `Zanim nastąpi ${pre.label}`, content: extra.name };
+            { code: `${extra.name}`, label: `Zanim nastąpi ${pre?.label}`, content: undefined } :
+            { code: `sB4${extra.before}`, label: `Zanim nastąpi ${pre?.label}`, content: extra.name };
         if(pre) thisMassOrder.splice(
             thisMassOrder.indexOf(pre),
             (extra.replace) ? 1 : 0,
@@ -178,24 +178,15 @@ export function MassSet(){
         setAddCollector({ before: id } as AddCollectorProps);
         document.getElementById("adder")!.classList.toggle("show");
     }
-    console.log(addCollector);
+    console.log(thisMassOrder);
 
     function toggleFilters(category: number){
-        if(category === 0){ //tutaj
-            if(adderFilters.position === undefined){ //add position restriction
-                console.log(addCollector.before);
-                setAdderFilters({ ...adderFilters, position: 1 });
-            }else{ //remove position restriction
-                setAdderFilters({ ...adderFilters, position: 0 });
-            }
-        }else{
-            const position = adderFilters.categories.indexOf(category);
-            if(position === -1){ //add to filters
-                setAdderFilters({ ...adderFilters, categories: [...adderFilters.categories, category] });
-            }else{ //delete from filters
-                adderFilters.categories.splice(position, 1);
-                setAdderFilters({ ...adderFilters, categories: adderFilters.categories });
-            }
+        const position = adderFilters.categories.indexOf(category);
+        if(position === -1){ //add to filters
+            setAdderFilters({ ...adderFilters, categories: [...adderFilters.categories, category] });
+        }else{ //delete from filters
+            adderFilters.categories.splice(position, 1);
+            setAdderFilters({ ...adderFilters, categories: adderFilters.categories });
         }
     }
     const handleAddCollector: HandleAddCollectorProps = (updatingField, value) => {
@@ -216,7 +207,7 @@ export function MassSet(){
         <div className="flex-right center wrap settings">
             <Select name="color" label="Kolor cz.st." options={ordColorOptions} value={set.color} onChange={handleColorChange}/>
             <Button onClick={() => jumperOn()}>»</Button>
-            <Button onClick={() => addModeOn()}>+</Button>
+            <Button onClick={() => addModeOn("END")}>+</Button>
         </div>
 
         <div id="jumper" className="modal">
@@ -240,14 +231,13 @@ export function MassSet(){
         </div>
 
         <div id="adder" className="modal">
-            <h1>Dodaj pieśń</h1>
+            <h1>
+                Dodaj pieśń
+                {addCollector.before !== "END"
+                    ? ` przed: ${thisMassOrder.filter(el => el.code === addCollector.before)[0]?.label}`
+                    : " na koniec zestawu"}
+            </h1>
             <div id="filters" className="flex-right center wrap">
-                <Button
-                    onClick={() => toggleFilters(0)}
-                    className={adderFilters.position !== 0 ? "accent-border" : ""}
-                    >
-                    Tutaj
-                </Button>
             {categories.map((el, i) =>
                 <Button key={i}
                     onClick={() => toggleFilters(el.id)}
@@ -259,7 +249,6 @@ export function MassSet(){
             </div>
             <div id="song-list" className="flex-right center wrap">
             {songs.filter(el => adderFilters.categories.includes(el.song_category_id))
-                .filter(el => el.preferences.split("/")[adderFilters.position - 1] === "1")
                 .map((song, i) =>
                 <Button key={i}
                     onClick={() => handleAddCollector("song", song.title)}
@@ -271,7 +260,7 @@ export function MassSet(){
             </div>
             <div className="flex-right stretch">
                 <Button onClick={() => addModeOn()}>Anuluj</Button>
-                {addCollector.song && <Button onClick={() => addModeOn(undefined, true)}>Dodaj</Button>}
+                {addCollector.song && addCollector.before && <Button onClick={() => addModeOn(undefined, true)}>Dodaj</Button>}
             </div>
         </div>
 

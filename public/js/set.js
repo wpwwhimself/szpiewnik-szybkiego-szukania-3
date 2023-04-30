@@ -25828,38 +25828,37 @@ var __spreadArray = undefined && undefined.__spreadArray || function (to, from, 
 
 var MModContext = /*#__PURE__*/(0,react__WEBPACK_IMPORTED_MODULE_1__.createContext)({});
 function MassSet() {
-  var _a, _b, _c, _d;
+  var _a, _b, _c, _d, _e;
   var set_id = +window.location.href.replace(/.*\/(\d+)/, "$1");
-  var _e = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)({}),
-    set = _e[0],
-    setSet = _e[1];
-  var _f = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)([]),
-    ordinarium = _f[0],
-    setOrdinarium = _f[1];
+  var _f = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)({}),
+    set = _f[0],
+    setSet = _f[1];
   var _g = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)([]),
-    ordinarius_colors = _g[0],
-    setOrdColors = _g[1];
-  var _h = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)({}),
-    formula = _h[0],
-    setFormula = _h[1];
-  var _j = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)([]),
-    songs = _j[0],
-    setSongs = _j[1];
+    ordinarium = _g[0],
+    setOrdinarium = _g[1];
+  var _h = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)([]),
+    ordinarius_colors = _h[0],
+    setOrdColors = _h[1];
+  var _j = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)({}),
+    formula = _j[0],
+    setFormula = _j[1];
   var _k = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)([]),
-    categories = _k[0],
-    setCategories = _k[1];
-  var _l = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)({
-      categories: [1],
-      position: 0
-    }),
-    adderFilters = _l[0],
-    setAdderFilters = _l[1];
+    songs = _k[0],
+    setSongs = _k[1];
+  var _l = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)([]),
+    categories = _l[0],
+    setCategories = _l[1];
   var _m = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)({
+      categories: [1]
+    }),
+    adderFilters = _m[0],
+    setAdderFilters = _m[1];
+  var _o = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)({
       song: undefined,
       before: undefined
     }),
-    addCollector = _m[0],
-    setAddCollector = _m[1];
+    addCollector = _o[0],
+    setAddCollector = _o[1];
   (0,react__WEBPACK_IMPORTED_MODULE_1__.useEffect)(function () {
     axios__WEBPACK_IMPORTED_MODULE_7__["default"].get("/api/set-data", {
       params: {
@@ -25923,11 +25922,11 @@ function MassSet() {
     })[0];
     var addition = extra.name.charAt(0) === "x" ? {
       code: "".concat(extra.name),
-      label: "Zanim nast\u0105pi ".concat(pre.label),
+      label: "Zanim nast\u0105pi ".concat(pre === null || pre === void 0 ? void 0 : pre.label),
       content: undefined
     } : {
       code: "sB4".concat(extra.before),
-      label: "Zanim nast\u0105pi ".concat(pre.label),
+      label: "Zanim nast\u0105pi ".concat(pre === null || pre === void 0 ? void 0 : pre.label),
       content: extra.name
     };
     if (pre) thisMassOrder.splice(thisMassOrder.indexOf(pre), extra.replace ? 1 : 0, addition);else thisMassOrder.push({
@@ -26088,36 +26087,20 @@ function MassSet() {
     });
     document.getElementById("adder").classList.toggle("show");
   }
-  console.log(addCollector);
+  console.log(thisMassOrder);
   function toggleFilters(category) {
-    if (category === 0) {
-      //tutaj
-      if (adderFilters.position === undefined) {
-        //add position restriction
-        console.log(addCollector.before);
-        setAdderFilters(__assign(__assign({}, adderFilters), {
-          position: 1
-        }));
-      } else {
-        //remove position restriction
-        setAdderFilters(__assign(__assign({}, adderFilters), {
-          position: 0
-        }));
-      }
+    var position = adderFilters.categories.indexOf(category);
+    if (position === -1) {
+      //add to filters
+      setAdderFilters(__assign(__assign({}, adderFilters), {
+        categories: __spreadArray(__spreadArray([], adderFilters.categories, true), [category], false)
+      }));
     } else {
-      var position = adderFilters.categories.indexOf(category);
-      if (position === -1) {
-        //add to filters
-        setAdderFilters(__assign(__assign({}, adderFilters), {
-          categories: __spreadArray(__spreadArray([], adderFilters.categories, true), [category], false)
-        }));
-      } else {
-        //delete from filters
-        adderFilters.categories.splice(position, 1);
-        setAdderFilters(__assign(__assign({}, adderFilters), {
-          categories: adderFilters.categories
-        }));
-      }
+      //delete from filters
+      adderFilters.categories.splice(position, 1);
+      setAdderFilters(__assign(__assign({}, adderFilters), {
+        categories: adderFilters.categories
+      }));
     }
   }
   var handleAddCollector = function handleAddCollector(updatingField, value) {
@@ -26152,7 +26135,7 @@ function MassSet() {
         children: "\xBB"
       })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components_Interactives__WEBPACK_IMPORTED_MODULE_3__.Button, __assign({
         onClick: function onClick() {
-          return addModeOn();
+          return addModeOn("END");
         }
       }, {
         children: "+"
@@ -26196,20 +26179,15 @@ function MassSet() {
       id: "adder",
       className: "modal"
     }, {
-      children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("h1", {
-        children: "Dodaj pie\u015B\u0144"
-      }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({
+      children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("h1", {
+        children: ["Dodaj pie\u015B\u0144", addCollector.before !== "END" ? " przed: ".concat((_e = thisMassOrder.filter(function (el) {
+          return el.code === addCollector.before;
+        })[0]) === null || _e === void 0 ? void 0 : _e.label) : " na koniec zestawu"]
+      }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", __assign({
         id: "filters",
         className: "flex-right center wrap"
       }, {
-        children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components_Interactives__WEBPACK_IMPORTED_MODULE_3__.Button, __assign({
-          onClick: function onClick() {
-            return toggleFilters(0);
-          },
-          className: adderFilters.position !== 0 ? "accent-border" : ""
-        }, {
-          children: "Tutaj"
-        })), categories.map(function (el, i) {
+        children: categories.map(function (el, i) {
           return (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components_Interactives__WEBPACK_IMPORTED_MODULE_3__.Button, __assign({
             onClick: function onClick() {
               return toggleFilters(el.id);
@@ -26218,15 +26196,13 @@ function MassSet() {
           }, {
             children: el.name
           }), i);
-        })]
+        })
       })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", __assign({
         id: "song-list",
         className: "flex-right center wrap"
       }, {
         children: songs.filter(function (el) {
           return adderFilters.categories.includes(el.song_category_id);
-        }).filter(function (el) {
-          return el.preferences.split("/")[adderFilters.position - 1] === "1";
         }).map(function (song, i) {
           return (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components_Interactives__WEBPACK_IMPORTED_MODULE_3__.Button, __assign({
             onClick: function onClick() {
@@ -26246,7 +26222,7 @@ function MassSet() {
           }
         }, {
           children: "Anuluj"
-        })), addCollector.song && (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components_Interactives__WEBPACK_IMPORTED_MODULE_3__.Button, __assign({
+        })), addCollector.song && addCollector.before && (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components_Interactives__WEBPACK_IMPORTED_MODULE_3__.Button, __assign({
           onClick: function onClick() {
             return addModeOn(undefined, true);
           }
