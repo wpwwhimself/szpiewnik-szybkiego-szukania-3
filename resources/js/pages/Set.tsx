@@ -68,9 +68,19 @@ export function MassSet(){
     //modifications
     const insertExtras = (extra: Extra, massOrder: MassElem[]) => {
         const pre = massOrder.filter(el2 => el2.code === extra.before)[0];
-        const addition = (extra.name.charAt(0) === "x") ?
-            { code: `${extra.name}`, label: `Zanim nastąpi ${pre?.label}`, content: undefined } :
-            { code: `sB4${extra.before}`, label: `Zanim nastąpi ${pre?.label}`, content: extra.name };
+        let code = (extra.name.charAt(0) === "x") ? extra.name : "sB4"+extra.before;
+        const same_code_count = thisMassOrder.filter(el => el.code.match(code)).length;
+        if(same_code_count > 0){
+            code += same_code_count
+        }
+        const content = (extra.name.charAt(0) === "x") ? undefined : extra.name;
+
+        const addition = {
+            code: code,
+            label: `Zanim nastąpi ${pre?.label}`,
+            content: content
+        };
+
         if(pre) thisMassOrder.splice(
             thisMassOrder.indexOf(pre),
             (extra.replace) ? 1 : 0,
@@ -211,6 +221,8 @@ export function MassSet(){
     const summary = set.thisMassOrder
         ?.filter(el => el.content !== undefined)
         .filter(el => el.code !== "pAccl");
+
+    console.log(thisMassOrder);
 
     return(<>
         <div className="flex-right center wrap settings">

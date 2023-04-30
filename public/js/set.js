@@ -25921,14 +25921,18 @@ function MassSet() {
     var pre = massOrder.filter(function (el2) {
       return el2.code === extra.before;
     })[0];
-    var addition = extra.name.charAt(0) === "x" ? {
-      code: "".concat(extra.name),
+    var code = extra.name.charAt(0) === "x" ? extra.name : "sB4" + extra.before;
+    var same_code_count = thisMassOrder.filter(function (el) {
+      return el.code.match(code);
+    }).length;
+    if (same_code_count > 0) {
+      code += same_code_count;
+    }
+    var content = extra.name.charAt(0) === "x" ? undefined : extra.name;
+    var addition = {
+      code: code,
       label: "Zanim nast\u0105pi ".concat(pre === null || pre === void 0 ? void 0 : pre.label),
-      content: undefined
-    } : {
-      code: "sB4".concat(extra.before),
-      label: "Zanim nast\u0105pi ".concat(pre === null || pre === void 0 ? void 0 : pre.label),
-      content: extra.name
+      content: content
     };
     if (pre) thisMassOrder.splice(thisMassOrder.indexOf(pre), extra.replace ? 1 : 0, addition);else thisMassOrder.push({
       code: "sOutro",
@@ -26136,6 +26140,7 @@ function MassSet() {
   }).filter(function (el) {
     return el.code !== "pAccl";
   });
+  console.log(thisMassOrder);
   return (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
     children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({
       className: "flex-right center wrap settings"
