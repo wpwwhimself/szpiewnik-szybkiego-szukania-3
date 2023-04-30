@@ -48,7 +48,7 @@ class SongController extends Controller
 
     public function songEdit(Request $rq){
         if($rq->action === "update"){
-            Song::where("title", $rq->title)->update([
+            Song::where("title", $rq->old_title)->update([
                 "title" => $rq->title,
                 "song_category_id" => $rq->song_category_id,
                 "category_desc" => $rq->category_desc,

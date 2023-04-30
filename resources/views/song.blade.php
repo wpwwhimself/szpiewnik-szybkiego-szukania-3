@@ -6,6 +6,7 @@
 <form method="post" action="{{ route('song-edit') }}">
   @csrf
   <div class="grid-3">
+    <input type="hidden" name="old_title" value="{{ $song->title }}" />
     <x-input type="text" name="title" label="Tytuł" value="{{ $song->title }}" />
     <x-select name="song_category_id" label="Grupa" value="{{ $song->song_category_id }}" :options="$categories" />
     <x-input type="text" name="category_desc" label="Mini-opis" value="{{ $song->category_desc }}" />
