@@ -202,10 +202,14 @@ export function MassSet(){
                         jumperOn();
                         document.getElementById(el.code)?.scrollIntoView({behavior: "smooth", block: "center"});
                     }}
+                    className={el.code.substring(0,1) != "s" ? "light-button" : ""}
                     >
                     {el.label}
                 </Button>
             )}
+            </div>
+            <div className="flex-right stretch">
+                <Button onClick={() => jumperOn()}>Anuluj</Button>
             </div>
         </div>
 

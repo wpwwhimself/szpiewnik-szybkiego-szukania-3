@@ -26107,11 +26107,22 @@ function MassSet() {
                 behavior: "smooth",
                 block: "center"
               });
-            }
+            },
+            className: el.code.substring(0, 1) != "s" ? "light-button" : ""
           }, {
             children: el.label
           }), i);
         })
+      })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", __assign({
+        className: "flex-right stretch"
+      }, {
+        children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components_Interactives__WEBPACK_IMPORTED_MODULE_3__.Button, __assign({
+          onClick: function onClick() {
+            return jumperOn();
+          }
+        }, {
+          children: "Anuluj"
+        }))
       }))]
     })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({
       id: "adder",
