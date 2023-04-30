@@ -26108,7 +26108,7 @@ function MassSet() {
                 block: "center"
               });
             },
-            className: el.code.substring(0, 1) != "s" ? "light-button" : ""
+            className: el.code.substring(0, 1) != "s" ? "less-interesting" : ""
           }, {
             children: el.label
           }), i);

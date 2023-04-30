@@ -301,6 +301,11 @@ button:hover, .button:hover{
     border: 2px solid var(--bg3);
     background: none;
 }
+.less-interesting{
+    font-family: "EB Garamond";
+    font-weight: normal;
+    background-color: var(--bg2);
+}
 
 input:focus, select:focus, textarea:focus{
     box-shadow: 0 0 2em var(--acc);

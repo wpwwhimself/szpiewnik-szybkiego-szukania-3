@@ -202,7 +202,7 @@ export function MassSet(){
                         jumperOn();
                         document.getElementById(el.code)?.scrollIntoView({behavior: "smooth", block: "center"});
                     }}
-                    className={el.code.substring(0,1) != "s" ? "light-button" : ""}
+                    className={el.code.substring(0,1) != "s" ? "less-interesting" : ""}
                     >
                     {el.label}
                 </Button>
