@@ -124,6 +124,7 @@ a:has(button){
     display: grid;
     gap: 0.5em;
     grid-template-columns: repeat(var(--grid-count), 1fr);
+    align-items: flex-start;
 }
 .grid-2{ --grid-count: 2 }
 .grid-3{ --grid-count: 3 }

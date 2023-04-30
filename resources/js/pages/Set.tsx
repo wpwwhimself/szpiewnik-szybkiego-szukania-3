@@ -221,18 +221,35 @@ export function MassSet(){
 
         <div id="jumper" className="modal">
             <h1>Przejdź do</h1>
-            <div className="flex-right center wrap">
-            {thisMassOrder.map((el, i) =>
-                <Button key={i}
-                    onClick={() => {
-                        jumperOn();
-                        document.getElementById(el.code)?.scrollIntoView({behavior: "smooth", block: "center"});
-                    }}
-                    className={el.code.substring(0,1) != "s" ? "less-interesting" : ""}
-                    >
-                    {el.label}
-                </Button>
-            )}
+            <div className="grid-2">
+                <div className="flex-right center wrap">
+                {thisMassOrder
+                    .filter(el => el.code.charAt(0) === "s")
+                    .map((el, i) =>
+                    <Button key={i}
+                        onClick={() => {
+                            jumperOn();
+                            document.getElementById(el.code)?.scrollIntoView({behavior: "smooth", block: "center"});
+                        }}
+                        >
+                        {el.label}
+                    </Button>
+                )}
+                </div>
+                <div className="flex-right center wrap">
+                {thisMassOrder
+                    .filter(el => el.code.charAt(0) !== "s")
+                    .map((el, i) =>
+                    <Button key={i}
+                        onClick={() => {
+                            jumperOn();
+                            document.getElementById(el.code)?.scrollIntoView({behavior: "smooth", block: "center"});
+                        }}
+                        >
+                        {el.label}
+                    </Button>
+                )}
+                </div>
             </div>
             <div className="flex-right stretch">
                 <Button onClick={() => jumperOn()}>Anuluj</Button>

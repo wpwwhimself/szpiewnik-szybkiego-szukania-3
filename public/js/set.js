@@ -26165,24 +26165,48 @@ function MassSet() {
     }, {
       children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("h1", {
         children: "Przejd\u017A do"
-      }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", __assign({
-        className: "flex-right center wrap"
+      }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({
+        className: "grid-2"
       }, {
-        children: thisMassOrder.map(function (el, i) {
-          return (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components_Interactives__WEBPACK_IMPORTED_MODULE_3__.Button, __assign({
-            onClick: function onClick() {
-              var _a;
-              jumperOn();
-              (_a = document.getElementById(el.code)) === null || _a === void 0 ? void 0 : _a.scrollIntoView({
-                behavior: "smooth",
-                block: "center"
-              });
-            },
-            className: el.code.substring(0, 1) != "s" ? "less-interesting" : ""
-          }, {
-            children: el.label
-          }), i);
-        })
+        children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", __assign({
+          className: "flex-right center wrap"
+        }, {
+          children: thisMassOrder.filter(function (el) {
+            return el.code.charAt(0) === "s";
+          }).map(function (el, i) {
+            return (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components_Interactives__WEBPACK_IMPORTED_MODULE_3__.Button, __assign({
+              onClick: function onClick() {
+                var _a;
+                jumperOn();
+                (_a = document.getElementById(el.code)) === null || _a === void 0 ? void 0 : _a.scrollIntoView({
+                  behavior: "smooth",
+                  block: "center"
+                });
+              }
+            }, {
+              children: el.label
+            }), i);
+          })
+        })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", __assign({
+          className: "flex-right center wrap"
+        }, {
+          children: thisMassOrder.filter(function (el) {
+            return el.code.charAt(0) !== "s";
+          }).map(function (el, i) {
+            return (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components_Interactives__WEBPACK_IMPORTED_MODULE_3__.Button, __assign({
+              onClick: function onClick() {
+                var _a;
+                jumperOn();
+                (_a = document.getElementById(el.code)) === null || _a === void 0 ? void 0 : _a.scrollIntoView({
+                  behavior: "smooth",
+                  block: "center"
+                });
+              }
+            }, {
+              children: el.label
+            }), i);
+          })
+        }))]
       })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", __assign({
         className: "flex-right stretch"
       }, {
