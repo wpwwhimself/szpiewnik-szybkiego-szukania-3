@@ -19,7 +19,7 @@ export function MassSet(){
     const [formula, setFormula] = useState({} as Formula);
     const [songs, setSongs] = useState([] as SongProps[]);
     const [categories, setCategories] = useState([] as SongCategoryProps[]);
-    const [adderFilters, setAdderFilters] = useState({categories: [1]} as AdderFilterProps);
+    const [adderFilters, setAdderFilters] = useState({categories: [1], preferences: [0,1,2,3,4]} as AdderFilterProps);
 
     const [addCollector, setAddCollector] = useState({song: undefined, before: undefined} as AddCollectorProps);
 
@@ -178,15 +178,24 @@ export function MassSet(){
         setAddCollector({ before: id } as AddCollectorProps);
         document.getElementById("adder")!.classList.toggle("show");
     }
-    console.log(thisMassOrder);
 
-    function toggleFilters(category: number){
-        const position = adderFilters.categories.indexOf(category);
-        if(position === -1){ //add to filters
-            setAdderFilters({ ...adderFilters, categories: [...adderFilters.categories, category] });
-        }else{ //delete from filters
-            adderFilters.categories.splice(position, 1);
-            setAdderFilters({ ...adderFilters, categories: adderFilters.categories });
+    function toggleFilters(category: number, preference: boolean = false){
+        if(preference){
+            const position = adderFilters.preferences.indexOf(category);
+            if(position === -1){ //add to filters
+                setAdderFilters({ ...adderFilters, preferences: [...adderFilters.preferences, category] });
+            }else{ //delete from filters
+                adderFilters.preferences.splice(position, 1);
+                setAdderFilters({ ...adderFilters, preferences: adderFilters.preferences });
+            }
+        }else{
+            const position = adderFilters.categories.indexOf(category);
+            if(position === -1){ //add to filters
+                setAdderFilters({ ...adderFilters, categories: [...adderFilters.categories, category] });
+            }else{ //delete from filters
+                adderFilters.categories.splice(position, 1);
+                setAdderFilters({ ...adderFilters, categories: adderFilters.categories });
+            }
         }
     }
     const handleAddCollector: HandleAddCollectorProps = (updatingField, value) => {
@@ -237,18 +246,37 @@ export function MassSet(){
                     ? ` przed: ${thisMassOrder.filter(el => el.code === addCollector.before)[0]?.label}`
                     : " na koniec zestawu"}
             </h1>
-            <div id="filters" className="flex-right center wrap">
-            {categories.map((el, i) =>
-                <Button key={i}
-                    onClick={() => toggleFilters(el.id)}
-                    className={adderFilters.categories.includes(el.id) ? "accent-border" : ""}
-                    >
-                    {el.name}
-                </Button>
-            )}
+            <div id="filters" className="grid-2">
+                <div className="flex-right center wrap">
+                {categories.map((el, i) =>
+                    <Button key={i}
+                        onClick={() => toggleFilters(el.id)}
+                        className={adderFilters.categories.includes(el.id) ? "accent-border" : ""}
+                        >
+                        {el.name}
+                    </Button>
+                )}
+                </div>
+                <div className="flex-right center wrap">
+                {["Wejście", "Dary", "Komunia", "Uwielbienie", "Zakończenie"]
+                .map((el, i, ar) =>
+                    <Button key={i}
+                        onClick={() => toggleFilters(ar.indexOf(el), true)}
+                        className={adderFilters.preferences.includes(ar.indexOf(el)) ? "accent-border" : ""}
+                        >
+                        {el}
+                    </Button>
+                )}
+                </div>
             </div>
             <div id="song-list" className="flex-right center wrap">
             {songs.filter(el => adderFilters.categories.includes(el.song_category_id))
+                .filter(el => {
+                    for(let wanted_pref of adderFilters.preferences){
+                        if(el.preferences.split("/")[wanted_pref] == "1") return true;
+                    }
+                    return false;
+                })
                 .map((song, i) =>
                 <Button key={i}
                     onClick={() => handleAddCollector("song", song.title)}

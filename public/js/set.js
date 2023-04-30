@@ -25849,7 +25849,8 @@ function MassSet() {
     categories = _l[0],
     setCategories = _l[1];
   var _m = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)({
-      categories: [1]
+      categories: [1],
+      preferences: [0, 1, 2, 3, 4]
     }),
     adderFilters = _m[0],
     setAdderFilters = _m[1];
@@ -26087,20 +26088,38 @@ function MassSet() {
     });
     document.getElementById("adder").classList.toggle("show");
   }
-  console.log(thisMassOrder);
-  function toggleFilters(category) {
-    var position = adderFilters.categories.indexOf(category);
-    if (position === -1) {
-      //add to filters
-      setAdderFilters(__assign(__assign({}, adderFilters), {
-        categories: __spreadArray(__spreadArray([], adderFilters.categories, true), [category], false)
-      }));
+  function toggleFilters(category, preference) {
+    if (preference === void 0) {
+      preference = false;
+    }
+    if (preference) {
+      var position = adderFilters.preferences.indexOf(category);
+      if (position === -1) {
+        //add to filters
+        setAdderFilters(__assign(__assign({}, adderFilters), {
+          preferences: __spreadArray(__spreadArray([], adderFilters.preferences, true), [category], false)
+        }));
+      } else {
+        //delete from filters
+        adderFilters.preferences.splice(position, 1);
+        setAdderFilters(__assign(__assign({}, adderFilters), {
+          preferences: adderFilters.preferences
+        }));
+      }
     } else {
-      //delete from filters
-      adderFilters.categories.splice(position, 1);
-      setAdderFilters(__assign(__assign({}, adderFilters), {
-        categories: adderFilters.categories
-      }));
+      var position = adderFilters.categories.indexOf(category);
+      if (position === -1) {
+        //add to filters
+        setAdderFilters(__assign(__assign({}, adderFilters), {
+          categories: __spreadArray(__spreadArray([], adderFilters.categories, true), [category], false)
+        }));
+      } else {
+        //delete from filters
+        adderFilters.categories.splice(position, 1);
+        setAdderFilters(__assign(__assign({}, adderFilters), {
+          categories: adderFilters.categories
+        }));
+      }
     }
   }
   var handleAddCollector = function handleAddCollector(updatingField, value) {
@@ -26183,26 +26202,49 @@ function MassSet() {
         children: ["Dodaj pie\u015B\u0144", addCollector.before !== "END" ? " przed: ".concat((_e = thisMassOrder.filter(function (el) {
           return el.code === addCollector.before;
         })[0]) === null || _e === void 0 ? void 0 : _e.label) : " na koniec zestawu"]
-      }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", __assign({
+      }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({
         id: "filters",
-        className: "flex-right center wrap"
+        className: "grid-2"
       }, {
-        children: categories.map(function (el, i) {
-          return (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components_Interactives__WEBPACK_IMPORTED_MODULE_3__.Button, __assign({
-            onClick: function onClick() {
-              return toggleFilters(el.id);
-            },
-            className: adderFilters.categories.includes(el.id) ? "accent-border" : ""
-          }, {
-            children: el.name
-          }), i);
-        })
+        children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", __assign({
+          className: "flex-right center wrap"
+        }, {
+          children: categories.map(function (el, i) {
+            return (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components_Interactives__WEBPACK_IMPORTED_MODULE_3__.Button, __assign({
+              onClick: function onClick() {
+                return toggleFilters(el.id);
+              },
+              className: adderFilters.categories.includes(el.id) ? "accent-border" : ""
+            }, {
+              children: el.name
+            }), i);
+          })
+        })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", __assign({
+          className: "flex-right center wrap"
+        }, {
+          children: ["Wejście", "Dary", "Komunia", "Uwielbienie", "Zakończenie"].map(function (el, i, ar) {
+            return (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components_Interactives__WEBPACK_IMPORTED_MODULE_3__.Button, __assign({
+              onClick: function onClick() {
+                return toggleFilters(ar.indexOf(el), true);
+              },
+              className: adderFilters.preferences.includes(ar.indexOf(el)) ? "accent-border" : ""
+            }, {
+              children: el
+            }), i);
+          })
+        }))]
       })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", __assign({
         id: "song-list",
         className: "flex-right center wrap"
       }, {
         children: songs.filter(function (el) {
           return adderFilters.categories.includes(el.song_category_id);
+        }).filter(function (el) {
+          for (var _i = 0, _a = adderFilters.preferences; _i < _a.length; _i++) {
+            var wanted_pref = _a[_i];
+            if (el.preferences.split("/")[wanted_pref] == "1") return true;
+          }
+          return false;
         }).map(function (song, i) {
           return (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components_Interactives__WEBPACK_IMPORTED_MODULE_3__.Button, __assign({
             onClick: function onClick() {

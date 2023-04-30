@@ -7,6 +7,7 @@ export interface AddCollectorProps {
 
 export interface AdderFilterProps{
     categories: number[],
+    preferences: number[],
 }
 
 export interface HandleAddCollectorProps{
