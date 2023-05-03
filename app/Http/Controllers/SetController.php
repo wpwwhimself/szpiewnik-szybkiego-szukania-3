@@ -7,6 +7,7 @@ use App\Models\OrdinariusColor;
 use App\Models\Set;
 use App\Models\Song;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class SetController extends Controller
 {
@@ -45,26 +46,38 @@ class SetController extends Controller
     }
 
     public function setEdit(Request $rq){
-        $set = Set::findOrFail($rq->id);
+        if($rq->action === "update"){
+            Set::findOrFail($rq->id)->update([
+                "name" => $rq->name,
+                "formula" => $rq->formula,
+                "color" => $rq->color,
+                "public" => $rq->has("public"),
+                "sIntro" => $rq->sIntro,
+                "sOffer" => $rq->sOffer,
+                "sCommunion" => $rq->sCommunion,
+                "sAdoration" => $rq->sAdoration,
+                "sDismissal" => $rq->sDismissal,
+                "pPsalm" => $rq->pPsalm,
+                "pAccl" => $rq->pAccl,
+            ]);
+            $response = "Msza poprawiona";
+        }elseif($rq->action === "delete"){
+            Set::findOrFail($rq->id)->delete();
+            $response = "Msza usunięta";
+        }
 
-        $set->update([
-            "name" => $rq->name,
-            "formula" => $rq->formula,
-            "color" => $rq->color,
-            "public" => $rq->has("public"),
-            "sIntro" => $rq->sIntro,
-            "sOffer" => $rq->sOffer,
-            "sCommunion" => $rq->sCommunion,
-            "sAdoration" => $rq->sAdoration,
-            "sDismissal" => $rq->sDismissal,
-            "pPsalm" => $rq->pPsalm,
-            "pAccl" => $rq->pAccl,
-        ]);
-
-        return redirect()->route("sets")->with("success", "Zaktualizowano mszę");
+        return redirect()->route("sets")->with("success", $response);
     }
 
     public function setAdd(){
-        abort(404, "zrobić to cudo!");
+        $new_set = Set::create([
+            "user_id" => Auth::id(),
+            "public" => false,
+            "name" => "--Nowa msza--",
+            "formula" => "zwykła",
+            "color" => "green",
+        ]);
+
+        return redirect()->route("set", ["set_id" => $new_set])->with("success", "Szablon utworzony, dodaj mszę");
     }
 }
