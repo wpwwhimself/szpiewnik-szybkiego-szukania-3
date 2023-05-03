@@ -25612,6 +25612,37 @@ function ExtrasProcessor(_a) {
           resp: "Bogu niech b\u0119d\u0105 dzi\u0119ki".concat(easter_add)
         })]
       });
+    case "May":
+      return (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
+        children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(Alternative, {
+          children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", __assign({
+            className: "alt_option"
+          }, {
+            children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(Antiphon, {
+              call: "M\xF3dl si\u0119 za nami, \u015Bwi\u0119ta Bo\u017Ca rodzicielko",
+              resp: "Aby\u015Bmy si\u0119 stali godnymi obietnic chrystusowych"
+            })
+          })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", __assign({
+            className: "alt_option"
+          }, {
+            children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(Antiphon, {
+              call: "Raduj si\u0119 i wesel, Panno Maryjo, Alleluja",
+              resp: "Bo zmartwychwsta\u0142 prawdziwie, Alleluja"
+            })
+          }))]
+        }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("p", {
+          children: "M\xF3dlmy si\u0119: Panie nasz, Bo\u017Ce, dozw\xF3l nam, s\u0142ugom swoim, cieszy\u0107 si\u0119 trwa\u0142ym zdrowiem duszy i cia\u0142a. I za wstawiennictwem Naj\u015Bwi\u0119tszej Maryi zawsze dziewicy, uwolnij nas od doczesnych utrapie\u0144 i obdarz wieczn\u0105 rado\u015Bci\u0105, przez Chrystusa, Pana naszego..."
+        })]
+      });
+    case "June":
+      return (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
+        children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(Antiphon, {
+          call: "Jezu cichy i pokornego serca",
+          resp: "Uczy\u0144 serca nasze wed\u0142ug serca Twego"
+        }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("p", {
+          children: "M\xF3dlmy si\u0119: wszechmog\u0105cy, wieczny Bo\u017Ce, wejrzyj na Serce najmilszego Syna swego i na chwa\u0142\u0119, i zado\u015B\u0107 uczynienie, jakie w imieniu grzesznik\xF3w ci sk\u0142ada; daj si\u0119 przeb\u0142aga\u0107 tym, kt\xF3rzy \u017Cebrz\u0105 Twego mi\u0142osierdzia i racz udzieli\u0107 przebaczenia w imi\u0119 tego\u017C Syna swego, Jezusa Chrystusa, kt\xF3ry z tob\u0105 \u017Cyje i kr\xF3luje na wieki wiek\xF3w..."
+        })]
+      });
     default:
       {
         return (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
@@ -26141,7 +26172,6 @@ function MassSet() {
   }).filter(function (el) {
     return el.code !== "pAccl";
   });
-  console.log(thisMassOrder);
   return (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
     children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({
       className: "flex-right center wrap settings"

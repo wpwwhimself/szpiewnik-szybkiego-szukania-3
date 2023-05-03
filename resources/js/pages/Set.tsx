@@ -223,8 +223,6 @@ export function MassSet(){
         ?.filter(el => el.content !== undefined)
         .filter(el => el.code !== "pAccl");
 
-    console.log(thisMassOrder);
-
     return(<>
         <div className="flex-right center wrap settings">
             <Select name="color" label="Kolor cz.st." options={ordColorOptions} value={set.color} onChange={handleColorChange}/>

@@ -409,6 +409,36 @@ export function ExtrasProcessor({elem}: {elem: MassElem}){
             />
           </>
         )
+    case "May":
+      return(
+        <>
+          <Alternative>
+            <div className="alt_option">
+              <Antiphon
+                call="Módl się za nami, święta Boża rodzicielko"
+                resp="Abyśmy się stali godnymi obietnic chrystusowych"
+              />
+            </div>
+            <div className="alt_option">
+              <Antiphon
+                call="Raduj się i wesel, Panno Maryjo, Alleluja"
+                resp="Bo zmartwychwstał prawdziwie, Alleluja"
+              />
+            </div>
+          </Alternative>
+          <p>Módlmy się: Panie nasz, Boże, dozwól nam, sługom swoim, cieszyć się trwałym zdrowiem duszy i ciała. I za wstawiennictwem Najświętszej Maryi zawsze dziewicy, uwolnij nas od doczesnych utrapień i obdarz wieczną radością, przez Chrystusa, Pana naszego...</p>
+        </>
+      )
+    case "June":
+      return(
+        <>
+          <Antiphon
+            call="Jezu cichy i pokornego serca"
+            resp="Uczyń serca nasze według serca Twego"
+          />
+          <p>Módlmy się: wszechmogący, wieczny Boże, wejrzyj na Serce najmilszego Syna swego i na chwałę, i zadość uczynienie, jakie w imieniu grzeszników ci składa; daj się przebłagać tym, którzy żebrzą Twego miłosierdzia i racz udzielić przebaczenia w imię tegoż Syna swego, Jezusa Chrystusa, który z tobą żyje i króluje na wieki wieków...</p>
+        </>
+      )
     default:{
       return(
         <>
