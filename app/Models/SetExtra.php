@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class SetExtra extends Model
 {
     use HasFactory;
+
+    protected $fillables = [
+        "set_id",
+        "name", "before", "replace",
+    ];
 }

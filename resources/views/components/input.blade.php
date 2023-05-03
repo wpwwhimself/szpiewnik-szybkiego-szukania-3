@@ -22,6 +22,6 @@
   @default
     <div class="inputContainer">
       <label for="{{ $name }}">{{ $label }}</label>
-      <input type="{{ $type }}" name="{{ $name }}" id="{{ $name }}" value="{{ $value }}" {{ $disabled ? "disabled" : "" }} />
+      <input type="{{ $type }}" name="{{ $name }}" id="{{ $name }}" value="{{ $value }}" {{ $disabled ? "disabled" : "" }} {{ $attributes }} />
     </div>
 @endswitch

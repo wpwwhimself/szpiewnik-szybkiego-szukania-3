@@ -56,7 +56,7 @@ export function MassSet(){
 
     //splitting songs
     thisMassOrder.filter(el => ["sIntro", "sOffer", "sCommunion", "sAdoration", "sDismissal"].includes(el.code)).forEach(el => {
-        el.content!.split(/\r?\n/).forEach((title, i) => {
+        el.content?.split(/\r?\n/).forEach((title, i) => {
             thisMassOrder.splice(
                 thisMassOrder.indexOf(el),
                 0,

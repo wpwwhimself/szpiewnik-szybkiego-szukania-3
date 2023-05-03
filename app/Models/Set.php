@@ -24,4 +24,7 @@ class Set extends Model
     public function extras(){
         return $this->hasMany(SetExtra::class);
     }
+    public function user(){
+        return $this->belongsTo(User::class);
+    }
 }

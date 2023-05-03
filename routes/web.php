@@ -33,31 +33,37 @@ Route::controller(HomeController::class)->group(function(){
 });
 
 Route::controller(SetController::class)->prefix("sets")->group(function(){
-    Route::get("/list", "sets")->name("sets");
-    Route::get("/show/{set_id}", "setShow")->name("set-show");
+    Route::get("/", "sets")->name("sets");
+    Route::get("/present/{set_id}", "setPresent")->name("set-present");
 });
 
 Route::middleware(Authenticate::class)->group(function(){
+    Route::controller(SetController::class)->prefix("sets")->group(function(){
+        Route::get("/show/{set_id}", "set")->name("set");
+        Route::post("/edit", "setEdit")->name("set-edit");
+        Route::get("/add", "setAdd")->name("set-add");
+    });
+
     Route::controller(SongController::class)->prefix("songs")->group(function(){
-        Route::get("/list", "songs")->name("songs");
+        Route::get("/", "songs")->name("songs");
         Route::get("/show/{title_slug}", "song")->name("song");
         Route::post("/edit", "songEdit")->name("song-edit");
         Route::get("/add", "songAdd")->name("song-add");
     });
 
     Route::controller(OrdinariusController::class)->prefix("ordinarium")->group(function(){
-        Route::get("/list", "ordinarium")->name("ordinarium");
+        Route::get("/", "ordinarium")->name("ordinarium");
         Route::get("/show/{color_code}_{part}", "ordinarius")->name("ordinarius");
         Route::post("/edit", "ordinariusEdit")->name("ordinarius-edit");
     });
 
     Route::controller(FormulaController::class)->prefix("formula")->group(function(){
-        Route::get("/list", "formulas")->name("formulas");
+        Route::get("/", "formulas")->name("formulas");
 
     });
 
     Route::controller(PlaceController::class)->prefix("places")->group(function(){
-        Route::get("/list", "places")->name("places");
+        Route::get("/", "places")->name("places");
 
     });
 });

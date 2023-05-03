@@ -9,8 +9,6 @@ class FormulaExtra extends Model
 {
     use HasFactory;
 
-    protected $table = "formula_extras";
-
     protected $fillables = [
         "formula",
         "name", "before", "replace",

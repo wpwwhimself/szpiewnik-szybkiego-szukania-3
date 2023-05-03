@@ -51,6 +51,16 @@ a:has(button){
     text-decoration: none;
 }
 
+table{
+    width: 100%;
+    border-spacing: 0;
+}
+thead th, tfoot th{
+    border-top: 1px solid var(--acc);
+    border-bottom: 1px solid var(--acc);
+    text-align: left;
+}
+
 #main-wrapper{
     margin: 0 auto;
     padding: 1em 0;
@@ -120,7 +130,7 @@ a:has(button){
 
 /* gridding */
 
-.grid-2, .grid-3{
+.grid-2, .grid-3, .grid-5{
     display: grid;
     gap: 0.5em;
     grid-template-columns: repeat(var(--grid-count), 1fr);
@@ -128,6 +138,7 @@ a:has(button){
 }
 .grid-2{ --grid-count: 2 }
 .grid-3{ --grid-count: 3 }
+.grid-5{ --grid-count: 5 }
 
 /**********************************************************************************
 * * PAGES * *

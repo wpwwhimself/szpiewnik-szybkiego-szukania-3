@@ -25939,7 +25939,8 @@ function MassSet() {
   thisMassOrder.filter(function (el) {
     return ["sIntro", "sOffer", "sCommunion", "sAdoration", "sDismissal"].includes(el.code);
   }).forEach(function (el) {
-    el.content.split(/\r?\n/).forEach(function (title, i) {
+    var _a;
+    (_a = el.content) === null || _a === void 0 ? void 0 : _a.split(/\r?\n/).forEach(function (title, i) {
       thisMassOrder.splice(thisMassOrder.indexOf(el), 0, {
         code: "".concat(el.code).concat(i > 0 ? i : ""),
         label: el.label,
