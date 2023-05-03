@@ -34,10 +34,10 @@ export function SongLyrics({lyrics}: {lyrics: string | null}){
   return(<ol className="lyrics" dangerouslySetInnerHTML={{ __html: lyrics_processed ?? ""}} />);
 }
 
-export function PsalmLyrics({lyrics}: {lyrics: string}){
+export function PsalmLyrics({lyrics}: {lyrics: string | null}){
   return(
     <div className="psalm">
-    {lyrics.split(/\r?\n\r?\n/).map((out, i) =>
+    {lyrics?.split(/\r?\n\r?\n/).map((out, i) =>
       <p key={i} dangerouslySetInnerHTML={{ __html: out.replace(/\r?\n/g, "<br>")}} />
     )}
     </div>

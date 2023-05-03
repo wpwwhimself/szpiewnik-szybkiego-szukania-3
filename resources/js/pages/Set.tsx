@@ -25,7 +25,7 @@ export function MassSet(){
 
     useEffect(() => {
         axios.get("/api/set-data", {params: {set_id: set_id}}).then(res => {
-            setSet(res.data.set);
+            setSet({...res.data.set, thisMassOrder: []});
             setOrdinarium(res.data.ordinarium);
             setOrdColors(res.data.ordinarius_colors);
             setFormula(res.data.formula);
@@ -68,8 +68,16 @@ export function MassSet(){
 
     //modifications
     const insertExtras = (extra: Extra, massOrder: MassElem[]) => {
-        const pre = massOrder.filter(el2 => el2.code === extra.before)[0];
-        let code = (extra.name.charAt(0) === "x") ? extra.name : "sB4"+extra.before;
+        const after_flag = (extra.before?.charAt(0) === "s" && extra.before !== "summary") ?? false;
+
+        const pre = extra.before === "summary"
+            ? massOrder[0]
+            : massOrder.filter(el2 => el2.code === extra.before)[0];
+        let code = (extra.name.charAt(0) === "x")
+            ? extra.name
+            : after_flag
+                ? extra.before ?? "END"
+                : "sB4"+extra.before;
         const same_code_count = thisMassOrder.filter(el => el.code.match(code)).length;
         if(same_code_count > 0){
             code += same_code_count
@@ -78,12 +86,14 @@ export function MassSet(){
 
         const addition = {
             code: code,
-            label: `Zanim nastąpi ${pre?.label}`,
+            label: after_flag
+                ? pre?.label
+                : `Zanim nastąpi ${pre?.label}`,
             content: content
         };
 
         if(pre) thisMassOrder.splice(
-            thisMassOrder.indexOf(pre),
+            thisMassOrder.indexOf(pre) + (+after_flag),
             (extra.replace) ? 1 : 0,
             addition
         );
@@ -98,7 +108,7 @@ export function MassSet(){
         insertExtras(el, thisMassOrder);
     });
 
-    if(set.thisMassOrder === undefined) setSet({...set, thisMassOrder: thisMassOrder});
+    if(set.thisMassOrder.length === 0) setSet({...set, thisMassOrder: thisMassOrder});
 
     const Mass = set.thisMassOrder?.map<React.ReactNode>((el, i) => {
         switch(el.code.charAt(0)){
@@ -175,16 +185,16 @@ export function MassSet(){
     //adding
     function addModeOn(id?: string, useCollector: boolean = false){
         if(useCollector){
-            const newMassOrder = thisMassOrder;
+            thisMassOrder = set.thisMassOrder!;
             insertExtras(
                 {
                     name: addCollector.song,
                     before: addCollector.before,
                     replace: false
                 } as Extra,
-                newMassOrder
+                thisMassOrder
             );
-            setSet({...set, thisMassOrder: newMassOrder});
+            setSet({...set, thisMassOrder: thisMassOrder});
         }
         setAddCollector({ before: id } as AddCollectorProps);
         document.getElementById("adder")!.classList.toggle("show");
@@ -220,7 +230,7 @@ export function MassSet(){
 
     // Mass' summary
     const summary = set.thisMassOrder
-        ?.filter(el => el.content !== undefined)
+        ?.filter(el => !!el.content)
         .filter(el => el.code !== "pAccl");
 
     return(<>
@@ -234,7 +244,7 @@ export function MassSet(){
             <h1>Przejdź do</h1>
             <div className="grid-2">
                 <div className="flex-right center wrap">
-                {thisMassOrder
+                {set.thisMassOrder
                     .filter(el => el.code.charAt(0) === "s")
                     .map((el, i) =>
                     <Button key={i}
@@ -248,7 +258,7 @@ export function MassSet(){
                 )}
                 </div>
                 <div className="flex-right center wrap">
-                {thisMassOrder
+                {set.thisMassOrder
                     .filter(el => el.code.charAt(0) !== "s")
                     .map((el, i) =>
                     <Button key={i}
@@ -271,7 +281,11 @@ export function MassSet(){
             <h1>
                 Dodaj pieśń
                 {addCollector.before !== "END"
-                    ? ` przed: ${thisMassOrder.filter(el => el.code === addCollector.before)[0]?.label}`
+                    ? addCollector.before?.charAt(0) !== "s"
+                        ? ` przed: ${set.thisMassOrder.filter(el => el.code === addCollector.before)[0]?.label}`
+                        : addCollector.before === "summary"
+                            ? " na początek zestawu"
+                            : ` na ${set.thisMassOrder.filter(el => el.code === addCollector.before)[0]?.label}`
                     : " na koniec zestawu"}
             </h1>
             <div id="filters" className="grid-2">
@@ -341,8 +355,8 @@ export function MassSet(){
                             {summary?.map((el, i) =>
                                 <li key={i}>
                                     <span>{
-                                        (el.content!.indexOf("\n") > -1) ?
-                                        el.content!.substring(0, el.content!.indexOf("\n")) :
+                                        (el.code === "pPsalm") ?
+                                        el.content?.substring(0, el.content?.indexOf("\n")) :
                                         el.content
                                     }</span>
                                     <span className="ghost">{el.label}</span>

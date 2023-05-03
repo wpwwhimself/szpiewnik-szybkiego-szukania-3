@@ -80,7 +80,7 @@ export interface Set{
     created_at: string | null,
     updated_at: string | null,
     extras?: Extra[],
-    thisMassOrder?: MassElem[],
+    thisMassOrder: MassElem[],
 }
 
 export interface MassElem{
