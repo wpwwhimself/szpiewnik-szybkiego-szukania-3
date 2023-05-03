@@ -12,7 +12,7 @@ class SetController extends Controller
         $formulas = Formula::all();
         $sets = [];
         foreach($formulas as $formula){
-            $sets[$formula->name] = $formula->sets;
+            $sets[$formula->name] = $formula->user_sets;
         }
 
         return view("sets", array_merge(
