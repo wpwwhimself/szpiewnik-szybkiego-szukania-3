@@ -25952,9 +25952,12 @@ function MassSet() {
     thisMassOrder.splice(thisMassOrder.indexOf(el), 1);
   });
   //modifications
-  var insertExtras = function insertExtras(extra, massOrder) {
+  var insertExtras = function insertExtras(extra, massOrder, prebuild) {
     var _a, _b, _c;
-    var after_flag = (_b = ((_a = extra.before) === null || _a === void 0 ? void 0 : _a.charAt(0)) === "s" && extra.before !== "summary") !== null && _b !== void 0 ? _b : false;
+    if (prebuild === void 0) {
+      prebuild = false;
+    }
+    var after_flag = (_b = ((_a = extra.before) === null || _a === void 0 ? void 0 : _a.charAt(0)) === "s" && extra.before !== "summary" && !prebuild) !== null && _b !== void 0 ? _b : false;
     var pre = extra.before === "summary" ? massOrder[0] : massOrder.filter(function (el2) {
       return el2.code === extra.before;
     })[0];
@@ -25981,10 +25984,10 @@ function MassSet() {
     return el.code !== "oGloria";
   });
   (_a = formula.extras) === null || _a === void 0 ? void 0 : _a.forEach(function (el) {
-    insertExtras(el, thisMassOrder);
+    insertExtras(el, thisMassOrder, true);
   });
   (_b = set.extras) === null || _b === void 0 ? void 0 : _b.forEach(function (el) {
-    insertExtras(el, thisMassOrder);
+    insertExtras(el, thisMassOrder, true);
   });
   if (set.thisMassOrder.length === 0) setSet(__assign(__assign({}, set), {
     thisMassOrder: thisMassOrder

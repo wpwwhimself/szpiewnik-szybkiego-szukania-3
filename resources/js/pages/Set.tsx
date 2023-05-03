@@ -67,8 +67,8 @@ export function MassSet(){
     });
 
     //modifications
-    const insertExtras = (extra: Extra, massOrder: MassElem[]) => {
-        const after_flag = (extra.before?.charAt(0) === "s" && extra.before !== "summary") ?? false;
+    const insertExtras = (extra: Extra, massOrder: MassElem[], prebuild = false) => {
+        const after_flag = (extra.before?.charAt(0) === "s" && extra.before !== "summary" && !prebuild) ?? false;
 
         const pre = extra.before === "summary"
             ? massOrder[0]
@@ -102,10 +102,10 @@ export function MassSet(){
 
     if(!formula.gloria_present) thisMassOrder = thisMassOrder.filter(el => el.code !== "oGloria");
     formula.extras?.forEach((el) => {
-        insertExtras(el, thisMassOrder);
+        insertExtras(el, thisMassOrder, true);
     });
     set.extras?.forEach((el) => {
-        insertExtras(el, thisMassOrder);
+        insertExtras(el, thisMassOrder, true);
     });
 
     if(set.thisMassOrder.length === 0) setSet({...set, thisMassOrder: thisMassOrder});
