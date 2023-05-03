@@ -51,7 +51,7 @@ class SetController extends Controller
             "name" => $rq->name,
             "formula" => $rq->formula,
             "color" => $rq->color,
-            "public" => $rq->public,
+            "public" => $rq->has("public"),
             "sIntro" => $rq->sIntro,
             "sOffer" => $rq->sOffer,
             "sCommunion" => $rq->sCommunion,

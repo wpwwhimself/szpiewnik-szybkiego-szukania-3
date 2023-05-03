@@ -120,6 +120,7 @@ thead th, tfoot th{
 .center{
     justify-content: center;
     align-items: center;
+    text-align: center;
 }
 .center-vert{
     align-items: baseline;

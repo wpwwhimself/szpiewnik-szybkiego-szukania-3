@@ -11,6 +11,7 @@ class Set extends Model
 
     protected $fillable = [
         "name", "formula", "color",
+        "user_id", "public",
         "sIntro", "sOffer", "sCommunion", "sAdoration", "sDismissal",
         "pPsalm", "pAccl",
     ];
