@@ -300,7 +300,9 @@ export function MassSet(){
             <div id="song-list" className="flex-right center wrap">
             {songs.filter(el => adderFilters.categories.includes(el.song_category_id))
                 .filter(el => {
-                    for(let wanted_pref of adderFilters.preferences){
+                    if(adderFilters.preferences.length === 0){
+                        if(el.preferences.substring(0, 9) === "0/0/0/0/0") return true;
+                    }else for(let wanted_pref of adderFilters.preferences){
                         if(el.preferences.split("/")[wanted_pref] == "1") return true;
                     }
                     return false;

@@ -26300,7 +26300,9 @@ function MassSet() {
         children: songs.filter(function (el) {
           return adderFilters.categories.includes(el.song_category_id);
         }).filter(function (el) {
-          for (var _i = 0, _a = adderFilters.preferences; _i < _a.length; _i++) {
+          if (adderFilters.preferences.length === 0) {
+            if (el.preferences.substring(0, 9) === "0/0/0/0/0") return true;
+          } else for (var _i = 0, _a = adderFilters.preferences; _i < _a.length; _i++) {
             var wanted_pref = _a[_i];
             if (el.preferences.split("/")[wanted_pref] == "1") return true;
           }
