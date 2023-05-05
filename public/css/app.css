@@ -281,6 +281,14 @@ input, select, textarea{
     resize: vertical;
     text-align: center;
 }
+table input{
+    border: none;
+    text-align: left;
+    width: 100%;
+}
+input[type="checkbox"]{
+    height: 1em;
+}
 textarea{
     font-size: 0.9em;
     text-align: left;
@@ -292,6 +300,7 @@ button, .button{
     background-color: var(--bg3);
     /* width: 100%; */
     padding: 0 0.75em;
+    text-align: center;
     font-weight: bold;
     font-size: 1.2em;
     border-top: 0.5em double var(--bg1);

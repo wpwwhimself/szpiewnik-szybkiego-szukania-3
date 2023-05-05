@@ -88,20 +88,40 @@
             </tr>
         </thead>
         <tbody>
+            <script>
+            function addExtraRow(){
+                const rowAdder = document.getElementById("row-adder");
+                const clone = rowAdder.cloneNode(true);
+                rowAdder.parentNode.insertBefore(clone, document.getElementById("row-spacer"));
+                clone.style.display = "table-row";
+            }
+            </script>
+            <tr>
+                <td colspan="4">
+                    <div class="button" onclick="addExtraRow()">Dodaj</div>
+                </td>
+            </tr>
+            <tr id="row-adder" style="display: none">
+                <td>Msza</td>
+                <td><input type="text" name="song[]" /></td>
+                <td><input type="text" name="before[]" /></td>
+                <td><input type="checkbox" name="replace[]" /></td>
+            </tr>
         @foreach ($set->extras as $extra)
             <tr>
                 <td>Msza</td>
-                <td>{{ $extra->name }}</td>
-                <td>{{ $extra->before }}</td>
-                <td><input type="checkbox" name="" {{ $extra->replace ? 'checked' : '' }} /></td>
+                <td><input type="text" name="song[]" value="{{ $extra->name }}" /></td>
+                <td><input type="text" name="before[]" value="{{ $extra->before }}" /></td>
+                <td><input type="checkbox" name="replace[]" {{ $extra->replace ? 'checked' : '' }} /></td>
             </tr>
         @endforeach
+            <tr id="row-spacer"></tr>
         @foreach ($set->formulaData->extras as $extra)
             <tr class="ghost">
                 <td>Formuła</td>
-                <td>{{ $extra->name }}</td>
-                <td>{{ $extra->before }}</td>
-                <td><input type="checkbox" name="" {{ $extra->replace ? 'checked' : '' }} /></td>
+                <td><input type="text" name="" value="{{ $extra->name }}" disabled /></td>
+                <td><input type="text" name="" value="{{ $extra->before }}" disabled /></td>
+                <td><input type="checkbox" name="" {{ $extra->replace ? 'checked' : '' }} disabled /></td>
             </tr>
         @endforeach
         </tbody>
