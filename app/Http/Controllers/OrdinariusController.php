@@ -6,6 +6,7 @@ use App\Models\Formula;
 use App\Models\Ordinarius;
 use App\Models\OrdinariusColor;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class OrdinariusController extends Controller
 {
@@ -29,12 +30,14 @@ class OrdinariusController extends Controller
 
     public function ordinarius($color_code, $part){
         $colors = OrdinariusColor::all();
-        $ordinarius = Ordinarius::where("color_code", $color_code)
-            ->where("part", $part)
-            ->first();
+        $ordinarius = Ordinarius::where("part", $part)
+            ->get()
+            ->filter(fn($ord) => (Str::slug($ord->color_code) ?: "*") == $color_code)
+            ->first()
+            ;
 
         return view("ordinarium.edit", array_merge(
-            ["title" => "fdjsklafjkdsl"],
+            ["title" => "$part ($color_code) | Edycja cz. st."],
             compact("ordinarius", "colors")
         ));
     }
