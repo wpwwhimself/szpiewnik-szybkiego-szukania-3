@@ -16,7 +16,7 @@ class SongController extends Controller
             $songs[$cat->name] = $cat->songs;
         }
 
-        return view("songs", array_merge(
+        return view("songs.list", array_merge(
             ["title" => "Lista pieśni"],
             compact("songs", "categories")
         ));
@@ -40,7 +40,7 @@ class SongController extends Controller
           "other"
         ], $prefs);
 
-        return view("song", array_merge(
+        return view("songs.edit", array_merge(
             ["title" => $song->title." | Edycja pieśni"],
             compact("song", "categories", "prefs")
         ));

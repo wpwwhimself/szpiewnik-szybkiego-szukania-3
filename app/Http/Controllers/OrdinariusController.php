@@ -21,7 +21,7 @@ class OrdinariusController extends Controller
             Formula::get("name")->toArray()
         )->get();
 
-        return view("ordinarium", array_merge(
+        return view("ordinarium.list", array_merge(
             ["title" => "Lista części stałych"],
             compact("ordinarium", "colors")
         ));
@@ -33,7 +33,7 @@ class OrdinariusController extends Controller
             ->where("part", $part)
             ->first();
 
-        return view("ordinarius", array_merge(
+        return view("ordinarium.edit", array_merge(
             ["title" => "fdjsklafjkdsl"],
             compact("ordinarius", "colors")
         ));

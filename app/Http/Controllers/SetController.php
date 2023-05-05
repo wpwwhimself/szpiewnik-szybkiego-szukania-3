@@ -18,7 +18,7 @@ class SetController extends Controller
             $sets[$formula->name] = $formula->user_sets;
         }
 
-        return view("sets", array_merge(
+        return view("sets.list", array_merge(
             ["title" => "Dostępne zestawy"],
             compact("formulas", "sets")
         ));
@@ -27,7 +27,7 @@ class SetController extends Controller
     public function setPresent($set_id){
         $set = Set::findOrFail($set_id);
 
-        return view("set-present", array_merge(
+        return view("sets.present", array_merge(
             ["title" => $set->name],
             compact("set")
         ));
@@ -39,7 +39,7 @@ class SetController extends Controller
         $colors = OrdinariusColor::all()->pluck("display_name", "name");
         $songs = Song::all()->pluck("title", "title");
 
-        return view("set", array_merge(
+        return view("sets.edit", array_merge(
             ["title" => $set->name . " | Edycja mszy"],
             compact("set", "formulas", "colors", "songs")
         ));
