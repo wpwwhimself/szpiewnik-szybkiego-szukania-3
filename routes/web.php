@@ -30,6 +30,7 @@ Route::controller(AuthController::class)->group(function(){
 
 Route::controller(HomeController::class)->group(function(){
     Route::get("/", "index")->name("home");
+    Route::post("/user-update", "userUpdate")->middleware(Authenticate::class)->name("user-update");
 });
 
 Route::controller(SetController::class)->prefix("sets")->group(function(){
