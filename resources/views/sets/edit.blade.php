@@ -95,6 +95,9 @@
                 rowAdder.parentNode.insertBefore(clone, document.getElementById("row-spacer"));
                 clone.removeAttribute("id");
             }
+            function extraReplaceCheck(el){
+                el.nextElementSibling.value = +el.checked;
+            }
             </script>
             <tr>
                 <td colspan="4">
@@ -102,17 +105,23 @@
                 </td>
             </tr>
             <tr id="row-adder">
-                <td>Msza</td>
+                <td>Msza<input type="hidden" name="extraId[]" /></td>
                 <td><input type="text" name="song[]" /></td>
                 <td><input type="text" name="before[]" /></td>
-                <td><input type="checkbox" name="replace[]" /></td>
+                <td>
+                    <input type="checkbox" onchange="extraReplaceCheck(this)" />
+                    <input type="hidden" name="replace[]" value="0" />
+                </td>
             </tr>
         @foreach ($set->extras as $extra)
             <tr>
-                <td>Msza</td>
+                <td>Msza<input type="hidden" name="extraId[]" value="{{ $extra->id }}" /></td>
                 <td><input type="text" name="song[]" value="{{ $extra->name }}" /></td>
                 <td><input type="text" name="before[]" value="{{ $extra->before }}" /></td>
-                <td><input type="checkbox" name="replace[]" {{ $extra->replace ? 'checked' : '' }} /></td>
+                <td>
+                    <input type="checkbox" onchange="extraReplaceCheck(this)" {{ $extra->replace ? 'checked' : '' }} />
+                    <input type="hidden" name="replace[]" value="{{ $extra->replace }}" />
+                </td>
             </tr>
         @endforeach
             <tr id="row-spacer"></tr>
@@ -121,7 +130,9 @@
                 <td>Formuła</td>
                 <td><input type="text" name="" value="{{ $extra->name }}" disabled /></td>
                 <td><input type="text" name="" value="{{ $extra->before }}" disabled /></td>
-                <td><input type="checkbox" name="" {{ $extra->replace ? 'checked' : '' }} disabled /></td>
+                <td>
+                    <input type="checkbox" name="" {{ $extra->replace ? 'checked' : '' }} disabled />
+                </td>
             </tr>
         @endforeach
         </tbody>

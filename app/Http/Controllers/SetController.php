@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Formula;
 use App\Models\OrdinariusColor;
 use App\Models\Set;
+use App\Models\SetExtra;
 use App\Models\Song;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -64,6 +65,18 @@ class SetController extends Controller
         }elseif($rq->action === "delete"){
             Set::findOrFail($rq->id)->delete();
             $response = "Msza usunięta";
+        }
+        for($i = 1; $i < count($rq->extraId); $i++){
+            if($rq->song[$i]){
+                SetExtra::updateOrCreate(["id" => $rq->extraId[$i]], [
+                    "name" => $rq->song[$i],
+                    "before" => $rq->before[$i],
+                    "replace" => $rq->replace[$i],
+                    "set_id" => $rq->id,
+                ]);
+            }else{
+                SetExtra::findOrFail($rq->extraId[$i])->delete();
+            }
         }
 
         return redirect()->route("sets")->with("success", $response);

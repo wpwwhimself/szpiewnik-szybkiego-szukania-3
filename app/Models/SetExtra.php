@@ -9,7 +9,7 @@ class SetExtra extends Model
 {
     use HasFactory;
 
-    protected $fillables = [
+    protected $fillable = [
         "set_id",
         "name", "before", "replace",
     ];
