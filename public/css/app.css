@@ -286,6 +286,9 @@ table input{
     text-align: left;
     width: 100%;
 }
+#row-adder{
+    display: none;
+}
 input[type="checkbox"]{
     height: 1em;
 }

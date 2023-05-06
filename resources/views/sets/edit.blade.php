@@ -93,7 +93,7 @@
                 const rowAdder = document.getElementById("row-adder");
                 const clone = rowAdder.cloneNode(true);
                 rowAdder.parentNode.insertBefore(clone, document.getElementById("row-spacer"));
-                clone.style.display = "table-row";
+                clone.removeAttribute("id");
             }
             </script>
             <tr>
@@ -101,7 +101,7 @@
                     <div class="button" onclick="addExtraRow()">Dodaj</div>
                 </td>
             </tr>
-            <tr id="row-adder" style="display: none">
+            <tr id="row-adder">
                 <td>Msza</td>
                 <td><input type="text" name="song[]" /></td>
                 <td><input type="text" name="before[]" /></td>
