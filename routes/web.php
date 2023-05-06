@@ -22,15 +22,21 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::controller(AuthController::class)->group(function(){
-    Route::get('/auth', "input")->name("login");
-    Route::post('/auth-back', "authenticate")->name("authenticate");
-    Route::post('/auth/register-back', "register")->name("register");
-    Route::get('/auth/logout', "logout")->name("logout")->middleware(Authenticate::class);
+    Route::prefix("auth")->group(function(){
+        Route::get('/login', "input")->name("login");
+        Route::post('/login/process', "authenticate")->name("authenticate");
+        Route::get("/register", "register")->name("register");
+        Route::post('/register/process', "registerProcess")->name("register-process");
+
+        Route::middleware(Authenticate::class)->group(function(){
+            Route::get('/logout', "logout")->name("logout");
+            Route::post("/user-update", "userUpdate")->name("user-update");
+        });
+    });
 });
 
 Route::controller(HomeController::class)->group(function(){
     Route::get("/", "index")->name("home");
-    Route::post("/user-update", "userUpdate")->middleware(Authenticate::class)->name("user-update");
 });
 
 Route::controller(SetController::class)->prefix("sets")->group(function(){

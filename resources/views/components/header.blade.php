@@ -11,9 +11,9 @@
     <nav class="flex-down but-mobile-right">
     @auth
         <a href="{{ route('songs') }}">Pieśni</a>
-        <a href="{{ route('ordinarium') }}">Części stałe</a>
-        <a href="{{ route('formulas') }}">Formuły</a>
         <a href="{{ route('places') }}">Miejsca</a>
+        @if (Auth::user()->clearance->id >= 2) <a href="{{ route('ordinarium') }}">Części stałe</a> @endif
+        @if (Auth::user()->clearance->id >= 3) <a href="{{ route('formulas') }}">Formuły</a> @endif
     @endauth
     </nav>
 </header>

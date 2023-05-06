@@ -439,6 +439,15 @@ label{
     left: 0;
 }
 
+section{
+    border-top: 3px solid var(--bg2);
+    border-bottom: 3px solid var(--bg2);
+    margin: 1em 0;
+}
+section>*:last-of-type{
+    margin-bottom: 1em;
+}
+
 /*********************
  * MOBILE!!
  ****************/

@@ -2,9 +2,11 @@
 
 @section("content")
 
+@if (Auth::user()?->clearance->id >= 2)
 <a href="{{ route('song-add') }}" class="flex-right stretch">
     <x-button>Dodaj nową</x-button>
 </a>
+@endif
 
 @foreach ($categories as $cat)
     <h1 class="cap-initial">{{ $cat->name }}</h1>

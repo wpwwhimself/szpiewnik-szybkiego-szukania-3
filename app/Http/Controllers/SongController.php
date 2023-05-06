@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Song;
 use App\Models\SongCategory;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 
 class SongController extends Controller
@@ -75,6 +76,8 @@ class SongController extends Controller
     }
 
     public function songAdd(){
+        if(Auth::user()?->clearance->id < 2) return back()->with("error", "Nie masz uprawnień do utworzenia pieśni");
+
         $new_song_title = "--Nowa pieśń--";
         if(!Song::where("title", $new_song_title)->count()) Song::insert([
             "title" => $new_song_title,

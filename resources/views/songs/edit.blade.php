@@ -32,10 +32,13 @@
     <x-input type="TEXT" name="sheet_music" label="Nuty" value="{!! $song->sheet_music !!}" />
   </div>
   <div id="sheet-music-container"></div>
+
+  @if (Auth::user()?->clearance->id >= 2)
   <div class="flex-right stretch">
     <x-button type="submit" name="action" value="update">Zatwierdź i wróć</x-button>
     <x-button type="submit" name="action" value="delete">Usuń</x-button>
   </div>
+  @endif
 </form>
 
 <script src="{{ asset("js/abcjs-basic-min.js") }}"></script>

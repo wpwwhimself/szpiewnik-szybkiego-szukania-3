@@ -14,19 +14,4 @@ class HomeController extends Controller
             ["title" => null]
         ));
     }
-
-    public function userUpdate(Request $rq){
-        $updates = [
-            "name" => $rq->name,
-            "email" => $rq->email,
-        ];
-        if($rq->password){
-            if(strlen($rq->password) < 8) return back()->with("error", "Hasło musi mieć minimum 8 znaków.");
-            $updates["password"] = Hash::make($rq->password);
-        };
-
-        User::find(Auth::id())->update($updates);
-
-        return back()->with("success", "Dane użytkownika zmienione");
-    }
 }

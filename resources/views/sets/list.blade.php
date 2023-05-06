@@ -9,6 +9,15 @@
 @endauth
 
 <h1>Załaduj mszę</h1>
+
+@guest
+<p>
+    Obecnie jesteś niezalogowany
+    – poniżej widoczne są tylko zestawy,
+    które zostały ustawione przez innych użytkowników jako publiczne.
+</p>
+@endguest
+
 <div>
 @foreach ($formulas as $formula) @if(count($formula->sets))
     <h2>{{ $formula->name }}</h2>

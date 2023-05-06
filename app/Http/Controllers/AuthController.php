@@ -16,41 +16,38 @@ class AuthController extends Controller
     }
 
     public function authenticate(Request $request){
-        $request->validate([
-            // 'login' => ['required']
-            'password' => ['required']
-        ]);
+        $credentials = $request->only(["name", "password"]);
 
-        $credentials = $request->password;
+        if (Auth::attempt($credentials)) {
+            $request->session()->regenerate();
 
-        $users = User::all();
-        foreach($users as $user){
-            if(Hash::check($credentials, $user->password)){
-                Auth::login(User::find($user->id));
-                $request->session()->regenerate();
-                return redirect()->intended("/")->with("success", "Zalogowano");
-            }
+            return redirect()->intended("/")->with("success", "Zalogowano");
         }
 
         return back()->with("error", "Nieprawidłowe dane logowania");
     }
 
-    public function register(Request $request){
-        $request->validate([
-            // 'login' => 'required|unique:users',
-            'password' => 'required|min:6'
+    public function register(){
+        return view("auth.register", [
+            "title" => "Rejestracja",
         ]);
-
-        $data = $request->all();
-        $check = $this->createUser($data);
-
-        return redirect("dashboard")->with("success", "Utworzono nowy login");
     }
-    public function createUser(array $data){
-        return User::create([
-            // 'login' => $data['login'],
-            'password' => Hash::make($data['password'])
+
+    public function registerProcess(Request $rq){
+        if($rq->spamtest != 4*6) return back()->with("error", "Cztery razy sześć nie równa się $rq->spamtest!");
+
+        if(strlen($rq->password) < 8) return back()->with("error", "Hasło musi mieć minimum 8 znaków.");
+        if($rq->password_confirm != $rq->password) return back()->with("error", "Hasła nie są sobie równe!");
+
+        $user = User::create([
+            'name' => $rq->name,
+            'email' => $rq->email,
+            'password' => Hash::make($rq->password),
         ]);
+
+        Auth::login($user->id);
+
+        return redirect()->route("home")->with("success", "Konto gotowe, witaj na pokładzie!");
     }
 
     public function logout(Request $request){
@@ -58,5 +55,20 @@ class AuthController extends Controller
         $request->session()->invalidate();
         $request->session()->regenerateToken();
         return redirect("/")->with("success", "Wylogowano");
+    }
+
+    public function userUpdate(Request $rq){
+        $updates = [
+            "name" => $rq->name,
+            "email" => $rq->email,
+        ];
+        if($rq->password){
+            if(strlen($rq->password) < 8) return back()->with("error", "Hasło musi mieć minimum 8 znaków.");
+            $updates["password"] = Hash::make($rq->password);
+        };
+
+        User::find(Auth::id())->update($updates);
+
+        return back()->with("success", "Dane użytkownika zmienione");
     }
 }
