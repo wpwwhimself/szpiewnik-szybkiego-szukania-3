@@ -86,4 +86,18 @@ class SongController extends Controller
 
         return redirect()->route("song", ["title_slug" => Str::slug($new_song_title)])->with("success", "Szablon utworzony, dodaj pieśń");
     }
+
+    public function songAutocomplete(Request $rq){
+        $initial = substr($rq->title, 0, 1);
+        $mass_order = collect(json_decode((new DataModController)->massOrder()->content()))
+            ->pluck("value");
+        if((strlen($rq->title) >= 3)){
+            $titles = !in_array($initial, ["x", "o"])
+                ? Song::where("title", "like", "%$rq->title%")->pluck("title")
+                : $mass_order
+                    ->filter(fn($el) => preg_match("/$rq->title/", $el))
+                    ->values();
+        }else $titles = [];
+        return response()->json($titles);
+    }
 }

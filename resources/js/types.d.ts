@@ -19,6 +19,11 @@ export interface MModProps{
     eraseMassElem: (id: string) => void,
 }
 
+export interface PlaceProps{
+    name: string,
+    extras?: Extra[],
+}
+
 export interface SongProps{
     title: string,
     song_category_id: number,
@@ -54,7 +59,6 @@ export interface OrdinariumColorProps{
 export interface Extra{
     id: number,
     formula?: string,
-    place?: string,
     name: string,
     before: string | null,
     replace: boolean,

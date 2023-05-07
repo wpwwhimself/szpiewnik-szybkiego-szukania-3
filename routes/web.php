@@ -68,9 +68,4 @@ Route::middleware(Authenticate::class)->group(function(){
         Route::get("/", "formulas")->name("formulas");
 
     });
-
-    Route::controller(PlaceController::class)->prefix("places")->group(function(){
-        Route::get("/", "places")->name("places");
-
-    });
 });

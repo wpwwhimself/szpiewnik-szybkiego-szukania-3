@@ -271,6 +271,11 @@ footer .auth{
 
 /* Interactives */
 
+.clickable{
+    cursor: pointer;
+    user-select: none;
+}
+
 input, select, textarea{
     background: none;
     color: var(--fg);
@@ -355,7 +360,9 @@ label{
 }
 .massElemSection:not(:last-of-type){
   border-bottom: 3px solid var(--bg2);
+  border-top: none;
   padding-bottom: 0.5em;
+  margin: 0;
 }
 .massElemSection h2{
   font-size: 1.2em;

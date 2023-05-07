@@ -74,7 +74,7 @@ class SetController extends Controller
                     "replace" => $rq->replace[$i],
                     "set_id" => $rq->id,
                 ]);
-            }else{
+            }elseif($rq->extraId[$i]){
                 SetExtra::findOrFail($rq->extraId[$i])->delete();
             }
         }

@@ -108,7 +108,7 @@ export function MassSet(){
         insertExtras(el, thisMassOrder, true);
     });
 
-    if(set.thisMassOrder.length === 0) setSet({...set, thisMassOrder: thisMassOrder});
+    if(set.thisMassOrder.length === 0) setSet({...set, thisMassOrder: thisMassOrder});;
 
     const Mass = set.thisMassOrder?.map<React.ReactNode>((el, i) => {
         switch(el.code.charAt(0)){

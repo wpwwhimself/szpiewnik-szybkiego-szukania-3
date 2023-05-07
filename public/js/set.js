@@ -25992,6 +25992,7 @@ function MassSet() {
   if (set.thisMassOrder.length === 0) setSet(__assign(__assign({}, set), {
     thisMassOrder: thisMassOrder
   }));
+  ;
   var Mass = (_c = set.thisMassOrder) === null || _c === void 0 ? void 0 : _c.map(function (el, i) {
     switch (el.code.charAt(0)) {
       case "s":

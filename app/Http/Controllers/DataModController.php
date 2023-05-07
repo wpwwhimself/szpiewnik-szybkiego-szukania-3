@@ -34,4 +34,32 @@ class DataModController extends Controller
     public function ordinarium(){
         return response()->json(Ordinarius::all());
     }
+
+    public function massOrder(){
+        return response()->json([
+            [ "value" => "sIntro", "label" => "Wejście"],
+            [ "value" => "oKyrie", "label" => "Kyrie"],
+            [ "value" => "oGloria", "label" => "Gloria"],
+            [ "value" => "xLUP1", "label" => "Módlmy się"],
+            [ "value" => "xReading1", "label" => "1. czytanie"],
+            [ "value" => "pPsalm", "label" => "Psalm"],
+            [ "value" => "xReading2", "label" => "2. czytanie"],
+            [ "value" => "pAccl", "label" => "Aklamacja"],
+            [ "value" => "xEvang", "label" => "Ewangelia"],
+            [ "value" => "xHomily", "label" => "Kazanie"],
+            [ "value" => "oCredo", "label" => "Credo"],
+            [ "value" => "xGI", "label" => "Modlitwa Powszechna"],
+            [ "value" => "sOffer", "label" => "Przygotowanie Darów"],
+            [ "value" => "oSanctus", "label" => "Sanctus"],
+            [ "value" => "xTransf", "label" => "Przemienienie"],
+            [ "value" => "oPaterNoster", "label" => "Ojcze nasz"],
+            [ "value" => "oAgnusDei", "label" => "Agnus Dei"],
+            [ "value" => "sCommunion", "label" => "Komunia"],
+            [ "value" => "sAdoration", "label" => "Uwielbienie"],
+            [ "value" => "xLUP2", "label" => "Módlmy się"],
+            [ "value" => "xAnnounc", "label" => "Ogłoszenia"],
+            [ "value" => "xBlessing", "label" => "Błogosławieństwo"],
+            [ "value" => "sDismissal", "label" => "Zakończenie"],
+        ]);
+    }
 }
