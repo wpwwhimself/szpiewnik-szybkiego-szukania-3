@@ -66,6 +66,7 @@ class SetController extends Controller
             ]);
             $response = "Msza poprawiona";
         }elseif($rq->action === "delete"){
+            SetExtra::where("set_id", $rq->id)->delete();
             Set::findOrFail($rq->id)->delete();
             $response = "Msza usunięta";
         }

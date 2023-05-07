@@ -66,6 +66,8 @@ Route::middleware(Authenticate::class)->group(function(){
 
     Route::controller(FormulaController::class)->prefix("formula")->group(function(){
         Route::get("/", "formulas")->name("formulas");
-
+        Route::get("/show/{name_slug}", "formula")->name("formula");
+        Route::post("/edit", "formulaEdit")->name("formula-edit");
+        Route::get("/add", "formulaAdd")->name("formula-add");
     });
 });
