@@ -19,6 +19,7 @@
 
 <section>
     <h2>Mój profil</h2>
+    <h3>Dane</h3>
     <form action="{{ route('user-update') }}" method="post">
         @csrf
         <div class="flex-right center wrap">
@@ -31,12 +32,13 @@
             <x-button>Popraw dane</x-button>
         </div>
     </form>
+    <h3>Uprawnienia</h3>
+    <p class="center">
+        <strong>Poziom {{ Auth::user()->clearance->id }}: {{ Auth::user()->clearance->name }}</strong><br />
+        <span>Możesz: {{ Auth::user()->clearance->allCan }}</span>
 </section>
 
 <section>
-    <h2>Uprawnienia</h2>
-    <h3>Poziom {{ Auth::user()->clearance->id }}: {{ Auth::user()->clearance->name }}</h3>
-    <p class="center">Możesz {{ Auth::user()->clearance->allCan }}</p>
 </section>
 
 @else
