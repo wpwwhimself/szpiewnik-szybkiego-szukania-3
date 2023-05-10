@@ -34,6 +34,8 @@ class AuthController extends Controller
     }
 
     public function registerProcess(Request $rq){
+        if(User::where("email", $rq->email)->first()) return back()->with("error", "Taki adres mailowy już jest zapisany.");
+
         if($rq->spamtest != 4*6) return back()->with("error", "Cztery razy sześć nie równa się $rq->spamtest!");
 
         if(strlen($rq->password) < 8) return back()->with("error", "Hasło musi mieć minimum 8 znaków.");
@@ -45,7 +47,7 @@ class AuthController extends Controller
             'password' => Hash::make($rq->password),
         ]);
 
-        Auth::login($user->id);
+        Auth::login($user);
 
         return redirect()->route("home")->with("success", "Konto gotowe, witaj na pokładzie!");
     }
