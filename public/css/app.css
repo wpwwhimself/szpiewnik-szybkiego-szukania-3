@@ -311,11 +311,23 @@ button, .button{
     text-align: center;
     font-weight: bold;
     font-size: 1.2em;
-    border-top: 0.5em double var(--bg1);
-    border-bottom: 0.5em double var(--bg1);
-    border-left: none; border-right: none;
+    /* border-top: 0.5em double var(--bg1); */
+    /* border-bottom: 0.5em double var(--bg1); */
+    /* border-left: none; border-right: none; */
+    border: none;
     text-decoration: none;
     cursor: pointer;
+    position: relative;
+}
+button::before, .button::before{
+    content: "";
+    transition-duration: 0.3s;
+    position: absolute;
+    --spacing: 0.3em;
+    top: calc(var(--spacing) * -1); bottom: calc(var(--spacing) * -1);
+    left: 0; right: 0;
+    border-top: 3px solid var(--bg3);
+    border-bottom: 3px solid var(--bg3);
 }
 button{
     font-family: Cinzel;
@@ -323,6 +335,9 @@ button{
 button:hover, .button:hover{
     color: black;
     background-color: var(--acc);
+}
+button:hover::before, .button:hover::before{
+    border-color: var(--acc);
 }
 .light-button{
     font-family: "EB Garamond";
