@@ -129,6 +129,10 @@ thead th, tfoot th{
     flex-basis: 100%;
 }
 
+.tight{
+    gap: 0;
+}
+
 /* gridding */
 
 .grid-2, .grid-3, .grid-5{

@@ -23,7 +23,12 @@
     <h2>{{ $formula->name }}</h2>
     <div class="flex-right center wrap">
     @foreach ($sets[$formula->name] as $set)
-        <a href="{{ route('set-present', ['set_id' => $set->id]) }}">{{ $set->name }}</a>
+        <div class="flex-down center tight">
+            <a href="{{ route('set-present', ['set_id' => $set->id]) }}">
+                {{ $set->name }}
+            </a>
+            @if ($set->user->id != Auth::id()) <label>{{ $set->user->name  }}</label> @endif
+        </div>
     @endforeach
     </div>
 @endif @endforeach
