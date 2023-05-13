@@ -63,6 +63,7 @@ class AuthController extends Controller
         $updates = [
             "name" => $rq->name,
             "email" => $rq->email,
+            "default_place" => $rq->default_place,
         ];
         if($rq->password){
             if(strlen($rq->password) < 8) return back()->with("error", "Hasło musi mieć minimum 8 znaków.");

@@ -26,6 +26,7 @@
             <x-input type="text" name="name" label="Nazwa użytkownika" value="{{ Auth::user()->name }}" />
             <x-input type="email" name="email" label="Email" value="{{ Auth::user()->email }}" />
             <x-input type="password" name="password" label="Zmień hasło" />
+            <x-select name="default_place" label="Domyślne miejsce" value="{{ Auth::user()->default_place }}" :options="$places->pluck('name', 'name')" :empty-option="true" />
         </div>
 
         <div class="flex-right center">
