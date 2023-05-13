@@ -24,7 +24,7 @@ class CreateClearancesTable extends Migration
         DB::table("clearances")->insert([
             [
                 "name" => "praktykujący",
-                "can" => "tworzyć zestawy, przeglądać pieśni",
+                "can" => "tworzyć zestawy, przeglądać pieśni, tworzyć miejsca",
             ],
             [
                 "name" => "dewot",

@@ -68,7 +68,7 @@ class SongController extends Controller
             ]);
             $response = "Pieśń poprawiona";
         }else{
-            Song::where("title", $rq->title)->delete();
+            Song::where("title", $rq->old_title)->delete();
             $response = "Pieśń usunięta";
         }
 

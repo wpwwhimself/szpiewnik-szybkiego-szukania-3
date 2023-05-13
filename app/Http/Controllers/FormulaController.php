@@ -40,23 +40,23 @@ class FormulaController extends Controller
                 "name" => $rq->name,
                 "gloria_present" => $rq->has("gloria_present"),
             ]);
+            for($i = 1; $i < count($rq->extraId); $i++){
+                if($rq->song[$i]){
+                    FormulaExtra::updateOrCreate(["id" => $rq->extraId[$i]], [
+                        "name" => $rq->song[$i],
+                        "before" => $rq->before[$i],
+                        "replace" => $rq->replace[$i],
+                        "formula" => $rq->name,
+                    ]);
+                }elseif($rq->extraId[$i]){
+                    FormulaExtra::findOrFail($rq->extraId[$i])->delete();
+                }
+            }
             $response = "Formuła poprawiona";
         }else{
             FormulaExtra::where("formula", $rq->old_name)->delete();
             Formula::where("name", $rq->old_name)->delete();
             $response = "Formuła usunięta";
-        }
-        for($i = 1; $i < count($rq->extraId); $i++){
-            if($rq->song[$i]){
-                FormulaExtra::updateOrCreate(["id" => $rq->extraId[$i]], [
-                    "name" => $rq->song[$i],
-                    "before" => $rq->before[$i],
-                    "replace" => $rq->replace[$i],
-                    "formula" => $rq->name,
-                ]);
-            }elseif($rq->extraId[$i]){
-                FormulaExtra::findOrFail($rq->extraId[$i])->delete();
-            }
         }
 
         return redirect()->route("formulas")->with("success", $response);

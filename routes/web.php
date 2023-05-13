@@ -64,10 +64,17 @@ Route::middleware(Authenticate::class)->group(function(){
         Route::post("/edit", "ordinariusEdit")->name("ordinarius-edit");
     });
 
-    Route::controller(FormulaController::class)->prefix("formula")->group(function(){
+    Route::controller(FormulaController::class)->prefix("formulas")->group(function(){
         Route::get("/", "formulas")->name("formulas");
         Route::get("/show/{name_slug}", "formula")->name("formula");
         Route::post("/edit", "formulaEdit")->name("formula-edit");
         Route::get("/add", "formulaAdd")->name("formula-add");
+    });
+
+    Route::controller(PlaceController::class)->prefix("places")->group(function(){
+        Route::get("/", "places")->name("places");
+        Route::get("/show/{name_slug}", "place")->name("place");
+        Route::post("/edit", "placeEdit")->name("place-edit");
+        Route::get("/add", "placeAdd")->name("place-add");
     });
 });

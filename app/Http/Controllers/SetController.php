@@ -64,23 +64,23 @@ class SetController extends Controller
                 "pPsalm" => $rq->pPsalm,
                 "pAccl" => $rq->pAccl,
             ]);
+            for($i = 1; $i < count($rq->extraId); $i++){
+                if($rq->song[$i]){
+                    SetExtra::updateOrCreate(["id" => $rq->extraId[$i]], [
+                        "name" => $rq->song[$i],
+                        "before" => $rq->before[$i],
+                        "replace" => $rq->replace[$i],
+                        "set_id" => $rq->id,
+                    ]);
+                }elseif($rq->extraId[$i]){
+                    SetExtra::findOrFail($rq->extraId[$i])->delete();
+                }
+            }
             $response = "Msza poprawiona";
         }elseif($rq->action === "delete"){
             SetExtra::where("set_id", $rq->id)->delete();
             Set::findOrFail($rq->id)->delete();
             $response = "Msza usunięta";
-        }
-        for($i = 1; $i < count($rq->extraId); $i++){
-            if($rq->song[$i]){
-                SetExtra::updateOrCreate(["id" => $rq->extraId[$i]], [
-                    "name" => $rq->song[$i],
-                    "before" => $rq->before[$i],
-                    "replace" => $rq->replace[$i],
-                    "set_id" => $rq->id,
-                ]);
-            }elseif($rq->extraId[$i]){
-                SetExtra::findOrFail($rq->extraId[$i])->delete();
-            }
         }
 
         return redirect()->route("sets")->with("success", $response);
