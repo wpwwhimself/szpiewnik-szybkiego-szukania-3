@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { createContext, useState } from "react";
 import { massOrder, baseFormula } from "../helpers";
 import { Button, Input, Select } from "../components/Interactives";
-import { AddCollectorProps, AdderFilterProps, Extra, Formula, HandleAddCollectorProps, MModProps, MassElem, OrdinariumColorProps, OrdinariumProps, SelectOption, Set, SongCategoryProps, SongProps } from "../types";
+import { AddCollectorProps, AdderFilterProps, Extra, Formula, HandleAddCollectorProps, MModProps, MassElem, OrdinariumColorProps, OrdinariumProps, PlaceProps, SelectOption, Set, SongCategoryProps, SongProps } from "../types";
 import { ExtrasProcessor, MassElemSection, OrdinariumProcessor, PsalmLyrics, SongLyrics } from "../components/MassElements";
 import { SheetMusicRender } from "../components/SheetMusicRender";
 import axios from "axios";
@@ -11,7 +11,9 @@ import moment from "moment";
 export const MModContext = createContext({} as MModProps);
 
 export function MassSet(){
-    const set_id = +window.location.href.replace(/.*\/(\d+)/, "$1");
+    const set_id = +window.location.href.replace(/.*\/(\d+).*/, "$1");
+    const place_slug_match = window.location.href.match(/.*\?place=(.*)/);
+    const place_slug = place_slug_match ? place_slug_match[1] : null;
 
     const [set, setSet] = useState({} as Set);
     const [ordinarium, setOrdinarium] = useState([] as OrdinariumProps[]);
@@ -20,17 +22,24 @@ export function MassSet(){
     const [songs, setSongs] = useState([] as SongProps[]);
     const [categories, setCategories] = useState([] as SongCategoryProps[]);
     const [adderFilters, setAdderFilters] = useState({categories: [1], preferences: [0,1,2,3,4]} as AdderFilterProps);
+    const [currentPlaceExtras, setCurrentPlaceExtras] = useState([] as Extra[]);
+    const [places, setPlaces] = useState([] as PlaceProps[])
 
     const [addCollector, setAddCollector] = useState({song: undefined, before: undefined} as AddCollectorProps);
 
     useEffect(() => {
-        axios.get("/api/set-data", {params: {set_id: set_id}}).then(res => {
+        axios.get("/api/set-data", {params: {
+                set_id: set_id,
+                place_slug: place_slug,
+        }}).then(res => {
             setSet({...res.data.set, thisMassOrder: []});
             setOrdinarium(res.data.ordinarium);
             setOrdColors(res.data.ordinarius_colors);
+            setCurrentPlaceExtras(res.data.place_extras);
             setFormula(res.data.formula);
             setSongs(res.data.songs);
             setCategories(res.data.categories);
+            setPlaces(res.data.places);
         });
     }, []);
 
@@ -107,6 +116,9 @@ export function MassSet(){
     set.extras?.forEach((el) => {
         insertExtras(el, thisMassOrder, true);
     });
+    currentPlaceExtras?.forEach((el) => {
+        insertExtras(el, thisMassOrder, true);
+    })
 
     if(set.thisMassOrder.length === 0) setSet({...set, thisMassOrder: thisMassOrder});;
 
@@ -228,6 +240,10 @@ export function MassSet(){
         document.getElementById("jumper")!.classList.toggle("show");
     }
 
+    function placerOn(){
+        document.getElementById("placer")!.classList.toggle("show");
+    }
+
     // Mass' summary
     const summary = set.thisMassOrder
         ?.filter(el => !!el.content)
@@ -238,6 +254,7 @@ export function MassSet(){
             <Select name="color" label="Kolor cz.st." options={ordColorOptions} value={set.color} onChange={handleColorChange}/>
             <Button onClick={() => jumperOn()}>»</Button>
             <Button onClick={() => addModeOn("END")}>+</Button>
+            <Button onClick={() => placerOn()}>{currentPlaceExtras ? currentPlaceExtras[0].place : "Miejsce"}</Button>
         </div>
 
         <div id="jumper" className="modal">
@@ -333,6 +350,31 @@ export function MassSet(){
             <div className="flex-right stretch">
                 <Button onClick={() => addModeOn()}>Anuluj</Button>
                 {addCollector.song && addCollector.before && <Button onClick={() => addModeOn(undefined, true)}>Dodaj</Button>}
+            </div>
+        </div>
+
+        <div id="placer" className="modal">
+            <h1>Zmień miejsce</h1>
+            <h2>Wymaga przeładowania, utracisz wprowadzone zmiany!</h2>
+
+            <div className="flex-right center wrap">
+                <a href="?">
+                    <Button>domyślne</Button>
+                </a>
+            {places.map((place, i) =>
+                <a href={`?place=${place.name
+                    .toLocaleLowerCase()
+                    .trim()
+                    .replace(/[^\w\s-]/g, '')
+                    .replace(/[\s_-]+/g, '-')
+                    .replace(/^-+|-+$/g, '')}`} key={i}>
+                    <Button>{place.name}</Button>
+                </a>
+            )}
+            </div>
+
+            <div className="flex-right stretch">
+                <Button onClick={() => placerOn()}>Anuluj</Button>
             </div>
         </div>
 

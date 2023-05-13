@@ -2,18 +2,20 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Formula;
 use App\Models\Ordinarius;
 use App\Models\OrdinariusColor;
+use App\Models\Place;
 use App\Models\Set;
 use App\Models\Song;
 use App\Models\SongCategory;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class DataModController extends Controller
 {
     public function setData(Request $rq){
         $set = Set::find($rq->set_id);
+        $place = Place::all()->filter(fn($el) => Str::slug($el->name) === $rq->place_slug)->first();
 
         return response()->json([
             "set" => collect(
@@ -28,6 +30,8 @@ class DataModController extends Controller
             ),
             "songs" => Song::all(),
             "categories" => SongCategory::all(),
+            "place_extras" => $place?->extras,
+            "places" => Place::all(),
         ]);
     }
 

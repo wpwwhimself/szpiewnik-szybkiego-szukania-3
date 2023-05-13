@@ -312,7 +312,7 @@ button, .button{
     background-color: var(--bg3);
     padding: 0 0.75em;
     --spacing: 0.3em;
-    margin: calc(var(--spacing) * 2) 0;
+    margin: calc(var(--spacing) * 1.5) 0;
     text-align: center;
     font-weight: bold;
     font-size: 1.2em;

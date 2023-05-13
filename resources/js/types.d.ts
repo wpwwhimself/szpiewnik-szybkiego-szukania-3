@@ -21,7 +21,6 @@ export interface MModProps{
 
 export interface PlaceProps{
     name: string,
-    extras?: Extra[],
 }
 
 export interface SongProps{
@@ -59,6 +58,7 @@ export interface OrdinariumColorProps{
 export interface Extra{
     id: number,
     formula?: string,
+    place?: string,
     name: string,
     before: string | null,
     replace: boolean,

@@ -25860,7 +25860,9 @@ var __spreadArray = undefined && undefined.__spreadArray || function (to, from, 
 var MModContext = /*#__PURE__*/(0,react__WEBPACK_IMPORTED_MODULE_1__.createContext)({});
 function MassSet() {
   var _a, _b, _c, _d, _e, _f, _g;
-  var set_id = +window.location.href.replace(/.*\/(\d+)/, "$1");
+  var set_id = +window.location.href.replace(/.*\/(\d+).*/, "$1");
+  var place_slug_match = window.location.href.match(/.*\?place=(.*)/);
+  var place_slug = place_slug_match ? place_slug_match[1] : null;
   var _h = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)({}),
     set = _h[0],
     setSet = _h[1];
@@ -25885,16 +25887,23 @@ function MassSet() {
     }),
     adderFilters = _p[0],
     setAdderFilters = _p[1];
-  var _q = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)({
+  var _q = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)([]),
+    currentPlaceExtras = _q[0],
+    setCurrentPlaceExtras = _q[1];
+  var _r = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)([]),
+    places = _r[0],
+    setPlaces = _r[1];
+  var _s = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)({
       song: undefined,
       before: undefined
     }),
-    addCollector = _q[0],
-    setAddCollector = _q[1];
+    addCollector = _s[0],
+    setAddCollector = _s[1];
   (0,react__WEBPACK_IMPORTED_MODULE_1__.useEffect)(function () {
     axios__WEBPACK_IMPORTED_MODULE_7__["default"].get("/api/set-data", {
       params: {
-        set_id: set_id
+        set_id: set_id,
+        place_slug: place_slug
       }
     }).then(function (res) {
       setSet(__assign(__assign({}, res.data.set), {
@@ -25902,9 +25911,11 @@ function MassSet() {
       }));
       setOrdinarium(res.data.ordinarium);
       setOrdColors(res.data.ordinarius_colors);
+      setCurrentPlaceExtras(res.data.place_extras);
       setFormula(res.data.formula);
       setSongs(res.data.songs);
       setCategories(res.data.categories);
+      setPlaces(res.data.places);
     });
   }, []);
   // loader
@@ -25987,6 +25998,9 @@ function MassSet() {
     insertExtras(el, thisMassOrder, true);
   });
   (_b = set.extras) === null || _b === void 0 ? void 0 : _b.forEach(function (el) {
+    insertExtras(el, thisMassOrder, true);
+  });
+  currentPlaceExtras === null || currentPlaceExtras === void 0 ? void 0 : currentPlaceExtras.forEach(function (el) {
     insertExtras(el, thisMassOrder, true);
   });
   if (set.thisMassOrder.length === 0) setSet(__assign(__assign({}, set), {
@@ -26175,6 +26189,9 @@ function MassSet() {
   function jumperOn() {
     document.getElementById("jumper").classList.toggle("show");
   }
+  function placerOn() {
+    document.getElementById("placer").classList.toggle("show");
+  }
   // Mass' summary
   var summary = (_d = set.thisMassOrder) === null || _d === void 0 ? void 0 : _d.filter(function (el) {
     return !!el.content;
@@ -26203,6 +26220,12 @@ function MassSet() {
         }
       }, {
         children: "+"
+      })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components_Interactives__WEBPACK_IMPORTED_MODULE_3__.Button, __assign({
+        onClick: function onClick() {
+          return placerOn();
+        }
+      }, {
+        children: currentPlaceExtras ? currentPlaceExtras[0].place : "Miejsce"
       }))]
     })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({
       id: "jumper",
@@ -26344,6 +26367,43 @@ function MassSet() {
         }, {
           children: "Dodaj"
         }))]
+      }))]
+    })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({
+      id: "placer",
+      className: "modal"
+    }, {
+      children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("h1", {
+        children: "Zmie\u0144 miejsce"
+      }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("h2", {
+        children: "Wymaga prze\u0142adowania, utracisz wprowadzone zmiany!"
+      }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({
+        className: "flex-right center wrap"
+      }, {
+        children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("a", __assign({
+          href: "?"
+        }, {
+          children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components_Interactives__WEBPACK_IMPORTED_MODULE_3__.Button, {
+            children: "domy\u015Blne"
+          })
+        })), places.map(function (place, i) {
+          return (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("a", __assign({
+            href: "?place=".concat(place.name.toLocaleLowerCase().trim().replace(/[^\w\s-]/g, '').replace(/[\s_-]+/g, '-').replace(/^-+|-+$/g, ''))
+          }, {
+            children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components_Interactives__WEBPACK_IMPORTED_MODULE_3__.Button, {
+              children: place.name
+            })
+          }), i);
+        })]
+      })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", __assign({
+        className: "flex-right stretch"
+      }, {
+        children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components_Interactives__WEBPACK_IMPORTED_MODULE_3__.Button, __assign({
+          onClick: function onClick() {
+            return placerOn();
+          }
+        }, {
+          children: "Anuluj"
+        }))
       }))]
     })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", __assign({
       className: "flex-down"
