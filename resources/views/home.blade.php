@@ -36,10 +36,14 @@
     <h3>Uprawnienia</h3>
     <p class="center">
         <strong>Poziom {{ Auth::user()->clearance->id }}: {{ Auth::user()->clearance->name }}</strong><br />
-        <span>Możesz: {{ Auth::user()->clearance->allCan }}</span>
-</section>
-
-<section>
+        <div class="flex-right center">
+            <span>Możesz:</span>
+            <ol style="text-align: left;">
+            @foreach (Auth::user()->clearance->allCan as $can)
+                <li>{{ $can }}</li>
+            @endforeach
+            </ol>
+        </div>
 </section>
 
 @else

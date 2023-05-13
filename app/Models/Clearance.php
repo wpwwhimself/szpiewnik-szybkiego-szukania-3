@@ -13,6 +13,6 @@ class Clearance extends Model
         return $this->hasMany(User::class);
     }
     public function getAllCanAttribute(){
-        return implode(", ", Clearance::where("id", "<=", $this->id)->pluck("can")->toArray());
+        return Clearance::where("id", "<=", $this->id)->pluck("can")->toArray();
     }
 }
