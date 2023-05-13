@@ -200,6 +200,8 @@ export function MassSet(){
         document.getElementById("adder")!.classList.toggle("show");
     }
 
+    console.log(adderFilters);
+
     function toggleFilters(category: number, preference: boolean = false){
         if(preference){
             const position = adderFilters.preferences.indexOf(category);

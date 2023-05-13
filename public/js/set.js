@@ -26133,6 +26133,7 @@ function MassSet() {
     });
     document.getElementById("adder").classList.toggle("show");
   }
+  console.log(adderFilters);
   function toggleFilters(category, preference) {
     if (preference === void 0) {
       preference = false;

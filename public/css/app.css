@@ -77,7 +77,7 @@ thead th, tfoot th{
 .accent{
     color: var(--acc) !important;
 }
-.accent-border{
+.accent-border, .accent-border::before{
     border-color: var(--acc) !important;
 }
 .cap-initial::first-letter{
