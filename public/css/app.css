@@ -310,14 +310,12 @@ textarea{
 button, .button{
     color: var(--fg);
     background-color: var(--bg3);
-    /* width: 100%; */
     padding: 0 0.75em;
+    --spacing: 0.3em;
+    margin: calc(var(--spacing) * 2) 0;
     text-align: center;
     font-weight: bold;
     font-size: 1.2em;
-    /* border-top: 0.5em double var(--bg1); */
-    /* border-bottom: 0.5em double var(--bg1); */
-    /* border-left: none; border-right: none; */
     border: none;
     text-decoration: none;
     cursor: pointer;
@@ -327,7 +325,6 @@ button::before, .button::before{
     content: "";
     transition-duration: 0.3s;
     position: absolute;
-    --spacing: 0.3em;
     top: calc(var(--spacing) * -1); bottom: calc(var(--spacing) * -1);
     left: 0; right: 0;
     border-top: 3px solid var(--bg3);
