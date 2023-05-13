@@ -25985,7 +25985,10 @@ function MassSet() {
       label: after_flag ? pre === null || pre === void 0 ? void 0 : pre.label : "Zanim nast\u0105pi ".concat(pre === null || pre === void 0 ? void 0 : pre.label),
       content: content
     };
-    if (pre) thisMassOrder.splice(thisMassOrder.indexOf(pre) + +after_flag, extra.replace ? 1 : 0, addition);else thisMassOrder.push({
+    if (pre) {
+      // sole "x" serves as empty, mark "replace" to force-delete
+      if (extra.name === "x") thisMassOrder.splice(thisMassOrder.indexOf(pre) + +after_flag, extra.replace ? 1 : 0);else thisMassOrder.splice(thisMassOrder.indexOf(pre) + +after_flag, extra.replace ? 1 : 0, addition);
+    } else thisMassOrder.push({
       code: "sOutro",
       label: "Dodatkowo",
       content: extra.name
