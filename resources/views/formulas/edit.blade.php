@@ -15,7 +15,6 @@
     <table>
         <thead>
             <tr>
-                <th>Źródło</th>
                 <th>Element</th>
                 <th>Przed</th>
                 <th>Zastąp</th>
@@ -60,17 +59,17 @@
             }
             </script>
             <tr>
-                <td colspan="4">
+                <td colspan="3">
                     <div class="button" onclick="addExtraRow()">Dodaj</div>
                 </td>
             </tr>
             <tr>
-                <td colspan="4">
+                <td colspan="3">
                     <div id="song-autocomplete" class="flex-right center wrap"></div>
                 </td>
             </tr>
             <tr id="row-adder">
-                <td>Formuła<input type="hidden" name="extraId[]" /></td>
+                <input type="hidden" name="extraId[]" />
                 <td><input type="text" name="song[]" onkeyup="songAutocomplete(this)" /></td>
                 <td><x-select name="before[]" label="" :options="$mass_order" :empty-option="true" /></td>
                 <td>
@@ -80,7 +79,7 @@
             </tr>
         @foreach ($formula->extras as $extra)
             <tr>
-                <td>Msza<input type="hidden" name="extraId[]" value="{{ $extra->id }}" /></td>
+                <input type="hidden" name="extraId[]" value="{{ $extra->id }}" />
                 <td><input type="text" name="song[]" value="{{ $extra->name }}" onkeyup="songAutocomplete(this)" /></td>
                 <td><x-select name="before[]" label="" value="{{ $extra->before }}" :options="$mass_order" :empty-option="true" /></td>
                 <td>
