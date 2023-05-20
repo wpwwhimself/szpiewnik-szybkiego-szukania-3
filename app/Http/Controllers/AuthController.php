@@ -18,7 +18,7 @@ class AuthController extends Controller
     public function authenticate(Request $request){
         $credentials = $request->only(["name", "password"]);
 
-        if (Auth::attempt($credentials)) {
+        if (Auth::attempt($credentials, $request->has("remember"))) {
             $request->session()->regenerate();
 
             return redirect()->intended("/")->with("success", "Zalogowano");

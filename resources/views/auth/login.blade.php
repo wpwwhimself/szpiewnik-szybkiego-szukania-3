@@ -8,6 +8,7 @@
   <div class="flex-right center wrap">
     <x-input type="text" name="name" label="Nazwa użytkownika" :required="true" />
     <x-input type="password" name="password" label="Hasło" :required="true" />
+    <x-input type="checkbox" name="remember" label="Zapamiętaj mnie" />
   </div>
   <div class="flex-right stretch">
     <x-button type="submit">Zaloguj się</x-button>
