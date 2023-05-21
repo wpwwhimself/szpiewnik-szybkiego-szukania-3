@@ -25131,7 +25131,7 @@ function MassElemSection(_a) {
 }
 function SongLyrics(_a) {
   var lyrics = _a.lyrics;
-  var lyrics_processed = lyrics === null || lyrics === void 0 ? void 0 : lyrics.replace(/\*\*\s*\r?\n/g, '</span><br>').replace(/\*\s*\r?\n/g, "<span class=\"chorus\">").replace(/_(.{1,5})_/g, '<u>$1</u>').replace(/\d+\.\s*\r?\n/g, function (match) {
+  var lyrics_processed = lyrics === null || lyrics === void 0 ? void 0 : lyrics.replace(/(\*\*|--)\s*\r?\n/g, '</span><br>').replace(/\*\s*\r?\n/g, "<span class=\"chorus\">").replace(/-\s*\r?\n/g, "<span class=\"tabbed\">").replace(/_(.{1,5})_/g, '<u>$1</u>').replace(/\d+\.\s*\r?\n/g, function (match) {
     return "<li start=" + match.substring(0, match.length - 2) + ">";
   }).replace(/\r?\n/g, "<br />");
   return (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("ol", {

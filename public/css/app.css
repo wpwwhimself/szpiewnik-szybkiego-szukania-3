@@ -397,6 +397,10 @@ label{
 .chorus{
   font-weight: bold;
 }
+.tabbed{
+  display: block;
+  margin-left: 1em;
+}
 
 .psalm{
 	padding-left: 40px;
