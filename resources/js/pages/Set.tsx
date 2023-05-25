@@ -77,6 +77,7 @@ export function MassSet(){
 
     //modifications
     const insertExtras = (extra: Extra, massOrder: MassElem[], prebuild = false) => {
+        // insert songs after other songs and before other parts
         const after_flag = (extra.before?.charAt(0) === "s" && extra.before !== "summary" && !prebuild) ?? false;
 
         const pre = extra.before === "summary"
@@ -86,7 +87,7 @@ export function MassSet(){
             ? extra.name
             : after_flag
                 ? extra.before ?? "END"
-                : "sB4"+extra.before;
+                : "sB4"+(extra.before ?? "END");
         const same_code_count = thisMassOrder.filter(el => el.code.match(code)).length;
         if(same_code_count > 0){
             code += same_code_count
@@ -97,7 +98,9 @@ export function MassSet(){
             code: code,
             label: after_flag
                 ? pre?.label
-                : `Zanim nastąpi ${pre?.label}`,
+                : extra.before
+                    ? `Zanim nastąpi ${pre?.label}`
+                    : "Dodatkowo",
             content: content
         };
 
@@ -113,7 +116,9 @@ export function MassSet(){
                 addition
             );
         }
-        else thisMassOrder.push({ code: `sOutro`, label: `Dodatkowo`, content: extra.name });
+        else{
+            thisMassOrder.push(addition);
+        };
     }
 
     if(!formula.gloria_present) thisMassOrder = thisMassOrder.filter(el => el.code !== "oGloria");

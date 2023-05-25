@@ -25964,15 +25964,16 @@ function MassSet() {
   });
   //modifications
   var insertExtras = function insertExtras(extra, massOrder, prebuild) {
-    var _a, _b, _c;
+    var _a, _b, _c, _d;
     if (prebuild === void 0) {
       prebuild = false;
     }
+    // insert songs after other songs and before other parts
     var after_flag = (_b = ((_a = extra.before) === null || _a === void 0 ? void 0 : _a.charAt(0)) === "s" && extra.before !== "summary" && !prebuild) !== null && _b !== void 0 ? _b : false;
     var pre = extra.before === "summary" ? massOrder[0] : massOrder.filter(function (el2) {
       return el2.code === extra.before;
     })[0];
-    var code = extra.name.charAt(0) === "x" ? extra.name : after_flag ? (_c = extra.before) !== null && _c !== void 0 ? _c : "END" : "sB4" + extra.before;
+    var code = extra.name.charAt(0) === "x" ? extra.name : after_flag ? (_c = extra.before) !== null && _c !== void 0 ? _c : "END" : "sB4" + ((_d = extra.before) !== null && _d !== void 0 ? _d : "END");
     var same_code_count = thisMassOrder.filter(function (el) {
       return el.code.match(code);
     }).length;
@@ -25982,17 +25983,16 @@ function MassSet() {
     var content = extra.name.charAt(0) === "x" ? undefined : extra.name;
     var addition = {
       code: code,
-      label: after_flag ? pre === null || pre === void 0 ? void 0 : pre.label : "Zanim nast\u0105pi ".concat(pre === null || pre === void 0 ? void 0 : pre.label),
+      label: after_flag ? pre === null || pre === void 0 ? void 0 : pre.label : extra.before ? "Zanim nast\u0105pi ".concat(pre === null || pre === void 0 ? void 0 : pre.label) : "Dodatkowo",
       content: content
     };
     if (pre) {
       // sole "x" serves as empty, mark "replace" to force-delete
       if (extra.name === "x") thisMassOrder.splice(thisMassOrder.indexOf(pre) + +after_flag, extra.replace ? 1 : 0);else thisMassOrder.splice(thisMassOrder.indexOf(pre) + +after_flag, extra.replace ? 1 : 0, addition);
-    } else thisMassOrder.push({
-      code: "sOutro",
-      label: "Dodatkowo",
-      content: extra.name
-    });
+    } else {
+      thisMassOrder.push(addition);
+    }
+    ;
   };
   if (!formula.gloria_present) thisMassOrder = thisMassOrder.filter(function (el) {
     return el.code !== "oGloria";
