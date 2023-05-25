@@ -467,8 +467,8 @@ label{
 }
 
 section{
-    border-top: 3px solid var(--bg2);
-    border-bottom: 3px solid var(--bg2);
+    /* border-top: 3px solid var(--bg2); */
+    /* border-bottom: 3px solid var(--bg2); */
     margin: 1em 0;
 }
 section>*:last-of-type{
