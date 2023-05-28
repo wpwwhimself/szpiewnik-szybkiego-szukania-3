@@ -139,55 +139,55 @@ export function MassSet(){
     const Mass = set.thisMassOrder?.map<React.ReactNode>((el, i) => {
         switch(el.code.charAt(0)){
             case "s": // song
-            const song = songs.filter(s => s.title === el.content)[0];
-            return(
-                <MassElemSection id={el.code} key={i}>
-                    <div className="songMeta">
-                        <h2>{el.label}</h2>
-                        <h1>{el.content}</h1>
-                        <div className="flex-right center wrap">
-                        {song ?
-                          <>
-                            <Input type="text" name="" label="Tonacja" value={song.key} disabled />
-                            <Input type="text" name="" label="Kategoria" value={song.category_desc} disabled />
-                            <Input type="text" name="" label="Numer w śpiewniku Preis" value={song.number_preis} disabled />
-                          </>
-                          :
-                          <p>Pieśń niezapisana</p>
-                        }
-                        </div>
+                const song = songs.filter(s => s.title === el.content)[0];
+                return(
+                    <MassElemSection id={el.code} key={i}>
+                        <div className="songMeta">
+                            <h2>{el.label}</h2>
+                            <h1>{el.content}</h1>
+                            <div className="flex-right center wrap">
+                            {song ?
+                            <>
+                                <Input type="text" name="" label="Tonacja" value={song.key} disabled />
+                                <Input type="text" name="" label="Kategoria" value={song.category_desc} disabled />
+                                <Input type="text" name="" label="Numer w śpiewniku Preis" value={song.number_preis} disabled />
+                            </>
+                            :
+                            <p>Pieśń niezapisana</p>
+                            }
+                            </div>
 
-                        {song?.sheet_music && <SheetMusicRender notes={song.sheet_music} />}
-                        {song?.lyrics && <SongLyrics lyrics={song.lyrics} />}
-                    </div>
-                </MassElemSection>
-            )
-        case "p": // psalm
-            const part = thisMassOrdinarium.filter(el2 => el2.part === el.label.toLocaleLowerCase())[0];
-            const formulaPart = ordinarium
-                .filter(el2 => el2.color_code === baseFormula(formula.name))
-                .filter(el2 => el2.part === el.label.toLocaleLowerCase())[0];
-            const isNotWielkiPostAklamacja = !(baseFormula(set.formula) === "Wielki Post" && el.code === "pAccl");
-            return(
-                <MassElemSection id={el.code} key={i}>
-                    <h1>{el.label}</h1>
-                    {isNotWielkiPostAklamacja && <SheetMusicRender notes={part.sheet_music} />}
-                    {formulaPart && <SheetMusicRender notes={formulaPart.sheet_music} />}
-                    <PsalmLyrics lyrics={el.content!} />
-                </MassElemSection>
-            )
-        case "o": // ordinarius
-            return(
-                <MassElemSection id={el.code} key={i}>
-                    <OrdinariumProcessor code={el.code} colorCode={set.color} />
-                </MassElemSection>
-            )
-        default:
-            return(
-                <MassElemSection id={el.code} key={i}>
-                    <ExtrasProcessor elem={el} />
-                </MassElemSection>
-            )
+                            {song?.sheet_music && <SheetMusicRender notes={song.sheet_music} />}
+                            {song?.lyrics && <SongLyrics lyrics={song.lyrics} />}
+                        </div>
+                    </MassElemSection>
+                )
+            case "p": // psalm
+                const part = thisMassOrdinarium.filter(el2 => el2.part === el.label.toLocaleLowerCase())[0];
+                const formulaPart = ordinarium
+                    .filter(el2 => el2.color_code === baseFormula(formula.name))
+                    .filter(el2 => el2.part === el.label.toLocaleLowerCase())[0];
+                const isNotWielkiPostAklamacja = !(baseFormula(set.formula) === "Wielki Post" && el.code === "pAccl");
+                return(
+                    <MassElemSection id={el.code} key={i}>
+                        <h1>{el.label}</h1>
+                        {isNotWielkiPostAklamacja && <SheetMusicRender notes={part.sheet_music} />}
+                        {formulaPart && <SheetMusicRender notes={formulaPart.sheet_music} />}
+                        <PsalmLyrics lyrics={el.content!} />
+                    </MassElemSection>
+                )
+            case "o": // ordinarius
+                return(
+                    <MassElemSection id={el.code} key={i}>
+                        <OrdinariumProcessor code={el.code} colorCode={set.color} />
+                    </MassElemSection>
+                )
+            default:
+                return(
+                    <MassElemSection id={el.code} key={i}>
+                        <ExtrasProcessor elem={el} />
+                    </MassElemSection>
+                )
         }
     });
 
