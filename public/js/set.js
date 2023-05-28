@@ -25899,6 +25899,7 @@ function MassSet() {
     }),
     addCollector = _s[0],
     setAddCollector = _s[1];
+  var czsts = ["sIntro", "sOffer", "sCommunion", "sAdoration", "sDismissal"];
   (0,react__WEBPACK_IMPORTED_MODULE_1__.useEffect)(function () {
     axios__WEBPACK_IMPORTED_MODULE_7__["default"].get("/api/set-data", {
       params: {
@@ -25950,7 +25951,7 @@ function MassSet() {
   });
   //splitting songs
   thisMassOrder.filter(function (el) {
-    return ["sIntro", "sOffer", "sCommunion", "sAdoration", "sDismissal"].includes(el.code);
+    return czsts.includes(el.code);
   }).forEach(function (el) {
     var _a;
     (_a = el.content) === null || _a === void 0 ? void 0 : _a.split(/\r?\n/).forEach(function (title, i) {
@@ -26133,6 +26134,14 @@ function MassSet() {
   function addModeOn(id, useCollector) {
     if (useCollector === void 0) {
       useCollector = false;
+    }
+    // force filters
+    if ((id === null || id === void 0 ? void 0 : id.charAt(0)) === "s") {
+      czsts.forEach(function (label, i) {
+        if (id.match(label)) setAdderFilters(__assign(__assign({}, adderFilters), {
+          preferences: [i]
+        }));
+      });
     }
     if (useCollector) {
       thisMassOrder = set.thisMassOrder;

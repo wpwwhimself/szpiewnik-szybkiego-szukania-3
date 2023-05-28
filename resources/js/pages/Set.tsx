@@ -27,6 +27,8 @@ export function MassSet(){
 
     const [addCollector, setAddCollector] = useState({song: undefined, before: undefined} as AddCollectorProps);
 
+    const czsts = ["sIntro", "sOffer", "sCommunion", "sAdoration", "sDismissal"];
+
     useEffect(() => {
         axios.get("/api/set-data", {params: {
                 set_id: set_id,
@@ -64,7 +66,7 @@ export function MassSet(){
     }));
 
     //splitting songs
-    thisMassOrder.filter(el => ["sIntro", "sOffer", "sCommunion", "sAdoration", "sDismissal"].includes(el.code)).forEach(el => {
+    thisMassOrder.filter(el => czsts.includes(el.code)).forEach(el => {
         el.content?.split(/\r?\n/).forEach((title, i) => {
             thisMassOrder.splice(
                 thisMassOrder.indexOf(el),
@@ -208,6 +210,13 @@ export function MassSet(){
 
     //adding
     function addModeOn(id?: string, useCollector: boolean = false){
+        // force filters
+        if(id?.charAt(0) === "s"){
+            czsts.forEach((label, i) => {
+                if(id.match(label)) setAdderFilters({...adderFilters, preferences: [i]})
+            });
+        }
+
         if(useCollector){
             thisMassOrder = set.thisMassOrder!;
             insertExtras(
