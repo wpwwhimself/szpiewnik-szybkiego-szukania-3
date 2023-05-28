@@ -407,7 +407,7 @@ export function MassSet(){
                     <div className="grid-2">
                         <div>
                             <h2>Meta</h2>
-                            <div className="flex-right wrap center">
+                            <div className="flex-down center">
                                 <DummyInput label="Formuła" value={set.formula} />
                                 <DummyInput label="Utworzony" value={moment(set.created_at).format("DD.MM.YYYY")} />
                                 <DummyInput label="Zmodyfikowany" value={moment(set.updated_at).format("DD.MM.YYYY")} />

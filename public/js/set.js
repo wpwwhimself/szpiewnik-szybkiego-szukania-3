@@ -26446,7 +26446,7 @@ function MassSet() {
               children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("h2", {
                 children: "Meta"
               }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({
-                className: "flex-right wrap center"
+                className: "flex-down center"
               }, {
                 children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components_Interactives__WEBPACK_IMPORTED_MODULE_3__.DummyInput, {
                   label: "Formu\u0142a",
