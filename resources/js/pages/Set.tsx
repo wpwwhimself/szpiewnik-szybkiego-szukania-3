@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { createContext, useState } from "react";
 import { massOrder, baseFormula } from "../helpers";
-import { Button, DummyInput, Input, Select } from "../components/Interactives";
+import { Button, DummyInput, Select } from "../components/Interactives";
 import { AddCollectorProps, AdderFilterProps, Extra, Formula, HandleAddCollectorProps, MModProps, MassElem, OrdinariumColorProps, OrdinariumProps, PlaceProps, SelectOption, Set, SongCategoryProps, SongProps } from "../types";
 import { ExtrasProcessor, MassElemSection, OrdinariumProcessor, PsalmLyrics, SongLyrics } from "../components/MassElements";
 import { SheetMusicRender } from "../components/SheetMusicRender";
@@ -100,7 +100,7 @@ export function MassSet(){
             code: code,
             label: after_flag
                 ? pre?.label
-                : extra.before
+                : (extra.before && extra.before !== "END")
                     ? `Zanim nastąpi ${pre?.label}`
                     : "Dodatkowo",
             content: content
@@ -140,7 +140,6 @@ export function MassSet(){
         switch(el.code.charAt(0)){
             case "s": // song
                 const song = songs.filter(s => s.title === el.content)[0];
-                console.log(song.number_preis, el.content);
                 return(
                     <MassElemSection id={el.code} key={i}>
                         <div className="songMeta">
