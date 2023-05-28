@@ -24873,6 +24873,7 @@ module.exports = version;
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "Button": () => (/* binding */ Button),
+/* harmony export */   "DummyInput": () => (/* binding */ DummyInput),
 /* harmony export */   "Input": () => (/* binding */ Input),
 /* harmony export */   "Preferences": () => (/* binding */ Preferences),
 /* harmony export */   "Select": () => (/* binding */ Select)
@@ -24959,6 +24960,23 @@ function Input(_a) {
         })]
       }));
   }
+}
+function DummyInput(_a) {
+  var label = _a.label,
+    value = _a.value;
+  return (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({
+    className: "inputContainer"
+  }, {
+    children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("label", __assign({
+      htmlFor: ""
+    }, {
+      children: label
+    })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", __assign({
+      className: "dummyInput"
+    }, {
+      children: value !== null && value !== void 0 ? value : "—"
+    }))]
+  }));
 }
 function Select(_a) {
   var name = _a.name,
@@ -26018,6 +26036,7 @@ function MassSet() {
         var song = songs.filter(function (s) {
           return s.title === el.content;
         })[0];
+        console.log(song.number_preis, el.content);
         return (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components_MassElements__WEBPACK_IMPORTED_MODULE_4__.MassElemSection, __assign({
           id: el.code
         }, {
@@ -26032,24 +26051,15 @@ function MassSet() {
               className: "flex-right center wrap"
             }, {
               children: song ? (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
-                children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components_Interactives__WEBPACK_IMPORTED_MODULE_3__.Input, {
-                  type: "text",
-                  name: "",
+                children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components_Interactives__WEBPACK_IMPORTED_MODULE_3__.DummyInput, {
                   label: "Tonacja",
-                  value: song.key,
-                  disabled: true
-                }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components_Interactives__WEBPACK_IMPORTED_MODULE_3__.Input, {
-                  type: "text",
-                  name: "",
+                  value: song.key
+                }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components_Interactives__WEBPACK_IMPORTED_MODULE_3__.DummyInput, {
                   label: "Kategoria",
-                  value: song.category_desc,
-                  disabled: true
-                }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components_Interactives__WEBPACK_IMPORTED_MODULE_3__.Input, {
-                  type: "text",
-                  name: "",
+                  value: song.category_desc
+                }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components_Interactives__WEBPACK_IMPORTED_MODULE_3__.DummyInput, {
                   label: "Numer w \u015Bpiewniku Preis",
-                  value: song.number_preis,
-                  disabled: true
+                  value: song.number_preis
                 })]
               }) : (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("p", {
                 children: "Pie\u015B\u0144 niezapisana"
@@ -26438,23 +26448,14 @@ function MassSet() {
               }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({
                 className: "flex-right wrap center"
               }, {
-                children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components_Interactives__WEBPACK_IMPORTED_MODULE_3__.Input, {
-                  type: "text",
-                  name: "",
+                children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components_Interactives__WEBPACK_IMPORTED_MODULE_3__.DummyInput, {
                   label: "Formu\u0142a",
-                  disabled: true,
                   value: set.formula
-                }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components_Interactives__WEBPACK_IMPORTED_MODULE_3__.Input, {
-                  type: "text",
-                  name: "",
+                }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components_Interactives__WEBPACK_IMPORTED_MODULE_3__.DummyInput, {
                   label: "Utworzony",
-                  disabled: true,
                   value: moment__WEBPACK_IMPORTED_MODULE_6___default()(set.created_at).format("DD.MM.YYYY")
-                }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components_Interactives__WEBPACK_IMPORTED_MODULE_3__.Input, {
-                  type: "text",
-                  name: "",
+                }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components_Interactives__WEBPACK_IMPORTED_MODULE_3__.DummyInput, {
                   label: "Zmodyfikowany",
-                  disabled: true,
                   value: moment__WEBPACK_IMPORTED_MODULE_6___default()(set.updated_at).format("DD.MM.YYYY")
                 })]
               }))]

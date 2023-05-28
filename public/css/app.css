@@ -280,7 +280,7 @@ footer .auth{
     user-select: none;
 }
 
-input, select, textarea{
+input, select, textarea, .dummyInput{
     background: none;
     color: var(--fg);
     font-family: "EB Garamond";
@@ -290,9 +290,12 @@ input, select, textarea{
     resize: vertical;
     text-align: center;
 }
-table input{
+table input, table .dummyInput{
     border: none;
     text-align: left;
+    width: 100%;
+}
+.dummyInput{
     width: 100%;
 }
 #row-adder{

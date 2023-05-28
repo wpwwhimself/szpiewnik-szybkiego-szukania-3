@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { createContext, useState } from "react";
 import { massOrder, baseFormula } from "../helpers";
-import { Button, Input, Select } from "../components/Interactives";
+import { Button, DummyInput, Input, Select } from "../components/Interactives";
 import { AddCollectorProps, AdderFilterProps, Extra, Formula, HandleAddCollectorProps, MModProps, MassElem, OrdinariumColorProps, OrdinariumProps, PlaceProps, SelectOption, Set, SongCategoryProps, SongProps } from "../types";
 import { ExtrasProcessor, MassElemSection, OrdinariumProcessor, PsalmLyrics, SongLyrics } from "../components/MassElements";
 import { SheetMusicRender } from "../components/SheetMusicRender";
@@ -140,21 +140,22 @@ export function MassSet(){
         switch(el.code.charAt(0)){
             case "s": // song
                 const song = songs.filter(s => s.title === el.content)[0];
+                console.log(song.number_preis, el.content);
                 return(
                     <MassElemSection id={el.code} key={i}>
                         <div className="songMeta">
                             <h2>{el.label}</h2>
                             <h1>{el.content}</h1>
                             <div className="flex-right center wrap">
-                            {song ?
-                            <>
-                                <Input type="text" name="" label="Tonacja" value={song.key} disabled />
-                                <Input type="text" name="" label="Kategoria" value={song.category_desc} disabled />
-                                <Input type="text" name="" label="Numer w śpiewniku Preis" value={song.number_preis} disabled />
-                            </>
-                            :
-                            <p>Pieśń niezapisana</p>
-                            }
+                                {song ?
+                                <>
+                                    <DummyInput label="Tonacja" value={song.key} />
+                                    <DummyInput label="Kategoria" value={song.category_desc} />
+                                    <DummyInput label="Numer w śpiewniku Preis" value={song.number_preis} />
+                                </>
+                                :
+                                    <p>Pieśń niezapisana</p>
+                                }
                             </div>
 
                             {song?.sheet_music && <SheetMusicRender notes={song.sheet_music} />}
@@ -407,9 +408,9 @@ export function MassSet(){
                         <div>
                             <h2>Meta</h2>
                             <div className="flex-right wrap center">
-                                <Input type="text" name="" label="Formuła" disabled value={set.formula} />
-                                <Input type="text" name="" label="Utworzony" disabled value={moment(set.created_at).format("DD.MM.YYYY")} />
-                                <Input type="text" name="" label="Zmodyfikowany" disabled value={moment(set.updated_at).format("DD.MM.YYYY")} />
+                                <DummyInput label="Formuła" value={set.formula} />
+                                <DummyInput label="Utworzony" value={moment(set.created_at).format("DD.MM.YYYY")} />
+                                <DummyInput label="Zmodyfikowany" value={moment(set.updated_at).format("DD.MM.YYYY")} />
                             </div>
                         </div>
                         <div>

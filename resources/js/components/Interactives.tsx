@@ -1,4 +1,4 @@
-import { InputProps, PreferencesProps, SelectProps } from "../types";
+import { DummyInputProps, InputProps, PreferencesProps, SelectProps } from "../types";
 import { ButtonHTMLAttributes } from "react";
 
 export function Input({type, name, label, value, onChange, disabled}: InputProps){
@@ -29,6 +29,15 @@ export function Input({type, name, label, value, onChange, disabled}: InputProps
       </div>
     );
   }
+}
+
+export function DummyInput({label, value}: DummyInputProps){
+  return(
+    <div className="inputContainer">
+      <label htmlFor="">{label}</label>
+      <span className="dummyInput">{value ?? "—"}</span>
+    </div>
+  )
 }
 
 export function Select({name, label, value, firstEmpty, options, onChange}: SelectProps){

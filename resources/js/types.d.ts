@@ -122,6 +122,11 @@ export type InputProps = {
     onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 })
 
+export interface DummyInputProps{
+    label: string,
+    value: string | number | null,
+}
+
 export type SelectProps = {
     name: string,
     label: string,
