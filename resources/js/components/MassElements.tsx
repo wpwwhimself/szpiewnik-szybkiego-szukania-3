@@ -29,7 +29,7 @@ export function SongLyrics({lyrics}: {lyrics: string | null}){
     .replace(/\*\s*\r?\n/g, `<span class="chorus">`)
     .replace(/-\s*\r?\n/g, `<span class="tabbed">`)
     .replace(/_(.{1,5})_/g, '<u>$1</u>')
-    .replace(/\d+\.\s*\r?\n/g, match => {return "<li start="+match.substring(0, match.length - 2)+">"})
+    .replace(/(\d+)\.\s*\r?\n/g, "<li value='$1'>")
     .replace(/\r?\n/g, "<br />");
 
   return(<ol className="lyrics" dangerouslySetInnerHTML={{ __html: lyrics_processed ?? ""}} />);
