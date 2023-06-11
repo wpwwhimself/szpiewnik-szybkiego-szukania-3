@@ -39,13 +39,14 @@ class SetController extends Controller
         $formulas = Formula::all()->pluck("name", "name");
         $colors = OrdinariusColor::all()->pluck("display_name", "name");
         $songs = Song::all()->pluck("title", "title");
+        $song_preferences = Song::all()->pluck("preferences", "title");
         $mass_order = collect(json_decode((new DataModController)->massOrder()->content()))
             ->pluck("label", "value")
             ->toArray();
 
         return view("sets.edit", array_merge(
             ["title" => $set->name . " | Edycja mszy"],
-            compact("set", "formulas", "colors", "songs", 'mass_order')
+            compact("set", "formulas", "colors", "songs", "song_preferences", 'mass_order')
         ));
     }
 

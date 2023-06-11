@@ -16,7 +16,7 @@
 
     <h2>Pieśni</h2>
     <div class="flex-right center wrap">
-        <x-select name="song-adder" label="Pieśń" :empty-option="true" :options="$songs" />
+        <x-select name="song-adder" label="Pieśń" :empty-option="true" :options="$songs" :data-items="$song_preferences" />
     </div>
     <div class="grid-5">
     @foreach ([
@@ -26,8 +26,12 @@
         "sAdoration" => "Uwielbienie",
         "sDismissal" => "Zakończenie",
     ] as $code => $label)
+        @php $i ??= -1; $i++ @endphp
         <div class="flex-down center">
-            <x-button class="song-adder-trigger" data-elem="{{ $code }}">↓</x-button>
+            <div class="flex-right center">
+                <x-button class="song-adder-trigger" data-elem="{{ $code }}" title="Wybierz pieśń">↓</x-button>
+                <x-button class="song-randomizer-trigger" data-elem="{{ $i }}" title="Zaproponuj pieśń">?</x-button>
+            </div>
             <label>{{ $label }}</label>
             <div class="flex-down center">
             @foreach (explode("\n", $set->{$code}) as $song)
@@ -66,9 +70,25 @@
         //remove song from the list
         ev.target.remove();
     }
+    function songRandom(ev){
+        ev.preventDefault();
+        const code = ev.target.getAttribute("data-elem");
+        const song_list = document.getElementById("song-adder");
+
+        let random_song;
+        while(true){
+            random_song = song_list.options[Math.floor(Math.random() * song_list.length)];
+            if(random_song.getAttribute("data-item").split("/")[code] == 1){
+                break;
+            }
+        }
+        //select random song
+        song_list.value = random_song.value;
+    }
 
     document.querySelectorAll(".song-adder-trigger").forEach(el => el.addEventListener("click", songAdd));
     document.querySelectorAll(".song-adder-song").forEach(el => el.addEventListener("click", songRemove));
+    document.querySelectorAll(".song-randomizer-trigger").forEach(el => el.addEventListener("click", songRandom));
     </script>
 
     <h2>Psalm i aklamacja</h2>

@@ -6,7 +6,8 @@
   'options',
   'emptyOption' => false,
   'value' => null,
-  'small' => false
+  'small' => false,
+  'dataItems' => null,
 ])
 
 <div class="inputContainer">
@@ -22,7 +23,7 @@
     <option value="" {{ $value ? "" : "selected" }}></option>
     @endif
     @foreach ($options as $key => $val)
-    <option value="{{ $key }}" {{  $value == $key ? "selected" : "" }}>{{ $val }}</option>
+    <option value="{{ $key }}" {{ $dataItems ? "data-item=".$dataItems[$key] : "" }} {{  $value == $key ? "selected" : "" }}>{{ $val }}</option>
     @endforeach
   </select>
 </div>
