@@ -22,6 +22,7 @@ export function baseFormula(formula: string): string{
 
 export const massOrder: SelectOption[] = [
   { value: "sIntro", label: "Wejście" },
+  { value: "xGreetings", label: "Powitanie" },
   { value: "oKyrie", label: "Kyrie" },
   { value: "oGloria", label: "Gloria" },
   { value: "xLUP1", label: "Módlmy się" },

@@ -42,6 +42,7 @@ class DataModController extends Controller
     public function massOrder(){
         return response()->json([
             [ "value" => "sIntro", "label" => "Wejście"],
+            [ "value" => "xGreetings", "label" => "Powitanie"],
             [ "value" => "oKyrie", "label" => "Kyrie"],
             [ "value" => "oGloria", "label" => "Gloria"],
             [ "value" => "xLUP1", "label" => "Módlmy się"],

@@ -78,15 +78,6 @@ export function OrdinariumProcessor({code, colorCode}: OrdinariumProcessorProps)
     case "Kyrie":
       return(
         <>
-          <Antiphon
-            call="W imię Ojca i Syna i Ducha Świętego"
-            resp="Amen"
-          />
-          <Antiphon
-            call="Pan z wami"
-            resp="I z duchem Twoim"
-          />
-
           <h2>Akt pokutny</h2>
           <Alternative>
             <div className="alt_group">
@@ -308,6 +299,19 @@ export function OrdinariumProcessor({code, colorCode}: OrdinariumProcessorProps)
 
 export function ExtrasProcessor({elem}: {elem: MassElem}){
   switch(elem.code.substring(1)){
+    case "Greetings":
+      return(
+        <>
+          <Antiphon
+            call="W imię Ojca i Syna i Ducha Świętego"
+            resp="Amen"
+          />
+          <Antiphon
+            call="Pan z wami"
+            resp="I z duchem Twoim"
+          />
+        </>
+      )
     case "LUP1": //Let us pray
     case "LUP2": //Let us pray
       return(

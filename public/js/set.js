@@ -25218,13 +25218,7 @@ function OrdinariumProcessor(_a) {
   switch (code.substring(1)) {
     case "Kyrie":
       return (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
-        children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(Antiphon, {
-          call: "W imi\u0119 Ojca i Syna i Ducha \u015Awi\u0119tego",
-          resp: "Amen"
-        }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(Antiphon, {
-          call: "Pan z wami",
-          resp: "I z duchem Twoim"
-        }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("h2", {
+        children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("h2", {
           children: "Akt pokutny"
         }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(Alternative, {
           children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({
@@ -25527,6 +25521,16 @@ function OrdinariumProcessor(_a) {
 function ExtrasProcessor(_a) {
   var elem = _a.elem;
   switch (elem.code.substring(1)) {
+    case "Greetings":
+      return (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
+        children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(Antiphon, {
+          call: "W imi\u0119 Ojca i Syna i Ducha \u015Awi\u0119tego",
+          resp: "Amen"
+        }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(Antiphon, {
+          call: "Pan z wami",
+          resp: "I z duchem Twoim"
+        })]
+      });
     case "LUP1": //Let us pray
     case "LUP2":
       //Let us pray
@@ -25754,6 +25758,9 @@ function baseFormula(formula) {
 var massOrder = [{
   value: "sIntro",
   label: "Wejście"
+}, {
+  value: "xGreetings",
+  label: "Powitanie"
 }, {
   value: "oKyrie",
   label: "Kyrie"
