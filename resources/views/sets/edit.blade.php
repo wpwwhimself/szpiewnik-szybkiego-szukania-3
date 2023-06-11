@@ -48,7 +48,7 @@
         const title = document.getElementById("song-adder").value;
         if(title != ""){
             //add song to element list
-            const list = ev.target.parentElement.children[2];
+            const list = ev.target.parentElement.parentElement.children[2];
             const newSong = document.createElement("a");
             newSong.textContent = title;
             newSong.href = "#/";
