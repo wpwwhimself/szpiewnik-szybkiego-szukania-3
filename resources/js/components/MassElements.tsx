@@ -9,13 +9,14 @@ import axios from "axios";
 
 export function MassElemSection({id, uneresable = false, children}: MassElemSectionProps){
   const MMod = useContext(MModContext);
+  const is_communion = id.match(/sCommunion/) && document.getElementById("sAdoration");
 
   return(
     <section id={id} className="massElemSection">
-    {!uneresable &&
       <div className="massElemEditorElement massElemEraser flex-right">
-        <Button onClick={() => MMod.eraseMassElem(id)}>×</Button>
-      </div>}
+        {is_communion && <Button onClick={() => document.getElementById("sAdoration")?.scrollIntoView({behavior: "smooth", block: "center"})}>»U</Button>}
+        {!uneresable && <Button onClick={() => MMod.eraseMassElem(id)}>×</Button>}
+      </div>
       <div className="massElemEditorElement massElemAdder flex-right">
         <Button onClick={() => MMod.addMassElem(id)}>+</Button>
       </div>

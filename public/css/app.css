@@ -461,7 +461,7 @@ label{
     top: 0;
 }
 .massElemEditorElement.show{
-    display: block;
+    display: flex;
 }
 .massElemEraser{
     right: 0;

@@ -25120,20 +25120,31 @@ function MassElemSection(_a) {
     uneresable = _b === void 0 ? false : _b,
     children = _a.children;
   var MMod = (0,react__WEBPACK_IMPORTED_MODULE_1__.useContext)(_pages_Set__WEBPACK_IMPORTED_MODULE_4__.MModContext);
+  var is_communion = id.match(/sCommunion/) && document.getElementById("sAdoration");
   return (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("section", __assign({
     id: id,
     className: "massElemSection"
   }, {
-    children: [!uneresable && (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", __assign({
+    children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({
       className: "massElemEditorElement massElemEraser flex-right"
     }, {
-      children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_Interactives__WEBPACK_IMPORTED_MODULE_3__.Button, __assign({
+      children: [is_communion && (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_Interactives__WEBPACK_IMPORTED_MODULE_3__.Button, __assign({
+        onClick: function onClick() {
+          var _a;
+          return (_a = document.getElementById("sAdoration")) === null || _a === void 0 ? void 0 : _a.scrollIntoView({
+            behavior: "smooth",
+            block: "center"
+          });
+        }
+      }, {
+        children: "\xBBU"
+      })), !uneresable && (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_Interactives__WEBPACK_IMPORTED_MODULE_3__.Button, __assign({
         onClick: function onClick() {
           return MMod.eraseMassElem(id);
         }
       }, {
         children: "\xD7"
-      }))
+      }))]
     })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", __assign({
       className: "massElemEditorElement massElemAdder flex-right"
     }, {
