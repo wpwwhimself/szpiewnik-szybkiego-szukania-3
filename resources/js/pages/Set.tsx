@@ -280,7 +280,11 @@ export function MassSet(){
 
         <div id="jumper" className="modal">
             <h1>Przejdź do</h1>
-            <div className="grid-2">
+            <div className="flex-right stretch">
+                <Button className="slick" onClick={() => jumperOn()}>Anuluj</Button>
+            </div>
+            <div>
+                <h2>Pieśni</h2>
                 <div className="flex-right center wrap">
                 {set.thisMassOrder
                     .filter(el => el.code.charAt(0) === "s")
@@ -295,11 +299,12 @@ export function MassSet(){
                     </Button>
                 )}
                 </div>
+                <h2>Części mszy</h2>
                 <div className="flex-right center wrap">
                 {set.thisMassOrder
                     .filter(el => el.code.charAt(0) !== "s")
                     .map((el, i) =>
-                    <Button key={i}
+                    <Button key={i} className="less-interesting"
                         onClick={() => {
                             jumperOn();
                             document.getElementById(el.code)?.scrollIntoView({behavior: "smooth", block: "center"});
@@ -311,7 +316,7 @@ export function MassSet(){
                 </div>
             </div>
             <div className="flex-right stretch">
-                <Button onClick={() => jumperOn()}>Anuluj</Button>
+                <Button className="slick" onClick={() => jumperOn()}>Anuluj</Button>
             </div>
         </div>
 
@@ -326,6 +331,10 @@ export function MassSet(){
                             : ` na ${set.thisMassOrder.filter(el => el.code === addCollector.before)[0]?.label}`
                     : " na koniec zestawu"}
             </h1>
+            <div className="flex-right stretch">
+                <Button className="slick" onClick={() => addModeOn()}>Anuluj</Button>
+                {addCollector.song && addCollector.before && <Button onClick={() => addModeOn(undefined, true)}>Dodaj</Button>}
+            </div>
             <div id="filters" className="grid-2">
                 <div className="flex-right center wrap">
                 {categories.map((el, i) =>
@@ -369,7 +378,7 @@ export function MassSet(){
             )}
             </div>
             <div className="flex-right stretch">
-                <Button onClick={() => addModeOn()}>Anuluj</Button>
+                <Button className="slick" onClick={() => addModeOn()}>Anuluj</Button>
                 {addCollector.song && addCollector.before && <Button onClick={() => addModeOn(undefined, true)}>Dodaj</Button>}
             </div>
         </div>
@@ -395,7 +404,7 @@ export function MassSet(){
             </div>
 
             <div className="flex-right stretch">
-                <Button onClick={() => placerOn()}>Anuluj</Button>
+                <Button className="slick" onClick={() => placerOn()}>Anuluj</Button>
             </div>
         </div>
 

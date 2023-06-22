@@ -26270,10 +26270,21 @@ function MassSet() {
     }, {
       children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("h1", {
         children: "Przejd\u017A do"
-      }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({
-        className: "grid-2"
+      }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", __assign({
+        className: "flex-right stretch"
       }, {
-        children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", __assign({
+        children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components_Interactives__WEBPACK_IMPORTED_MODULE_3__.Button, __assign({
+          className: "slick",
+          onClick: function onClick() {
+            return jumperOn();
+          }
+        }, {
+          children: "Anuluj"
+        }))
+      })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
+        children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("h2", {
+          children: "Pie\u015Bni"
+        }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", __assign({
           className: "flex-right center wrap"
         }, {
           children: set.thisMassOrder.filter(function (el) {
@@ -26292,13 +26303,16 @@ function MassSet() {
               children: el.label
             }), i);
           })
-        })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", __assign({
+        })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("h2", {
+          children: "Cz\u0119\u015Bci mszy"
+        }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", __assign({
           className: "flex-right center wrap"
         }, {
           children: set.thisMassOrder.filter(function (el) {
             return el.code.charAt(0) !== "s";
           }).map(function (el, i) {
             return (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components_Interactives__WEBPACK_IMPORTED_MODULE_3__.Button, __assign({
+              className: "less-interesting",
               onClick: function onClick() {
                 var _a;
                 jumperOn();
@@ -26312,10 +26326,11 @@ function MassSet() {
             }), i);
           })
         }))]
-      })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", __assign({
+      }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", __assign({
         className: "flex-right stretch"
       }, {
         children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components_Interactives__WEBPACK_IMPORTED_MODULE_3__.Button, __assign({
+          className: "slick",
           onClick: function onClick() {
             return jumperOn();
           }
@@ -26334,6 +26349,23 @@ function MassSet() {
           return el.code === addCollector.before;
         })[0]) === null || _g === void 0 ? void 0 : _g.label) : " na koniec zestawu"]
       }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({
+        className: "flex-right stretch"
+      }, {
+        children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components_Interactives__WEBPACK_IMPORTED_MODULE_3__.Button, __assign({
+          className: "slick",
+          onClick: function onClick() {
+            return addModeOn();
+          }
+        }, {
+          children: "Anuluj"
+        })), addCollector.song && addCollector.before && (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components_Interactives__WEBPACK_IMPORTED_MODULE_3__.Button, __assign({
+          onClick: function onClick() {
+            return addModeOn(undefined, true);
+          }
+        }, {
+          children: "Dodaj"
+        }))]
+      })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({
         id: "filters",
         className: "grid-2"
       }, {
@@ -26392,6 +26424,7 @@ function MassSet() {
         className: "flex-right stretch"
       }, {
         children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components_Interactives__WEBPACK_IMPORTED_MODULE_3__.Button, __assign({
+          className: "slick",
           onClick: function onClick() {
             return addModeOn();
           }
@@ -26435,6 +26468,7 @@ function MassSet() {
         className: "flex-right stretch"
       }, {
         children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components_Interactives__WEBPACK_IMPORTED_MODULE_3__.Button, __assign({
+          className: "slick",
           onClick: function onClick() {
             return placerOn();
           }

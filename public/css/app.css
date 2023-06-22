@@ -353,6 +353,10 @@ button:hover::before, .button:hover::before{
     font-weight: normal;
     background-color: var(--bg2);
 }
+.slick, .slick:hover{
+    background: none;
+    color: var(--fg);
+}
 
 input:focus, select:focus, textarea:focus{
     box-shadow: 0 0 2em var(--acc);
