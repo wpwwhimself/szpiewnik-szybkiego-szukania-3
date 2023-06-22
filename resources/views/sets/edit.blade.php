@@ -14,9 +14,40 @@
         <x-input type="checkbox" name="public" label="Publiczny" value="{{ $set->public }}" :disabled="$set->user_id !== Auth::id()" />
     </div>
 
+    <script defer>
+    const formula_selector = document.getElementById("formula");
+    function fill_song_list(formula){
+        fetch("{{ route('get-song-sugg-list') }}", {
+            method: "post",
+            body: JSON.stringify({
+                formula: formula,
+            }),
+            headers: {
+                "Content-Type": "application/json",
+                "X-CSRF-TOKEN": "{{ csrf_token() }}",
+            }
+        }).then(res => res.json()).then(data => {
+            const select = document.getElementById("song-adder");
+
+            //clear the list
+            select.innerHTML = "<option value=''></option>";
+
+            //fill with matching songs
+            for(const item of data){
+                select.insertAdjacentHTML("beforeend", `
+                    <option value="${item.title}" data-item="${item.preferences}">${item.title}</option>
+                `);
+            }
+        }).catch(err => console.error(err));
+    }
+
+    fill_song_list(formula_selector.value);
+    formula_selector.addEventListener("change", (ev) => fill_song_list(ev.target.value));
+    </script>
+
     <h2>Pieśni</h2>
     <div class="flex-right center wrap">
-        <x-select name="song-adder" label="Pieśń" :empty-option="true" :options="$songs" :data-items="$song_preferences" />
+        <x-select name="song-adder" label="Pieśń" :empty-option="true" :options="[]" />
     </div>
     <div class="grid-5">
     @foreach ([

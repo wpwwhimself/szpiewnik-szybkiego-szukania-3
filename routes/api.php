@@ -25,4 +25,5 @@ Route::controller(DataModController::class)->group(function(){
 
 Route::controller(SongController::class)->group(function(){
     Route::post("/song-autocomplete", "songAutocomplete")->name("get-song-autocomplete");
+    Route::post("/song-sugg-list", "songSuggList")->name("get-song-sugg-list");
 });

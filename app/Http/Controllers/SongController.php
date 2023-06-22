@@ -100,4 +100,16 @@ class SongController extends Controller
         }else $titles = [];
         return response()->json($titles);
     }
+
+    public function songSuggList(Request $rq){
+        $categories = SongCategory::where("name", $rq->formula)
+            ->orWhereIn("name", ["standard", "maryjne", "Serce"])
+            ->pluck("id");
+
+        $songs = Song::select(["title", "preferences"])
+            ->whereIn("song_category_id", $categories)
+            ->get()->toArray();
+
+        return response()->json($songs);
+    }
 }
