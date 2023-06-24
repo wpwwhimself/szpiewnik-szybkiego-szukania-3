@@ -8,7 +8,7 @@
         @env("local")
         <style>
         :root{
-            --acc: dodgerblue !important;
+            --acc: 210, 100%, 56% !important;
         }
         </style>
         @endenv

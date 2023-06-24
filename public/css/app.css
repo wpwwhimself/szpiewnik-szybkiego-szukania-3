@@ -1,22 +1,22 @@
 @import url(https://fonts.googleapis.com/css2?family=Cinzel&family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&display=swap);
 :root{
-    --acc: #a2d122;
+    --acc: 76, 72%, 48%;
 }
 
 @media (prefers-color-scheme: dark){
     :root{
-        --fg: white;
-        --bg1: #111;
-        --bg2: #222;
-        --bg3: #333;
+        --fg: 0, 0%, 100%;
+        --bg1: 0, 0%, 7%;
+        --bg2: 0, 0%, 13%;
+        --bg3: 0, 0%, 20%;
     }
 }
 @media (prefers-color-scheme: light){
     :root{
-        --fg: black;
-        --bg1: #fff;
-        --bg2: #eee;
-        --bg3: #ddd;
+        --fg: 0, 0%, 0%;
+        --bg1: 0, 0%, 100%;
+        --bg2: 0, 0%, 93%;
+        --bg3: 0, 0%, 87%;
     }
 }
 
@@ -25,9 +25,9 @@ html, body{
 }
 
 body{
-    background-color: var(--bg1);
+    background-color: hsl(var(--bg1));
     font-family: "EB Garamond";
-    color: var(--fg);
+    color: hsl(var(--fg));
     margin: 0;
     display: flex; flex-direction: column;
 }
@@ -41,14 +41,14 @@ h1, h2, h3, h4{
     text-align: center;
 }
 h2{
-    color: var(--acc);
+    color: hsl(var(--acc));
 }
 
 a{
     color: inherit;
 }
 a:hover{
-    color: var(--acc);
+    color: hsl(var(--acc));
 }
 a:has(button){
     text-decoration: none;
@@ -59,8 +59,8 @@ table{
     border-spacing: 0;
 }
 thead th, tfoot th{
-    border-top: 1px solid var(--acc);
-    border-bottom: 1px solid var(--acc);
+    border-top: 1px solid hsl(var(--acc));
+    border-bottom: 1px solid hsl(var(--acc));
     text-align: left;
 }
 
@@ -78,10 +78,10 @@ thead th, tfoot th{
     opacity: 0.4;
 }
 .accent{
-    color: var(--acc) !important;
+    color: hsl(var(--acc)) !important;
 }
 .accent-border, .accent-border::before{
-    border-color: var(--acc) !important;
+    border-color: hsl(var(--acc)) !important;
 }
 .cap-initial::first-letter{
     text-transform: capitalize;
@@ -96,9 +96,9 @@ thead th, tfoot th{
 /* alert */
 
 .alert{
-    border-top: 5px double rgb(var(--color));
-    border-bottom: 5px double rgb(var(--color));
-    background-color: rgba(var(--color), 0.2);
+    border-top: 5px double hsl(var(--color));
+    border-bottom: 5px double hsl(var(--color));
+    background-color: hsla(var(--color), 0.2);
     padding: 0.5em;
 }
 
@@ -167,7 +167,7 @@ thead th, tfoot th{
 }
 .ordTitleBox{
   --border-size: 3px;
-  border-bottom: var(--border-size) solid var(--acc);
+  border-bottom: var(--border-size) solid hsl(var(--acc));
   padding-bottom: calc(2 * var(--border-size));
   margin-bottom: calc(2 * var(--border-size));
 }
@@ -179,7 +179,7 @@ thead th, tfoot th{
 
 .settings{
   position: sticky; top: 0;
-  background-color: var(--bg2);
+  background-color: hsl(var(--bg2));
   z-index: 9;
   padding: 0.5em;
 }
@@ -205,7 +205,7 @@ thead th, tfoot th{
     overflow-y: scroll;
     padding: 2em 4em; box-sizing: border-box;
     z-index: 99;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: hsla(var(--bg1), 0.5);
     backdrop-filter: blur(10px);
 }
 .modal.show{
@@ -216,7 +216,7 @@ thead th, tfoot th{
 
 .boldEm::first-letter{
   font-weight: bold;
-  color: var(--acc);
+  color: hsl(var(--acc));
 }
 
 /**********************************************************************************
@@ -240,7 +240,7 @@ header .logo{
 }
 
 header{
-    background-color: var(--bg2);
+    background-color: hsl(var(--bg2));
     padding: 1.5em 3em;
     display: grid;
     grid-template-columns: auto 1fr auto;
@@ -281,11 +281,11 @@ footer .titles *{
 
 input, select, textarea, .dummyInput{
     background: none;
-    color: var(--fg);
+    color: hsl(var(--fg));
     font-family: "EB Garamond";
     font-size: 1.1em;
     border: none;
-    border-bottom: 1px solid var(--bg3);
+    border-bottom: 1px solid hsl(var(--bg3));
     resize: vertical;
     text-align: center;
 }
@@ -310,8 +310,8 @@ textarea{
     width: 40vw; height: 30vh;
 }
 button, .button{
-    color: var(--fg);
-    background-color: var(--bg3);
+    color: hsl(var(--fg));
+    background-color: hsl(var(--bg3));
     padding: 0 0.75em;
     --spacing: 0.3em;
     margin: calc(var(--spacing) * 1.5) 0;
@@ -329,37 +329,37 @@ button::before, .button::before{
     position: absolute;
     top: calc(var(--spacing) * -1); bottom: calc(var(--spacing) * -1);
     left: 0; right: 0;
-    border-top: 3px solid var(--bg3);
-    border-bottom: 3px solid var(--bg3);
+    border-top: 3px solid hsl(var(--bg3));
+    border-bottom: 3px solid hsl(var(--bg3));
 }
 button{
     font-family: Cinzel;
 }
 button:hover, .button:hover{
     color: black;
-    background-color: var(--acc);
+    background-color: hsl(var(--acc));
 }
 button:hover::before, .button:hover::before{
-    border-color: var(--acc);
+    border-color: hsl(var(--acc));
 }
 .light-button{
     font-family: "EB Garamond";
     font-weight: normal;
-    border: 2px solid var(--bg3);
+    border: 2px solid hsl(var(--bg3));
     background: none;
 }
 .less-interesting{
     font-family: "EB Garamond";
     font-weight: normal;
-    background-color: var(--bg2);
+    background-color: hsl(var(--bg2));
 }
 .slick, .slick:hover{
     background: none;
-    color: var(--fg);
+    color: hsl(var(--fg));
 }
 
 input:focus, select:focus, textarea:focus{
-    box-shadow: 0 0 2em var(--acc);
+    box-shadow: 0 0 2em hsl(var(--acc));
 }
 
 label{
@@ -381,7 +381,7 @@ label{
 	position: relative;
 }
 .massElemSection:not(:last-of-type){
-  border-bottom: 3px solid var(--bg2);
+  border-bottom: 3px solid hsl(var(--bg2));
   border-top: none;
   padding-bottom: 0.5em;
   margin: 0;
@@ -421,11 +421,11 @@ label{
   margin: 0;
 }
 .antyfona :nth-child(1), .ksiadz{
-	color: var(--acc);
+	color: hsl(var(--acc));
 }
 
 .alternative, .alt_group{
-	border: 3px solid var(--bg3);
+	border: 3px solid hsl(var(--bg3));
 	border-radius: 15px;
 	margin: 10px;
 }
@@ -435,7 +435,7 @@ label{
 	margin-left: 0; margin-top: 0; margin-bottom: 0;
 }
 .alternative h4{
-    color: var(--bg3);
+    color: hsl(var(--bg3));
     margin: 0;
 }
 .alt_group h4{
@@ -443,7 +443,7 @@ label{
 	right: 10px; top: 0;
 }
 .alt_option{
-	border-top: 2px dashed var(--bg3);
+	border-top: 2px dashed hsl(var(--bg3));
 	display: flex;
 	flex-direction: column;
   padding: 0.5em;
@@ -454,7 +454,7 @@ label{
 	width: fit-content;
 }
 .credo tr:nth-child(odd){
-	background-color: var(--bg2);
+	background-color: hsl(var(--bg2));
 }
 
 /* misc2 */
@@ -475,8 +475,8 @@ label{
 }
 
 section{
-    /* border-top: 3px solid var(--bg2); */
-    /* border-bottom: 3px solid var(--bg2); */
+    /* border-top: 3px solid hsl(var(--bg2)); */
+    /* border-bottom: 3px solid hsl(var(--bg2)); */
     margin: 1em 0;
 }
 section>*:last-of-type{
