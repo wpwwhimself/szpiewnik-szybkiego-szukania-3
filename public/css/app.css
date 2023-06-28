@@ -498,6 +498,10 @@ section>*:last-of-type{
     display: block;
   }
 
+  textarea{
+    width: 100%;
+  }
+
   header{
     display: flex; flex-direction: column;
     height: unset;

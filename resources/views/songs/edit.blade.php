@@ -29,8 +29,20 @@
   </div>
   <div class="grid-2">
     <x-input type="TEXT" name="lyrics" label="Tekst" value="{!! $song->lyrics !!}" />
-    <x-input type="TEXT" name="sheet_music" label="Nuty" value="{!! $song->sheet_music !!}" />
+    <div>
+      <x-input type="TEXT" name="sheet_music" label="Nuty" value="{!! $song->sheet_music !!}" />
+      <div id="note-transpose" class="flex-right center wrap">
+        <x-button name="up">♪+</x-button>
+        <x-button name="down">♪-</x-button>
+        <script src="{{ asset("js/note-transpose.js") }}"></script>
+        <script>
+        document.querySelector("#note-transpose button[name=up]").addEventListener("click", Hoch);
+        document.querySelector("#note-transpose button[name=down]").addEventListener("click", Runter);
+        </script>
+      </div>
+    </div>
   </div>
+
   <div id="sheet-music-container"></div>
 
   @if (Auth::user()?->clearance->id >= 2)
