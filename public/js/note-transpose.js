@@ -1,3 +1,5 @@
+// note transposer lifted from http://www.franziskaludwig.de/abctransposer/index.php
+
 function Hoch(e) {
     e.preventDefault();
     verarbeiten = document.getElementById("sheet_music").value;
