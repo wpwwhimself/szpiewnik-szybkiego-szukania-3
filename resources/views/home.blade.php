@@ -44,10 +44,12 @@
             @endforeach
             </ol>
         </div>
+        @if(Auth::user()->clearance->id < $maxClearance)
         <em class="ghost">
             Potrzebujesz wyższych uprawnień?
             <a href="mailto:contact@wpww.pl">Napisz do mnie!</a>
         </em>
+        @endif
     </div>
 </section>
 
