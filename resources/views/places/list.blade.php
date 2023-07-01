@@ -2,7 +2,7 @@
 
 @section("content")
 
-@if (Auth::user()?->clearance->id >= 2)
+@if (Auth::user()?->clearance->id >= 1)
 <a href="{{ route('place-add') }}" class="flex-right stretch">
     <x-button>Dodaj nowe</x-button>
 </a>

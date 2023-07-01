@@ -34,7 +34,7 @@
         </div>
     </form>
     <h3>Uprawnienia</h3>
-    <p class="center">
+    <div class="center">
         <strong>Poziom {{ Auth::user()->clearance->id }}: {{ Auth::user()->clearance->name }}</strong><br />
         <div class="flex-right center">
             <span>Możesz:</span>
@@ -44,6 +44,11 @@
             @endforeach
             </ol>
         </div>
+        <em class="ghost">
+            Potrzebujesz wyższych uprawnień?
+            <a href="mailto:contact@wpww.pl">Napisz do mnie!</a>
+        </em>
+    </div>
 </section>
 
 @else
