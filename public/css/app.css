@@ -92,6 +92,9 @@ thead th, tfoot th{
 .error{
     --color: 0, 100%, 50%;
 }
+.alert-color{
+    color: hsl(var(--color));
+}
 
 /* alert */
 
@@ -297,7 +300,7 @@ table input, table .dummyInput{
 .dummyInput{
     width: 100%;
 }
-#row-adder{
+#row-adder, .hidden{
     display: none;
 }
 input[type="checkbox"]{

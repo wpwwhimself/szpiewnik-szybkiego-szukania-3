@@ -46,8 +46,9 @@
     </script>
 
     <h2>Pieśni</h2>
-    <div class="flex-right center wrap">
+    <div class="flex-down center wrap">
         <x-select name="song-adder" label="Pieśń" :empty-option="true" :options="[]" />
+        <span id="song-adder-duplicate" class="alert-color error hidden"></span>
     </div>
     <div class="grid-5">
     @foreach ([
@@ -69,7 +70,7 @@
                 <a href="#/" class="song-adder-song">{{ $song }}</a>
             @endforeach
             </div>
-            <input type="hidden" name="{{ $code }}" value="{{ $set->{$code} }}">
+            <input class="set_songs" type="hidden" name="{{ $code }}" value="{{ $set->{$code} }}">
         </div>
     @endforeach
     </div>
@@ -77,6 +78,8 @@
     function songAdd(ev){
         ev.preventDefault();
         const title = document.getElementById("song-adder").value;
+        const song_list = document.getElementById("song-adder");
+        
         if(title != ""){
             //add song to element list
             const list = ev.target.parentElement.parentElement.children[2];
@@ -90,7 +93,8 @@
             const code = ev.target.getAttribute("data-elem");
             document.querySelector(`input[name=${code}]`).value += "\n"+title;
         }
-        document.getElementById("song-adder").value = "";
+        song_list.value = "";
+        song_list.dispatchEvent(new Event('change'));
     }
     function songRemove(ev){
         ev.preventDefault();
@@ -115,11 +119,47 @@
         }
         //select random song
         song_list.value = random_song.value;
+        song_list.dispatchEvent(new Event('change'));
+    }
+    function songCheckDuplicates(ev){
+        const song_to_test = ev.target.value;
+        const last_set = {!! json_encode($last_set) !!};
+        const czsts = {
+            "sIntro": "Wejście",
+            "sOffer": "Przygotowanie Darów",
+            "sCommunion": "Komunię",
+            "sAdoration": "Uwielbienie",
+            "sDismissal": "Wyjście"
+        };
+        const alert_box = document.getElementById("song-adder-duplicate");
+        let duplicates_on = null;
+
+        for(let [code, transl] of Object.entries(czsts)){
+            if(last_set[code].match(song_to_test)){
+                duplicates_on = [code, "last"];
+                break;
+            }else if(document.querySelector(`.set_songs[name="${code}"]`).value.match(song_to_test)){
+                duplicates_on = [code, "current"];
+                break;
+            }
+        }
+
+        if(duplicates_on == null || song_to_test == ""){
+            alert_box.innerHTML = "";
+            alert_box.classList.add("hidden");
+        }else{
+            alert_box.innerHTML = 
+                (duplicates_on[1] == "last")
+                ? `Ta pieśń była przez Ciebie grana ostatnio na ${czsts[duplicates_on[0]]}`
+                : `Ta pieśń jest już w tej mszy na ${czsts[duplicates_on[0]]}`;
+            alert_box.classList.remove("hidden");
+        }
     }
 
     document.querySelectorAll(".song-adder-trigger").forEach(el => el.addEventListener("click", songAdd));
     document.querySelectorAll(".song-adder-song").forEach(el => el.addEventListener("click", songRemove));
     document.querySelectorAll(".song-randomizer-trigger").forEach(el => el.addEventListener("click", songRandom));
+    document.querySelector("#song-adder").addEventListener("change", songCheckDuplicates);
     </script>
 
     <h2>Psalm i aklamacja</h2>

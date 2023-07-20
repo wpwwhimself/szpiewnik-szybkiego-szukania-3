@@ -43,10 +43,14 @@ class SetController extends Controller
         $mass_order = collect(json_decode((new DataModController)->massOrder()->content()))
             ->pluck("label", "value")
             ->toArray();
+        $last_set = Set::orderByDesc("updated_at")
+            ->where("id", "<>", $set_id)
+            ->where("user_id", Auth::id())
+            ->first();
 
         return view("sets.edit", array_merge(
             ["title" => $set->name . " | Edycja mszy"],
-            compact("set", "formulas", "colors", "songs", "song_preferences", 'mass_order')
+            compact("set", "formulas", "colors", "songs", "song_preferences", 'mass_order', 'last_set')
         ));
     }
 
