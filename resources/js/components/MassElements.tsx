@@ -114,7 +114,7 @@ export function OrdinariumProcessor({code, colorCode}: OrdinariumProcessorProps)
 
           <h1>Kyrie</h1>
           {parts.map((part, i) => <SheetMusicRender notes={part.sheet_music} key={i} />)}
-          <div>
+          <div className="lyrics">
             <p>
               Panie, zmiłuj się nad nami<br />
               Chryste, zmiłuj się nad nami<br />
@@ -128,7 +128,7 @@ export function OrdinariumProcessor({code, colorCode}: OrdinariumProcessorProps)
         <>
           <h1>Gloria</h1>
           {parts.map((part, i) => <SheetMusicRender notes={part.sheet_music} key={i} />)}
-          <div>
+          <div className="lyrics">
             <p>
               Chwała na wysokości Bogu<br />
               A na ziemi pokój ludziom dobrej woli<br />
@@ -211,7 +211,7 @@ export function OrdinariumProcessor({code, colorCode}: OrdinariumProcessorProps)
 
           <h1>Sanctus</h1>
           {parts.map((part, i) => <SheetMusicRender notes={part.sheet_music} key={i} />)}
-          <div>
+          <div className="lyrics">
             <p>
               Święty, Święty, Święty<br />
               Pan Bóg zastępów<br />
@@ -237,7 +237,7 @@ export function OrdinariumProcessor({code, colorCode}: OrdinariumProcessorProps)
           <p className="ksiadz">Nazywamy się dziećmi Bożymi i nimi jesteśmy, dlatego ośmielamy się mówić:</p>
           <h1>Pater Noster</h1>
           {parts.map((part, i) => <SheetMusicRender notes={part.sheet_music} key={i} />)}
-          <div>
+          <div className="lyrics">
             <p>
               Ojcze nasz, któryś jest w niebie<br />
               Święć się, imię Twoje<br />
@@ -270,7 +270,7 @@ export function OrdinariumProcessor({code, colorCode}: OrdinariumProcessorProps)
 
           <h1>Agnus Dei</h1>
           {parts.map((part, i) => <SheetMusicRender notes={part.sheet_music} key={i} />)}
-          <div>
+          <div className="lyrics">
             <p>
               Baranku Boży<br />
               Który gładzisz grzechy świata<br />

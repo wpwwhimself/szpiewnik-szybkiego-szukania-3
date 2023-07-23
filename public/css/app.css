@@ -395,8 +395,9 @@ label{
 
 .lyrics{
 	display: flex;
-	flex-direction: column; flex-wrap: wrap;
-	max-height: calc(100vh - 8em);
+    flex-direction: row;
+    flex-wrap: wrap;
+    column-gap: 2em;
 }
 .lyrics li{
 	width: -moz-fit-content;

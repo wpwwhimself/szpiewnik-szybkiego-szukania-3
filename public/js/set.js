@@ -25290,11 +25290,13 @@ function OrdinariumProcessor(_a) {
           return (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_SheetMusicRender__WEBPACK_IMPORTED_MODULE_5__.SheetMusicRender, {
             notes: part.sheet_music
           }, i);
-        }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
+        }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", __assign({
+          className: "lyrics"
+        }, {
           children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("p", {
             children: ["Panie, zmi\u0142uj si\u0119 nad nami", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("br", {}), "Chryste, zmi\u0142uj si\u0119 nad nami", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("br", {}), "Panie, zmi\u0142uj si\u0119 nad nami"]
           })
-        })]
+        }))]
       });
     case "Gloria":
       return (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
@@ -25304,7 +25306,9 @@ function OrdinariumProcessor(_a) {
           return (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_SheetMusicRender__WEBPACK_IMPORTED_MODULE_5__.SheetMusicRender, {
             notes: part.sheet_music
           }, i);
-        }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
+        }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({
+          className: "lyrics"
+        }, {
           children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("p", {
             children: ["Chwa\u0142a na wysoko\u015Bci Bogu", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("br", {}), "A na ziemi pok\xF3j ludziom dobrej woli", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("br", {}), "Chwalimy Ci\u0119 \u2022 B\u0142ogos\u0142awimy Ci\u0119", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("br", {}), "Wielbimy Ci\u0119 \u2022 Wys\u0142awiamy Ci\u0119", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("br", {}), "Dzi\u0119ki Ci sk\u0142adamy \u2022 Bo wielka jest chwa\u0142a Twoja"]
           }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("p", {
@@ -25312,7 +25316,7 @@ function OrdinariumProcessor(_a) {
           }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("p", {
             children: ["Albowiem tylko Ty\u015B jest \u015Bwi\u0119ty \u2022 Tylko Ty\u015B jest Panem", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("br", {}), "Tylko Ty\u015B najwy\u017Cszy \u2022 Jezu Chryste", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("br", {}), "Z Duchem \u015Awi\u0119tym, w chwale Boga Ojca, amen"]
           })]
-        })]
+        }))]
       });
     case "Credo":
       return (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
@@ -25462,13 +25466,15 @@ function OrdinariumProcessor(_a) {
           return (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_SheetMusicRender__WEBPACK_IMPORTED_MODULE_5__.SheetMusicRender, {
             notes: part.sheet_music
           }, i);
-        }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
+        }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({
+          className: "lyrics"
+        }, {
           children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("p", {
             children: ["\u015Awi\u0119ty, \u015Awi\u0119ty, \u015Awi\u0119ty", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("br", {}), "Pan B\xF3g zast\u0119p\xF3w", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("br", {}), "Pe\u0142ne s\u0105 niebiosa", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("br", {}), "I ziema chwa\u0142y Twojej", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("br", {}), "Hosanna na wysoko\u015Bci"]
           }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("p", {
             children: ["B\u0142ogos\u0142awiony", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("br", {}), "Kt\xF3ry idzie w imi\u0119 Pa\u0144skie", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("br", {}), "Hosanna na wysoko\u015Bci"]
           })]
-        })]
+        }))]
       });
     case "PaterNoster":
       return (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
@@ -25485,13 +25491,15 @@ function OrdinariumProcessor(_a) {
           return (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_SheetMusicRender__WEBPACK_IMPORTED_MODULE_5__.SheetMusicRender, {
             notes: part.sheet_music
           }, i);
-        }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
+        }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({
+          className: "lyrics"
+        }, {
           children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("p", {
             children: ["Ojcze nasz, kt\xF3ry\u015B jest w niebie", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("br", {}), "\u015Awi\u0119\u0107 si\u0119, imi\u0119 Twoje", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("br", {}), "Przyjd\u017A Kr\xF3lestwo Twoje", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("br", {}), "B\u0105d\u017A wola Twoja", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("br", {}), "Jako w niebie, tak i na ziemi"]
           }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("p", {
             children: ["Chleba naszego powszedniego daj nam dzisiaj", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("br", {}), "I odpu\u015B\u0107 nam nasze winy", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("br", {}), "Jako i my odpuszczamy naszem winowajcom", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("br", {}), "I nie w\xF3d\u017A nas na pokuszenie", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("br", {}), "Ale nas zbaw ode z\u0142ego"]
           })]
-        }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(Antiphon, {
+        })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(Antiphon, {
           call: "Wybaw nas, Panie, od z\u0142a wszelkiego... ...naszego Zbawiciela, Jezusa Chrystusa",
           resp: "Bo Twoje jest Kr\xF3lestwo, i pot\u0119ga i chwa\u0142a na wieki"
         })]
@@ -25511,7 +25519,9 @@ function OrdinariumProcessor(_a) {
           return (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_SheetMusicRender__WEBPACK_IMPORTED_MODULE_5__.SheetMusicRender, {
             notes: part.sheet_music
           }, i);
-        }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
+        }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({
+          className: "lyrics"
+        }, {
           children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("p", {
             children: ["Baranku Bo\u017Cy", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("br", {}), "Kt\xF3ry g\u0142adzisz grzechy \u015Bwiata", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("br", {}), "Zmi\u0142uj si\u0119 nad nami"]
           }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("p", {
@@ -25519,7 +25529,7 @@ function OrdinariumProcessor(_a) {
           }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("p", {
             children: ["Baranku Bo\u017Cy", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("br", {}), "Kt\xF3ry g\u0142adzisz grzechy \u015Bwiata", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("br", {}), "Obdarz nas pokojem"]
           })]
-        })]
+        }))]
       });
     default:
       return (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
