@@ -426,6 +426,9 @@ label{
 .antyfona :nth-child(1), .ksiadz{
 	color: hsl(var(--acc));
 }
+.antyfona div{
+    text-align: initial;
+}
 
 .alternative, .alt_group{
 	border: 3px solid hsl(var(--bg3));
