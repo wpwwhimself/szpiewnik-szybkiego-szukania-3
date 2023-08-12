@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Arr;
 
 class Set extends Model
 {
@@ -15,6 +16,17 @@ class Set extends Model
         "sIntro", "sOffer", "sCommunion", "sAdoration", "sDismissal",
         "pPsalm", "pAccl",
     ];
+
+    public function getAllSongsAttribute(){
+        $songs = [
+            $this->sIntro ? preg_split("/\r?\n/", $this->sIntro) : null,
+            $this->sOffer ? preg_split("/\r?\n/", $this->sOffer) : null,
+            $this->sCommunion ? preg_split("/\r?\n/", $this->sCommunion) : null,
+            $this->sAdoration ? preg_split("/\r?\n/", $this->sAdoration) : null,
+            $this->sDismissal ? preg_split("/\r?\n/", $this->sDismissal) : null,
+        ];
+        return $songs;
+    }
 
     public function formulaData(){
         return $this->belongsTo(Formula::class, "formula", "name");

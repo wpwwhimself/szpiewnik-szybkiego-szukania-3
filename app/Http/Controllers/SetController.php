@@ -82,6 +82,21 @@ class SetController extends Controller
                 }
             }
             $response = "Msza poprawiona";
+
+            // filling preferences
+            foreach(Set::findOrFail($rq->id)->all_songs as $pref_id => $songs){
+                if($songs === null) continue;
+                foreach($songs as $title){
+                    $song = Song::where("title", $title)->first();
+                    $preferences = explode("/", $song->preferences);
+                    if($preferences[$pref_id] == 0){
+                        $preferences[$pref_id] = 1;
+                        $song->update([
+                            "preferences" => implode("/", $preferences),
+                        ]);
+                    }
+                }
+            }
         }elseif($rq->action === "delete"){
             SetExtra::where("set_id", $rq->id)->delete();
             Set::findOrFail($rq->id)->delete();
