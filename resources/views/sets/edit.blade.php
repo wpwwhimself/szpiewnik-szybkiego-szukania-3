@@ -79,7 +79,8 @@
         ev.preventDefault();
         const title = document.getElementById("song-adder").value;
         const song_list = document.getElementById("song-adder");
-        
+        const input = ev.target.parentElement.parentElement.children[3];
+
         if(title != ""){
             //add song to element list
             const list = ev.target.parentElement.parentElement.children[2];
@@ -90,20 +91,21 @@
             newSong.addEventListener("click", songRemove);
             list.appendChild(newSong);
             //add song to input
-            const code = ev.target.getAttribute("data-elem");
-            document.querySelector(`input[name=${code}]`).value += "\n"+title;
+            input.value += "\n"+title;
         }
         song_list.value = "";
         song_list.dispatchEvent(new Event('change'));
+        console.log(input.value);
     }
     function songRemove(ev){
         ev.preventDefault();
-        const title = ev.target.textContent;
+        const title = ev.target.textContent.trim();
         //remove song from input
         const input = ev.target.parentElement.parentElement.children[3];
         input.value = input.value.split("\n").filter(el => el != title).join("\n");
         //remove song from the list
         ev.target.remove();
+        console.log(input.value);
     }
     function songRandom(ev){
         ev.preventDefault();
@@ -148,7 +150,7 @@
             alert_box.innerHTML = "";
             alert_box.classList.add("hidden");
         }else{
-            alert_box.innerHTML = 
+            alert_box.innerHTML =
                 (duplicates_on[1] == "last")
                 ? `Ta pieśń była przez Ciebie grana ostatnio na ${czsts[duplicates_on[0]]}`
                 : `Ta pieśń jest już w tej mszy na ${czsts[duplicates_on[0]]}`;
