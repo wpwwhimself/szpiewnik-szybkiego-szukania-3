@@ -297,6 +297,9 @@ table input, table .dummyInput{
     text-align: left;
     width: 100%;
 }
+option{
+    color: black;
+}
 .dummyInput{
     width: 100%;
 }
