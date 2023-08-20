@@ -15,6 +15,22 @@
     </div>
 
     <script defer>
+    document.getElementById("formula").addEventListener("change", (ev) => {
+        fetch("{{ route('set-update-field') }}", {
+            method: "post",
+            body: JSON.stringify({
+                field: "formula",
+                value: ev.target.value,
+            }),
+            headers: {
+                "Content-Type": "application/json",
+                "X-CSRF-TOKEN": "{{ csrf_token() }}",
+            },
+        })
+            .then(res => window.location.reload())
+            .catch(err => console.error(err));
+    });
+
     const formula_selector = document.getElementById("formula");
     function fill_song_list(formula){
         fetch("{{ route('get-song-sugg-list') }}", {

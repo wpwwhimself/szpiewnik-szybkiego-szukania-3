@@ -46,6 +46,7 @@ class SetController extends Controller
         $last_set = Set::orderByDesc("updated_at")
             ->where("id", "<>", $set_id)
             ->where("user_id", Auth::id())
+            ->where("formula", $set->formula)
             ->first();
 
         return view("sets.edit", array_merge(
