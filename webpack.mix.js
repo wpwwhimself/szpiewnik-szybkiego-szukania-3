@@ -12,4 +12,5 @@ const mix = require('laravel-mix');
  */
 
 mix.ts('resources/js/set.tsx', 'public/js')
+    .ts('resources/js/song.tsx', 'public/js')
     .react();

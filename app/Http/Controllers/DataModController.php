@@ -37,6 +37,17 @@ class DataModController extends Controller
         ]);
     }
 
+    public function songData(Request $rq){
+        $title_slug = $rq->title_slug;
+        $song = Song::all()->filter(function($song) use ($title_slug){
+            return Str::slug($song->title) === $title_slug;
+        })->first();
+
+        return response()->json([
+            "song" => $song,
+        ]);
+    }
+
     public function ordinarium(){
         return response()->json(Ordinarius::all());
     }

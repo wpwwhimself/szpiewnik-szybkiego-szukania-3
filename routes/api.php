@@ -20,7 +20,7 @@ use Illuminate\Support\Facades\Route;
 Route::controller(DataModController::class)->group(function(){
     Route::get("/set-data", "setData")->name("get-set-data");
     Route::get("/ordinarium", "ordinarium")->name("get-ordinarium");
-
+    Route::get("/song-data", "songData")->name("get-song-data");
     Route::get("/mass-order", "massOrder")->name("get-mass-order");
 });
 

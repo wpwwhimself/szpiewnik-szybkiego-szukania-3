@@ -23,6 +23,18 @@ class SongController extends Controller
         ));
     }
 
+    public function songPresent($title_slug){
+        $song = Song::all()->filter(function($song) use ($title_slug){
+            return Str::slug($song->title) === $title_slug;
+        })->first();
+        if(!$song) return abort(404);
+
+        return view("songs.present", array_merge(
+            ["title" => $song->title],
+            compact("song")
+        ));
+    }
+
     public function song($title_slug){
         $categories = SongCategory::all()->pluck("name", "id");
         $song = Song::all()->filter(function($song) use ($title_slug){

@@ -26546,6 +26546,89 @@ function MassSet() {
 
 /***/ }),
 
+/***/ "./resources/js/pages/Song.tsx":
+/*!*************************************!*\
+  !*** ./resources/js/pages/Song.tsx ***!
+  \*************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "PresentSong": () => (/* binding */ PresentSong)
+/* harmony export */ });
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! axios */ "./node_modules/axios/lib/axios.js");
+/* harmony import */ var _components_MassElements__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/MassElements */ "./resources/js/components/MassElements.tsx");
+/* harmony import */ var _components_Interactives__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../components/Interactives */ "./resources/js/components/Interactives.tsx");
+/* harmony import */ var _components_SheetMusicRender__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../components/SheetMusicRender */ "./resources/js/components/SheetMusicRender.tsx");
+var __assign = undefined && undefined.__assign || function () {
+  __assign = Object.assign || function (t) {
+    for (var s, i = 1, n = arguments.length; i < n; i++) {
+      s = arguments[i];
+      for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p)) t[p] = s[p];
+    }
+    return t;
+  };
+  return __assign.apply(this, arguments);
+};
+
+
+
+
+
+
+function PresentSong() {
+  var title_slug = window.location.href.replace(/.*\/present\/(.*).*/, "$1");
+  var _a = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)({}),
+    song = _a[0],
+    setSong = _a[1];
+  (0,react__WEBPACK_IMPORTED_MODULE_1__.useEffect)(function () {
+    axios__WEBPACK_IMPORTED_MODULE_5__["default"].get("/api/song-data", {
+      params: {
+        title_slug: title_slug
+      }
+    }).then(function (res) {
+      setSong(res.data.song);
+    });
+  }, []);
+  return (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components_MassElements__WEBPACK_IMPORTED_MODULE_2__.MassElemSection, __assign({
+    id: "song"
+  }, {
+    children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({
+      className: "songMeta"
+    }, {
+      children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("h1", {
+        children: song.title
+      }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", __assign({
+        className: "flex-right center wrap"
+      }, {
+        children: song ? (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
+          children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components_Interactives__WEBPACK_IMPORTED_MODULE_3__.DummyInput, {
+            label: "Tonacja",
+            value: song.key
+          }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components_Interactives__WEBPACK_IMPORTED_MODULE_3__.DummyInput, {
+            label: "Kategoria",
+            value: song.category_desc
+          }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components_Interactives__WEBPACK_IMPORTED_MODULE_3__.DummyInput, {
+            label: "Numer w \u015Bpiewniku Preis",
+            value: song.number_preis
+          })]
+        }) : (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("p", {
+          children: "Pie\u015B\u0144 niezapisana"
+        })
+      })), (song === null || song === void 0 ? void 0 : song.sheet_music) && (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components_SheetMusicRender__WEBPACK_IMPORTED_MODULE_4__.SheetMusicRender, {
+        notes: song.sheet_music
+      }), (song === null || song === void 0 ? void 0 : song.lyrics) && (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components_MassElements__WEBPACK_IMPORTED_MODULE_2__.SongLyrics, {
+        lyrics: song.lyrics
+      })]
+    }))
+  }));
+}
+
+/***/ }),
+
 /***/ "./resources/js/reportWebVitals.ts":
 /*!*****************************************!*\
   !*** ./resources/js/reportWebVitals.ts ***!
@@ -85554,7 +85637,7 @@ const toJSONObject = (obj) => {
 /******/ 		// undefined = chunk not loaded, null = chunk preloaded/prefetched
 /******/ 		// [resolve, reject, Promise] = chunk loading, 0 = chunk loaded
 /******/ 		var installedChunks = {
-/******/ 			"/js/set": 0
+/******/ 			"/js/song": 0
 /******/ 		};
 /******/ 		
 /******/ 		__webpack_require__.f.j = (chunkId, promises) => {
@@ -85641,22 +85724,22 @@ var __webpack_exports__ = {};
 // This entry need to be wrapped in an IIFE because it need to be in strict mode.
 (() => {
 "use strict";
-/*!******************************!*\
-  !*** ./resources/js/set.tsx ***!
-  \******************************/
+/*!*******************************!*\
+  !*** ./resources/js/song.tsx ***!
+  \*******************************/
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
 /* harmony import */ var _reportWebVitals__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./reportWebVitals */ "./resources/js/reportWebVitals.ts");
-/* harmony import */ var _pages_Set__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./pages/Set */ "./resources/js/pages/Set.tsx");
+/* harmony import */ var _pages_Song__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./pages/Song */ "./resources/js/pages/Song.tsx");
 
 
 
 
 
 react_dom__WEBPACK_IMPORTED_MODULE_2__.render((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(react__WEBPACK_IMPORTED_MODULE_1__.StrictMode, {
-  children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_pages_Set__WEBPACK_IMPORTED_MODULE_4__.MassSet, {})
+  children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_pages_Song__WEBPACK_IMPORTED_MODULE_4__.PresentSong, {})
 }), document.getElementById('root'));
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
