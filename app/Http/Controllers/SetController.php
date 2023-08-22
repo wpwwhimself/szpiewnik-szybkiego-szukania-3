@@ -92,7 +92,8 @@ class SetController extends Controller
                     $preferences = explode("/", $song->preferences);
                     if($preferences[$pref_id] == 0){
                         $preferences[$pref_id] = 1;
-                        $song->update([
+                        Song::where("title", $title)->where("preferences", $song->preferences)
+                            ->update([
                             "preferences" => implode("/", $preferences),
                         ]);
                     }
