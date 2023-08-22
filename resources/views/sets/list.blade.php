@@ -24,9 +24,12 @@
     <div class="flex-right center wrap">
     @foreach ($sets[$formula->name] as $set)
         <div class="flex-down center tight">
-            <a href="{{ route('set-present', ['set_id' => $set->id]) }}{{ Auth::user()?->default_place ? '?place='.Str::slug(Auth::user()->default_place) : '' }}">
+            <x-list-element
+                :present="route('set-present', ['set_id' => $set->id]).(Auth::user()?->default_place ? '?place='.Str::slug(Auth::user()->default_place) : '')"
+                :edit="route('set', ['set_id' => $set->id])"
+                >
                 {{ $set->name }}
-            </a>
+            </x-list-element>
             @if ($set->user->id != Auth::id()) <label>{{ $set->user->name  }}</label> @endif
         </div>
     @endforeach

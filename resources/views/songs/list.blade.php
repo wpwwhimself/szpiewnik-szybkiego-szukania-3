@@ -12,9 +12,12 @@
     <h1 class="cap-initial">{{ $cat->name }}</h1>
     <div class="flex-right wrap center">
     @foreach ($songs[$cat->name] as $song)
-        <a href="{{ route('song', ['title_slug' => Str::slug($song->title)]) }}" class="{{ substr($song->title, 0, 1) != ($initial ?? '') ? 'boldEm' : '' }}">
+        <x-list-element class="{{ substr($song->title, 0, 1) != ($initial ?? '') ? 'boldEm' : '' }}"
+            :present="route('song-present', ['title_slug' => Str::slug($song->title)])"
+            :edit="route('song', ['title_slug' => Str::slug($song->title)])"
+            >
             {{ $song->title }}
-        </a>
+        </x-list-element>
         @php $initial = substr($song->title, 0, 1) @endphp
     @endforeach
     </div>
