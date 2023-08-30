@@ -25,7 +25,7 @@ function render(){
     sheet,
     {
       responsive: "resize",
-      germanAlphabet: true,
+    //   germanAlphabet: true,
     }
   );
 }
