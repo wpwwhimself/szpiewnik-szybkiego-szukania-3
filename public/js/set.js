@@ -25739,10 +25739,11 @@ function SheetMusicRender(_a) {
   };
   function render() {
     var res = abcjs__WEBPACK_IMPORTED_MODULE_1___default().renderAbc("sheet-" + this_id, notes !== null && notes !== void 0 ? notes : "", {
-      responsive: "resize",
-      germanAlphabet: true
+      responsive: "resize"
+      // germanAlphabet: true,
     });
   }
+
   (0,react__WEBPACK_IMPORTED_MODULE_2__.useEffect)(function () {
     return render();
   }, [notes]);

@@ -24,7 +24,7 @@ export function SheetMusicRender({notes}: SMRProps){
             notes ?? "",
             {
                 responsive: "resize",
-                germanAlphabet: true,
+                // germanAlphabet: true,
             }
         );
     }
