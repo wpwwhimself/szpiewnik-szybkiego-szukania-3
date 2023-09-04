@@ -269,9 +269,12 @@ export function MassSet(){
         ?.filter(el => !!el.content)
         .filter(el => el.code !== "pAccl");
 
+    // Set display color
+    const current_color = ordinarius_colors.find(el => el.name === set.color);
+
     return(<>
         <div className="flex-right center wrap settings">
-            <Select name="color" label="Kolor cz.st." options={ordColorOptions} value={set.color} onChange={handleColorChange}/>
+            <Select name="color" label="Kolor cz.st." options={ordColorOptions} value={set.color} onChange={handleColorChange} style={{ backgroundColor: current_color?.display_color ?? current_color?.name ?? 'none' }}/>
             <Button onClick={() => jumperOn()}>»</Button>
             <Button onClick={() => addModeOn("END")}>+</Button>
             <Button onClick={() => placerOn()}>{currentPlaceExtras ? currentPlaceExtras[0].place : "Miejsce"}</Button>

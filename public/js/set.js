@@ -24984,7 +24984,8 @@ function Select(_a) {
     value = _a.value,
     firstEmpty = _a.firstEmpty,
     options = _a.options,
-    onChange = _a.onChange;
+    onChange = _a.onChange,
+    style = _a.style;
   return (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({
     className: "inputContainer"
   }, {
@@ -24996,7 +24997,8 @@ function Select(_a) {
       name: name,
       id: name,
       onChange: onChange,
-      defaultValue: value
+      defaultValue: value,
+      style: style
     }, {
       children: [firstEmpty && (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("option", {}, "_first"), options === null || options === void 0 ? void 0 : options.map(function (el) {
         var _a;
@@ -25903,46 +25905,46 @@ var __spreadArray = undefined && undefined.__spreadArray || function (to, from, 
 
 var MModContext = /*#__PURE__*/(0,react__WEBPACK_IMPORTED_MODULE_1__.createContext)({});
 function MassSet() {
-  var _a, _b, _c, _d, _e, _f, _g;
+  var _a, _b, _c, _d, _e, _f, _g, _h, _j;
   var set_id = +window.location.href.replace(/.*\/(\d+).*/, "$1");
   var place_slug_match = window.location.href.match(/.*\?place=(.*)/);
   var place_slug = place_slug_match ? place_slug_match[1] : null;
-  var _h = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)({}),
-    set = _h[0],
-    setSet = _h[1];
-  var _j = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)([]),
-    ordinarium = _j[0],
-    setOrdinarium = _j[1];
-  var _k = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)([]),
-    ordinarius_colors = _k[0],
-    setOrdColors = _k[1];
-  var _l = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)({}),
-    formula = _l[0],
-    setFormula = _l[1];
+  var _k = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)({}),
+    set = _k[0],
+    setSet = _k[1];
+  var _l = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)([]),
+    ordinarium = _l[0],
+    setOrdinarium = _l[1];
   var _m = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)([]),
-    songs = _m[0],
-    setSongs = _m[1];
-  var _o = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)([]),
-    categories = _o[0],
-    setCategories = _o[1];
-  var _p = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)({
+    ordinarius_colors = _m[0],
+    setOrdColors = _m[1];
+  var _o = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)({}),
+    formula = _o[0],
+    setFormula = _o[1];
+  var _p = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)([]),
+    songs = _p[0],
+    setSongs = _p[1];
+  var _q = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)([]),
+    categories = _q[0],
+    setCategories = _q[1];
+  var _r = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)({
       categories: [1],
       preferences: [0, 1, 2, 3, 4]
     }),
-    adderFilters = _p[0],
-    setAdderFilters = _p[1];
-  var _q = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)([]),
-    currentPlaceExtras = _q[0],
-    setCurrentPlaceExtras = _q[1];
-  var _r = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)([]),
-    places = _r[0],
-    setPlaces = _r[1];
-  var _s = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)({
+    adderFilters = _r[0],
+    setAdderFilters = _r[1];
+  var _s = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)([]),
+    currentPlaceExtras = _s[0],
+    setCurrentPlaceExtras = _s[1];
+  var _t = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)([]),
+    places = _t[0],
+    setPlaces = _t[1];
+  var _u = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)({
       song: undefined,
       before: undefined
     }),
-    addCollector = _s[0],
-    setAddCollector = _s[1];
+    addCollector = _u[0],
+    setAddCollector = _u[1];
   var czsts = ["sIntro", "sOffer", "sCommunion", "sAdoration", "sDismissal"];
   (0,react__WEBPACK_IMPORTED_MODULE_1__.useEffect)(function () {
     axios__WEBPACK_IMPORTED_MODULE_7__["default"].get("/api/set-data", {
@@ -26245,6 +26247,10 @@ function MassSet() {
   }).filter(function (el) {
     return el.code !== "pAccl";
   });
+  // Set display color
+  var current_color = ordinarius_colors.find(function (el) {
+    return el.name === set.color;
+  });
   return (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
     children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({
       className: "flex-right center wrap settings"
@@ -26254,7 +26260,10 @@ function MassSet() {
         label: "Kolor cz.st.",
         options: ordColorOptions,
         value: set.color,
-        onChange: handleColorChange
+        onChange: handleColorChange,
+        style: {
+          backgroundColor: (_f = (_e = current_color === null || current_color === void 0 ? void 0 : current_color.display_color) !== null && _e !== void 0 ? _e : current_color === null || current_color === void 0 ? void 0 : current_color.name) !== null && _f !== void 0 ? _f : 'none'
+        }
       }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components_Interactives__WEBPACK_IMPORTED_MODULE_3__.Button, __assign({
         onClick: function onClick() {
           return jumperOn();
@@ -26353,11 +26362,11 @@ function MassSet() {
       className: "modal"
     }, {
       children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("h1", {
-        children: ["Dodaj pie\u015B\u0144", addCollector.before !== "END" ? ((_e = addCollector.before) === null || _e === void 0 ? void 0 : _e.charAt(0)) !== "s" ? " przed: ".concat((_f = set.thisMassOrder.filter(function (el) {
+        children: ["Dodaj pie\u015B\u0144", addCollector.before !== "END" ? ((_g = addCollector.before) === null || _g === void 0 ? void 0 : _g.charAt(0)) !== "s" ? " przed: ".concat((_h = set.thisMassOrder.filter(function (el) {
           return el.code === addCollector.before;
-        })[0]) === null || _f === void 0 ? void 0 : _f.label) : addCollector.before === "summary" ? " na początek zestawu" : " na ".concat((_g = set.thisMassOrder.filter(function (el) {
+        })[0]) === null || _h === void 0 ? void 0 : _h.label) : addCollector.before === "summary" ? " na początek zestawu" : " na ".concat((_j = set.thisMassOrder.filter(function (el) {
           return el.code === addCollector.before;
-        })[0]) === null || _g === void 0 ? void 0 : _g.label) : " na koniec zestawu"]
+        })[0]) === null || _j === void 0 ? void 0 : _j.label) : " na koniec zestawu"]
       }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({
         className: "flex-right stretch"
       }, {

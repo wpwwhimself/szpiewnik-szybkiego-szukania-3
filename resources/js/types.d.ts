@@ -1,4 +1,4 @@
-import { ReactNode } from "react";
+import { CSSProperties, ReactNode } from "react";
 
 export interface AddCollectorProps {
     song?: string,
@@ -134,6 +134,7 @@ export type SelectProps = {
     firstEmpty?: boolean,
     options?: SelectOption[],
     onChange?: (e: React.ChangeEvent<HTMLSelectElement>) => void;
+    style?: CSSProperties,
 }
 
 export interface PreferencesProps{

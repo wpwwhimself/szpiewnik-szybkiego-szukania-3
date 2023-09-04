@@ -40,11 +40,11 @@ export function DummyInput({label, value}: DummyInputProps){
   )
 }
 
-export function Select({name, label, value, firstEmpty, options, onChange}: SelectProps){
+export function Select({name, label, value, firstEmpty, options, onChange, style}: SelectProps){
   return(
     <div className="inputContainer">
       <label htmlFor={name}>{label}</label>
-      <select name={name} id={name} onChange={onChange} defaultValue={value}>
+      <select name={name} id={name} onChange={onChange} defaultValue={value} style={style}>
         {firstEmpty && <option key="_first"></option>}
         {options?.map(el => <option key={el.key ?? el.value} value={el.value}>{el.label}</option>)}
       </select>
