@@ -7,6 +7,15 @@
     @csrf
     <div>
         <x-input type="TEXT" name="sheet_music" label="Nuty" value="{!! $ordinarius->sheet_music !!}" />
+        <div id="note-transpose" class="flex-right center wrap">
+            <x-button name="up">♪+</x-button>
+            <x-button name="down">♪-</x-button>
+            <script src="{{ asset("js/note-transpose.js") }}"></script>
+            <script>
+            document.querySelector("#note-transpose button[name=up]").addEventListener("click", Hoch);
+            document.querySelector("#note-transpose button[name=down]").addEventListener("click", Runter);
+            </script>
+        </div>
     </div>
     <div id="sheet-music-container"></div>
     <div class="flex-right stretch">

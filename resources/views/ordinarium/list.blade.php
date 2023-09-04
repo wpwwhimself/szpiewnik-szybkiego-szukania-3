@@ -18,9 +18,9 @@
         </div>
     </div>
     @endforeach
-</div>
+{{-- </div>
 
-<div class="grid-2">
+<div class="grid-2"> --}}
     <div class="ordTile">
         <div class="ordTitleBox">
             <h1>Uniwersalne</h1>

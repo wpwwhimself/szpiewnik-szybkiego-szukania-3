@@ -23,13 +23,13 @@ class OrdinariusController extends Controller
         )->get();
 
         return view("ordinarium.list", array_merge(
-            ["title" => "Lista części stałych"],
+            ["title" => "Lista mszy"],
             compact("ordinarium", "colors")
         ));
     }
 
     public function ordinarius($color_code, $part){
-        $colors = OrdinariusColor::all();
+        $color = OrdinariusColor::find($color_code);
         $ordinarius = Ordinarius::where("part", $part)
             ->get()
             ->filter(fn($ord) => (Str::slug($ord->color_code) ?: "*") == $color_code)
@@ -37,8 +37,13 @@ class OrdinariusController extends Controller
             ;
 
         return view("ordinarium.edit", array_merge(
-            ["title" => "$part ($color_code) | Edycja cz. st."],
-            compact("ordinarius", "colors")
+            ["title" => implode(" ", [
+                ucfirst($part),
+                ($color ? "($color->display_name)" : ""),
+                ($ordinarius->isSpecial ? "($ordinarius->color_code)" : ""),
+                "| Edycja cz. st."
+            ])],
+            compact("ordinarius")
         ));
     }
 

@@ -10,6 +10,7 @@ class OrdinariusColor extends Model
     use HasFactory;
 
     public $incrementing = false;
+    protected $primaryKey = "name";
     protected $keyType = "string";
 
     protected $fillable = [
