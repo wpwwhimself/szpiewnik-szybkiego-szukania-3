@@ -488,17 +488,17 @@ label{
     position: relative;
     height: 2em;
 }
-.main{
+.list-element .main{
     border: 2px solid transparent;
+    user-select: none;
 }
-.hover{
+.list-element .hover{
     opacity: 0;
     z-index: -1;
     position: absolute;
     top: 1.25em; left: 50%; translate: -50% -5px;
     white-space: nowrap;
     color: hsla(var(--fg), 0.5);
-    user-select: none;
 }
 .list-element:hover .main{
     border-top: 2px solid hsl(var(--acc));
