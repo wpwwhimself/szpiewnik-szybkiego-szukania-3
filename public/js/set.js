@@ -25686,6 +25686,14 @@ function ExtrasProcessor(_a) {
           children: "M\xF3dlmy si\u0119: wszechmog\u0105cy, wieczny Bo\u017Ce, wejrzyj na Serce najmilszego Syna swego i na chwa\u0142\u0119, i zado\u015B\u0107 uczynienie, jakie w imieniu grzesznik\xF3w ci sk\u0142ada; daj si\u0119 przeb\u0142aga\u0107 tym, kt\xF3rzy \u017Cebrz\u0105 Twego mi\u0142osierdzia i racz udzieli\u0107 przebaczenia w imi\u0119 tego\u017C Syna swego, Jezusa Chrystusa, kt\xF3ry z tob\u0105 \u017Cyje i kr\xF3luje na wieki wiek\xF3w..."
         })]
       });
+    case "Michael":
+      return (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
+        children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("h1", {
+          children: "Modlitwa do Micha\u0142a Archanio\u0142a"
+        }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("p", {
+          children: "\u015Awi\u0119ty Michale, Archaniele, wspomagaj nas w walce, a przeciw niegodziwo\u015Bci i zasadzkom z\u0142ego ducha b\u0105d\u017A nam obron\u0105. Oby go B\xF3g pogromi\u0107 raczy\u0142, pokornie o to prosimy. A Ty, wodzu niebieskich zast\u0119p\xF3w, szatana i inne duchy z\u0142e, kt\xF3re na zgub\u0119 dusz ludzkich po tym \u015Bwiecie kr\u0105\u017C\u0105, moc\u0105 Bo\u017C\u0105 str\u0105\u0107 do piek\u0142a. Amen."
+        })]
+      });
     default:
       {
         return (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.Fragment, {

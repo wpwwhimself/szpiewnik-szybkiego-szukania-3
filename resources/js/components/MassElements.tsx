@@ -445,6 +445,20 @@ export function ExtrasProcessor({elem}: {elem: MassElem}){
           <p>Módlmy się: wszechmogący, wieczny Boże, wejrzyj na Serce najmilszego Syna swego i na chwałę, i zadość uczynienie, jakie w imieniu grzeszników ci składa; daj się przebłagać tym, którzy żebrzą Twego miłosierdzia i racz udzielić przebaczenia w imię tegoż Syna swego, Jezusa Chrystusa, który z tobą żyje i króluje na wieki wieków...</p>
         </>
       )
+    case "Michael":
+      return(
+        <>
+          <h1>Modlitwa do Michała Archanioła</h1>
+          <p>
+            Święty Michale, Archaniele, wspomagaj nas w walce,
+            a przeciw niegodziwości i zasadzkom złego ducha bądź nam obroną.
+            Oby go Bóg pogromić raczył, pokornie o to prosimy.
+            A Ty, wodzu niebieskich zastępów, szatana i inne duchy złe,
+            które na zgubę dusz ludzkich po tym świecie krążą,
+            mocą Bożą strąć do piekła. Amen.
+          </p>
+        </>
+      )
     default:{
       return(
         <>
