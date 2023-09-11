@@ -560,3 +560,27 @@ section>*:last-of-type{
     text-align: center;
   }
 }
+
+/*********************
+ * PRINT!!
+ ****************/
+@media print{
+    header .titles h2,
+    nav,
+    footer .auth,
+    button{
+        display: none !important;
+    }
+
+    header, footer{
+        background: hsl(var(--bg2));
+        display: flex;
+        color: hsl(var(--fg));
+        padding: 0.5em 1em;
+        width: auto;
+        gap: 1em;
+    }
+    footer{
+        justify-content: flex-end;
+    }
+}
