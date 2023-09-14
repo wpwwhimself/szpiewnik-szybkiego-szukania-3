@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { OrdinariumProps } from "../types";
 import axios from "axios";
 import { MassElemSection, OrdinariumProcessor, SongLyrics } from "../components/MassElements";
-import { DummyInput } from "../components/Interactives";
+import { Button, DummyInput } from "../components/Interactives";
 import { SheetMusicRender } from "../components/SheetMusicRender";
 
 export function PresentOrdinarium(){
@@ -31,6 +31,9 @@ export function PresentOrdinarium(){
       <MassElemSection id={el.part} key={key}>
         <h1>{dParts[el.part as keyof typeof dParts]}</h1>
         <SheetMusicRender notes={el.sheet_music} />
+        <div className="flex-right stretch">
+          <Button onClick={() => {window.location.href = `/ordinarium/show/${el.color_code}_${el.part}`}}>Edytuj</Button>
+        </div>
       </MassElemSection>)}
     </div>
 }

@@ -25876,9 +25876,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! axios */ "./node_modules/axios/lib/axios.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! axios */ "./node_modules/axios/lib/axios.js");
 /* harmony import */ var _components_MassElements__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/MassElements */ "./resources/js/components/MassElements.tsx");
-/* harmony import */ var _components_SheetMusicRender__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../components/SheetMusicRender */ "./resources/js/components/SheetMusicRender.tsx");
+/* harmony import */ var _components_Interactives__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../components/Interactives */ "./resources/js/components/Interactives.tsx");
+/* harmony import */ var _components_SheetMusicRender__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../components/SheetMusicRender */ "./resources/js/components/SheetMusicRender.tsx");
 var __assign = undefined && undefined.__assign || function () {
   __assign = Object.assign || function (t) {
     for (var s, i = 1, n = arguments.length; i < n; i++) {
@@ -25889,6 +25890,7 @@ var __assign = undefined && undefined.__assign || function () {
   };
   return __assign.apply(this, arguments);
 };
+
 
 
 
@@ -25908,7 +25910,7 @@ function PresentOrdinarium() {
     ordinarium = _a[0],
     setOrdinarium = _a[1];
   (0,react__WEBPACK_IMPORTED_MODULE_1__.useEffect)(function () {
-    axios__WEBPACK_IMPORTED_MODULE_4__["default"].get("/api/ordinarius-data", {
+    axios__WEBPACK_IMPORTED_MODULE_5__["default"].get("/api/ordinarius-data", {
       params: {
         color: color
       }
@@ -25925,9 +25927,19 @@ function PresentOrdinarium() {
       }, {
         children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("h1", {
           children: dParts[el.part]
-        }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components_SheetMusicRender__WEBPACK_IMPORTED_MODULE_3__.SheetMusicRender, {
+        }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components_SheetMusicRender__WEBPACK_IMPORTED_MODULE_4__.SheetMusicRender, {
           notes: el.sheet_music
-        })]
+        }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", __assign({
+          className: "flex-right stretch"
+        }, {
+          children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components_Interactives__WEBPACK_IMPORTED_MODULE_3__.Button, __assign({
+            onClick: function onClick() {
+              window.location.href = "/ordinarium/show/".concat(el.color_code, "_").concat(el.part);
+            }
+          }, {
+            children: "Edytuj"
+          }))
+        }))]
       }), key);
     })
   }));

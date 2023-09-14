@@ -6,7 +6,9 @@
     @foreach ($colors as $color)
     <div class="ordTile">
         <div class="ordTitleBox" style="border-color: {{ $color->display_color ?? $color->name }}">
-            <h1>{{ $color->display_name ?? $color->name }}</h1>
+            <a href="{{ route('ordinarius-present', ['color' => $color->name]) }}">
+                <h1>{{ $color->display_name ?? $color->name }}</h1>
+            </a>
             <p>{{ $color->desc }}</p>
         </div>
         <div class="flex-right wrap center">
