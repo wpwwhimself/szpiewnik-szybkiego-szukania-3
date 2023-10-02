@@ -47,6 +47,17 @@ class OrdinariusController extends Controller
         ));
     }
 
+    public function ordinariusPresent($color_code){
+        $ordinarium = Ordinarius::where("color_code", $color_code)->get();
+        $color = OrdinariusColor::find($color_code);
+        if(!$ordinarium) return abort(404);
+
+        return view("ordinarium.present", array_merge(
+            ["title" => "Msza: zestaw ".lcfirst($color->display_name)],
+            compact("ordinarium", "color")
+        ));
+    }
+
     public function ordinariusEdit(Request $rq){
         Ordinarius::where("color_code", $rq->color_code)
             ->where("part", $rq->part)

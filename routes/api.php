@@ -22,6 +22,7 @@ Route::controller(DataModController::class)->group(function(){
     Route::get("/ordinarium", "ordinarium")->name("get-ordinarium");
     Route::get("/song-data", "songData")->name("get-song-data");
     Route::get("/mass-order", "massOrder")->name("get-mass-order");
+    Route::get("/ordinarius-data", "ordinariusData")->name("get-ordinarius-data");
 });
 
 Route::controller(SongController::class)->group(function(){

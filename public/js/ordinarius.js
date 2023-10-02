@@ -25863,6 +25863,90 @@ var massOrder = [{
 
 /***/ }),
 
+/***/ "./resources/js/pages/Ordinarius.tsx":
+/*!*******************************************!*\
+  !*** ./resources/js/pages/Ordinarius.tsx ***!
+  \*******************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "PresentOrdinarium": () => (/* binding */ PresentOrdinarium)
+/* harmony export */ });
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! axios */ "./node_modules/axios/lib/axios.js");
+/* harmony import */ var _components_MassElements__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/MassElements */ "./resources/js/components/MassElements.tsx");
+/* harmony import */ var _components_Interactives__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../components/Interactives */ "./resources/js/components/Interactives.tsx");
+/* harmony import */ var _components_SheetMusicRender__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../components/SheetMusicRender */ "./resources/js/components/SheetMusicRender.tsx");
+var __assign = undefined && undefined.__assign || function () {
+  __assign = Object.assign || function (t) {
+    for (var s, i = 1, n = arguments.length; i < n; i++) {
+      s = arguments[i];
+      for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p)) t[p] = s[p];
+    }
+    return t;
+  };
+  return __assign.apply(this, arguments);
+};
+
+
+
+
+
+
+function PresentOrdinarium() {
+  var color = window.location.href.replace(/.*\/present\/(.*).*/, "$1");
+  var dParts = {
+    "kyrie": "Kyrie",
+    "gloria": "Gloria",
+    "psalm": "Psalm",
+    "aklamacja": "Aklamacja",
+    "sanctus": "Sanctus",
+    "agnus-dei": "Agnus Dei"
+  };
+  var _a = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)([]),
+    ordinarium = _a[0],
+    setOrdinarium = _a[1];
+  (0,react__WEBPACK_IMPORTED_MODULE_1__.useEffect)(function () {
+    axios__WEBPACK_IMPORTED_MODULE_5__["default"].get("/api/ordinarius-data", {
+      params: {
+        color: color
+      }
+    }).then(function (res) {
+      setOrdinarium(res.data.ordinarium);
+    });
+  }, []);
+  return (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", __assign({
+    className: "flex-down"
+  }, {
+    children: ordinarium.map(function (el, key) {
+      return (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(_components_MassElements__WEBPACK_IMPORTED_MODULE_2__.MassElemSection, __assign({
+        id: el.part
+      }, {
+        children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("h1", {
+          children: dParts[el.part]
+        }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components_SheetMusicRender__WEBPACK_IMPORTED_MODULE_4__.SheetMusicRender, {
+          notes: el.sheet_music
+        }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", __assign({
+          className: "flex-right stretch"
+        }, {
+          children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components_Interactives__WEBPACK_IMPORTED_MODULE_3__.Button, __assign({
+            onClick: function onClick() {
+              window.location.href = "/ordinarium/show/".concat(el.color_code, "_").concat(el.part);
+            }
+          }, {
+            children: "Edytuj"
+          }))
+        }))]
+      }), key);
+    })
+  }));
+}
+
+/***/ }),
+
 /***/ "./resources/js/pages/Set.tsx":
 /*!************************************!*\
   !*** ./resources/js/pages/Set.tsx ***!
@@ -85572,7 +85656,7 @@ const toJSONObject = (obj) => {
 /******/ 		// undefined = chunk not loaded, null = chunk preloaded/prefetched
 /******/ 		// [resolve, reject, Promise] = chunk loading, 0 = chunk loaded
 /******/ 		var installedChunks = {
-/******/ 			"/js/set": 0
+/******/ 			"/js/ordinarius": 0
 /******/ 		};
 /******/ 		
 /******/ 		__webpack_require__.f.j = (chunkId, promises) => {
@@ -85659,22 +85743,22 @@ var __webpack_exports__ = {};
 // This entry need to be wrapped in an IIFE because it need to be in strict mode.
 (() => {
 "use strict";
-/*!******************************!*\
-  !*** ./resources/js/set.tsx ***!
-  \******************************/
+/*!*************************************!*\
+  !*** ./resources/js/ordinarius.tsx ***!
+  \*************************************/
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
 /* harmony import */ var _reportWebVitals__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./reportWebVitals */ "./resources/js/reportWebVitals.ts");
-/* harmony import */ var _pages_Set__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./pages/Set */ "./resources/js/pages/Set.tsx");
+/* harmony import */ var _pages_Ordinarius__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./pages/Ordinarius */ "./resources/js/pages/Ordinarius.tsx");
 
 
 
 
 
 react_dom__WEBPACK_IMPORTED_MODULE_2__.render((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(react__WEBPACK_IMPORTED_MODULE_1__.StrictMode, {
-  children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_pages_Set__WEBPACK_IMPORTED_MODULE_4__.MassSet, {})
+  children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_pages_Ordinarius__WEBPACK_IMPORTED_MODULE_4__.PresentOrdinarium, {})
 }), document.getElementById('root'));
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))

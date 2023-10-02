@@ -48,6 +48,18 @@ class DataModController extends Controller
         ]);
     }
 
+    public function ordinariusData(Request $rq){
+        $part_order = [];
+        $ordinarium = Ordinarius::where("color_code", $rq->color)
+            ->orderByRaw("FIELD(part, 'kyrie', 'gloria', 'psalm', 'aklamacja', 'sanctus', 'agnus-dei')")
+            ->get()
+        ;
+        
+        return response()->json([
+            "ordinarium" => $ordinarium,
+        ]);
+    }
+
     public function ordinarium(){
         return response()->json(Ordinarius::all());
     }

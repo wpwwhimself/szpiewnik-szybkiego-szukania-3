@@ -21,7 +21,6 @@ export function PresentSong(){
     return(
         <MassElemSection id="song">
             <div className="songMeta">
-                <h1>{song.title}</h1>
                 <div className="flex-right center wrap">
                     {song ?
                     <>

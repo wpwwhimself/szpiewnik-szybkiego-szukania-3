@@ -48,6 +48,10 @@ Route::controller(SongController::class)->prefix("songs")->group(function(){
     Route::get("/present/{title_slug}", "songPresent")->name("song-present");
 });
 
+Route::controller(OrdinariusController::class)->prefix("ordinarium")->group(function(){
+    Route::get("/present/{color}", "ordinariusPresent")->name("ordinarius-present");
+});
+
 Route::middleware(Authenticate::class)->group(function(){
     Route::controller(SetController::class)->prefix("sets")->group(function(){
         Route::get("/show/{set_id}", "set")->name("set");
