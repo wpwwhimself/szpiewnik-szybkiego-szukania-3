@@ -28,7 +28,3 @@ Route::controller(SongController::class)->group(function(){
     Route::post("/song-autocomplete", "songAutocomplete")->name("get-song-autocomplete");
     Route::post("/song-sugg-list", "songSuggList")->name("get-song-sugg-list");
 });
-
-Route::controller(SetController::class)->group(function(){
-    Route::post("/set-update-field", "setUpdateField")->name("set-update-field");
-});
