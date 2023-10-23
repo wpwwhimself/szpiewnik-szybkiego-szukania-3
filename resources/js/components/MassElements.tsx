@@ -466,7 +466,6 @@ export function ExtrasProcessor({elem}: {elem: MassElem}){
       return(
         <>
           <h2>{elem.label}</h2>
-          <h1>{elem.code.substring(1)}</h1>
         </>
       )
     }
