@@ -115,7 +115,7 @@ class SongController extends Controller
 
     public function songSuggList(Request $rq){
         $categories = SongCategory::where("name", $rq->formula)
-            ->orWhereIn("name", ["standard", "maryjne", "Serce"])
+            ->orWhereIn("name", ["standard", "niestandard", "maryjne", "Serce"])
             ->pluck("id");
 
         $songs = Song::select(["title", "preferences"])
