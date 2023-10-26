@@ -2,7 +2,7 @@
 import { MassElem, MassElemSectionProps, OrdinariumProcessorProps, OrdinariumProps } from "../types"
 import { ReactNode, useContext, useState, useEffect } from "react";
 import { slugAndDePL } from "../helpers";
-import { Button } from "./Interactives";
+import { Button, DummyInput } from "./Interactives";
 import { MModContext } from "../pages/Set";
 import { SheetMusicRender } from "./SheetMusicRender";
 import axios from "axios";
@@ -449,6 +449,9 @@ export function ExtrasProcessor({elem}: {elem: MassElem}){
       return(
         <>
           <h1>Modlitwa do Michała Archanioła</h1>
+          <div className="flex-right center wrap">
+            <DummyInput label="Numer w śpiewniku Preis" value={601} />
+          </div>
           <p>
             Święty Michale, Archaniele, wspomagaj nas w walce,
             a przeciw niegodziwości i zasadzkom złego ducha bądź nam obroną.
@@ -462,7 +465,7 @@ export function ExtrasProcessor({elem}: {elem: MassElem}){
     default:{
       return(
         <>
-          <h1>{elem.label}</h1>
+          <h2>{elem.label}</h2>
         </>
       )
     }

@@ -1,5 +1,5 @@
 import React, { createContext, useState, useEffect } from "react";
-import { massOrder, baseFormula } from "../helpers";
+import { massOrder, baseFormula, slugAndDePL } from "../helpers";
 import { Button, DummyInput, Select } from "../components/Interactives";
 import { AddCollectorProps, AdderFilterProps, Extra, Formula, HandleAddCollectorProps, MModProps, MassElem, OrdinariumColorProps, OrdinariumProps, PlaceProps, SelectOption, Set, SongCategoryProps, SongProps } from "../types";
 import { ExtrasProcessor, MassElemSection, OrdinariumProcessor, PsalmLyrics, SongLyrics } from "../components/MassElements";
@@ -150,6 +150,7 @@ export function MassSet(){
                                     <DummyInput label="Tonacja" value={song.key} />
                                     <DummyInput label="Kategoria" value={song.category_desc} />
                                     <DummyInput label="Numer w śpiewniku Preis" value={song.number_preis} />
+                                    <Button onClick={() => window.open(`/songs/show/${slugAndDePL(song.title)}`, "_blank")?.focus()}>Edytuj</Button>
                                 </>
                                 :
                                     <p>Pieśń niezapisana</p>
