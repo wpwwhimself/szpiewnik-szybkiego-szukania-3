@@ -258,6 +258,7 @@ header .titles *{
 
 nav{
     text-align: right;
+    gap: 0.2em 0.5em !important;
 }
 
 footer{

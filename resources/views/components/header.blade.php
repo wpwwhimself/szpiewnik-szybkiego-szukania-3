@@ -8,7 +8,7 @@
         <h2>{{ env("APP_NAME") }}</h2>
         @endif
     </div>
-    <nav class="flex-right">
+    <nav class="flex-down but-mobile-right">
         <a href="{{ route('sets') }}">Zestawy</a>
     @auth
         <a href="{{ route('songs') }}">Pieśni</a>
