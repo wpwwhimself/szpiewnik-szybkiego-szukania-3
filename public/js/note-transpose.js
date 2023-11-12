@@ -1,8 +1,8 @@
 // note transposer lifted from http://www.franziskaludwig.de/abctransposer/index.php
 
-function Hoch(e) {
+function Hoch(noteInput, e) {
     e.preventDefault();
-    verarbeiten = document.getElementById("sheet_music").value;
+    verarbeiten = noteInput.value;
     neu = escape(verarbeiten);
 
     Reihe = neu.split("%0D%0A");
@@ -160,18 +160,18 @@ function Hoch(e) {
 
     insfeld = Reihe.join("\n");
 
-    document.getElementById("sheet_music").value = insfeld;
-    Notenzeigen();
+    noteInput.value = insfeld;
+    Notenzeigen(noteInput);
 }
 
-function Notenzeigen(){
+function Notenzeigen(noteInput){
     const event = new Event("keyup");
-    document.getElementById("sheet_music").dispatchEvent(event);
+    noteInput.dispatchEvent(event);
 }
 
-function Runter(e) {
+function Runter(noteInput, e) {
     e.preventDefault();
-    verarbeiten = document.getElementById("sheet_music").value;
+    verarbeiten = noteInput.value;
 
     neu = escape(verarbeiten);
 
@@ -328,7 +328,7 @@ function Runter(e) {
     }
 
     insfeld = Reihe.join("\n");
-    document.getElementById("sheet_music").value = insfeld;
+    noteInput.value = insfeld;
 
-    Notenzeigen();
+    Notenzeigen(noteInput);
 }

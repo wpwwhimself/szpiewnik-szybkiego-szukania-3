@@ -36,8 +36,8 @@
         <x-button name="down">♪-</x-button>
         <script src="{{ asset("js/note-transpose.js") }}"></script>
         <script>
-        document.querySelector("#note-transpose button[name=up]").addEventListener("click", Hoch);
-        document.querySelector("#note-transpose button[name=down]").addEventListener("click", Runter);
+        document.querySelector("#note-transpose button[name=up]").addEventListener("click", (e) => Hoch(document.getElementById("sheet_music"), e));
+        document.querySelector("#note-transpose button[name=down]").addEventListener("click", (e) => Runter(document.getElementById("sheet_music"), e));
         </script>
       </div>
     </div>

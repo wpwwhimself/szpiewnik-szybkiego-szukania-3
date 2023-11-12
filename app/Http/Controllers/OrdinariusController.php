@@ -63,7 +63,7 @@ class OrdinariusController extends Controller
             ->where("part", $rq->part)
             ->first()
             ->update([
-                "sheet_music" => $rq->sheet_music,
+                "sheet_music" => implode("\r\n%%%\r\n", $rq->sheet_music),
             ]);
 
         return redirect()->route("ordinarium")->with("success", "Część stała poprawiona");
