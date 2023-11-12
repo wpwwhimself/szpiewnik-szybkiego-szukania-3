@@ -462,6 +462,15 @@ export function ExtrasProcessor({elem}: {elem: MassElem}){
           </p>
         </>
       )
+    case "IntChobienice":
+      return(
+        <>
+          <h1>Intencje mszalne (Chobienice)</h1>
+          <div className="flex-right center wrap">
+            <DummyInput label="Numer w śpiewniku Preis" value="1363, 1364" />
+          </div>
+        </>
+      )
     default:{
       return(
         <>
