@@ -1,8 +1,10 @@
 import abcjs from "abcjs"
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import { Button } from "./Interactives";
+import moment from "moment";
 
 interface SMRProps{
-    notes: string | null,
+    notes: string | string[] | null,
 }
 
 export function SheetMusicRender({notes}: SMRProps){
@@ -18,10 +20,18 @@ export function SheetMusicRender({notes}: SMRProps){
         viewportHorizontal: true
     }
 
+    const render_variants = Array.isArray(notes) && notes.length > 1;
+    const [variant, setVariant] = useState(
+        Array.isArray(notes)
+        ? moment().dayOfYear() % notes.length
+        : 0
+    );
+    const notes_ready = Array.isArray(notes) ? notes[variant] ?? notes[0] : notes;
+
     function render(){
         const res = abcjs.renderAbc(
             "sheet-"+this_id,
-            notes ?? "",
+            notes_ready ?? "",
             {
                 responsive: "resize",
                 // germanAlphabet: true,
@@ -29,11 +39,25 @@ export function SheetMusicRender({notes}: SMRProps){
         );
     }
 
-    useEffect(() => render(), [notes]);
+    const changeVariant = (var_no: number) => {
+        setVariant(var_no);
+    }
 
-    return(
+    useEffect(() => render(), [notes_ready]);
+
+    return(<>
+        {render_variants &&
+        <div className="flex-right center">
+        {notes.map((var_notes, var_no) =>
+            <Button key={var_no}
+                className={`slick ${variant === var_no ? 'accent-border' : ''}`}
+                onClick={() => changeVariant(var_no)}>
+                {var_no + 1}
+            </Button>)}
+        </div>
+        }
         <div className="flex-right center sheet-container">
             <div id={`sheet-${this_id}`}></div>
         </div>
-    )
+    </>)
 }

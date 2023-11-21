@@ -25742,6 +25742,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var abcjs__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! abcjs */ "./node_modules/abcjs/index.js");
 /* harmony import */ var abcjs__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(abcjs__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var _Interactives__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Interactives */ "./resources/js/components/Interactives.tsx");
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js");
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_4__);
 var __assign = undefined && undefined.__assign || function () {
   __assign = Object.assign || function (t) {
     for (var s, i = 1, n = arguments.length; i < n; i++) {
@@ -25755,7 +25758,10 @@ var __assign = undefined && undefined.__assign || function () {
 
 
 
+
+
 function SheetMusicRender(_a) {
+  var _b;
   var notes = _a.notes;
   var this_id = Date.now() + Math.random();
   var engraverParams = {
@@ -25767,23 +25773,46 @@ function SheetMusicRender(_a) {
   var renderParams = {
     viewportHorizontal: true
   };
+  var render_variants = Array.isArray(notes) && notes.length > 1;
+  var _c = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(Array.isArray(notes) ? moment__WEBPACK_IMPORTED_MODULE_4___default()().dayOfYear() % notes.length : 0),
+    variant = _c[0],
+    setVariant = _c[1];
+  var notes_ready = Array.isArray(notes) ? (_b = notes[variant]) !== null && _b !== void 0 ? _b : notes[0] : notes;
   function render() {
-    var res = abcjs__WEBPACK_IMPORTED_MODULE_1___default().renderAbc("sheet-" + this_id, notes !== null && notes !== void 0 ? notes : "", {
+    var res = abcjs__WEBPACK_IMPORTED_MODULE_1___default().renderAbc("sheet-" + this_id, notes_ready !== null && notes_ready !== void 0 ? notes_ready : "", {
       responsive: "resize"
       // germanAlphabet: true,
     });
   }
 
+  var changeVariant = function changeVariant(var_no) {
+    setVariant(var_no);
+  };
   (0,react__WEBPACK_IMPORTED_MODULE_2__.useEffect)(function () {
     return render();
-  }, [notes]);
-  return (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", __assign({
-    className: "flex-right center sheet-container"
-  }, {
-    children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
-      id: "sheet-".concat(this_id)
-    })
-  }));
+  }, [notes_ready]);
+  return (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
+    children: [render_variants && (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", __assign({
+      className: "flex-right center"
+    }, {
+      children: notes.map(function (var_notes, var_no) {
+        return (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_Interactives__WEBPACK_IMPORTED_MODULE_3__.Button, __assign({
+          className: "slick ".concat(variant === var_no ? 'accent-border' : ''),
+          onClick: function onClick() {
+            return changeVariant(var_no);
+          }
+        }, {
+          children: var_no + 1
+        }), var_no);
+      })
+    })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", __assign({
+      className: "flex-right center sheet-container"
+    }, {
+      children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
+        id: "sheet-".concat(this_id)
+      })
+    }))]
+  });
 }
 
 /***/ }),
@@ -26140,9 +26169,9 @@ function MassSet() {
         })[0];
         var formulaPart = ordinarium.filter(function (el2) {
           return el2.color_code === (0,_helpers__WEBPACK_IMPORTED_MODULE_2__.baseFormula)(formula.name);
-        }).filter(function (el2) {
+        }).find(function (el2) {
           return el2.part === el.label.toLocaleLowerCase();
-        })[0];
+        });
         var isNotWielkiPostAklamacja = !((0,_helpers__WEBPACK_IMPORTED_MODULE_2__.baseFormula)(set.formula) === "Wielki Post" && el.code === "pAccl");
         return (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(_components_MassElements__WEBPACK_IMPORTED_MODULE_4__.MassElemSection, __assign({
           id: el.code
@@ -26150,9 +26179,9 @@ function MassSet() {
           children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("h1", {
             children: el.label
           }), isNotWielkiPostAklamacja && (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components_SheetMusicRender__WEBPACK_IMPORTED_MODULE_5__.SheetMusicRender, {
-            notes: part.sheet_music
+            notes: part.sheet_music_variants
           }), formulaPart && (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components_SheetMusicRender__WEBPACK_IMPORTED_MODULE_5__.SheetMusicRender, {
-            notes: formulaPart.sheet_music
+            notes: formulaPart.sheet_music_variants
           }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components_MassElements__WEBPACK_IMPORTED_MODULE_4__.PsalmLyrics, {
             lyrics: el.content
           })]

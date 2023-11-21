@@ -166,13 +166,13 @@ export function MassSet(){
                 const part = thisMassOrdinarium.filter(el2 => el2.part === el.label.toLocaleLowerCase())[0];
                 const formulaPart = ordinarium
                     .filter(el2 => el2.color_code === baseFormula(formula.name))
-                    .filter(el2 => el2.part === el.label.toLocaleLowerCase())[0];
+                    .find(el2 => el2.part === el.label.toLocaleLowerCase());
                 const isNotWielkiPostAklamacja = !(baseFormula(set.formula) === "Wielki Post" && el.code === "pAccl");
                 return(
                     <MassElemSection id={el.code} key={i}>
                         <h1>{el.label}</h1>
-                        {isNotWielkiPostAklamacja && <SheetMusicRender notes={part.sheet_music} />}
-                        {formulaPart && <SheetMusicRender notes={formulaPart.sheet_music} />}
+                        {isNotWielkiPostAklamacja && <SheetMusicRender notes={part.sheet_music_variants} />}
+                        {formulaPart && <SheetMusicRender notes={formulaPart.sheet_music_variants} />}
                         <PsalmLyrics lyrics={el.content!} />
                     </MassElemSection>
                 )

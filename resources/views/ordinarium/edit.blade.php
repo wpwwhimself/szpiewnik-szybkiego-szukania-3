@@ -9,7 +9,7 @@
     <script src="{{ asset("js/note-transpose.js") }}"></script>
 
     <div id="variant-big-container">
-    @foreach (explode("\r\n%%%\r\n", $ordinarius->sheet_music) as $var_no => $notes)
+    @foreach ($ordinarius->sheet_music_variants as $var_no => $notes)
         <div class="variant-container">
             <x-input type="TEXT" name="sheet_music[]" :var-no="$var_no" label="Nuty" value="{!! $notes !!}" />
             <div id="note-transpose-{{ $var_no }}" class="flex-right center wrap">

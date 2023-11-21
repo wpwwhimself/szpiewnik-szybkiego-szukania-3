@@ -46,6 +46,7 @@ export interface OrdinariumProps{
     color_code: string,
     part: string,
     sheet_music: string,
+    sheet_music_variants: string[],
 }
 
 export interface OrdinariumColorProps{

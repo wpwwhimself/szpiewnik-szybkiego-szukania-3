@@ -15,6 +15,9 @@
             @foreach ($ordinarium[$color->name] as $ordinarius)
             <a href="{{ route('ordinarius', ['color_code' => $color->name, 'part' => $ordinarius->part]) }}">
                 {{ $ordinarius->part }}
+                @if(count($ordinarius->sheet_music_variants) > 1)
+                <small class="ghost">({{ count($ordinarius->sheet_music_variants) }} war.)</small>
+                @endif
             </a>
             @endforeach
         </div>

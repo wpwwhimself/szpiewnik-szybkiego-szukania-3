@@ -54,7 +54,7 @@ class DataModController extends Controller
             ->orderByRaw("FIELD(part, 'kyrie', 'gloria', 'psalm', 'aklamacja', 'sanctus', 'agnus-dei')")
             ->get()
         ;
-        
+
         return response()->json([
             "ordinarium" => $ordinarium,
         ]);
