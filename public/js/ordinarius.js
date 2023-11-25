@@ -25162,13 +25162,14 @@ function MassElemSection(_a) {
 }
 function SongLyrics(_a) {
   var lyrics = _a.lyrics;
+  var showLyrics = (0,react__WEBPACK_IMPORTED_MODULE_1__.useContext)(_pages_Set__WEBPACK_IMPORTED_MODULE_4__.ShowLyricsContext);
   var lyrics_processed = lyrics === null || lyrics === void 0 ? void 0 : lyrics.replace(/(\*\*|--)\s*\r?\n/g, '</span><br>').replace(/\*\s*\r?\n/g, "<span class=\"chorus\">").replace(/-\s*\r?\n/g, "<span class=\"tabbed\">").replace(/_(.{1,5})_/g, '<u>$1</u>').replace(/(\d+)\.\s*\r?\n/g, "<li value='$1'>").replace(/\r?\n/g, "<br />");
-  return (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("ol", {
+  return showLyrics ? (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("ol", {
     className: "lyrics",
     dangerouslySetInnerHTML: {
       __html: lyrics_processed !== null && lyrics_processed !== void 0 ? lyrics_processed : ""
     }
-  });
+  }) : (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.Fragment, {});
 }
 function PsalmLyrics(_a) {
   var lyrics = _a.lyrics;
@@ -25214,6 +25215,7 @@ function Alternative(_a) {
 function OrdinariumProcessor(_a) {
   var code = _a.code,
     colorCode = _a.colorCode;
+  var showLyrics = (0,react__WEBPACK_IMPORTED_MODULE_1__.useContext)(_pages_Set__WEBPACK_IMPORTED_MODULE_4__.ShowLyricsContext);
   var _b = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)([]),
     ordinarium = _b[0],
     setOrdinarium = _b[1];
@@ -25292,7 +25294,7 @@ function OrdinariumProcessor(_a) {
           return (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_SheetMusicRender__WEBPACK_IMPORTED_MODULE_5__.SheetMusicRender, {
             notes: part.sheet_music
           }, i);
-        }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", __assign({
+        }), showLyrics && (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", __assign({
           className: "lyrics"
         }, {
           children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("p", {
@@ -25308,7 +25310,7 @@ function OrdinariumProcessor(_a) {
           return (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_SheetMusicRender__WEBPACK_IMPORTED_MODULE_5__.SheetMusicRender, {
             notes: part.sheet_music
           }, i);
-        }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({
+        }), showLyrics && (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({
           className: "lyrics"
         }, {
           children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("p", {
@@ -25332,7 +25334,7 @@ function OrdinariumProcessor(_a) {
           return (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_SheetMusicRender__WEBPACK_IMPORTED_MODULE_5__.SheetMusicRender, {
             notes: part.sheet_music
           }, i);
-        }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("table", __assign({
+        }), showLyrics && (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("table", __assign({
           className: "credo"
         }, {
           children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("tbody", {
@@ -25468,7 +25470,7 @@ function OrdinariumProcessor(_a) {
           return (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_SheetMusicRender__WEBPACK_IMPORTED_MODULE_5__.SheetMusicRender, {
             notes: part.sheet_music
           }, i);
-        }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({
+        }), showLyrics && (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({
           className: "lyrics"
         }, {
           children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("p", {
@@ -25493,7 +25495,7 @@ function OrdinariumProcessor(_a) {
           return (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_SheetMusicRender__WEBPACK_IMPORTED_MODULE_5__.SheetMusicRender, {
             notes: part.sheet_music
           }, i);
-        }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({
+        }), showLyrics && (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({
           className: "lyrics"
         }, {
           children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("p", {
@@ -25521,7 +25523,7 @@ function OrdinariumProcessor(_a) {
           return (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_SheetMusicRender__WEBPACK_IMPORTED_MODULE_5__.SheetMusicRender, {
             notes: part.sheet_music
           }, i);
-        }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({
+        }), showLyrics && (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({
           className: "lyrics"
         }, {
           children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("p", {
@@ -25710,7 +25712,7 @@ function ExtrasProcessor(_a) {
         }, {
           children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_Interactives__WEBPACK_IMPORTED_MODULE_3__.DummyInput, {
             label: "Numer w \u015Bpiewniku Preis",
-            value: "1363, 1364"
+            value: "1360-1366"
           })
         }))]
       });
@@ -25797,7 +25799,7 @@ function SheetMusicRender(_a) {
     }, {
       children: notes.map(function (var_notes, var_no) {
         return (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_Interactives__WEBPACK_IMPORTED_MODULE_3__.Button, __assign({
-          className: "slick ".concat(variant === var_no ? 'accent-border' : ''),
+          className: [variant === var_no && 'accent-border'].filter(Boolean).join(" "),
           onClick: function onClick() {
             return changeVariant(var_no);
           }
@@ -26006,7 +26008,8 @@ function PresentOrdinarium() {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "MModContext": () => (/* binding */ MModContext),
-/* harmony export */   "MassSet": () => (/* binding */ MassSet)
+/* harmony export */   "MassSet": () => (/* binding */ MassSet),
+/* harmony export */   "ShowLyricsContext": () => (/* binding */ ShowLyricsContext)
 /* harmony export */ });
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
@@ -26045,6 +26048,7 @@ var __spreadArray = undefined && undefined.__spreadArray || function (to, from, 
 
 
 var MModContext = /*#__PURE__*/(0,react__WEBPACK_IMPORTED_MODULE_1__.createContext)({});
+var ShowLyricsContext = /*#__PURE__*/(0,react__WEBPACK_IMPORTED_MODULE_1__.createContext)(true);
 function MassSet() {
   var _a, _b, _c, _d, _e, _f, _g, _h, _j;
   var set_id = +window.location.href.replace(/.*\/(\d+).*/, "$1");
@@ -26080,12 +26084,15 @@ function MassSet() {
   var _t = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)([]),
     places = _t[0],
     setPlaces = _t[1];
-  var _u = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)({
+  var _u = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(true),
+    showLyrics = _u[0],
+    setShowLyrics = _u[1];
+  var _v = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)({
       song: undefined,
       before: undefined
     }),
-    addCollector = _u[0],
-    setAddCollector = _u[1];
+    addCollector = _v[0],
+    setAddCollector = _v[1];
   var czsts = ["sIntro", "sOffer", "sCommunion", "sAdoration", "sDismissal"];
   (0,react__WEBPACK_IMPORTED_MODULE_1__.useEffect)(function () {
     axios__WEBPACK_IMPORTED_MODULE_7__["default"].get("/api/set-data", {
@@ -26425,6 +26432,13 @@ function MassSet() {
       }, {
         children: "+"
       })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components_Interactives__WEBPACK_IMPORTED_MODULE_3__.Button, __assign({
+        className: [showLyrics && "accent-border"].filter(Boolean).join(" "),
+        onClick: function onClick() {
+          return setShowLyrics(!showLyrics);
+        }
+      }, {
+        children: "Teksty"
+      })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components_Interactives__WEBPACK_IMPORTED_MODULE_3__.Button, __assign({
         onClick: function onClick() {
           return placerOn();
         }
@@ -26646,57 +26660,61 @@ function MassSet() {
     })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", __assign({
       className: "flex-down"
     }, {
-      children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(MModContext.Provider, __assign({
+      children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(MModContext.Provider, __assign({
         value: MMod
       }, {
-        children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(_components_MassElements__WEBPACK_IMPORTED_MODULE_4__.MassElemSection, __assign({
-          id: "summary",
-          uneresable: true
+        children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(ShowLyricsContext.Provider, __assign({
+          value: showLyrics
         }, {
-          children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("h1", {
-            children: "Skr\xF3t"
-          }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({
-            className: "grid-2"
+          children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(_components_MassElements__WEBPACK_IMPORTED_MODULE_4__.MassElemSection, __assign({
+            id: "summary",
+            uneresable: true
           }, {
-            children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-              children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("h2", {
-                children: "Meta"
-              }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({
-                className: "flex-down center"
-              }, {
-                children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components_Interactives__WEBPACK_IMPORTED_MODULE_3__.DummyInput, {
-                  label: "Formu\u0142a",
-                  value: set.formula
-                }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components_Interactives__WEBPACK_IMPORTED_MODULE_3__.DummyInput, {
-                  label: "Utworzony",
-                  value: moment__WEBPACK_IMPORTED_MODULE_6___default()(set.created_at).format("DD.MM.YYYY")
-                }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components_Interactives__WEBPACK_IMPORTED_MODULE_3__.DummyInput, {
-                  label: "Zmodyfikowany",
-                  value: moment__WEBPACK_IMPORTED_MODULE_6___default()(set.updated_at).format("DD.MM.YYYY")
-                })]
-              }))]
-            }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-              children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("h2", {
-                children: "Pie\u015Bni i psalm"
-              }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("ol", __assign({
-                className: "summary"
-              }, {
-                children: summary === null || summary === void 0 ? void 0 : summary.map(function (el, i) {
-                  var _a, _b;
-                  return (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("li", {
-                    children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", {
-                      children: el.code === "pPsalm" ? (_a = el.content) === null || _a === void 0 ? void 0 : _a.substring(0, (_b = el.content) === null || _b === void 0 ? void 0 : _b.indexOf("\n")) : el.content
-                    }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", __assign({
-                      className: "ghost"
-                    }, {
-                      children: el.label
-                    }))]
-                  }, i);
-                })
-              }))]
-            })]
-          }))]
-        })), Mass]
+            children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("h1", {
+              children: "Skr\xF3t"
+            }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({
+              className: "grid-2"
+            }, {
+              children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
+                children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("h2", {
+                  children: "Meta"
+                }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({
+                  className: "flex-down center"
+                }, {
+                  children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components_Interactives__WEBPACK_IMPORTED_MODULE_3__.DummyInput, {
+                    label: "Formu\u0142a",
+                    value: set.formula
+                  }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components_Interactives__WEBPACK_IMPORTED_MODULE_3__.DummyInput, {
+                    label: "Utworzony",
+                    value: moment__WEBPACK_IMPORTED_MODULE_6___default()(set.created_at).format("DD.MM.YYYY")
+                  }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components_Interactives__WEBPACK_IMPORTED_MODULE_3__.DummyInput, {
+                    label: "Zmodyfikowany",
+                    value: moment__WEBPACK_IMPORTED_MODULE_6___default()(set.updated_at).format("DD.MM.YYYY")
+                  })]
+                }))]
+              }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
+                children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("h2", {
+                  children: "Pie\u015Bni i psalm"
+                }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("ol", __assign({
+                  className: "summary"
+                }, {
+                  children: summary === null || summary === void 0 ? void 0 : summary.map(function (el, i) {
+                    var _a, _b;
+                    return (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("li", {
+                      children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", {
+                        children: el.code === "pPsalm" ? (_a = el.content) === null || _a === void 0 ? void 0 : _a.substring(0, (_b = el.content) === null || _b === void 0 ? void 0 : _b.indexOf("\n")) : el.content
+                      }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", __assign({
+                        className: "ghost"
+                      }, {
+                        children: el.label
+                      }))]
+                    }, i);
+                  })
+                }))]
+              })]
+            }))]
+          })), Mass]
+        }))
       }))
     }))]
   });

@@ -8,6 +8,7 @@ import axios from "axios";
 import moment from "moment";
 
 export const MModContext = createContext({} as MModProps);
+export const ShowLyricsContext = createContext(true);
 
 export function MassSet(){
     const set_id = +window.location.href.replace(/.*\/(\d+).*/, "$1");
@@ -23,6 +24,7 @@ export function MassSet(){
     const [adderFilters, setAdderFilters] = useState({categories: [1], preferences: [0,1,2,3,4]} as AdderFilterProps);
     const [currentPlaceExtras, setCurrentPlaceExtras] = useState([] as Extra[]);
     const [places, setPlaces] = useState([] as PlaceProps[])
+    const [showLyrics, setShowLyrics] = useState(true)
 
     const [addCollector, setAddCollector] = useState({song: undefined, before: undefined} as AddCollectorProps);
 
@@ -278,6 +280,10 @@ export function MassSet(){
             <Select name="color" label="Kolor cz.st." options={ordColorOptions} value={set.color} onChange={handleColorChange} style={{ backgroundColor: current_color?.display_color ?? current_color?.name ?? 'none' }}/>
             <Button onClick={() => jumperOn()}>»</Button>
             <Button onClick={() => addModeOn("END")}>+</Button>
+            <Button className={[showLyrics && "accent-border"].filter(Boolean).join(" ")}
+                onClick={() => setShowLyrics(!showLyrics)}>
+                Teksty
+            </Button>
             <Button onClick={() => placerOn()}>{currentPlaceExtras ? currentPlaceExtras[0].place : "Miejsce"}</Button>
         </div>
 
@@ -413,6 +419,7 @@ export function MassSet(){
 
         <div className="flex-down">
             <MModContext.Provider value={MMod}>
+            <ShowLyricsContext.Provider value={showLyrics}>
                 <MassElemSection id="summary" uneresable>
                     <h1>Skrót</h1>
                     <div className="grid-2">
@@ -442,6 +449,7 @@ export function MassSet(){
                     </div>
                 </MassElemSection>
                 {Mass}
+            </ShowLyricsContext.Provider>
             </MModContext.Provider>
         </div>
     </>)

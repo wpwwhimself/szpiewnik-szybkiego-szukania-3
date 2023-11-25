@@ -346,7 +346,7 @@ button:hover, .button:hover{
     color: black;
     background-color: hsl(var(--acc));
 }
-button:hover::before, .button:hover::before{
+button.slick:hover::before, .button.slick:hover::before{
     border-color: hsl(var(--acc));
 }
 .light-button{

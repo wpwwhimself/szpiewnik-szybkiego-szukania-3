@@ -50,7 +50,7 @@ export function SheetMusicRender({notes}: SMRProps){
         <div className="flex-right center">
         {notes.map((var_notes, var_no) =>
             <Button key={var_no}
-                className={`slick ${variant === var_no ? 'accent-border' : ''}`}
+                className={[variant === var_no && 'accent-border'].filter(Boolean).join(" ")}
                 onClick={() => changeVariant(var_no)}>
                 {var_no + 1}
             </Button>)}
