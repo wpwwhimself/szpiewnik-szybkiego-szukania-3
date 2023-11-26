@@ -387,9 +387,11 @@ label{
 .massElemSection{
 	position: relative;
 }
+.massElemSection:not(:last-of-type), hr{
+    border-bottom: 3px solid hsl(var(--bg2));
+    border-top: none;
+}
 .massElemSection:not(:last-of-type){
-  border-bottom: 3px solid hsl(var(--bg2));
-  border-top: none;
   padding-bottom: 0.5em;
   margin: 0;
 }

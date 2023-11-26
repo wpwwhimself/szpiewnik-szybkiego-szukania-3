@@ -495,19 +495,19 @@ export function ExtrasProcessor({elem}: {elem: MassElem}){
             <h1>O zbawcza Hostio</h1>
             <SongRender song={oZbawcza} />
           </div>
-
+          <hr />
           <h2>Modlitwy</h2>
-
+          <hr />
           <div className="songMeta">
             <h2>Przed błogosławieństwem</h2>
             <h1>Przed tak wielkim Sakramentem</h1>
           </div>
           <SongRender song={przedTakWielkim} />
+          <hr />
           <Antiphon
             call="Módlmy się..."
             resp="Amen"
             />
-
           <h2>Błogosławieństwo monstrancją</h2>
         </>
       )
