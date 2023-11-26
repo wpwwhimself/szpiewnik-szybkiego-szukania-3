@@ -4,6 +4,7 @@ import axios from "axios";
 import { MassElemSection, SongLyrics } from "../components/MassElements";
 import { DummyInput } from "../components/Interactives";
 import { SheetMusicRender } from "../components/SheetMusicRender";
+import { SongRender } from "../components/SongRender";
 
 export function PresentSong(){
     const title_slug = window.location.href.replace(/.*\/present\/(.*).*/, "$1");
@@ -20,22 +21,7 @@ export function PresentSong(){
 
     return(
         <MassElemSection id="song">
-            <div className="songMeta">
-                <div className="flex-right center wrap">
-                    {song ?
-                    <>
-                        <DummyInput label="Tonacja" value={song.key} />
-                        <DummyInput label="Kategoria" value={song.category_desc} />
-                        <DummyInput label="Numer w śpiewniku Preis" value={song.number_preis} />
-                    </>
-                    :
-                        <p>Pieśń niezapisana</p>
-                    }
-                </div>
-
-                {song?.sheet_music && <SheetMusicRender notes={song.sheet_music} />}
-                {song?.lyrics && <SongLyrics lyrics={song.lyrics} />}
-            </div>
+            <SongRender song={song} />
         </MassElemSection>
     );
 }

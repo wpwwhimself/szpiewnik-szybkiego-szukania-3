@@ -25716,6 +25716,8 @@ function ExtrasProcessor(_a) {
           })
         }))]
       });
+    case "xExposition":
+      return (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.Fragment, {});
     default:
       {
         return (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
@@ -25814,6 +25816,76 @@ function SheetMusicRender(_a) {
         id: "sheet-".concat(this_id)
       })
     }))]
+  });
+}
+
+/***/ }),
+
+/***/ "./resources/js/components/SongRender.tsx":
+/*!************************************************!*\
+  !*** ./resources/js/components/SongRender.tsx ***!
+  \************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "SongRender": () => (/* binding */ SongRender)
+/* harmony export */ });
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var _helpers__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../helpers */ "./resources/js/helpers.ts");
+/* harmony import */ var _Interactives__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Interactives */ "./resources/js/components/Interactives.tsx");
+/* harmony import */ var _MassElements__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./MassElements */ "./resources/js/components/MassElements.tsx");
+/* harmony import */ var _SheetMusicRender__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./SheetMusicRender */ "./resources/js/components/SheetMusicRender.tsx");
+var __assign = undefined && undefined.__assign || function () {
+  __assign = Object.assign || function (t) {
+    for (var s, i = 1, n = arguments.length; i < n; i++) {
+      s = arguments[i];
+      for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p)) t[p] = s[p];
+    }
+    return t;
+  };
+  return __assign.apply(this, arguments);
+};
+
+
+
+
+
+function SongRender(_a) {
+  var song = _a.song;
+  return (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
+    children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", __assign({
+      className: "flex-right center wrap"
+    }, {
+      children: song ? (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
+        children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_Interactives__WEBPACK_IMPORTED_MODULE_2__.DummyInput, {
+          label: "Tonacja",
+          value: song.key
+        }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_Interactives__WEBPACK_IMPORTED_MODULE_2__.DummyInput, {
+          label: "Kategoria",
+          value: song.category_desc
+        }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_Interactives__WEBPACK_IMPORTED_MODULE_2__.DummyInput, {
+          label: "Numer w \u015Bpiewniku Preis",
+          value: song.number_preis
+        }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_Interactives__WEBPACK_IMPORTED_MODULE_2__.Button, __assign({
+          onClick: function onClick() {
+            var _a;
+            return (_a = window.open("/songs/show/".concat((0,_helpers__WEBPACK_IMPORTED_MODULE_1__.slugAndDePL)(song.title)), "_blank")) === null || _a === void 0 ? void 0 : _a.focus();
+          }
+        }, {
+          children: "Edytuj"
+        }))]
+      }) : (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("p", {
+        children: "Pie\u015B\u0144 niezapisana"
+      })
+    })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
+      children: [(song === null || song === void 0 ? void 0 : song.sheet_music) && (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_SheetMusicRender__WEBPACK_IMPORTED_MODULE_4__.SheetMusicRender, {
+        notes: song.sheet_music
+      }), (song === null || song === void 0 ? void 0 : song.lyrics) && (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_MassElements__WEBPACK_IMPORTED_MODULE_3__.SongLyrics, {
+        lyrics: song.lyrics
+      })]
+    })]
   });
 }
 
@@ -25933,9 +26005,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_Interactives__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../components/Interactives */ "./resources/js/components/Interactives.tsx");
 /* harmony import */ var _components_MassElements__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../components/MassElements */ "./resources/js/components/MassElements.tsx");
 /* harmony import */ var _components_SheetMusicRender__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../components/SheetMusicRender */ "./resources/js/components/SheetMusicRender.tsx");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! axios */ "./node_modules/axios/lib/axios.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! axios */ "./node_modules/axios/lib/axios.js");
 /* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js");
 /* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var _components_SongRender__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../components/SongRender */ "./resources/js/components/SongRender.tsx");
 var __assign = undefined && undefined.__assign || function () {
   __assign = Object.assign || function (t) {
     for (var s, i = 1, n = arguments.length; i < n; i++) {
@@ -25955,6 +26028,7 @@ var __spreadArray = undefined && undefined.__spreadArray || function (to, from, 
   }
   return to.concat(ar || Array.prototype.slice.call(from));
 };
+
 
 
 
@@ -26011,7 +26085,7 @@ function MassSet() {
     setAddCollector = _v[1];
   var czsts = ["sIntro", "sOffer", "sCommunion", "sAdoration", "sDismissal"];
   (0,react__WEBPACK_IMPORTED_MODULE_1__.useEffect)(function () {
-    axios__WEBPACK_IMPORTED_MODULE_7__["default"].get("/api/set-data", {
+    axios__WEBPACK_IMPORTED_MODULE_8__["default"].get("/api/set-data", {
       params: {
         set_id: set_id,
         place_slug: place_slug
@@ -26125,49 +26199,23 @@ function MassSet() {
     switch (el.code.charAt(0)) {
       case "s":
         // song
-        var song_1 = songs.filter(function (s) {
+        var song = songs.filter(function (s) {
           return s.title === el.content;
         })[0];
-        return (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components_MassElements__WEBPACK_IMPORTED_MODULE_4__.MassElemSection, __assign({
+        return (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(_components_MassElements__WEBPACK_IMPORTED_MODULE_4__.MassElemSection, __assign({
           id: el.code
         }, {
-          children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({
+          children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({
             className: "songMeta"
           }, {
             children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("h2", {
               children: el.label
             }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("h1", {
               children: el.content
-            }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", __assign({
-              className: "flex-right center wrap"
-            }, {
-              children: song_1 ? (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
-                children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components_Interactives__WEBPACK_IMPORTED_MODULE_3__.DummyInput, {
-                  label: "Tonacja",
-                  value: song_1.key
-                }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components_Interactives__WEBPACK_IMPORTED_MODULE_3__.DummyInput, {
-                  label: "Kategoria",
-                  value: song_1.category_desc
-                }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components_Interactives__WEBPACK_IMPORTED_MODULE_3__.DummyInput, {
-                  label: "Numer w \u015Bpiewniku Preis",
-                  value: song_1.number_preis
-                }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components_Interactives__WEBPACK_IMPORTED_MODULE_3__.Button, __assign({
-                  onClick: function onClick() {
-                    var _a;
-                    return (_a = window.open("/songs/show/".concat((0,_helpers__WEBPACK_IMPORTED_MODULE_2__.slugAndDePL)(song_1.title)), "_blank")) === null || _a === void 0 ? void 0 : _a.focus();
-                  }
-                }, {
-                  children: "Edytuj"
-                }))]
-              }) : (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("p", {
-                children: "Pie\u015B\u0144 niezapisana"
-              })
-            })), (song_1 === null || song_1 === void 0 ? void 0 : song_1.sheet_music) && (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components_SheetMusicRender__WEBPACK_IMPORTED_MODULE_5__.SheetMusicRender, {
-              notes: song_1.sheet_music
-            }), (song_1 === null || song_1 === void 0 ? void 0 : song_1.lyrics) && (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components_MassElements__WEBPACK_IMPORTED_MODULE_4__.SongLyrics, {
-              lyrics: song_1.lyrics
             })]
-          }))
+          })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components_SongRender__WEBPACK_IMPORTED_MODULE_7__.SongRender, {
+            song: song
+          })]
         }), i);
       case "p":
         // psalm
@@ -26651,10 +26699,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! axios */ "./node_modules/axios/lib/axios.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! axios */ "./node_modules/axios/lib/axios.js");
 /* harmony import */ var _components_MassElements__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/MassElements */ "./resources/js/components/MassElements.tsx");
-/* harmony import */ var _components_Interactives__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../components/Interactives */ "./resources/js/components/Interactives.tsx");
-/* harmony import */ var _components_SheetMusicRender__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../components/SheetMusicRender */ "./resources/js/components/SheetMusicRender.tsx");
+/* harmony import */ var _components_SongRender__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../components/SongRender */ "./resources/js/components/SongRender.tsx");
 var __assign = undefined && undefined.__assign || function () {
   __assign = Object.assign || function (t) {
     for (var s, i = 1, n = arguments.length; i < n; i++) {
@@ -26670,14 +26717,13 @@ var __assign = undefined && undefined.__assign || function () {
 
 
 
-
 function PresentSong() {
   var title_slug = window.location.href.replace(/.*\/present\/(.*).*/, "$1");
   var _a = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)({}),
     song = _a[0],
     setSong = _a[1];
   (0,react__WEBPACK_IMPORTED_MODULE_1__.useEffect)(function () {
-    axios__WEBPACK_IMPORTED_MODULE_5__["default"].get("/api/song-data", {
+    axios__WEBPACK_IMPORTED_MODULE_4__["default"].get("/api/song-data", {
       params: {
         title_slug: title_slug
       }
@@ -26688,32 +26734,9 @@ function PresentSong() {
   return (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components_MassElements__WEBPACK_IMPORTED_MODULE_2__.MassElemSection, __assign({
     id: "song"
   }, {
-    children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({
-      className: "songMeta"
-    }, {
-      children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", __assign({
-        className: "flex-right center wrap"
-      }, {
-        children: song ? (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
-          children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components_Interactives__WEBPACK_IMPORTED_MODULE_3__.DummyInput, {
-            label: "Tonacja",
-            value: song.key
-          }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components_Interactives__WEBPACK_IMPORTED_MODULE_3__.DummyInput, {
-            label: "Kategoria",
-            value: song.category_desc
-          }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components_Interactives__WEBPACK_IMPORTED_MODULE_3__.DummyInput, {
-            label: "Numer w \u015Bpiewniku Preis",
-            value: song.number_preis
-          })]
-        }) : (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("p", {
-          children: "Pie\u015B\u0144 niezapisana"
-        })
-      })), (song === null || song === void 0 ? void 0 : song.sheet_music) && (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components_SheetMusicRender__WEBPACK_IMPORTED_MODULE_4__.SheetMusicRender, {
-        notes: song.sheet_music
-      }), (song === null || song === void 0 ? void 0 : song.lyrics) && (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components_MassElements__WEBPACK_IMPORTED_MODULE_2__.SongLyrics, {
-        lyrics: song.lyrics
-      })]
-    }))
+    children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components_SongRender__WEBPACK_IMPORTED_MODULE_3__.SongRender, {
+      song: song
+    })
   }));
 }
 

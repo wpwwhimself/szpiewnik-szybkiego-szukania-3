@@ -475,6 +475,12 @@ export function ExtrasProcessor({elem}: {elem: MassElem}){
           </div>
         </>
       )
+    case "xExposition":
+      return(
+        <>
+
+        </>
+      )
     default:{
       return(
         <>

@@ -6,6 +6,7 @@ import { ExtrasProcessor, MassElemSection, OrdinariumProcessor, PsalmLyrics, Son
 import { SheetMusicRender } from "../components/SheetMusicRender";
 import axios from "axios";
 import moment from "moment";
+import { SongRender } from "../components/SongRender";
 
 export const MModContext = createContext({} as MModProps);
 export const ShowLyricsContext = createContext(true);
@@ -146,22 +147,8 @@ export function MassSet(){
                         <div className="songMeta">
                             <h2>{el.label}</h2>
                             <h1>{el.content}</h1>
-                            <div className="flex-right center wrap">
-                                {song ?
-                                <>
-                                    <DummyInput label="Tonacja" value={song.key} />
-                                    <DummyInput label="Kategoria" value={song.category_desc} />
-                                    <DummyInput label="Numer w śpiewniku Preis" value={song.number_preis} />
-                                    <Button onClick={() => window.open(`/songs/show/${slugAndDePL(song.title)}`, "_blank")?.focus()}>Edytuj</Button>
-                                </>
-                                :
-                                    <p>Pieśń niezapisana</p>
-                                }
-                            </div>
-
-                            {song?.sheet_music && <SheetMusicRender notes={song.sheet_music} />}
-                            {song?.lyrics && <SongLyrics lyrics={song.lyrics} />}
                         </div>
+                        <SongRender song={song} />
                     </MassElemSection>
                 )
             case "p": // psalm
