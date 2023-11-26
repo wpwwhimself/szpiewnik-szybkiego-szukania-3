@@ -285,9 +285,7 @@ export function MassSet(){
 
         <div id="jumper" className="modal">
             <h1>Przejdź do</h1>
-            <div className="flex-right stretch">
-                <Button className="slick" onClick={() => jumperOn()}>Anuluj</Button>
-            </div>
+
             <div>
                 <h2>Pieśni</h2>
                 <div className="flex-right center wrap">
@@ -320,6 +318,7 @@ export function MassSet(){
                 )}
                 </div>
             </div>
+
             <div className="flex-right stretch">
                 <Button className="slick" onClick={() => jumperOn()}>Anuluj</Button>
             </div>
@@ -336,24 +335,8 @@ export function MassSet(){
                             : ` na ${set.thisMassOrder.filter(el => el.code === addCollector.before)[0]?.label}`
                     : " na koniec zestawu"}
             </h1>
-            <div className="flex-right center">
-                {[
-                    { code: "xExposition", label: "Wystawienie NŚ" },
-                ].map(({code, label}, i) =>
-                    <Button onClick={() => handleAddCollector("song", code)}
-                        className={[
-                            addCollector.song === code && "accent-border",
-                            "light-button",
-                        ].filter(Boolean).join(" ")}
-                        >
-                        {label}
-                    </Button>
-                )}
-            </div>
-            <div className="flex-right stretch">
-                <Button className="slick" onClick={() => addModeOn()}>Anuluj</Button>
-                {addCollector.song && addCollector.before && <Button onClick={() => addModeOn(undefined, true)}>Dodaj</Button>}
-            </div>
+
+            <h2>Filtry</h2>
             <div id="filters" className="grid-2">
                 <div className="flex-right center wrap">
                 {categories.map((el, i) =>
@@ -379,25 +362,47 @@ export function MassSet(){
                     <Button onClick={() => toggleFilters(null, true)} className="slick">×</Button>
                 </div>
             </div>
-            <div id="song-list" className="flex-right center wrap">
-            {songs.filter(el => adderFilters.categories.includes(el.song_category_id))
-                .filter(el => {
-                    if(adderFilters.preferences.length === 0){
-                        if(el.preferences.substring(0, 9) === "0/0/0/0/0") return true;
-                    }else for(let wanted_pref of adderFilters.preferences){
-                        if(el.preferences.split("/")[wanted_pref] == "1") return true;
-                    }
-                    return false;
-                })
-                .map((song, i) =>
-                <Button key={i}
-                    onClick={() => handleAddCollector("song", song.title)}
-                    className={`light-button ${addCollector.song === song.title && "accent-border"}`}
-                    >
-                    {song.title}
-                </Button>
-            )}
+
+            <div className="scroll-list">
+                <h2>Specjalne</h2>
+                <div className="flex-right center">
+                    {[
+                        { code: "xExposition", label: "Wystawienie Najświętszego Sakramentu" },
+                    ].map(({code, label}, i) =>
+                        <Button key={i}
+                            onClick={() => handleAddCollector("song", code)}
+                            className={[
+                                addCollector.song === code && "accent-border",
+                                "light-button",
+                            ].filter(Boolean).join(" ")}
+                            >
+                            {label}
+                        </Button>
+                    )}
+                </div>
+
+                <h2>Pieśni</h2>
+                <div id="song-list" className="flex-right center wrap">
+                {songs.filter(el => adderFilters.categories.includes(el.song_category_id))
+                    .filter(el => {
+                        if(adderFilters.preferences.length === 0){
+                            if(el.preferences.substring(0, 9) === "0/0/0/0/0") return true;
+                        }else for(let wanted_pref of adderFilters.preferences){
+                            if(el.preferences.split("/")[wanted_pref] == "1") return true;
+                        }
+                        return false;
+                    })
+                    .map((song, i) =>
+                    <Button key={i}
+                        onClick={() => handleAddCollector("song", song.title)}
+                        className={`light-button ${addCollector.song === song.title && "accent-border"}`}
+                        >
+                        {song.title}
+                    </Button>
+                )}
+                </div>
             </div>
+
             <div className="flex-right stretch">
                 <Button className="slick" onClick={() => addModeOn()}>Anuluj</Button>
                 {addCollector.song && addCollector.before && <Button onClick={() => addModeOn(undefined, true)}>Dodaj</Button>}

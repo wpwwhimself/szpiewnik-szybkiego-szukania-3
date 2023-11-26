@@ -210,9 +210,15 @@ thead th, tfoot th{
     z-index: 99;
     background-color: hsla(var(--bg1), 0.5);
     backdrop-filter: blur(10px);
+    flex-direction: column;
+    justify-content: start;
 }
 .modal.show{
-    display: block;
+    display: flex;
+}
+
+.scroll-list{
+    overflow-y: scroll;
 }
 
 /* Songs */

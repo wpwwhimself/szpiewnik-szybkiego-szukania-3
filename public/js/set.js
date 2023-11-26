@@ -26482,18 +26482,7 @@ function MassSet() {
     }, {
       children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("h1", {
         children: "Przejd\u017A do"
-      }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", __assign({
-        className: "flex-right stretch"
-      }, {
-        children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components_Interactives__WEBPACK_IMPORTED_MODULE_3__.Button, __assign({
-          className: "slick",
-          onClick: function onClick() {
-            return jumperOn();
-          }
-        }, {
-          children: "Anuluj"
-        }))
-      })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
+      }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
         children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("h2", {
           children: "Pie\u015Bni"
         }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", __assign({
@@ -26560,42 +26549,9 @@ function MassSet() {
         })[0]) === null || _h === void 0 ? void 0 : _h.label) : addCollector.before === "summary" ? " na początek zestawu" : " na ".concat((_j = set.thisMassOrder.filter(function (el) {
           return el.code === addCollector.before;
         })[0]) === null || _j === void 0 ? void 0 : _j.label) : " na koniec zestawu"]
-      }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", __assign({
-        className: "flex-right center"
-      }, {
-        children: [{
-          code: "xExposition",
-          label: "Wystawienie NŚ"
-        }].map(function (_a, i) {
-          var code = _a.code,
-            label = _a.label;
-          return (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components_Interactives__WEBPACK_IMPORTED_MODULE_3__.Button, __assign({
-            onClick: function onClick() {
-              return handleAddCollector("song", code);
-            },
-            className: [addCollector.song === code && "accent-border", "light-button"].filter(Boolean).join(" ")
-          }, {
-            children: label
-          }));
-        })
-      })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({
-        className: "flex-right stretch"
-      }, {
-        children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components_Interactives__WEBPACK_IMPORTED_MODULE_3__.Button, __assign({
-          className: "slick",
-          onClick: function onClick() {
-            return addModeOn();
-          }
-        }, {
-          children: "Anuluj"
-        })), addCollector.song && addCollector.before && (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components_Interactives__WEBPACK_IMPORTED_MODULE_3__.Button, __assign({
-          onClick: function onClick() {
-            return addModeOn(undefined, true);
-          }
-        }, {
-          children: "Dodaj"
-        }))]
-      })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({
+      }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("h2", {
+        children: "Filtry"
+      }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({
         id: "filters",
         className: "grid-2"
       }, {
@@ -26640,30 +26596,56 @@ function MassSet() {
             children: "\xD7"
           }))]
         }))]
-      })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", __assign({
-        id: "song-list",
-        className: "flex-right center wrap"
+      })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({
+        className: "scroll-list"
       }, {
-        children: songs.filter(function (el) {
-          return adderFilters.categories.includes(el.song_category_id);
-        }).filter(function (el) {
-          if (adderFilters.preferences.length === 0) {
-            if (el.preferences.substring(0, 9) === "0/0/0/0/0") return true;
-          } else for (var _i = 0, _a = adderFilters.preferences; _i < _a.length; _i++) {
-            var wanted_pref = _a[_i];
-            if (el.preferences.split("/")[wanted_pref] == "1") return true;
-          }
-          return false;
-        }).map(function (song, i) {
-          return (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components_Interactives__WEBPACK_IMPORTED_MODULE_3__.Button, __assign({
-            onClick: function onClick() {
-              return handleAddCollector("song", song.title);
-            },
-            className: "light-button ".concat(addCollector.song === song.title && "accent-border")
-          }, {
-            children: song.title
-          }), i);
-        })
+        children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("h2", {
+          children: "Specjalne"
+        }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", __assign({
+          className: "flex-right center"
+        }, {
+          children: [{
+            code: "xExposition",
+            label: "Wystawienie Najświętszego Sakramentu"
+          }].map(function (_a, i) {
+            var code = _a.code,
+              label = _a.label;
+            return (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components_Interactives__WEBPACK_IMPORTED_MODULE_3__.Button, __assign({
+              onClick: function onClick() {
+                return handleAddCollector("song", code);
+              },
+              className: [addCollector.song === code && "accent-border", "light-button"].filter(Boolean).join(" ")
+            }, {
+              children: label
+            }), i);
+          })
+        })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("h2", {
+          children: "Pie\u015Bni"
+        }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", __assign({
+          id: "song-list",
+          className: "flex-right center wrap"
+        }, {
+          children: songs.filter(function (el) {
+            return adderFilters.categories.includes(el.song_category_id);
+          }).filter(function (el) {
+            if (adderFilters.preferences.length === 0) {
+              if (el.preferences.substring(0, 9) === "0/0/0/0/0") return true;
+            } else for (var _i = 0, _a = adderFilters.preferences; _i < _a.length; _i++) {
+              var wanted_pref = _a[_i];
+              if (el.preferences.split("/")[wanted_pref] == "1") return true;
+            }
+            return false;
+          }).map(function (song, i) {
+            return (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components_Interactives__WEBPACK_IMPORTED_MODULE_3__.Button, __assign({
+              onClick: function onClick() {
+                return handleAddCollector("song", song.title);
+              },
+              className: "light-button ".concat(addCollector.song === song.title && "accent-border")
+            }, {
+              children: song.title
+            }), i);
+          })
+        }))]
       })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({
         className: "flex-right stretch"
       }, {
