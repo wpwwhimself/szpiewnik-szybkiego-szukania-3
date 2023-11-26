@@ -25098,7 +25098,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Interactives__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Interactives */ "./resources/js/components/Interactives.tsx");
 /* harmony import */ var _pages_Set__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../pages/Set */ "./resources/js/pages/Set.tsx");
 /* harmony import */ var _SheetMusicRender__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./SheetMusicRender */ "./resources/js/components/SheetMusicRender.tsx");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! axios */ "./node_modules/axios/lib/axios.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! axios */ "./node_modules/axios/lib/axios.js");
+/* harmony import */ var _SongRender__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./SongRender */ "./resources/js/components/SongRender.tsx");
 var __assign = undefined && undefined.__assign || function () {
   __assign = Object.assign || function (t) {
     for (var s, i = 1, n = arguments.length; i < n; i++) {
@@ -25109,6 +25110,7 @@ var __assign = undefined && undefined.__assign || function () {
   };
   return __assign.apply(this, arguments);
 };
+
 
 
 
@@ -25220,7 +25222,7 @@ function OrdinariumProcessor(_a) {
     ordinarium = _b[0],
     setOrdinarium = _b[1];
   (0,react__WEBPACK_IMPORTED_MODULE_1__.useEffect)(function () {
-    axios__WEBPACK_IMPORTED_MODULE_6__["default"].get("/api/ordinarium").then(function (res) {
+    axios__WEBPACK_IMPORTED_MODULE_7__["default"].get("/api/ordinarium").then(function (res) {
       setOrdinarium(res.data);
     });
   }, []);
@@ -25716,8 +25718,61 @@ function ExtrasProcessor(_a) {
           })
         }))]
       });
-    case "xExposition":
-      return (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.Fragment, {});
+    case "Exposition":
+      var _b = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(),
+        oZbawcza = _b[0],
+        setOZbawcza_1 = _b[1];
+      var _c = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(),
+        przedTakWielkim = _c[0],
+        setPrzedTakWielkim_1 = _c[1];
+      (0,react__WEBPACK_IMPORTED_MODULE_1__.useEffect)(function () {
+        axios__WEBPACK_IMPORTED_MODULE_7__["default"].get("/api/song-data", {
+          params: {
+            title_slug: (0,_helpers__WEBPACK_IMPORTED_MODULE_2__.slugAndDePL)("O zbawcza Hostio")
+          }
+        }).then(function (res) {
+          setOZbawcza_1(res.data.song);
+        });
+        axios__WEBPACK_IMPORTED_MODULE_7__["default"].get("/api/song-data", {
+          params: {
+            title_slug: (0,_helpers__WEBPACK_IMPORTED_MODULE_2__.slugAndDePL)("Przed tak wielkim Sakramentem")
+          }
+        }).then(function (res) {
+          setPrzedTakWielkim_1(res.data.song);
+        });
+      }, []);
+      return (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
+        children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("h1", {
+          children: "Wystawienie Naj\u015Bwi\u0119tszego Sakramentu"
+        }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({
+          className: "songMeta"
+        }, {
+          children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("h2", {
+            children: "Okadzenie"
+          }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("h1", {
+            children: "O zbawcza Hostio"
+          }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_SongRender__WEBPACK_IMPORTED_MODULE_6__.SongRender, {
+            song: oZbawcza
+          })]
+        })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("h2", {
+          children: "Modlitwy"
+        }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({
+          className: "songMeta"
+        }, {
+          children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("h2", {
+            children: "Przed b\u0142ogos\u0142awie\u0144stwem"
+          }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("h1", {
+            children: "Przed tak wielkim Sakramentem"
+          })]
+        })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_SongRender__WEBPACK_IMPORTED_MODULE_6__.SongRender, {
+          song: przedTakWielkim
+        }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(Antiphon, {
+          call: "M\xF3dlmy si\u0119...",
+          resp: "Amen"
+        }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("h2", {
+          children: "B\u0142ogos\u0142awie\u0144stwo monstrancj\u0105"
+        })]
+      });
     default:
       {
         return (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.Fragment, {

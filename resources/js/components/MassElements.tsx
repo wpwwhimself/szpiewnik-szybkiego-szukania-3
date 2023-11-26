@@ -1,11 +1,12 @@
 // import style from "./style.module.css"
-import { MassElem, MassElemSectionProps, OrdinariumProcessorProps, OrdinariumProps } from "../types"
+import { MassElem, MassElemSectionProps, OrdinariumProcessorProps, OrdinariumProps, SongProps } from "../types"
 import { ReactNode, useContext, useState, useEffect } from "react";
 import { slugAndDePL } from "../helpers";
 import { Button, DummyInput } from "./Interactives";
 import { MModContext, ShowLyricsContext } from "../pages/Set";
 import { SheetMusicRender } from "./SheetMusicRender";
 import axios from "axios";
+import { SongRender } from "./SongRender";
 
 export function MassElemSection({id, uneresable = false, children}: MassElemSectionProps){
   const MMod = useContext(MModContext);
@@ -475,10 +476,39 @@ export function ExtrasProcessor({elem}: {elem: MassElem}){
           </div>
         </>
       )
-    case "xExposition":
+    case "Exposition":
+      const [oZbawcza, setOZbawcza] = useState<SongProps>()
+      const [przedTakWielkim, setPrzedTakWielkim] = useState<SongProps>()
+
+      useEffect(() => {
+        axios.get("/api/song-data", {params: {title_slug: slugAndDePL("O zbawcza Hostio")}})
+          .then(res => { setOZbawcza(res.data.song) })
+        axios.get("/api/song-data", {params: {title_slug: slugAndDePL("Przed tak wielkim Sakramentem")}})
+          .then(res => { setPrzedTakWielkim(res.data.song) })
+      }, [])
+
       return(
         <>
+          <h1>Wystawienie Najświętszego Sakramentu</h1>
+          <div className="songMeta">
+            <h2>Okadzenie</h2>
+            <h1>O zbawcza Hostio</h1>
+            <SongRender song={oZbawcza} />
+          </div>
 
+          <h2>Modlitwy</h2>
+
+          <div className="songMeta">
+            <h2>Przed błogosławieństwem</h2>
+            <h1>Przed tak wielkim Sakramentem</h1>
+          </div>
+          <SongRender song={przedTakWielkim} />
+          <Antiphon
+            call="Módlmy się..."
+            resp="Amen"
+            />
+
+          <h2>Błogosławieństwo monstrancją</h2>
         </>
       )
     default:{
