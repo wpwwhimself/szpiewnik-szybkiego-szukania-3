@@ -222,7 +222,16 @@ export function MassSet(){
         document.getElementById("adder")!.classList.toggle("show");
     }
 
-    function toggleFilters(category: number, preference: boolean = false){
+    function toggleFilters(category: number | null, preference: boolean = false){
+        if(category === null){
+            if(preference){
+                setAdderFilters({ ...adderFilters, preferences: [] });
+            }else{
+                setAdderFilters({ ...adderFilters, categories: [] });
+            }
+            return;
+        }
+
         if(preference){
             const position = adderFilters.preferences.indexOf(category);
             if(position === -1){ //add to filters
@@ -327,6 +336,20 @@ export function MassSet(){
                             : ` na ${set.thisMassOrder.filter(el => el.code === addCollector.before)[0]?.label}`
                     : " na koniec zestawu"}
             </h1>
+            <div className="flex-right center">
+                {[
+                    { code: "xExposition", label: "Wystawienie NŚ" },
+                ].map(({code, label}, i) =>
+                    <Button onClick={() => handleAddCollector("song", code)}
+                        className={[
+                            addCollector.song === code && "accent-border",
+                            "light-button",
+                        ].filter(Boolean).join(" ")}
+                        >
+                        {label}
+                    </Button>
+                )}
+            </div>
             <div className="flex-right stretch">
                 <Button className="slick" onClick={() => addModeOn()}>Anuluj</Button>
                 {addCollector.song && addCollector.before && <Button onClick={() => addModeOn(undefined, true)}>Dodaj</Button>}
@@ -341,6 +364,7 @@ export function MassSet(){
                         {el.name}
                     </Button>
                 )}
+                    <Button onClick={() => toggleFilters(null)} className="slick">×</Button>
                 </div>
                 <div className="flex-right center wrap">
                 {["Wejście", "Dary", "Komunia", "Uwielbienie", "Zakończenie"]
@@ -352,6 +376,7 @@ export function MassSet(){
                         {el}
                     </Button>
                 )}
+                    <Button onClick={() => toggleFilters(null, true)} className="slick">×</Button>
                 </div>
             </div>
             <div id="song-list" className="flex-right center wrap">

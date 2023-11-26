@@ -26374,6 +26374,18 @@ function MassSet() {
     if (preference === void 0) {
       preference = false;
     }
+    if (category === null) {
+      if (preference) {
+        setAdderFilters(__assign(__assign({}, adderFilters), {
+          preferences: []
+        }));
+      } else {
+        setAdderFilters(__assign(__assign({}, adderFilters), {
+          categories: []
+        }));
+      }
+      return;
+    }
     if (preference) {
       var position = adderFilters.preferences.indexOf(category);
       if (position === -1) {
@@ -26548,7 +26560,25 @@ function MassSet() {
         })[0]) === null || _h === void 0 ? void 0 : _h.label) : addCollector.before === "summary" ? " na początek zestawu" : " na ".concat((_j = set.thisMassOrder.filter(function (el) {
           return el.code === addCollector.before;
         })[0]) === null || _j === void 0 ? void 0 : _j.label) : " na koniec zestawu"]
-      }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({
+      }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", __assign({
+        className: "flex-right center"
+      }, {
+        children: [{
+          code: "xExposition",
+          label: "Wystawienie NŚ"
+        }].map(function (_a, i) {
+          var code = _a.code,
+            label = _a.label;
+          return (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components_Interactives__WEBPACK_IMPORTED_MODULE_3__.Button, __assign({
+            onClick: function onClick() {
+              return handleAddCollector("song", code);
+            },
+            className: [addCollector.song === code && "accent-border", "light-button"].filter(Boolean).join(" ")
+          }, {
+            children: label
+          }));
+        })
+      })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({
         className: "flex-right stretch"
       }, {
         children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components_Interactives__WEBPACK_IMPORTED_MODULE_3__.Button, __assign({
@@ -26569,10 +26599,10 @@ function MassSet() {
         id: "filters",
         className: "grid-2"
       }, {
-        children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", __assign({
+        children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({
           className: "flex-right center wrap"
         }, {
-          children: categories.map(function (el, i) {
+          children: [categories.map(function (el, i) {
             return (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components_Interactives__WEBPACK_IMPORTED_MODULE_3__.Button, __assign({
               onClick: function onClick() {
                 return toggleFilters(el.id);
@@ -26581,11 +26611,18 @@ function MassSet() {
             }, {
               children: el.name
             }), i);
-          })
-        })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", __assign({
+          }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components_Interactives__WEBPACK_IMPORTED_MODULE_3__.Button, __assign({
+            onClick: function onClick() {
+              return toggleFilters(null);
+            },
+            className: "slick"
+          }, {
+            children: "\xD7"
+          }))]
+        })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({
           className: "flex-right center wrap"
         }, {
-          children: ["Wejście", "Dary", "Komunia", "Uwielbienie", "Zakończenie"].map(function (el, i, ar) {
+          children: [["Wejście", "Dary", "Komunia", "Uwielbienie", "Zakończenie"].map(function (el, i, ar) {
             return (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components_Interactives__WEBPACK_IMPORTED_MODULE_3__.Button, __assign({
               onClick: function onClick() {
                 return toggleFilters(ar.indexOf(el), true);
@@ -26594,7 +26631,14 @@ function MassSet() {
             }, {
               children: el
             }), i);
-          })
+          }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components_Interactives__WEBPACK_IMPORTED_MODULE_3__.Button, __assign({
+            onClick: function onClick() {
+              return toggleFilters(null, true);
+            },
+            className: "slick"
+          }, {
+            children: "\xD7"
+          }))]
         }))]
       })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", __assign({
         id: "song-list",
