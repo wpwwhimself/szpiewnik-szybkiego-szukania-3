@@ -368,6 +368,8 @@ export function MassSet(){
                 <div className="flex-right center">
                     {[
                         { code: "xExposition", label: "Wystawienie Najświętszego Sakramentu" },
+                        { code: "xLorette", label: "Litania Loretańska" },
+                        { code: "xHeart", label: "Litania do Serca Jezusowego" },
                     ].map(({code, label}, i) =>
                         <Button key={i}
                             onClick={() => handleAddCollector("song", code)}

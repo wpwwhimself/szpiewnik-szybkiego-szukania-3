@@ -304,6 +304,8 @@ export function OrdinariumProcessor({code, colorCode}: OrdinariumProcessorProps)
 }
 
 export function ExtrasProcessor({elem}: {elem: MassElem}){
+  let songs_to_add: string[];
+
   switch(elem.code.substring(1)){
     case "Greetings":
       return(
@@ -361,10 +363,18 @@ export function ExtrasProcessor({elem}: {elem: MassElem}){
         </>
       )
     case "Wedding":
+      songs_to_add = [
+        "O Stworzycielu Duchu",
+      ]
+
       return(
         <>
-          <h1>Przysięga ślubna</h1>
+          <h2>Przysięga ślubna</h2>
           <p className="ksiadz">Prośmy więc Ducha Świętego... ...Chrystusa i Kościoła:</p>
+          <div className="songMeta">
+            <h1>{songs_to_add[0]}</h1>
+            <SongRender title={songs_to_add[0]} />
+          </div>
         </>
       )
     case "Transf":
@@ -420,9 +430,19 @@ export function ExtrasProcessor({elem}: {elem: MassElem}){
             />
           </>
         )
-    case "May":
+    case "Lorette":
+      songs_to_add = [
+        "Litania Loretańska",
+        "Pod Twoją obronę",
+      ]
+
       return(
         <>
+          <div className="songMeta">
+            <h1>{songs_to_add[0]}</h1>
+            <SongRender title={songs_to_add[0]} />
+          </div>
+          <hr />
           <Alternative>
             <div className="alt_option">
               <Antiphon
@@ -438,16 +458,36 @@ export function ExtrasProcessor({elem}: {elem: MassElem}){
             </div>
           </Alternative>
           <p>Módlmy się: Panie nasz, Boże, dozwól nam, sługom swoim, cieszyć się trwałym zdrowiem duszy i ciała. I za wstawiennictwem Najświętszej Maryi zawsze dziewicy, uwolnij nas od doczesnych utrapień i obdarz wieczną radością, przez Chrystusa, Pana naszego...</p>
+          <hr />
+          <div className="songMeta">
+            <h1>{songs_to_add[1]}</h1>
+            <SongRender title={songs_to_add[1]} />
+          </div>
         </>
       )
-    case "June":
+    case "Heart":
+      songs_to_add = [
+        "Litania do Serca Jezusowego",
+        "Do Serca Twojego",
+      ]
+
       return(
         <>
+          <div className="songMeta">
+            <h1>{songs_to_add[0]}</h1>
+            <SongRender title={songs_to_add[0]} />
+          </div>
+          <hr />
           <Antiphon
             call="Jezu cichy i pokornego serca"
             resp="Uczyń serca nasze według serca Twego"
           />
           <p>Módlmy się: wszechmogący, wieczny Boże, wejrzyj na Serce najmilszego Syna swego i na chwałę, i zadość uczynienie, jakie w imieniu grzeszników ci składa; daj się przebłagać tym, którzy żebrzą Twego miłosierdzia i racz udzielić przebaczenia w imię tegoż Syna swego, Jezusa Chrystusa, który z tobą żyje i króluje na wieki wieków...</p>
+          <hr />
+          <div className="songMeta">
+            <h1>{songs_to_add[1]}</h1>
+            <SongRender title={songs_to_add[1]} />
+          </div>
         </>
       )
     case "Michael":
@@ -477,32 +517,27 @@ export function ExtrasProcessor({elem}: {elem: MassElem}){
         </>
       )
     case "Exposition":
-      const [oZbawcza, setOZbawcza] = useState<SongProps>()
-      const [przedTakWielkim, setPrzedTakWielkim] = useState<SongProps>()
-
-      useEffect(() => {
-        axios.get("/api/song-data", {params: {title_slug: slugAndDePL("O zbawcza Hostio")}})
-          .then(res => { setOZbawcza(res.data.song) })
-        axios.get("/api/song-data", {params: {title_slug: slugAndDePL("Przed tak wielkim Sakramentem")}})
-          .then(res => { setPrzedTakWielkim(res.data.song) })
-      }, [])
+      songs_to_add = [
+        "O zbawcza Hostio",
+        "Przed tak wielkim Sakramentem"
+      ]
 
       return(
         <>
           <h1>Wystawienie Najświętszego Sakramentu</h1>
           <div className="songMeta">
             <h2>Okadzenie</h2>
-            <h1>O zbawcza Hostio</h1>
-            <SongRender song={oZbawcza} />
+            <h1>{songs_to_add[0]}</h1>
+            <SongRender title={songs_to_add[0]} />
           </div>
           <hr />
           <h2>Modlitwy</h2>
           <hr />
           <div className="songMeta">
             <h2>Przed błogosławieństwem</h2>
-            <h1>Przed tak wielkim Sakramentem</h1>
+            <h1>{songs_to_add[1]}</h1>
           </div>
-          <SongRender song={przedTakWielkim} />
+          <SongRender title={songs_to_add[1]} />
           <hr />
           <Antiphon
             call="Módlmy się..."
