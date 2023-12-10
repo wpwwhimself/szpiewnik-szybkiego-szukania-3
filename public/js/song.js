@@ -25839,11 +25839,10 @@ function SheetMusicRender(_a) {
   var notes_ready = Array.isArray(notes) ? (_b = notes[variant]) !== null && _b !== void 0 ? _b : notes[0] : notes;
   function render() {
     var res = abcjs__WEBPACK_IMPORTED_MODULE_1___default().renderAbc("sheet-" + this_id, notes_ready !== null && notes_ready !== void 0 ? notes_ready : "", {
-      responsive: "resize"
-      // germanAlphabet: true,
+      responsive: "resize",
+      germanAlphabet: true
     });
   }
-
   var changeVariant = function changeVariant(var_no) {
     setVariant(var_no);
   };
