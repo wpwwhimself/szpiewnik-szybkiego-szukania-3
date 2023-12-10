@@ -25547,6 +25547,7 @@ function OrdinariumProcessor(_a) {
 }
 function ExtrasProcessor(_a) {
   var elem = _a.elem;
+  var songs_to_add;
   switch (elem.code.substring(1)) {
     case "Greetings":
       return (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
@@ -25596,13 +25597,22 @@ function ExtrasProcessor(_a) {
         })]
       });
     case "Wedding":
+      songs_to_add = ["O Stworzycielu Duchu"];
       return (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
-        children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("h1", {
+        children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("h2", {
           children: "Przysi\u0119ga \u015Blubna"
         }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("p", __assign({
           className: "ksiadz"
         }, {
           children: "Pro\u015Bmy wi\u0119c Ducha \u015Awi\u0119tego... ...Chrystusa i Ko\u015Bcio\u0142a:"
+        })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({
+          className: "songMeta"
+        }, {
+          children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("h1", {
+            children: songs_to_add[0]
+          }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_SongRender__WEBPACK_IMPORTED_MODULE_6__.SongRender, {
+            title: songs_to_add[0]
+          })]
         }))]
       });
     case "Transf":
@@ -25659,9 +25669,18 @@ function ExtrasProcessor(_a) {
           resp: "Bogu niech b\u0119d\u0105 dzi\u0119ki".concat(easter_add)
         })]
       });
-    case "May":
+    case "Lorette":
+      songs_to_add = ["Litania Loretańska", "Pod Twoją obronę"];
       return (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
-        children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(Alternative, {
+        children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({
+          className: "songMeta"
+        }, {
+          children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("h1", {
+            children: songs_to_add[0]
+          }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_SongRender__WEBPACK_IMPORTED_MODULE_6__.SongRender, {
+            title: songs_to_add[0]
+          })]
+        })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("hr", {}), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(Alternative, {
           children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", __assign({
             className: "alt_option"
           }, {
@@ -25679,16 +25698,41 @@ function ExtrasProcessor(_a) {
           }))]
         }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("p", {
           children: "M\xF3dlmy si\u0119: Panie nasz, Bo\u017Ce, dozw\xF3l nam, s\u0142ugom swoim, cieszy\u0107 si\u0119 trwa\u0142ym zdrowiem duszy i cia\u0142a. I za wstawiennictwem Naj\u015Bwi\u0119tszej Maryi zawsze dziewicy, uwolnij nas od doczesnych utrapie\u0144 i obdarz wieczn\u0105 rado\u015Bci\u0105, przez Chrystusa, Pana naszego..."
-        })]
+        }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("hr", {}), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({
+          className: "songMeta"
+        }, {
+          children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("h1", {
+            children: songs_to_add[1]
+          }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_SongRender__WEBPACK_IMPORTED_MODULE_6__.SongRender, {
+            title: songs_to_add[1]
+          })]
+        }))]
       });
-    case "June":
+    case "Heart":
+      songs_to_add = ["Litania do Serca Jezusowego", "Do Serca Twojego"];
       return (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
-        children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(Antiphon, {
+        children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({
+          className: "songMeta"
+        }, {
+          children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("h1", {
+            children: songs_to_add[0]
+          }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_SongRender__WEBPACK_IMPORTED_MODULE_6__.SongRender, {
+            title: songs_to_add[0]
+          })]
+        })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("hr", {}), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(Antiphon, {
           call: "Jezu cichy i pokornego serca",
           resp: "Uczy\u0144 serca nasze wed\u0142ug serca Twego"
         }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("p", {
           children: "M\xF3dlmy si\u0119: wszechmog\u0105cy, wieczny Bo\u017Ce, wejrzyj na Serce najmilszego Syna swego i na chwa\u0142\u0119, i zado\u015B\u0107 uczynienie, jakie w imieniu grzesznik\xF3w ci sk\u0142ada; daj si\u0119 przeb\u0142aga\u0107 tym, kt\xF3rzy \u017Cebrz\u0105 Twego mi\u0142osierdzia i racz udzieli\u0107 przebaczenia w imi\u0119 tego\u017C Syna swego, Jezusa Chrystusa, kt\xF3ry z tob\u0105 \u017Cyje i kr\xF3luje na wieki wiek\xF3w..."
-        })]
+        }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("hr", {}), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({
+          className: "songMeta"
+        }, {
+          children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("h1", {
+            children: songs_to_add[1]
+          }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_SongRender__WEBPACK_IMPORTED_MODULE_6__.SongRender, {
+            title: songs_to_add[1]
+          })]
+        }))]
       });
     case "Michael":
       return (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
@@ -25719,28 +25763,7 @@ function ExtrasProcessor(_a) {
         }))]
       });
     case "Exposition":
-      var _b = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(),
-        oZbawcza = _b[0],
-        setOZbawcza_1 = _b[1];
-      var _c = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(),
-        przedTakWielkim = _c[0],
-        setPrzedTakWielkim_1 = _c[1];
-      (0,react__WEBPACK_IMPORTED_MODULE_1__.useEffect)(function () {
-        axios__WEBPACK_IMPORTED_MODULE_7__["default"].get("/api/song-data", {
-          params: {
-            title_slug: (0,_helpers__WEBPACK_IMPORTED_MODULE_2__.slugAndDePL)("O zbawcza Hostio")
-          }
-        }).then(function (res) {
-          setOZbawcza_1(res.data.song);
-        });
-        axios__WEBPACK_IMPORTED_MODULE_7__["default"].get("/api/song-data", {
-          params: {
-            title_slug: (0,_helpers__WEBPACK_IMPORTED_MODULE_2__.slugAndDePL)("Przed tak wielkim Sakramentem")
-          }
-        }).then(function (res) {
-          setPrzedTakWielkim_1(res.data.song);
-        });
-      }, []);
+      songs_to_add = ["O zbawcza Hostio", "Przed tak wielkim Sakramentem"];
       return (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
         children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("h1", {
           children: "Wystawienie Naj\u015Bwi\u0119tszego Sakramentu"
@@ -25750,9 +25773,9 @@ function ExtrasProcessor(_a) {
           children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("h2", {
             children: "Okadzenie"
           }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("h1", {
-            children: "O zbawcza Hostio"
+            children: songs_to_add[0]
           }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_SongRender__WEBPACK_IMPORTED_MODULE_6__.SongRender, {
-            song: oZbawcza
+            title: songs_to_add[0]
           })]
         })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("hr", {}), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("h2", {
           children: "Modlitwy"
@@ -25762,10 +25785,10 @@ function ExtrasProcessor(_a) {
           children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("h2", {
             children: "Przed b\u0142ogos\u0142awie\u0144stwem"
           }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("h1", {
-            children: "Przed tak wielkim Sakramentem"
+            children: songs_to_add[1]
           })]
         })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_SongRender__WEBPACK_IMPORTED_MODULE_6__.SongRender, {
-          song: przedTakWielkim
+          title: songs_to_add[1]
         }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("hr", {}), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(Antiphon, {
           call: "M\xF3dlmy si\u0119...",
           resp: "Amen"
@@ -25887,10 +25910,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "SongRender": () => (/* binding */ SongRender)
 /* harmony export */ });
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! axios */ "./node_modules/axios/lib/axios.js");
 /* harmony import */ var _helpers__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../helpers */ "./resources/js/helpers.ts");
 /* harmony import */ var _Interactives__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Interactives */ "./resources/js/components/Interactives.tsx");
 /* harmony import */ var _MassElements__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./MassElements */ "./resources/js/components/MassElements.tsx");
 /* harmony import */ var _SheetMusicRender__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./SheetMusicRender */ "./resources/js/components/SheetMusicRender.tsx");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 var __assign = undefined && undefined.__assign || function () {
   __assign = Object.assign || function (t) {
     for (var s, i = 1, n = arguments.length; i < n; i++) {
@@ -25906,26 +25931,45 @@ var __assign = undefined && undefined.__assign || function () {
 
 
 
+
+
 function SongRender(_a) {
-  var song = _a.song;
+  var song = _a.song,
+    title = _a.title;
+  var _b = (0,react__WEBPACK_IMPORTED_MODULE_5__.useState)(),
+    songSong = _b[0],
+    setSongSong = _b[1];
+  (0,react__WEBPACK_IMPORTED_MODULE_5__.useEffect)(function () {
+    if (title && !song) {
+      axios__WEBPACK_IMPORTED_MODULE_6__["default"].get("/api/song-data", {
+        params: {
+          title_slug: (0,_helpers__WEBPACK_IMPORTED_MODULE_1__.slugAndDePL)(title)
+        }
+      }).then(function (res) {
+        setSongSong(res.data.song);
+      });
+    } else {
+      setSongSong(song);
+    }
+  }, [song]);
   return (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
     children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", __assign({
       className: "flex-right center wrap"
     }, {
-      children: song ? (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
+      children: songSong ? (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
         children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_Interactives__WEBPACK_IMPORTED_MODULE_2__.DummyInput, {
           label: "Tonacja",
-          value: song.key
+          value: songSong.key
         }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_Interactives__WEBPACK_IMPORTED_MODULE_2__.DummyInput, {
           label: "Kategoria",
-          value: song.category_desc
+          value: songSong.category_desc
         }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_Interactives__WEBPACK_IMPORTED_MODULE_2__.DummyInput, {
           label: "Numer w \u015Bpiewniku Preis",
-          value: song.number_preis
+          value: songSong.number_preis
         }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_Interactives__WEBPACK_IMPORTED_MODULE_2__.Button, __assign({
           onClick: function onClick() {
             var _a;
-            return (_a = window.open("/songs/show/".concat((0,_helpers__WEBPACK_IMPORTED_MODULE_1__.slugAndDePL)(song.title)), "_blank")) === null || _a === void 0 ? void 0 : _a.focus();
+            return (_a = window.open("/songs/show/".concat((0,_helpers__WEBPACK_IMPORTED_MODULE_1__.slugAndDePL)(songSong.title)), "_blank")) === null || _a === void 0 ? void 0 : _a.focus();
           }
         }, {
           children: "Edytuj"
@@ -25934,10 +25978,17 @@ function SongRender(_a) {
         children: "Pie\u015B\u0144 niezapisana"
       })
     })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
+<<<<<<< HEAD
       children: [(song === null || song === void 0 ? void 0 : song.sheet_music) && (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_SheetMusicRender__WEBPACK_IMPORTED_MODULE_4__.SheetMusicRender, {
         notes: song.sheet_music_variants
       }), (song === null || song === void 0 ? void 0 : song.lyrics) && (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_MassElements__WEBPACK_IMPORTED_MODULE_3__.SongLyrics, {
         lyrics: song.lyrics
+=======
+      children: [(songSong === null || songSong === void 0 ? void 0 : songSong.sheet_music) && (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_SheetMusicRender__WEBPACK_IMPORTED_MODULE_4__.SheetMusicRender, {
+        notes: songSong.sheet_music
+      }), (songSong === null || songSong === void 0 ? void 0 : songSong.lyrics) && (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_MassElements__WEBPACK_IMPORTED_MODULE_3__.SongLyrics, {
+        lyrics: songSong.lyrics
+>>>>>>> 697437ffd0e5f6b742077793b03c041c8621819b
       })]
     })]
   });
@@ -26690,6 +26741,12 @@ function MassSet() {
           children: [{
             code: "xExposition",
             label: "Wystawienie Najświętszego Sakramentu"
+          }, {
+            code: "xLorette",
+            label: "Litania Loretańska"
+          }, {
+            code: "xHeart",
+            label: "Litania do Serca Jezusowego"
           }].map(function (_a, i) {
             var code = _a.code,
               label = _a.label;
