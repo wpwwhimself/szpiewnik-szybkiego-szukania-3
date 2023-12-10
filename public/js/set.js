@@ -25935,7 +25935,7 @@ function SongRender(_a) {
       })
     })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
       children: [(song === null || song === void 0 ? void 0 : song.sheet_music) && (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_SheetMusicRender__WEBPACK_IMPORTED_MODULE_4__.SheetMusicRender, {
-        notes: song.sheet_music
+        notes: song.sheet_music_variants
       }), (song === null || song === void 0 ? void 0 : song.lyrics) && (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_MassElements__WEBPACK_IMPORTED_MODULE_3__.SongLyrics, {
         lyrics: song.lyrics
       })]

@@ -76,7 +76,7 @@ class SongController extends Controller
                     $rq->pref5 ?: "0"
                 ]),
                 "lyrics" => $rq->lyrics,
-                "sheet_music" => $rq->sheet_music,
+                "sheet_music" => implode(Song::$VAR_SEP, $rq->sheet_music),
             ]);
             $response = "Pieśń poprawiona";
         }else{

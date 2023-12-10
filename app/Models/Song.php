@@ -20,6 +20,15 @@ class Song extends Model
         "key", "preferences",
         "lyrics", "sheet_music",
     ];
+    protected $appends = [
+        "sheet_music_variants"
+    ];
+
+    public static $VAR_SEP = "\r\n%%%\r\n";
+
+    public function getSheetMusicVariantsAttribute(){
+        return explode(self::$VAR_SEP, $this->sheet_music);
+    }
 
     public function category(){
         return $this->belongsTo(SongCategory::class);

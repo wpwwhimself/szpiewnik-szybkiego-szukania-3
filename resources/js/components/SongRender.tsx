@@ -23,7 +23,7 @@ export function SongRender({song}: SRProps){
             }
         </div>
         <div>
-            {song?.sheet_music && <SheetMusicRender notes={song.sheet_music} />}
+            {song?.sheet_music && <SheetMusicRender notes={song.sheet_music_variants} />}
             {song?.lyrics && <SongLyrics lyrics={song.lyrics} />}
         </div>
     </>)
