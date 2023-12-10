@@ -25978,17 +25978,10 @@ function SongRender(_a) {
         children: "Pie\u015B\u0144 niezapisana"
       })
     })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-<<<<<<< HEAD
-      children: [(song === null || song === void 0 ? void 0 : song.sheet_music) && (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_SheetMusicRender__WEBPACK_IMPORTED_MODULE_4__.SheetMusicRender, {
-        notes: song.sheet_music_variants
-      }), (song === null || song === void 0 ? void 0 : song.lyrics) && (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_MassElements__WEBPACK_IMPORTED_MODULE_3__.SongLyrics, {
-        lyrics: song.lyrics
-=======
-      children: [(songSong === null || songSong === void 0 ? void 0 : songSong.sheet_music) && (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_SheetMusicRender__WEBPACK_IMPORTED_MODULE_4__.SheetMusicRender, {
-        notes: songSong.sheet_music
+      children: [(songSong === null || songSong === void 0 ? void 0 : songSong.sheet_music_variants) && (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_SheetMusicRender__WEBPACK_IMPORTED_MODULE_4__.SheetMusicRender, {
+        notes: songSong.sheet_music_variants
       }), (songSong === null || songSong === void 0 ? void 0 : songSong.lyrics) && (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_MassElements__WEBPACK_IMPORTED_MODULE_3__.SongLyrics, {
         lyrics: songSong.lyrics
->>>>>>> 697437ffd0e5f6b742077793b03c041c8621819b
       })]
     })]
   });
