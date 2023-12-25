@@ -26741,6 +26741,9 @@ function MassSet() {
           }, {
             code: "xHeart",
             label: "Litania do Serca Jezusowego"
+          }, {
+            code: "Życzymy, życzymy",
+            label: "Życzymy, Życzymy"
           }].map(function (_a, i) {
             var code = _a.code,
               label = _a.label;

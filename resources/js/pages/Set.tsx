@@ -370,6 +370,7 @@ export function MassSet(){
                         { code: "xExposition", label: "Wystawienie Najświętszego Sakramentu" },
                         { code: "xLorette", label: "Litania Loretańska" },
                         { code: "xHeart", label: "Litania do Serca Jezusowego" },
+                        { code: "Życzymy, życzymy", label: "Życzymy, Życzymy" },
                     ].map(({code, label}, i) =>
                         <Button key={i}
                             onClick={() => handleAddCollector("song", code)}
