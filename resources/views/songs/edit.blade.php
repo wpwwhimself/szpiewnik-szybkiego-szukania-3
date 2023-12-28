@@ -5,6 +5,8 @@
 <h1>Parametry pieśni</h1>
 <form method="post" action="{{ route('song-edit') }}">
   @csrf
+  <script src="{{ asset("js/note-transpose.js") }}"></script>
+
   <div class="grid-3">
     <input type="hidden" name="old_title" value="{{ $song->title }}" />
     <x-input type="text" name="title" label="Tytuł" value="{{ $song->title }}" />
@@ -44,8 +46,8 @@
         <hr>
       </div>
       <script>
-      document.querySelector("#note-transpose-{{ $var_no }} button[name=up]").addEventListener("click", (e) => Hoch(document.querySelector("textarea[var-no='{{ $var_no }}']"), e));
-      document.querySelector("#note-transpose-{{ $var_no }} button[name=down]").addEventListener("click", (e) => Runter(document.querySelector("textarea[var-no='{{ $var_no }}']"), e));
+      document.querySelector("#note-transpose-{{ $var_no }} button[name=up]").addEventListener("click", (e) => { e.preventDefault(); Hoch(document.querySelector("textarea[var-no='{{ $var_no }}']"), e); });
+      document.querySelector("#note-transpose-{{ $var_no }} button[name=down]").addEventListener("click", (e) => { e.preventDefault(); Runter(document.querySelector("textarea[var-no='{{ $var_no }}']"), e); });
       document.querySelector("#remove-variant[var-no='{{ $var_no }}']").addEventListener("click", (e) => { e.preventDefault(); e.target.closest(".variant-container").remove(); })
       </script>
     @endforeach
@@ -98,8 +100,8 @@
 
     render(newNoteInput);
     newNoteInput.addEventListener("keyup", () => render(newNoteInput));
-    newVariant.querySelector(`#note-transpose-${new_var_no} button[name=up]`).addEventListener("click", (e) => Hoch(document.querySelector(`textarea[var-no='${new_var_no}']`), e));
-    newVariant.querySelector(`#note-transpose-${new_var_no} button[name=down]`).addEventListener("click", (e) => Runter(document.querySelector(`textarea[var-no='${new_var_no}']`), e));
+    newVariant.querySelector(`#note-transpose-${new_var_no} button[name=up]`).addEventListener("click", (e) => { e.preventDefault(); Hoch(document.querySelector(`textarea[var-no='${new_var_no}']`), e); });
+    newVariant.querySelector(`#note-transpose-${new_var_no} button[name=down]`).addEventListener("click", (e) => { e.preventDefault(); Runter(document.querySelector(`textarea[var-no='${new_var_no}']`), e); });
     newVariant.querySelector(`#remove-variant`).addEventListener("click", (e) => { e.preventDefault(); e.target.closest(".variant-container").remove(); })
   }
   document.getElementById("addVariantButton").addEventListener("click", addVariant);

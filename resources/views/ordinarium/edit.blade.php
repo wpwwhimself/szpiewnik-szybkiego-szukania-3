@@ -23,8 +23,8 @@
             <hr>
         </div>
         <script>
-        document.querySelector("#note-transpose-{{ $var_no }} button[name=up]").addEventListener("click", (e) => Hoch(document.querySelector("textarea[var-no='{{ $var_no }}']"), e));
-        document.querySelector("#note-transpose-{{ $var_no }} button[name=down]").addEventListener("click", (e) => Runter(document.querySelector("textarea[var-no='{{ $var_no }}']"), e));
+        document.querySelector("#note-transpose-{{ $var_no }} button[name=up]").addEventListener("click", (e) => { e.preventDefault(); Hoch(document.querySelector("textarea[var-no='{{ $var_no }}']"), e); });
+        document.querySelector("#note-transpose-{{ $var_no }} button[name=down]").addEventListener("click", (e) => { e.preventDefault(); Runter(document.querySelector("textarea[var-no='{{ $var_no }}']"), e); });
         document.querySelector("#remove-variant[var-no='{{ $var_no }}']").addEventListener("click", (e) => { e.preventDefault(); e.target.closest(".variant-container").remove(); })
         </script>
     @endforeach
@@ -74,8 +74,8 @@ function addVariant(ev){
 
     render(newNoteInput);
     newNoteInput.addEventListener("keyup", () => render(newNoteInput));
-    newVariant.querySelector(`#note-transpose-${new_var_no} button[name=up]`).addEventListener("click", (e) => Hoch(document.querySelector(`textarea[var-no='${new_var_no}']`), e));
-    newVariant.querySelector(`#note-transpose-${new_var_no} button[name=down]`).addEventListener("click", (e) => Runter(document.querySelector(`textarea[var-no='${new_var_no}']`), e));
+    newVariant.querySelector(`#note-transpose-${new_var_no} button[name=up]`).addEventListener("click", (e) => { e.preventDefault(); Hoch(document.querySelector(`textarea[var-no='${new_var_no}']`), e); });
+    newVariant.querySelector(`#note-transpose-${new_var_no} button[name=down]`).addEventListener("click", (e) => { e.preventDefault(); Runter(document.querySelector(`textarea[var-no='${new_var_no}']`), e); });
     newVariant.querySelector(`#remove-variant`).addEventListener("click", (e) => { e.preventDefault(); e.target.closest(".variant-container").remove(); })
 }
 document.getElementById("addVariantButton").addEventListener("click", addVariant);
