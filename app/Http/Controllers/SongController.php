@@ -113,12 +113,29 @@ class SongController extends Controller
         return response()->json($titles);
     }
 
+    public function songRandom(Request $rq){
+        $cat_id = SongCategory::where("name", $rq->formula)->first()?->id;
+        $formula = $cat_id ? [$cat_id] : [1, 2, 3, 4];
+        $part_match = [
+            "1/_/_/_/_%",
+            "_/1/_/_/_%",
+            "_/_/1/_/_%",
+            "_/_/_/1/_%",
+            "_/_/_/_/1%",
+        ];
+
+        $data = Song::whereIn("song_category_id", $formula)
+            ->where("preferences", "like", $part_match[$rq->part])
+            ->get()
+            ->random();
+        return response()->json($data);
+    }
     public function songSuggList(Request $rq){
         $categories = SongCategory::where("name", $rq->formula)
             ->orWhereIn("name", ["standard", "niestandard", "maryjne", "Serce"])
             ->pluck("id");
 
-        $songs = Song::select(["title", "preferences"])
+        $songs = Song::select(["title", "song_category_id"])
             ->whereIn("song_category_id", $categories)
             ->get()->toArray();
 
