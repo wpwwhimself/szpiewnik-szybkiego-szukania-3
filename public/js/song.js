@@ -25163,14 +25163,39 @@ function MassElemSection(_a) {
   }));
 }
 function SongLyrics(_a) {
-  var lyrics = _a.lyrics;
+  var _b;
+  var lyrics = _a.lyrics,
+    forceLyricsVariant = _a.forceLyricsVariant;
   var showLyrics = (0,react__WEBPACK_IMPORTED_MODULE_1__.useContext)(_pages_Set__WEBPACK_IMPORTED_MODULE_4__.ShowLyricsContext);
-  var lyrics_processed = lyrics === null || lyrics === void 0 ? void 0 : lyrics.replace(/(\*\*|--)\s*\r?\n/g, '</span><br>').replace(/\*\s*\r?\n/g, "<span class=\"chorus\">").replace(/-\s*\r?\n/g, "<span class=\"tabbed\">").replace(/_(.{1,5})_/g, '<u>$1</u>').replace(/(\d+)\.\s*\r?\n/g, "<li value='$1'>").replace(/\r?\n/g, "<br />");
-  return showLyrics ? (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("ol", {
-    className: "lyrics",
-    dangerouslySetInnerHTML: {
-      __html: lyrics_processed !== null && lyrics_processed !== void 0 ? lyrics_processed : ""
-    }
+  var _c = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(0),
+    variant = _c[0],
+    setVariant = _c[1];
+  var changeVariant = function changeVariant(new_variant) {
+    return setVariant(new_variant);
+  };
+  var render_variants = Array.isArray(lyrics) && lyrics.length > 1;
+  var lyrics_ready = Array.isArray(lyrics) ? (_b = lyrics[forceLyricsVariant !== null && forceLyricsVariant !== void 0 ? forceLyricsVariant : variant]) !== null && _b !== void 0 ? _b : lyrics[0] : lyrics;
+  var lyrics_processed = lyrics_ready === null || lyrics_ready === void 0 ? void 0 : lyrics_ready.replace(/(\*\*|--)\s*\r?\n/g, '</span><br>').replace(/\*\s*\r?\n/g, "<span class=\"chorus\">").replace(/-\s*\r?\n/g, "<span class=\"tabbed\">").replace(/_(.{1,5})_/g, '<u>$1</u>').replace(/(\d+)\.\s*\r?\n/g, "<li value='$1'>").replace(/\r?\n/g, "<br />");
+  return showLyrics ? (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
+    children: [render_variants && forceLyricsVariant === undefined && (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", __assign({
+      className: "flex-right center"
+    }, {
+      children: lyrics.map(function (var_lyrics, var_no) {
+        return (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_Interactives__WEBPACK_IMPORTED_MODULE_3__.Button, __assign({
+          className: [variant === var_no && 'accent-border'].filter(Boolean).join(" "),
+          onClick: function onClick() {
+            return changeVariant(var_no);
+          }
+        }, {
+          children: var_no + 1
+        }), var_no);
+      })
+    })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("ol", {
+      className: "lyrics",
+      dangerouslySetInnerHTML: {
+        __html: lyrics_processed !== null && lyrics_processed !== void 0 ? lyrics_processed : ""
+      }
+    })]
   }) : (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.Fragment, {});
 }
 function PsalmLyrics(_a) {
@@ -25796,6 +25821,59 @@ function ExtrasProcessor(_a) {
           children: "B\u0142ogos\u0142awie\u0144stwo monstrancj\u0105"
         })]
       });
+    case "Lamentations":
+      var parts = ["Pobudka", "Intencja", "Hymn", "Lament duszy nad cierpiącym Jezusem", "Rozmowa duszy z Matką bolesną"];
+      var winddown = "Któryś za nas cierpiał rany";
+      var intentions_1 = ["Przy pomocy \u0142aski Bo\u017Cej przyst\u0119pujemy do rozwa\u017Cania m\u0119ki Pana naszego Jezusa Chrystusa. Ofiarowa\u0107 j\u0105 b\u0119dziemy Ojcu niebieskiemu na cze\u015B\u0107 i chwa\u0142\u0119 Jego Boskiego Majestatu, pokornie Mu dzi\u0119kuj\u0105c za wielk\u0105 i niepoj\u0119t\u0105 mi\u0142o\u015B\u0107 ku rodzajowi ludzkiemu, i\u017C raczy\u0142 zes\u0142a\u0107 Syna swego, aby za nas wycierpia\u0142 okrutne m\u0119ki i \u015Bmier\u0107 podj\u0105\u0142 krzy\u017Cow\u0105. To rozmy\u015Blanie ofiarujemy r\xF3wnie\u017C ku czci Naj\u015Bwi\u0119tszej Maryi Panny, Matki Bolesnej, oraz ku uczczeniu \u015Awi\u0119tych Pa\u0144skich, kt\xF3rzy wyr\xF3\u017Cniali si\u0119 nabo\u017Ce\u0144stwem ku M\u0119ce Chrystusowej.\n\n          W pierwszej cz\u0119\u015Bci b\u0119dziemy rozwa\u017Cali, co Pan Jezus wycierpia\u0142 od modlitwy w Ogr\xF3jcu a\u017C do nies\u0142usznego przed s\u0105dem oskar\u017Cenia. Te zniewagi i zel\u017Cywo\u015Bci temu\u017C Panu, za nas bolej\u0105cemu, ofiarujemy za Ko\u015Bci\xF3\u0142 \u015Bwi\u0119ty katolicki, za najwy\u017Cszego Pasterza z ca\u0142ym duchowie\u0144stwem, nadto za nieprzyjaci\xF3\u0142 krzy\u017Ca Chrystusowego i wszystkich niewiernych, aby im Pan B\xF3g da\u0142 \u0142ask\u0119 nawr\xF3cenia i opami\u0119tania.", "W drugiej cz\u0119\u015Bci rozmy\u015Blania m\u0119ki Pa\u0144skiej b\u0119dziemy rozwa\u017Cali, co Pan Jezus wycierpia\u0142 od nies\u0142usznego przed s\u0105dem oskar\u017Cenia a\u017C do okrutnego cierniem ukoronowania. Te za\u015B rany, zniewagi i zel\u017Cywo\u015Bci temu\u017C Jezusowi cierpi\u0105cemu ofiarujemy, prosz\u0105c Go o pomy\u015Blno\u015B\u0107 dla Ojczyzny naszej, o pok\xF3j i zgod\u0119 dla wszystkich narod\xF3w, a dla siebie o odpuszczenie grzech\xF3w, oddalenie kl\u0119sk i nieszcz\u0119\u015B\u0107 doczesnych, a szczeg\xF3lnie zarazy, g\u0142odu, ognia i wojny.", "W tej ostatniej cz\u0119\u015Bci b\u0119dziemy rozwa\u017Cali, co Pan Jezus wycierpia\u0142 od chwili ukoronowania a\u017C do ci\u0119\u017Ckiego skonania na krzy\u017Cu. Te blu\u017Anierstwa, zel\u017Cywo\u015Bci i zniewagi, jakie Mu wyrz\u0105dzano, ofiarujemy za grzesznik\xF3w zatwardzia\u0142ych, aby Zbawiciel pobudzi\u0142 ich serca zb\u0142\u0105kane do pokuty i prawdziwej \u017Cycia poprawy oraz za dusze w czy\u015B\u0107cu cierpi\u0105ce, aby im lito\u015Bciwy Jezus krwi\u0105 swoj\u0105 \u015Bwi\u0119t\u0105 ogie\u0144 zagasi\u0142; prosimy nadto, by i nam wyjedna\u0142 na godzin\u0119 \u015Bmierci skruch\u0119 za grzechy i szcz\u0119\u015Bliwe w \u0142asce Bo\u017Cej wytrwanie."];
+      var _b = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(0),
+        variant_1 = _b[0],
+        setVariant_1 = _b[1];
+      var changeVariant_1 = function changeVariant_1(new_variant) {
+        return setVariant_1(new_variant);
+      };
+      return (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
+        children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("h1", {
+          children: "Gorzkie \u017Cale"
+        }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", __assign({
+          className: "flex-right center"
+        }, {
+          children: [0, 1, 2].map(function (var_no) {
+            return (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_Interactives__WEBPACK_IMPORTED_MODULE_3__.Button, __assign({
+              className: [variant_1 === var_no && 'accent-border'].filter(Boolean).join(" "),
+              onClick: function onClick() {
+                return changeVariant_1(var_no);
+              }
+            }, {
+              children: var_no + 1
+            }), var_no);
+          })
+        })), parts.map(function (part) {
+          return (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({
+            className: "songMeta"
+          }, {
+            children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("h2", {
+              children: part
+            }), part === "Intencja" ? (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
+              children: intentions_1[variant_1].split("\n").map(function (p, i) {
+                return (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("p", {
+                  children: p
+                }, i);
+              })
+            }) : (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_SongRender__WEBPACK_IMPORTED_MODULE_6__.SongRender, {
+              title: "Gorzkie \u017Cale: ".concat(part),
+              forceLyricsVariant: variant_1
+            })]
+          }), part);
+        }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({
+          className: "songMeta"
+        }, {
+          children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("h2", {
+            children: winddown
+          }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_SongRender__WEBPACK_IMPORTED_MODULE_6__.SongRender, {
+            title: winddown
+          })]
+        }))]
+      });
     default:
       {
         return (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
@@ -25936,7 +26014,8 @@ var __assign = undefined && undefined.__assign || function () {
 
 function SongRender(_a) {
   var song = _a.song,
-    title = _a.title;
+    title = _a.title,
+    forceLyricsVariant = _a.forceLyricsVariant;
   var _b = (0,react__WEBPACK_IMPORTED_MODULE_5__.useState)(),
     songSong = _b[0],
     setSongSong = _b[1];
@@ -25975,14 +26054,15 @@ function SongRender(_a) {
         }, {
           children: "Edytuj"
         }))]
-      }) : (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("p", {
+      }) : (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", {
         children: "Pie\u015B\u0144 niezapisana"
       })
     })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
       children: [(songSong === null || songSong === void 0 ? void 0 : songSong.sheet_music_variants) && (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_SheetMusicRender__WEBPACK_IMPORTED_MODULE_4__.SheetMusicRender, {
         notes: songSong.sheet_music_variants
       }), (songSong === null || songSong === void 0 ? void 0 : songSong.lyrics) && (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_MassElements__WEBPACK_IMPORTED_MODULE_3__.SongLyrics, {
-        lyrics: songSong.lyrics
+        lyrics: songSong.lyrics_variants,
+        forceLyricsVariant: forceLyricsVariant
       })]
     })]
   });
@@ -26004,7 +26084,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "slugAndDePL": () => (/* binding */ slugAndDePL)
 /* harmony export */ });
 function slugAndDePL(string) {
-  return string.replace(/([a-z])([A-Z])/g, "$1-$2").replace(/[Ąą]/g, "a").replace(/[Ćć]/g, "c").replace(/[Ęę]/g, "e").replace(/[Łł]/g, "l").replace(/[Ńń]/g, "n").replace(/[Óó]/g, "o").replace(/[Śś]/g, "s").replace(/[ŹŻźż]/g, "z").toLocaleLowerCase().replace(/ /g, "-").replace(/[,]/g, "");
+  return string.replace(/([a-z])([A-Z])/g, "$1-$2").replace(/[Ąą]/g, "a").replace(/[Ćć]/g, "c").replace(/[Ęę]/g, "e").replace(/[Łł]/g, "l").replace(/[Ńń]/g, "n").replace(/[Óó]/g, "o").replace(/[Śś]/g, "s").replace(/[ŹŻźż]/g, "z").toLocaleLowerCase().replace(/ /g, "-").replace(/[,:]/g, "");
 }
 function baseFormula(formula) {
   return formula.replace(/(.*) \((.*)\)/, "$1");

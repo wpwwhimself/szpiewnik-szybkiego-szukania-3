@@ -9,9 +9,10 @@ import { useState, useEffect } from "react";
 interface SRProps{
     song?: SongProps,
     title?: string,
+    forceLyricsVariant?: number,
 }
 
-export function SongRender({song, title}: SRProps){
+export function SongRender({song, title, forceLyricsVariant}: SRProps){
     const [songSong, setSongSong] = useState<SongProps>()
 
     useEffect(() => {
@@ -33,12 +34,12 @@ export function SongRender({song, title}: SRProps){
                 <Button onClick={() => window.open(`/songs/show/${slugAndDePL(songSong.title)}`, "_blank")?.focus()}>Edytuj</Button>
             </>
             :
-                <p>Pieśń niezapisana</p>
+                <span>Pieśń niezapisana</span>
             }
         </div>
         <div>
             {songSong?.sheet_music_variants && <SheetMusicRender notes={songSong.sheet_music_variants} />}
-            {songSong?.lyrics && <SongLyrics lyrics={songSong.lyrics} />}
+            {songSong?.lyrics && <SongLyrics lyrics={songSong.lyrics_variants} forceLyricsVariant={forceLyricsVariant} />}
         </div>
     </>)
 }

@@ -21,13 +21,16 @@ class Song extends Model
         "lyrics", "sheet_music",
     ];
     protected $appends = [
-        "sheet_music_variants"
+        "sheet_music_variants", "lyrics_variants",
     ];
 
     public static $VAR_SEP = "\r\n%%%\r\n";
 
     public function getSheetMusicVariantsAttribute(){
         return explode(self::$VAR_SEP, $this->sheet_music);
+    }
+    public function getLyricsVariantsAttribute(){
+        return explode(self::$VAR_SEP, $this->lyrics);
     }
 
     public function category(){

@@ -26,9 +26,15 @@ export function MassElemSection({id, uneresable = false, children}: MassElemSect
   )
 }
 
-export function SongLyrics({lyrics}: {lyrics: string | null}){
+export function SongLyrics({lyrics, forceLyricsVariant}: {lyrics: string | string[] | null, forceLyricsVariant?: number}){
   const showLyrics = useContext(ShowLyricsContext);
-  const lyrics_processed = lyrics?.replace(/(\*\*|--)\s*\r?\n/g, '</span><br>')
+  const [variant, setVariant] = useState(0);
+  const changeVariant = (new_variant: number) => setVariant(new_variant);
+
+  const render_variants = Array.isArray(lyrics) && lyrics.length > 1;
+  const lyrics_ready = Array.isArray(lyrics) ? lyrics[forceLyricsVariant ?? variant] ?? lyrics[0] : lyrics;
+
+  const lyrics_processed = lyrics_ready?.replace(/(\*\*|--)\s*\r?\n/g, '</span><br>')
     .replace(/\*\s*\r?\n/g, `<span class="chorus">`)
     .replace(/-\s*\r?\n/g, `<span class="tabbed">`)
     .replace(/_(.{1,5})_/g, '<u>$1</u>')
@@ -36,7 +42,18 @@ export function SongLyrics({lyrics}: {lyrics: string | null}){
     .replace(/\r?\n/g, "<br />");
 
   return showLyrics
-    ? (<ol className="lyrics" dangerouslySetInnerHTML={{ __html: lyrics_processed ?? ""}} />)
+    ? <>
+      {render_variants && forceLyricsVariant === undefined &&
+        <div className="flex-right center">
+        {lyrics.map((var_lyrics, var_no) =>
+          <Button key={var_no}
+            className={[variant === var_no && 'accent-border'].filter(Boolean).join(" ")}
+            onClick={() => changeVariant(var_no)}>
+            {var_no + 1}
+          </Button>)}
+      </div>}
+      <ol className="lyrics" dangerouslySetInnerHTML={{ __html: lyrics_processed ?? ""}} />
+    </>
     : <></>;
 }
 
@@ -546,6 +563,51 @@ export function ExtrasProcessor({elem}: {elem: MassElem}){
           <h2>Błogosławieństwo monstrancją</h2>
         </>
       )
+      case "Lamentations":
+        const parts = [
+          "Pobudka",
+          "Intencja",
+          "Hymn",
+          "Lament duszy nad cierpiącym Jezusem",
+          "Rozmowa duszy z Matką bolesną",
+        ]
+        const winddown = "Któryś za nas cierpiał rany"
+        const intentions = [
+          `Przy pomocy łaski Bożej przystępujemy do rozważania męki Pana naszego Jezusa Chrystusa. Ofiarować ją będziemy Ojcu niebieskiemu na cześć i chwałę Jego Boskiego Majestatu, pokornie Mu dziękując za wielką i niepojętą miłość ku rodzajowi ludzkiemu, iż raczył zesłać Syna swego, aby za nas wycierpiał okrutne męki i śmierć podjął krzyżową. To rozmyślanie ofiarujemy również ku czci Najświętszej Maryi Panny, Matki Bolesnej, oraz ku uczczeniu Świętych Pańskich, którzy wyróżniali się nabożeństwem ku Męce Chrystusowej.\n
+          W pierwszej części będziemy rozważali, co Pan Jezus wycierpiał od modlitwy w Ogrójcu aż do niesłusznego przed sądem oskarżenia. Te zniewagi i zelżywości temuż Panu, za nas bolejącemu, ofiarujemy za Kościół święty katolicki, za najwyższego Pasterza z całym duchowieństwem, nadto za nieprzyjaciół krzyża Chrystusowego i wszystkich niewiernych, aby im Pan Bóg dał łaskę nawrócenia i opamiętania.`,
+          `W drugiej części rozmyślania męki Pańskiej będziemy rozważali, co Pan Jezus wycierpiał od niesłusznego przed sądem oskarżenia aż do okrutnego cierniem ukoronowania. Te zaś rany, zniewagi i zelżywości temuż Jezusowi cierpiącemu ofiarujemy, prosząc Go o pomyślność dla Ojczyzny naszej, o pokój i zgodę dla wszystkich narodów, a dla siebie o odpuszczenie grzechów, oddalenie klęsk i nieszczęść doczesnych, a szczególnie zarazy, głodu, ognia i wojny.`,
+          `W tej ostatniej części będziemy rozważali, co Pan Jezus wycierpiał od chwili ukoronowania aż do ciężkiego skonania na krzyżu. Te bluźnierstwa, zelżywości i zniewagi, jakie Mu wyrządzano, ofiarujemy za grzeszników zatwardziałych, aby Zbawiciel pobudził ich serca zbłąkane do pokuty i prawdziwej życia poprawy oraz za dusze w czyśćcu cierpiące, aby im litościwy Jezus krwią swoją świętą ogień zagasił; prosimy nadto, by i nam wyjednał na godzinę śmierci skruchę za grzechy i szczęśliwe w łasce Bożej wytrwanie.`,
+        ]
+        const [variant, setVariant] = useState(0)
+        const changeVariant = (new_variant: number) => setVariant(new_variant)
+
+        return(
+          <>
+            <h1>Gorzkie żale</h1>
+
+            <div className="flex-right center">
+            {[0, 1, 2].map(var_no =>
+              <Button key={var_no}
+                className={[variant === var_no && 'accent-border'].filter(Boolean).join(" ")}
+                onClick={() => changeVariant(var_no)}>
+                {var_no + 1}
+              </Button>)}
+            </div>
+
+            {parts.map(part =>
+              <div key={part} className="songMeta">
+                <h2>{part}</h2>
+                {part === "Intencja"
+                  ? <div>{intentions[variant].split("\n").map((p, i) => <p key={i}>{p}</p>)}</div>
+                  : <SongRender title={`Gorzkie żale: ${part}`} forceLyricsVariant={variant} />}
+              </div>)}
+
+            <div className="songMeta">
+              <h2>{winddown}</h2>
+              <SongRender title={winddown} />
+            </div>
+          </>
+        )
     default:{
       return(
         <>

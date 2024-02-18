@@ -33,6 +33,7 @@ export interface SongProps{
     lyrics: string | null,
     sheet_music: string | null,
     sheet_music_variants: string[],
+    lyrics_variants: string[],
 }
 
 export interface SongCategoryProps{

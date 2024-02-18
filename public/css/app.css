@@ -194,10 +194,12 @@ thead th, tfoot th{
   margin-left: 0.5em;
 }
 
-.songMeta *{
+.songMeta{
+  margin: 0.75em 0 0;
+}
+.songMeta > * {
   margin: 0;
 }
-
 /* Modals */
 
 .modal{
