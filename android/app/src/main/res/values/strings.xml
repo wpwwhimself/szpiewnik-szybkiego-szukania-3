@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Szpiewnik Szybkiego Szukania</string>
+    <string name="title_activity_main">Szpiewnik Szybkiego Szukania</string>
+    <string name="package_name">com.wpww.sz3</string>
+    <string name="custom_url_scheme">com.wpww.sz3</string>
+</resources>
