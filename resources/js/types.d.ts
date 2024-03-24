@@ -69,7 +69,6 @@ export interface Extra{
 
 export interface Formula{
     name: string,
-    gloria_present: boolean,
     extras?: Extra[],
 }
 

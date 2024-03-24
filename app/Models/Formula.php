@@ -15,7 +15,6 @@ class Formula extends Model
 
     protected $fillable = [
         "name",
-        "gloria_present",
     ];
 
     public function sets(){

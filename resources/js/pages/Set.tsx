@@ -125,11 +125,20 @@ export function MassSet(){
         };
     }
 
-    if(!formula.gloria_present) thisMassOrder = thisMassOrder.filter(el => el.code !== "oGloria");
     formula.extras?.forEach((el) => {
+        if (set.extras?.filter(sex => (
+            sex.name == el.name
+            && sex.before == el.before
+            && sex.replace == el.replace
+        )).length) return;
         insertExtras(el, thisMassOrder, true);
     });
     set.extras?.forEach((el) => {
+        if (formula.extras?.filter(fex => (
+            fex.name == el.name
+            && fex.before == el.before
+            && fex.replace == el.replace
+        )).length) return;
         insertExtras(el, thisMassOrder, true);
     });
     currentPlaceExtras?.forEach((el) => {

@@ -8,7 +8,6 @@
     <input type='hidden' name="old_name" value="{{ $formula->name }}" />
     <div class="flex-right center wrap">
         <x-input type="text" name="name" label="Nazwa" value="{{ $formula->name }}" />
-        <x-input type="checkbox" name="gloria_present" label="Chwała na wysokości" value="{{ $formula->gloria_present }}" />
     </div>
 
     <h2>Zmiany</h2>

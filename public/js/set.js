@@ -26358,13 +26358,18 @@ function MassSet() {
     }
     ;
   };
-  if (!formula.gloria_present) thisMassOrder = thisMassOrder.filter(function (el) {
-    return el.code !== "oGloria";
-  });
   (_a = formula.extras) === null || _a === void 0 ? void 0 : _a.forEach(function (el) {
+    var _a;
+    if ((_a = set.extras) === null || _a === void 0 ? void 0 : _a.filter(function (sex) {
+      return sex.name == el.name && sex.before == el.before && sex.replace == el.replace;
+    }).length) return;
     insertExtras(el, thisMassOrder, true);
   });
   (_b = set.extras) === null || _b === void 0 ? void 0 : _b.forEach(function (el) {
+    var _a;
+    if ((_a = formula.extras) === null || _a === void 0 ? void 0 : _a.filter(function (fex) {
+      return fex.name == el.name && fex.before == el.before && fex.replace == el.replace;
+    }).length) return;
     insertExtras(el, thisMassOrder, true);
   });
   currentPlaceExtras === null || currentPlaceExtras === void 0 ? void 0 : currentPlaceExtras.forEach(function (el) {

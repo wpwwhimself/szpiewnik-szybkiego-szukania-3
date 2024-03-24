@@ -38,7 +38,6 @@ class FormulaController extends Controller
         if($rq->action === "update"){
             Formula::where("name", $rq->old_name)->update([
                 "name" => $rq->name,
-                "gloria_present" => $rq->has("gloria_present"),
             ]);
             for($i = 1; $i < count($rq->extraId); $i++){
                 if($rq->song[$i]){
