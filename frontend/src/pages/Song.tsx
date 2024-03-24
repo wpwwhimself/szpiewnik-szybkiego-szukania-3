@@ -1,10 +1,10 @@
 import { useState, useEffect } from "react";
 import { SongProps } from "../types";
 import axios from "axios";
-import { MassElemSection, SongLyrics } from "../../resources/js/components/MassElements";
-import { DummyInput } from "../../resources/js/components/Interactives";
-import { SheetMusicRender } from "../../resources/js/components/SheetMusicRender";
-import { SongRender } from "../../resources/js/components/SongRender";
+import { MassElemSection, SongLyrics } from "../components/MassElements";
+import { DummyInput } from "../components/Interactives";
+import { SheetMusicRender } from "../components/SheetMusicRender";
+import { SongRender } from "../components/SongRender";
 
 export function PresentSong(){
     const title_slug = window.location.href.replace(/.*\/present\/(.*).*/, "$1");

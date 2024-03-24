@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "target": "es5",
+    "target": "ES6",
     "lib": [
       "dom",
       "dom.iterable",
@@ -21,7 +21,9 @@
     "jsx": "react-jsx"
   },
   "include": [
-    "typings"
+    "typings",
+    "src/**/*.tsx",
+    "src/**/*.ts",
   ],
   "typeRoots": [
     "./typings",
