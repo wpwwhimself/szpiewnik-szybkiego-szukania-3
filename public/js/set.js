@@ -26361,11 +26361,11 @@ function MassSet() {
     var pre = extra.before === "summary" ? massOrder[0] : massOrder.filter(function (el2) {
       return el2.code === extra.before;
     })[0];
-    var code = extra.name.charAt(0) === "x" ? extra.name : after_flag ? (_c = extra.before) !== null && _c !== void 0 ? _c : "END" : "sB4" + ((_d = extra.before) !== null && _d !== void 0 ? _d : "END");
+    var code = ["x", "o"].includes(extra.name.charAt(0)) ? extra.name : after_flag ? (_c = extra.before) !== null && _c !== void 0 ? _c : "END" : "sB4" + ((_d = extra.before) !== null && _d !== void 0 ? _d : "END");
     var same_code_count = thisMassOrder.filter(function (el) {
       return el.code.match(code);
     }).length;
-    if (same_code_count > 0) {
+    if (same_code_count > 0 && extra.name.charAt(0) !== "o") {
       code += same_code_count;
     }
     var content = extra.name.charAt(0) === "x" ? undefined : extra.name;
