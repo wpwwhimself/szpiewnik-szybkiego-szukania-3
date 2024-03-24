@@ -58,13 +58,27 @@ export function SongLyrics({lyrics, forceLyricsVariant}: {lyrics: string | strin
 }
 
 export function PsalmLyrics({lyrics}: {lyrics: string | null}){
-  return(
-    <div className="psalm">
-    {lyrics?.split(/\r?\n\r?\n/).map((out, i) =>
-      <p key={i} dangerouslySetInnerHTML={{ __html: out.replace(/\r?\n/g, "<br>")}} />
-    )}
-    </div>
-  )
+  const lyrics_split = lyrics?.split("%%%") ?? [];
+  const render_variants = lyrics_split.length > 1;
+  const [variant, setVariant] = useState(0);
+  const changeVariant = (new_variant: number) => setVariant(new_variant);
+
+  return(<>
+    {render_variants &&
+      <div className="flex-right center">
+      {lyrics_split.map((var_lyrics, var_no) =>
+        <Button key={var_no}
+          className={[variant === var_no && 'accent-border'].filter(Boolean).join(" ")}
+          onClick={() => changeVariant(var_no)}>
+          {var_no + 1}
+        </Button>)}
+      </div>}
+      <div className="psalm">
+      {lyrics_split[variant]?.split(/\r?\n\r?\n/).map((out, i) =>
+        <p key={i} dangerouslySetInnerHTML={{ __html: out.replace(/\r?\n/g, "<br>")}} />
+      )}
+      </div>
+  </>)
 }
 
 export function Antiphon({call, resp}: {call: string, resp: string}){

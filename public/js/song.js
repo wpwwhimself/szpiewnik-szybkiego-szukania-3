@@ -25199,18 +25199,42 @@ function SongLyrics(_a) {
   }) : (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.Fragment, {});
 }
 function PsalmLyrics(_a) {
+  var _b, _c;
   var lyrics = _a.lyrics;
-  return (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", __assign({
-    className: "psalm"
-  }, {
-    children: lyrics === null || lyrics === void 0 ? void 0 : lyrics.split(/\r?\n\r?\n/).map(function (out, i) {
-      return (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("p", {
-        dangerouslySetInnerHTML: {
-          __html: out.replace(/\r?\n/g, "<br>")
-        }
-      }, i);
-    })
-  }));
+  var lyrics_split = (_b = lyrics === null || lyrics === void 0 ? void 0 : lyrics.split("%%%")) !== null && _b !== void 0 ? _b : [];
+  var render_variants = lyrics_split.length > 1;
+  var _d = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(0),
+    variant = _d[0],
+    setVariant = _d[1];
+  var changeVariant = function changeVariant(new_variant) {
+    return setVariant(new_variant);
+  };
+  return (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
+    children: [render_variants && (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", __assign({
+      className: "flex-right center"
+    }, {
+      children: lyrics_split.map(function (var_lyrics, var_no) {
+        return (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_Interactives__WEBPACK_IMPORTED_MODULE_3__.Button, __assign({
+          className: [variant === var_no && 'accent-border'].filter(Boolean).join(" "),
+          onClick: function onClick() {
+            return changeVariant(var_no);
+          }
+        }, {
+          children: var_no + 1
+        }), var_no);
+      })
+    })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", __assign({
+      className: "psalm"
+    }, {
+      children: (_c = lyrics_split[variant]) === null || _c === void 0 ? void 0 : _c.split(/\r?\n\r?\n/).map(function (out, i) {
+        return (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("p", {
+          dangerouslySetInnerHTML: {
+            __html: out.replace(/\r?\n/g, "<br>")
+          }
+        }, i);
+      })
+    }))]
+  });
 }
 function Antiphon(_a) {
   var call = _a.call,
