@@ -261,15 +261,15 @@ export function OrdinariumProcessor({code, colorCode}: OrdinariumProcessorProps)
               Hosanna na wysokości
             </p>
           </div>}
+          <Antiphon
+            call="Przez Chrystusa, z Chrystusem i w Chrystusie... ...przez wszystkie wieki wieków"
+            resp="Amen"
+          />
         </>
       )
     case "PaterNoster":
       return(
         <>
-          <Antiphon
-            call="Przez Chrystusa, z Chrystusem i w Chrystusie... ...przez wszystkie wieki wieków"
-            resp="Amen"
-          />
           <p className="ksiadz">Nazywamy się dziećmi Bożymi i nimi jesteśmy, dlatego ośmielamy się mówić:</p>
           <h1>Pater Noster</h1>
           {parts.map((part, i) => <SheetMusicRender notes={part.sheet_music} key={i} />)}
@@ -379,6 +379,17 @@ export function ExtrasProcessor({elem}: {elem: MassElem}){
           />
         </>
       )
+    case "Passion":
+      return(
+        <>
+          <p className="ksiadz">Męka naszego Pana... ...według świętego X</p>
+          <h1>Pasja</h1>
+          <Antiphon
+            call="Oto Słowo Pańskie"
+            resp="Chwała Tobie, Chryste"
+          />
+        </>
+      )
     case "GI": // General Intercessions
       return(
         <>
@@ -393,6 +404,14 @@ export function ExtrasProcessor({elem}: {elem: MassElem}){
           />
         </>
       )
+    case "GIFriday":
+      return <>
+        <h2>Uroczysta modlitwa powszechna</h2>
+        <Antiphon
+          call="Wszechmogący, wieczny Boże... ...przez Chrystusa, Pana naszego"
+          resp="Amen"
+        />
+      </>
     case "Wedding":
       songs_to_add = [
         "O Stworzycielu Duchu",
@@ -577,51 +596,72 @@ export function ExtrasProcessor({elem}: {elem: MassElem}){
           <h2>Błogosławieństwo monstrancją</h2>
         </>
       )
-      case "Lamentations":
-        const parts = [
-          "Pobudka",
-          "Intencja",
-          "Hymn",
-          "Lament duszy nad cierpiącym Jezusem",
-          "Rozmowa duszy z Matką bolesną",
-        ]
-        const winddown = "Któryś za nas cierpiał rany"
-        const intentions = [
-          `Przy pomocy łaski Bożej przystępujemy do rozważania męki Pana naszego Jezusa Chrystusa. Ofiarować ją będziemy Ojcu niebieskiemu na cześć i chwałę Jego Boskiego Majestatu, pokornie Mu dziękując za wielką i niepojętą miłość ku rodzajowi ludzkiemu, iż raczył zesłać Syna swego, aby za nas wycierpiał okrutne męki i śmierć podjął krzyżową. To rozmyślanie ofiarujemy również ku czci Najświętszej Maryi Panny, Matki Bolesnej, oraz ku uczczeniu Świętych Pańskich, którzy wyróżniali się nabożeństwem ku Męce Chrystusowej.\n
-          W pierwszej części będziemy rozważali, co Pan Jezus wycierpiał od modlitwy w Ogrójcu aż do niesłusznego przed sądem oskarżenia. Te zniewagi i zelżywości temuż Panu, za nas bolejącemu, ofiarujemy za Kościół święty katolicki, za najwyższego Pasterza z całym duchowieństwem, nadto za nieprzyjaciół krzyża Chrystusowego i wszystkich niewiernych, aby im Pan Bóg dał łaskę nawrócenia i opamiętania.`,
-          `W drugiej części rozmyślania męki Pańskiej będziemy rozważali, co Pan Jezus wycierpiał od niesłusznego przed sądem oskarżenia aż do okrutnego cierniem ukoronowania. Te zaś rany, zniewagi i zelżywości temuż Jezusowi cierpiącemu ofiarujemy, prosząc Go o pomyślność dla Ojczyzny naszej, o pokój i zgodę dla wszystkich narodów, a dla siebie o odpuszczenie grzechów, oddalenie klęsk i nieszczęść doczesnych, a szczególnie zarazy, głodu, ognia i wojny.`,
-          `W tej ostatniej części będziemy rozważali, co Pan Jezus wycierpiał od chwili ukoronowania aż do ciężkiego skonania na krzyżu. Te bluźnierstwa, zelżywości i zniewagi, jakie Mu wyrządzano, ofiarujemy za grzeszników zatwardziałych, aby Zbawiciel pobudził ich serca zbłąkane do pokuty i prawdziwej życia poprawy oraz za dusze w czyśćcu cierpiące, aby im litościwy Jezus krwią swoją świętą ogień zagasił; prosimy nadto, by i nam wyjednał na godzinę śmierci skruchę za grzechy i szczęśliwe w łasce Bożej wytrwanie.`,
-        ]
-        const [variant, setVariant] = useState(0)
-        const changeVariant = (new_variant: number) => setVariant(new_variant)
+    case "Lamentations":
+      const parts = [
+        "Pobudka",
+        "Intencja",
+        "Hymn",
+        "Lament duszy nad cierpiącym Jezusem",
+        "Rozmowa duszy z Matką bolesną",
+      ]
+      const winddown = "Któryś za nas cierpiał rany"
+      const intentions = [
+        `Przy pomocy łaski Bożej przystępujemy do rozważania męki Pana naszego Jezusa Chrystusa. Ofiarować ją będziemy Ojcu niebieskiemu na cześć i chwałę Jego Boskiego Majestatu, pokornie Mu dziękując za wielką i niepojętą miłość ku rodzajowi ludzkiemu, iż raczył zesłać Syna swego, aby za nas wycierpiał okrutne męki i śmierć podjął krzyżową. To rozmyślanie ofiarujemy również ku czci Najświętszej Maryi Panny, Matki Bolesnej, oraz ku uczczeniu Świętych Pańskich, którzy wyróżniali się nabożeństwem ku Męce Chrystusowej.\n
+        W pierwszej części będziemy rozważali, co Pan Jezus wycierpiał od modlitwy w Ogrójcu aż do niesłusznego przed sądem oskarżenia. Te zniewagi i zelżywości temuż Panu, za nas bolejącemu, ofiarujemy za Kościół święty katolicki, za najwyższego Pasterza z całym duchowieństwem, nadto za nieprzyjaciół krzyża Chrystusowego i wszystkich niewiernych, aby im Pan Bóg dał łaskę nawrócenia i opamiętania.`,
+        `W drugiej części rozmyślania męki Pańskiej będziemy rozważali, co Pan Jezus wycierpiał od niesłusznego przed sądem oskarżenia aż do okrutnego cierniem ukoronowania. Te zaś rany, zniewagi i zelżywości temuż Jezusowi cierpiącemu ofiarujemy, prosząc Go o pomyślność dla Ojczyzny naszej, o pokój i zgodę dla wszystkich narodów, a dla siebie o odpuszczenie grzechów, oddalenie klęsk i nieszczęść doczesnych, a szczególnie zarazy, głodu, ognia i wojny.`,
+        `W tej ostatniej części będziemy rozważali, co Pan Jezus wycierpiał od chwili ukoronowania aż do ciężkiego skonania na krzyżu. Te bluźnierstwa, zelżywości i zniewagi, jakie Mu wyrządzano, ofiarujemy za grzeszników zatwardziałych, aby Zbawiciel pobudził ich serca zbłąkane do pokuty i prawdziwej życia poprawy oraz za dusze w czyśćcu cierpiące, aby im litościwy Jezus krwią swoją świętą ogień zagasił; prosimy nadto, by i nam wyjednał na godzinę śmierci skruchę za grzechy i szczęśliwe w łasce Bożej wytrwanie.`,
+      ]
+      const [variant, setVariant] = useState(0)
+      const changeVariant = (new_variant: number) => setVariant(new_variant)
 
-        return(
-          <>
-            <h1>Gorzkie żale</h1>
+      return(
+        <>
+          <h1>Gorzkie żale</h1>
 
-            <div className="flex-right center">
-            {[0, 1, 2].map(var_no =>
-              <Button key={var_no}
-                className={[variant === var_no && 'accent-border'].filter(Boolean).join(" ")}
-                onClick={() => changeVariant(var_no)}>
-                {var_no + 1}
-              </Button>)}
-            </div>
+          <div className="flex-right center">
+          {[0, 1, 2].map(var_no =>
+            <Button key={var_no}
+              className={[variant === var_no && 'accent-border'].filter(Boolean).join(" ")}
+              onClick={() => changeVariant(var_no)}>
+              {var_no + 1}
+            </Button>)}
+          </div>
 
-            {parts.map(part =>
-              <div key={part} className="songMeta">
-                <h2>{part}</h2>
-                {part === "Intencja"
-                  ? <div>{intentions[variant].split("\n").map((p, i) => <p key={i}>{p}</p>)}</div>
-                  : <SongRender title={`Gorzkie żale: ${part}`} forceLyricsVariant={variant} />}
-              </div>)}
+          {parts.map(part =>
+            <div key={part} className="songMeta">
+              <h2>{part}</h2>
+              {part === "Intencja"
+                ? <div>{intentions[variant].split("\n").map((p, i) => <p key={i}>{p}</p>)}</div>
+                : <SongRender title={`Gorzkie żale: ${part}`} forceLyricsVariant={variant} />}
+            </div>)}
 
-            <div className="songMeta">
-              <h2>{winddown}</h2>
-              <SongRender title={winddown} />
-            </div>
-          </>
-        )
+          <div className="songMeta">
+            <h2>{winddown}</h2>
+            <SongRender title={winddown} />
+          </div>
+        </>
+      )
+    case "CrossAdoration":
+      return <>
+        <h2>Ukazanie Krzyża</h2>
+        <Antiphon
+          call="Oto drzewo krzyża, na którym zawisło zbawienie świata"
+          resp="Pójdźmy z pokłonem"
+        />
+        <h2>Adoracja Krzyża</h2>
+        <span className="ghost">Przy <i>Ludu, mój ludu</i> po każdej zwrotce dodatkowo 2× <i>Święty Boże</i></span>
+      </>
+    case "Light":
+      return <>
+        <Antiphon
+          call="Światło Chrystusa"
+          resp="Bogu niech będą dzięki"
+        />
+      </>
+    case "Exsultet":
+      return <>
+        <h2>Exsultet</h2>
+      </>
     default:{
       return(
         <>
