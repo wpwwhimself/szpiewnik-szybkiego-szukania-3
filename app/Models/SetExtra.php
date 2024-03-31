@@ -11,6 +11,6 @@ class SetExtra extends Model
 
     protected $fillable = [
         "set_id",
-        "name", "before", "replace",
+        "name", "label", "before", "replace",
     ];
 }

@@ -100,11 +100,12 @@ export function MassSet(){
 
         const addition = {
             code: code,
-            label: after_flag
-                ? pre?.label
+            label:
+                extra.label ? extra.label
+                : after_flag ? pre?.label
                 : (extra.before && extra.before !== "END")
-                    ? `Zanim nastąpi ${pre?.label}`
-                    : "Dodatkowo",
+                    ? `${extra.replace ? "Zastępując" : "Zanim nastąpi"} ${pre?.label}`
+                : "Dodatkowo",
             content: content
         };
 

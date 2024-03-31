@@ -11,6 +11,6 @@ class FormulaExtra extends Model
 
     protected $fillable = [
         "formula",
-        "name", "before", "replace",
+        "name", "label", "before", "replace",
     ];
 }

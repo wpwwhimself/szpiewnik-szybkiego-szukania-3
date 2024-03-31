@@ -15,6 +15,7 @@
         <thead>
             <tr>
                 <th>Element</th>
+                <th>Etykieta</th>
                 <th>Przed</th>
                 <th>Zastąp</th>
             </tr>
@@ -58,18 +59,19 @@
             }
             </script>
             <tr>
-                <td colspan="3">
+                <td colspan="4">
                     <div class="button" onclick="addExtraRow()">Dodaj</div>
                 </td>
             </tr>
             <tr>
-                <td colspan="3">
+                <td colspan="4">
                     <div id="song-autocomplete" class="flex-right center wrap"></div>
                 </td>
             </tr>
             <tr id="row-adder">
                 <input type="hidden" name="extraId[]" />
                 <td><input type="text" name="song[]" onkeyup="songAutocomplete(this)" /></td>
+                <td><input type="text" name="label[]" /></td>
                 <td><x-select name="before[]" label="" :options="$mass_order" :empty-option="true" /></td>
                 <td>
                     <input type="checkbox" onchange="extraReplaceCheck(this)" />
@@ -80,6 +82,7 @@
             <tr>
                 <input type="hidden" name="extraId[]" value="{{ $extra->id }}" />
                 <td><input type="text" name="song[]" value="{{ $extra->name }}" onkeyup="songAutocomplete(this)" /></td>
+                <td><input type="text" name="label[]" value="{{ $extra->label }}" /></td>
                 <td><x-select name="before[]" label="" value="{{ $extra->before }}" :options="$mass_order" :empty-option="true" /></td>
                 <td>
                     <input type="checkbox" onchange="extraReplaceCheck(this)" {{ $extra->replace ? 'checked' : '' }} />

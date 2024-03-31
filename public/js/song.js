@@ -25946,12 +25946,6 @@ function ExtrasProcessor(_a) {
           resp: "Bogu niech b\u0119d\u0105 dzi\u0119ki"
         })
       });
-    case "Exsultet":
-      return (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
-        children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("h2", {
-          children: "Exsultet"
-        })
-      });
     default:
       {
         return (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
@@ -26425,7 +26419,7 @@ function MassSet() {
     var content = extra.name.charAt(0) === "x" ? undefined : extra.name;
     var addition = {
       code: code,
-      label: after_flag ? pre === null || pre === void 0 ? void 0 : pre.label : extra.before && extra.before !== "END" ? "Zanim nast\u0105pi ".concat(pre === null || pre === void 0 ? void 0 : pre.label) : "Dodatkowo",
+      label: extra.label ? extra.label : after_flag ? pre === null || pre === void 0 ? void 0 : pre.label : extra.before && extra.before !== "END" ? "".concat(extra.replace ? "Zastępując" : "Zanim nastąpi", " ").concat(pre === null || pre === void 0 ? void 0 : pre.label) : "Dodatkowo",
       content: content
     };
     if (pre) {

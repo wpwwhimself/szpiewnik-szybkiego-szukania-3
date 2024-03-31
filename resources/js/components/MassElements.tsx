@@ -658,10 +658,6 @@ export function ExtrasProcessor({elem}: {elem: MassElem}){
           resp="Bogu niech będą dzięki"
         />
       </>
-    case "Exsultet":
-      return <>
-        <h2>Exsultet</h2>
-      </>
     default:{
       return(
         <>

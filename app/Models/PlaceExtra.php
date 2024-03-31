@@ -11,6 +11,6 @@ class PlaceExtra extends Model
 
     protected $fillable = [
         "place",
-        "name", "before", "replace",
+        "name", "label", "before", "replace",
     ];
 }

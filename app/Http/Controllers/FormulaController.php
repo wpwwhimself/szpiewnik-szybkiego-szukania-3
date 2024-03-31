@@ -43,6 +43,7 @@ class FormulaController extends Controller
                 if($rq->song[$i]){
                     FormulaExtra::updateOrCreate(["id" => $rq->extraId[$i]], [
                         "name" => $rq->song[$i],
+                        "label" => $rq->label[$i],
                         "before" => $rq->before[$i],
                         "replace" => $rq->replace[$i],
                         "formula" => $rq->name,
