@@ -25529,10 +25529,7 @@ function OrdinariumProcessor(_a) {
           }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("p", {
             children: ["B\u0142ogos\u0142awiony", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("br", {}), "Kt\xF3ry idzie w imi\u0119 Pa\u0144skie", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("br", {}), "Hosanna na wysoko\u015Bci"]
           })]
-        })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(Antiphon, {
-          call: "Przez Chrystusa, z Chrystusem i w Chrystusie... ...przez wszystkie wieki wiek\xF3w",
-          resp: "Amen"
-        })]
+        }))]
       });
     case "PaterNoster":
       return (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
@@ -25720,6 +25717,9 @@ function ExtrasProcessor(_a) {
               resp: "Panie, Ty nas wybawi\u0142e\u015B <br />przez krzy\u017C i zmartwychwstanie swoje, <br />Ty jeste\u015B zbawicielem \u015Bwiata"
             })
           }))]
+        }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(Antiphon, {
+          call: "Przez Chrystusa, z Chrystusem i w Chrystusie... ...przez wszystkie wieki wiek\xF3w",
+          resp: "Amen"
         })]
       });
     case "Blessing":

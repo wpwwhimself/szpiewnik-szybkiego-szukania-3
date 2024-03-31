@@ -261,10 +261,6 @@ export function OrdinariumProcessor({code, colorCode}: OrdinariumProcessorProps)
               Hosanna na wysokości
             </p>
           </div>}
-          <Antiphon
-            call="Przez Chrystusa, z Chrystusem i w Chrystusie... ...przez wszystkie wieki wieków"
-            resp="Amen"
-          />
         </>
       )
     case "PaterNoster":
@@ -457,6 +453,10 @@ export function ExtrasProcessor({elem}: {elem: MassElem}){
               />
             </div>
           </Alternative>
+          <Antiphon
+            call="Przez Chrystusa, z Chrystusem i w Chrystusie... ...przez wszystkie wieki wieków"
+            resp="Amen"
+          />
         </>
       )
     case "Blessing":
