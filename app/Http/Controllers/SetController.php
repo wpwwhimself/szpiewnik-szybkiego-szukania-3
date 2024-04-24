@@ -74,6 +74,7 @@ class SetController extends Controller
                 if($rq->song[$i]){
                     SetExtra::updateOrCreate(["id" => $rq->extraId[$i]], [
                         "name" => $rq->song[$i],
+                        "label" => $rq->label[$i],
                         "before" => $rq->before[$i],
                         "replace" => $rq->replace[$i],
                         "set_id" => $rq->id,

@@ -25199,18 +25199,42 @@ function SongLyrics(_a) {
   }) : (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.Fragment, {});
 }
 function PsalmLyrics(_a) {
+  var _b, _c;
   var lyrics = _a.lyrics;
-  return (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", __assign({
-    className: "psalm"
-  }, {
-    children: lyrics === null || lyrics === void 0 ? void 0 : lyrics.split(/\r?\n\r?\n/).map(function (out, i) {
-      return (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("p", {
-        dangerouslySetInnerHTML: {
-          __html: out.replace(/\r?\n/g, "<br>")
-        }
-      }, i);
-    })
-  }));
+  var lyrics_split = (_b = lyrics === null || lyrics === void 0 ? void 0 : lyrics.split("%%%")) !== null && _b !== void 0 ? _b : [];
+  var render_variants = lyrics_split.length > 1;
+  var _d = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(0),
+    variant = _d[0],
+    setVariant = _d[1];
+  var changeVariant = function changeVariant(new_variant) {
+    return setVariant(new_variant);
+  };
+  return (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
+    children: [render_variants && (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", __assign({
+      className: "flex-right center"
+    }, {
+      children: lyrics_split.map(function (var_lyrics, var_no) {
+        return (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_Interactives__WEBPACK_IMPORTED_MODULE_3__.Button, __assign({
+          className: [variant === var_no && 'accent-border'].filter(Boolean).join(" "),
+          onClick: function onClick() {
+            return changeVariant(var_no);
+          }
+        }, {
+          children: var_no + 1
+        }), var_no);
+      })
+    })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", __assign({
+      className: "psalm"
+    }, {
+      children: (_c = lyrics_split[variant]) === null || _c === void 0 ? void 0 : _c.split(/\r?\n\r?\n/).map(function (out, i) {
+        return (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("p", {
+          dangerouslySetInnerHTML: {
+            __html: out.replace(/\r?\n/g, "<br>")
+          }
+        }, i);
+      })
+    }))]
+  });
 }
 function Antiphon(_a) {
   var call = _a.call,
@@ -25509,10 +25533,7 @@ function OrdinariumProcessor(_a) {
       });
     case "PaterNoster":
       return (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
-        children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(Antiphon, {
-          call: "Przez Chrystusa, z Chrystusem i w Chrystusie... ...przez wszystkie wieki wiek\xF3w",
-          resp: "Amen"
-        }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("p", __assign({
+        children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("p", __assign({
           className: "ksiadz"
         }, {
           children: "Nazywamy si\u0119 dzie\u0107mi Bo\u017Cymi i nimi jeste\u015Bmy, dlatego o\u015Bmielamy si\u0119 m\xF3wi\u0107:"
@@ -25608,6 +25629,19 @@ function ExtrasProcessor(_a) {
           resp: "Chwa\u0142a Tobie, Chryste"
         })]
       });
+    case "Passion":
+      return (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
+        children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("p", __assign({
+          className: "ksiadz"
+        }, {
+          children: "M\u0119ka naszego Pana... ...wed\u0142ug \u015Bwi\u0119tego X"
+        })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("h1", {
+          children: "Pasja"
+        }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(Antiphon, {
+          call: "Oto S\u0142owo Pa\u0144skie",
+          resp: "Chwa\u0142a Tobie, Chryste"
+        })]
+      });
     case "GI":
       // General Intercessions
       return (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
@@ -25618,6 +25652,15 @@ function ExtrasProcessor(_a) {
           resp: "Wys\u0142uchaj nas, Panie"
         }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(Antiphon, {
           call: "M\xF3dlmy si\u0119... ...przez wszystkie wieki wiek\xF3w",
+          resp: "Amen"
+        })]
+      });
+    case "GIFriday":
+      return (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
+        children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("h2", {
+          children: "Uroczysta modlitwa powszechna"
+        }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(Antiphon, {
+          call: "Wszechmog\u0105cy, wieczny Bo\u017Ce... ...przez Chrystusa, Pana naszego",
           resp: "Amen"
         })]
       });
@@ -25674,6 +25717,9 @@ function ExtrasProcessor(_a) {
               resp: "Panie, Ty nas wybawi\u0142e\u015B <br />przez krzy\u017C i zmartwychwstanie swoje, <br />Ty jeste\u015B zbawicielem \u015Bwiata"
             })
           }))]
+        }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(Antiphon, {
+          call: "Przez Chrystusa, z Chrystusem i w Chrystusie... ...przez wszystkie wieki wiek\xF3w",
+          resp: "Amen"
         })]
       });
     case "Blessing":
@@ -25824,7 +25870,7 @@ function ExtrasProcessor(_a) {
     case "Lamentations":
       var parts = ["Pobudka", "Intencja", "Hymn", "Lament duszy nad cierpiącym Jezusem", "Rozmowa duszy z Matką bolesną"];
       var winddown = "Któryś za nas cierpiał rany";
-      var intentions_1 = ["Przy pomocy \u0142aski Bo\u017Cej przyst\u0119pujemy do rozwa\u017Cania m\u0119ki Pana naszego Jezusa Chrystusa. Ofiarowa\u0107 j\u0105 b\u0119dziemy Ojcu niebieskiemu na cze\u015B\u0107 i chwa\u0142\u0119 Jego Boskiego Majestatu, pokornie Mu dzi\u0119kuj\u0105c za wielk\u0105 i niepoj\u0119t\u0105 mi\u0142o\u015B\u0107 ku rodzajowi ludzkiemu, i\u017C raczy\u0142 zes\u0142a\u0107 Syna swego, aby za nas wycierpia\u0142 okrutne m\u0119ki i \u015Bmier\u0107 podj\u0105\u0142 krzy\u017Cow\u0105. To rozmy\u015Blanie ofiarujemy r\xF3wnie\u017C ku czci Naj\u015Bwi\u0119tszej Maryi Panny, Matki Bolesnej, oraz ku uczczeniu \u015Awi\u0119tych Pa\u0144skich, kt\xF3rzy wyr\xF3\u017Cniali si\u0119 nabo\u017Ce\u0144stwem ku M\u0119ce Chrystusowej.\n\n          W pierwszej cz\u0119\u015Bci b\u0119dziemy rozwa\u017Cali, co Pan Jezus wycierpia\u0142 od modlitwy w Ogr\xF3jcu a\u017C do nies\u0142usznego przed s\u0105dem oskar\u017Cenia. Te zniewagi i zel\u017Cywo\u015Bci temu\u017C Panu, za nas bolej\u0105cemu, ofiarujemy za Ko\u015Bci\xF3\u0142 \u015Bwi\u0119ty katolicki, za najwy\u017Cszego Pasterza z ca\u0142ym duchowie\u0144stwem, nadto za nieprzyjaci\xF3\u0142 krzy\u017Ca Chrystusowego i wszystkich niewiernych, aby im Pan B\xF3g da\u0142 \u0142ask\u0119 nawr\xF3cenia i opami\u0119tania.", "W drugiej cz\u0119\u015Bci rozmy\u015Blania m\u0119ki Pa\u0144skiej b\u0119dziemy rozwa\u017Cali, co Pan Jezus wycierpia\u0142 od nies\u0142usznego przed s\u0105dem oskar\u017Cenia a\u017C do okrutnego cierniem ukoronowania. Te za\u015B rany, zniewagi i zel\u017Cywo\u015Bci temu\u017C Jezusowi cierpi\u0105cemu ofiarujemy, prosz\u0105c Go o pomy\u015Blno\u015B\u0107 dla Ojczyzny naszej, o pok\xF3j i zgod\u0119 dla wszystkich narod\xF3w, a dla siebie o odpuszczenie grzech\xF3w, oddalenie kl\u0119sk i nieszcz\u0119\u015B\u0107 doczesnych, a szczeg\xF3lnie zarazy, g\u0142odu, ognia i wojny.", "W tej ostatniej cz\u0119\u015Bci b\u0119dziemy rozwa\u017Cali, co Pan Jezus wycierpia\u0142 od chwili ukoronowania a\u017C do ci\u0119\u017Ckiego skonania na krzy\u017Cu. Te blu\u017Anierstwa, zel\u017Cywo\u015Bci i zniewagi, jakie Mu wyrz\u0105dzano, ofiarujemy za grzesznik\xF3w zatwardzia\u0142ych, aby Zbawiciel pobudzi\u0142 ich serca zb\u0142\u0105kane do pokuty i prawdziwej \u017Cycia poprawy oraz za dusze w czy\u015B\u0107cu cierpi\u0105ce, aby im lito\u015Bciwy Jezus krwi\u0105 swoj\u0105 \u015Bwi\u0119t\u0105 ogie\u0144 zagasi\u0142; prosimy nadto, by i nam wyjedna\u0142 na godzin\u0119 \u015Bmierci skruch\u0119 za grzechy i szcz\u0119\u015Bliwe w \u0142asce Bo\u017Cej wytrwanie."];
+      var intentions_1 = ["Przy pomocy \u0142aski Bo\u017Cej przyst\u0119pujemy do rozwa\u017Cania m\u0119ki Pana naszego Jezusa Chrystusa. Ofiarowa\u0107 j\u0105 b\u0119dziemy Ojcu niebieskiemu na cze\u015B\u0107 i chwa\u0142\u0119 Jego Boskiego Majestatu, pokornie Mu dzi\u0119kuj\u0105c za wielk\u0105 i niepoj\u0119t\u0105 mi\u0142o\u015B\u0107 ku rodzajowi ludzkiemu, i\u017C raczy\u0142 zes\u0142a\u0107 Syna swego, aby za nas wycierpia\u0142 okrutne m\u0119ki i \u015Bmier\u0107 podj\u0105\u0142 krzy\u017Cow\u0105. To rozmy\u015Blanie ofiarujemy r\xF3wnie\u017C ku czci Naj\u015Bwi\u0119tszej Maryi Panny, Matki Bolesnej, oraz ku uczczeniu \u015Awi\u0119tych Pa\u0144skich, kt\xF3rzy wyr\xF3\u017Cniali si\u0119 nabo\u017Ce\u0144stwem ku M\u0119ce Chrystusowej.\n\n        W pierwszej cz\u0119\u015Bci b\u0119dziemy rozwa\u017Cali, co Pan Jezus wycierpia\u0142 od modlitwy w Ogr\xF3jcu a\u017C do nies\u0142usznego przed s\u0105dem oskar\u017Cenia. Te zniewagi i zel\u017Cywo\u015Bci temu\u017C Panu, za nas bolej\u0105cemu, ofiarujemy za Ko\u015Bci\xF3\u0142 \u015Bwi\u0119ty katolicki, za najwy\u017Cszego Pasterza z ca\u0142ym duchowie\u0144stwem, nadto za nieprzyjaci\xF3\u0142 krzy\u017Ca Chrystusowego i wszystkich niewiernych, aby im Pan B\xF3g da\u0142 \u0142ask\u0119 nawr\xF3cenia i opami\u0119tania.", "W drugiej cz\u0119\u015Bci rozmy\u015Blania m\u0119ki Pa\u0144skiej b\u0119dziemy rozwa\u017Cali, co Pan Jezus wycierpia\u0142 od nies\u0142usznego przed s\u0105dem oskar\u017Cenia a\u017C do okrutnego cierniem ukoronowania. Te za\u015B rany, zniewagi i zel\u017Cywo\u015Bci temu\u017C Jezusowi cierpi\u0105cemu ofiarujemy, prosz\u0105c Go o pomy\u015Blno\u015B\u0107 dla Ojczyzny naszej, o pok\xF3j i zgod\u0119 dla wszystkich narod\xF3w, a dla siebie o odpuszczenie grzech\xF3w, oddalenie kl\u0119sk i nieszcz\u0119\u015B\u0107 doczesnych, a szczeg\xF3lnie zarazy, g\u0142odu, ognia i wojny.", "W tej ostatniej cz\u0119\u015Bci b\u0119dziemy rozwa\u017Cali, co Pan Jezus wycierpia\u0142 od chwili ukoronowania a\u017C do ci\u0119\u017Ckiego skonania na krzy\u017Cu. Te blu\u017Anierstwa, zel\u017Cywo\u015Bci i zniewagi, jakie Mu wyrz\u0105dzano, ofiarujemy za grzesznik\xF3w zatwardzia\u0142ych, aby Zbawiciel pobudzi\u0142 ich serca zb\u0142\u0105kane do pokuty i prawdziwej \u017Cycia poprawy oraz za dusze w czy\u015B\u0107cu cierpi\u0105ce, aby im lito\u015Bciwy Jezus krwi\u0105 swoj\u0105 \u015Bwi\u0119t\u0105 ogie\u0144 zagasi\u0142; prosimy nadto, by i nam wyjedna\u0142 na godzin\u0119 \u015Bmierci skruch\u0119 za grzechy i szcz\u0119\u015Bliwe w \u0142asce Bo\u017Cej wytrwanie."];
       var _b = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(0),
         variant_1 = _b[0],
         setVariant_1 = _b[1];
@@ -25873,6 +25919,32 @@ function ExtrasProcessor(_a) {
             title: winddown
           })]
         }))]
+      });
+    case "CrossAdoration":
+      return (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
+        children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("h2", {
+          children: "Ukazanie Krzy\u017Ca"
+        }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(Antiphon, {
+          call: "Oto drzewo krzy\u017Ca, na kt\xF3rym zawis\u0142o zbawienie \u015Bwiata",
+          resp: "P\xF3jd\u017Amy z pok\u0142onem"
+        }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("h2", {
+          children: "Adoracja Krzy\u017Ca"
+        }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("span", __assign({
+          className: "ghost"
+        }, {
+          children: ["Przy ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("i", {
+            children: "Ludu, m\xF3j ludu"
+          }), " po ka\u017Cdej zwrotce dodatkowo 2\xD7 ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("i", {
+            children: "\u015Awi\u0119ty Bo\u017Ce"
+          })]
+        }))]
+      });
+    case "Light":
+      return (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
+        children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(Antiphon, {
+          call: "\u015Awiat\u0142o Chrystusa",
+          resp: "Bogu niech b\u0119d\u0105 dzi\u0119ki"
+        })
       });
     default:
       {
@@ -26106,13 +26178,13 @@ var massOrder = [{
   label: "Módlmy się"
 }, {
   value: "xReading1",
-  label: "1. czytanie"
+  label: "Czytanie (Stary Testament)"
 }, {
   value: "pPsalm",
   label: "Psalm"
 }, {
   value: "xReading2",
-  label: "2. czytanie"
+  label: "Czytanie (Nowy Testament)"
 }, {
   value: "pAccl",
   label: "Aklamacja"
@@ -26337,17 +26409,17 @@ function MassSet() {
     var pre = extra.before === "summary" ? massOrder[0] : massOrder.filter(function (el2) {
       return el2.code === extra.before;
     })[0];
-    var code = extra.name.charAt(0) === "x" ? extra.name : after_flag ? (_c = extra.before) !== null && _c !== void 0 ? _c : "END" : "sB4" + ((_d = extra.before) !== null && _d !== void 0 ? _d : "END");
+    var code = ["x", "o"].includes(extra.name.charAt(0)) ? extra.name : after_flag ? (_c = extra.before) !== null && _c !== void 0 ? _c : "END" : "sB4" + ((_d = extra.before) !== null && _d !== void 0 ? _d : "END");
     var same_code_count = thisMassOrder.filter(function (el) {
       return el.code.match(code);
     }).length;
-    if (same_code_count > 0) {
+    if (same_code_count > 0 && extra.name.charAt(0) !== "o") {
       code += same_code_count;
     }
     var content = extra.name.charAt(0) === "x" ? undefined : extra.name;
     var addition = {
       code: code,
-      label: after_flag ? pre === null || pre === void 0 ? void 0 : pre.label : extra.before && extra.before !== "END" ? "Zanim nast\u0105pi ".concat(pre === null || pre === void 0 ? void 0 : pre.label) : "Dodatkowo",
+      label: extra.label ? extra.label : after_flag ? pre === null || pre === void 0 ? void 0 : pre.label : extra.before && extra.before !== "END" ? "".concat(extra.replace ? "Zastępując" : "Zanim nastąpi", " ").concat(pre === null || pre === void 0 ? void 0 : pre.label) : "Dodatkowo",
       content: content
     };
     if (pre) {
@@ -26358,13 +26430,18 @@ function MassSet() {
     }
     ;
   };
-  if (!formula.gloria_present) thisMassOrder = thisMassOrder.filter(function (el) {
-    return el.code !== "oGloria";
-  });
   (_a = formula.extras) === null || _a === void 0 ? void 0 : _a.forEach(function (el) {
+    var _a;
+    if ((_a = set.extras) === null || _a === void 0 ? void 0 : _a.filter(function (sex) {
+      return sex.name == el.name && sex.before == el.before && sex.replace == el.replace;
+    }).length) return;
     insertExtras(el, thisMassOrder, true);
   });
   (_b = set.extras) === null || _b === void 0 ? void 0 : _b.forEach(function (el) {
+    var _a;
+    if ((_a = formula.extras) === null || _a === void 0 ? void 0 : _a.filter(function (fex) {
+      return fex.name == el.name && fex.before == el.before && fex.replace == el.replace;
+    }).length) return;
     insertExtras(el, thisMassOrder, true);
   });
   currentPlaceExtras === null || currentPlaceExtras === void 0 ? void 0 : currentPlaceExtras.forEach(function (el) {

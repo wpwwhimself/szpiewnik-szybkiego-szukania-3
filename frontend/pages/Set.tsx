@@ -87,24 +87,25 @@ export function MassSet(){
         const pre = extra.before === "summary"
             ? massOrder[0]
             : massOrder.filter(el2 => el2.code === extra.before)[0];
-        let code = (extra.name.charAt(0) === "x")
+        let code = (["x", "o"].includes(extra.name.charAt(0)))
             ? extra.name
             : after_flag
                 ? extra.before ?? "END"
                 : "sB4"+(extra.before ?? "END");
         const same_code_count = thisMassOrder.filter(el => el.code.match(code)).length;
-        if(same_code_count > 0){
+        if(same_code_count > 0 && extra.name.charAt(0) !== "o"){
             code += same_code_count
         }
         const content = (extra.name.charAt(0) === "x") ? undefined : extra.name;
 
         const addition = {
             code: code,
-            label: after_flag
-                ? pre?.label
+            label:
+                extra.label ? extra.label
+                : after_flag ? pre?.label
                 : (extra.before && extra.before !== "END")
-                    ? `Zanim nastąpi ${pre?.label}`
-                    : "Dodatkowo",
+                    ? `${extra.replace ? "Zastępując" : "Zanim nastąpi"} ${pre?.label}`
+                : "Dodatkowo",
             content: content
         };
 
@@ -125,11 +126,20 @@ export function MassSet(){
         };
     }
 
-    if(!formula.gloria_present) thisMassOrder = thisMassOrder.filter(el => el.code !== "oGloria");
     formula.extras?.forEach((el) => {
+        if (set.extras?.filter(sex => (
+            sex.name == el.name
+            && sex.before == el.before
+            && sex.replace == el.replace
+        )).length) return;
         insertExtras(el, thisMassOrder, true);
     });
     set.extras?.forEach((el) => {
+        if (formula.extras?.filter(fex => (
+            fex.name == el.name
+            && fex.before == el.before
+            && fex.replace == el.replace
+        )).length) return;
         insertExtras(el, thisMassOrder, true);
     });
     currentPlaceExtras?.forEach((el) => {

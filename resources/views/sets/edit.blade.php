@@ -57,6 +57,7 @@
             <tr>
                 <th>Źródło</th>
                 <th>Element</th>
+                <th>Etykieta</th>
                 <th>Przed</th>
                 <th>Zastąp</th>
             </tr>
@@ -100,18 +101,19 @@
             }
             </script>
             <tr>
-                <td colspan="4">
+                <td colspan="5">
                     <div class="button" onclick="addExtraRow()">Dodaj</div>
                 </td>
             </tr>
             <tr>
-                <td colspan="4">
+                <td colspan="5">
                     <div id="song-autocomplete" class="flex-right center wrap"></div>
                 </td>
             </tr>
             <tr id="row-adder">
                 <td>Msza<input type="hidden" name="extraId[]" /></td>
-                <td><input type="text" name="song[]" onkeyup="songAutocomplete(this)" /></td>
+                <td><input type="text" name="song[]" onk eyup="songAutocomplete(this)" /></td>
+                <td><input type="text" name="label[]" /></td>
                 <td><x-select name="before[]" label="" :options="$mass_order" :empty-option="true" /></td>
                 <td>
                     <input type="checkbox" onchange="extraReplaceCheck(this)" />
@@ -122,6 +124,7 @@
             <tr>
                 <td>Msza<input type="hidden" name="extraId[]" value="{{ $extra->id }}" /></td>
                 <td><input type="text" name="song[]" value="{{ $extra->name }}" onkeyup="songAutocomplete(this)" /></td>
+                <td><input type="text" name="label[]" value="{{ $extra->label }}" /></td>
                 <td><x-select name="before[]" label="" value="{{ $extra->before }}" :options="$mass_order" :empty-option="true" /></td>
                 <td>
                     <input type="checkbox" onchange="extraReplaceCheck(this)" {{ $extra->replace ? 'checked' : '' }} />
@@ -134,6 +137,7 @@
             <tr class="ghost">
                 <td>Formuła</td>
                 <td><input type="text" name="" value="{{ $extra->name }}" disabled /></td>
+                <td><input type="text" name="" value="{{ $extra->label }}" disabled /></td>
                 <td><x-select name="" label="" value="{{ $extra->before }}" :options="$mass_order" :empty-option="true" :disabled="true" /></td>
                 <td>
                     <input type="checkbox" name="" {{ $extra->replace ? 'checked' : '' }} disabled />

@@ -45,6 +45,7 @@ class PlaceController extends Controller
                 if($rq->song[$i]){
                     PlaceExtra::updateOrCreate(["id" => $rq->extraId[$i]], [
                         "name" => $rq->song[$i],
+                        "label" => $rq->label[$i],
                         "before" => $rq->before[$i],
                         "replace" => $rq->replace[$i],
                         "place" => $rq->name,

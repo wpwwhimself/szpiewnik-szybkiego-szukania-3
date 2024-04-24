@@ -63,13 +63,13 @@ export interface Extra{
     formula?: string,
     place?: string,
     name: string,
+    label?: string,
     before: string | null,
     replace: boolean,
 }
 
 export interface Formula{
     name: string,
-    gloria_present: boolean,
     extras?: Extra[],
 }
 
