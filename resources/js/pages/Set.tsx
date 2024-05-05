@@ -431,12 +431,7 @@ export function MassSet(){
                     <Button>domyślne</Button>
                 </a>
             {places.map((place, i) =>
-                <a href={`?place=${place.name
-                    .toLocaleLowerCase()
-                    .trim()
-                    .replace(/[^\w\s-]/g, '')
-                    .replace(/[\s_-]+/g, '-')
-                    .replace(/^-+|-+$/g, '')}`} key={i}>
+                <a href={`?place=${slugAndDePL(place.name)}`} key={i}>
                     <Button>{place.name}</Button>
                 </a>
             )}

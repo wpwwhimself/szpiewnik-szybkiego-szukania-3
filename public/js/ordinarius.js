@@ -26977,7 +26977,7 @@ function MassSet() {
           })
         })), places.map(function (place, i) {
           return (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("a", __assign({
-            href: "?place=".concat(place.name.toLocaleLowerCase().trim().replace(/[^\w\s-]/g, '').replace(/[\s_-]+/g, '-').replace(/^-+|-+$/g, ''))
+            href: "?place=".concat((0,_helpers__WEBPACK_IMPORTED_MODULE_2__.slugAndDePL)(place.name))
           }, {
             children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components_Interactives__WEBPACK_IMPORTED_MODULE_3__.Button, {
               children: place.name
