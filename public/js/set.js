@@ -26313,27 +26313,30 @@ function MassSet() {
   var _q = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)([]),
     categories = _q[0],
     setCategories = _q[1];
-  var _r = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)({
+  var _r = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(["Wejście", "Dary", "Komunia", "Uwielbienie", "Zakończenie"]),
+    preferences = _r[0],
+    setPreferences = _r[1];
+  var _s = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)({
       categories: [1],
       preferences: [0, 1, 2, 3, 4]
     }),
-    adderFilters = _r[0],
-    setAdderFilters = _r[1];
-  var _s = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)([]),
-    currentPlaceExtras = _s[0],
-    setCurrentPlaceExtras = _s[1];
+    adderFilters = _s[0],
+    setAdderFilters = _s[1];
   var _t = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)([]),
-    places = _t[0],
-    setPlaces = _t[1];
-  var _u = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(true),
-    showLyrics = _u[0],
-    setShowLyrics = _u[1];
-  var _v = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)({
+    currentPlaceExtras = _t[0],
+    setCurrentPlaceExtras = _t[1];
+  var _u = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)([]),
+    places = _u[0],
+    setPlaces = _u[1];
+  var _v = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(true),
+    showLyrics = _v[0],
+    setShowLyrics = _v[1];
+  var _w = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)({
       song: undefined,
       before: undefined
     }),
-    addCollector = _v[0],
-    setAddCollector = _v[1];
+    addCollector = _w[0],
+    setAddCollector = _w[1];
   var czsts = ["sIntro", "sOffer", "sCommunion", "sAdoration", "sDismissal"];
   (0,react__WEBPACK_IMPORTED_MODULE_1__.useEffect)(function () {
     axios__WEBPACK_IMPORTED_MODULE_8__["default"].get("/api/set-data", {
@@ -26578,11 +26581,15 @@ function MassSet() {
     if (category === null) {
       if (preference) {
         setAdderFilters(__assign(__assign({}, adderFilters), {
-          preferences: []
+          preferences: adderFilters.preferences.length > 0 ? [] : preferences.map(function (el, i) {
+            return i;
+          })
         }));
       } else {
         setAdderFilters(__assign(__assign({}, adderFilters), {
-          categories: []
+          categories: adderFilters.categories.length > 0 ? [] : categories.map(function (el) {
+            return el.id;
+          })
         }));
       }
       return;
@@ -26774,12 +26781,12 @@ function MassSet() {
             },
             className: "slick"
           }, {
-            children: "\xD7"
+            children: adderFilters.categories.length > 0 ? "×" : "⁂"
           }))]
         })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({
           className: "flex-right center wrap"
         }, {
-          children: [["Wejście", "Dary", "Komunia", "Uwielbienie", "Zakończenie"].map(function (el, i, ar) {
+          children: [preferences.map(function (el, i, ar) {
             return (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components_Interactives__WEBPACK_IMPORTED_MODULE_3__.Button, __assign({
               onClick: function onClick() {
                 return toggleFilters(ar.indexOf(el), true);
@@ -26794,7 +26801,7 @@ function MassSet() {
             },
             className: "slick"
           }, {
-            children: "\xD7"
+            children: adderFilters.preferences.length > 0 ? "×" : "⁂"
           }))]
         }))]
       })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({

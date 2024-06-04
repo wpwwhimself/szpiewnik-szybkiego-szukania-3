@@ -22,6 +22,7 @@ export function MassSet(){
     const [formula, setFormula] = useState({} as Formula);
     const [songs, setSongs] = useState([] as SongProps[]);
     const [categories, setCategories] = useState([] as SongCategoryProps[]);
+    const [preferences, setPreferences] = useState(["Wejście", "Dary", "Komunia", "Uwielbienie", "Zakończenie"]);
     const [adderFilters, setAdderFilters] = useState({categories: [1], preferences: [0,1,2,3,4]} as AdderFilterProps);
     const [currentPlaceExtras, setCurrentPlaceExtras] = useState([] as Extra[]);
     const [places, setPlaces] = useState([] as PlaceProps[])
@@ -235,9 +236,9 @@ export function MassSet(){
     function toggleFilters(category: number | null, preference: boolean = false){
         if(category === null){
             if(preference){
-                setAdderFilters({ ...adderFilters, preferences: [] });
+                setAdderFilters({ ...adderFilters, preferences: (adderFilters.preferences.length > 0 ? [] : preferences.map((el, i) => i))});
             }else{
-                setAdderFilters({ ...adderFilters, categories: [] });
+                setAdderFilters({ ...adderFilters, categories: (adderFilters.categories.length > 0 ? [] : categories.map(el => el.id)) });
             }
             return;
         }
@@ -357,11 +358,10 @@ export function MassSet(){
                         {el.name}
                     </Button>
                 )}
-                    <Button onClick={() => toggleFilters(null)} className="slick">×</Button>
+                    <Button onClick={() => toggleFilters(null)} className="slick">{adderFilters.categories.length > 0 ? "×" : "⁂"}</Button>
                 </div>
                 <div className="flex-right center wrap">
-                {["Wejście", "Dary", "Komunia", "Uwielbienie", "Zakończenie"]
-                .map((el, i, ar) =>
+                {preferences.map((el, i, ar) =>
                     <Button key={i}
                         onClick={() => toggleFilters(ar.indexOf(el), true)}
                         className={adderFilters.preferences.includes(ar.indexOf(el)) ? "accent-border" : ""}
@@ -369,7 +369,7 @@ export function MassSet(){
                         {el}
                     </Button>
                 )}
-                    <Button onClick={() => toggleFilters(null, true)} className="slick">×</Button>
+                    <Button onClick={() => toggleFilters(null, true)} className="slick">{adderFilters.preferences.length > 0 ? "×" : "⁂"}</Button>
                 </div>
             </div>
 
