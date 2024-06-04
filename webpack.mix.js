@@ -11,7 +11,7 @@ const mix = require('laravel-mix');
  |
  */
 
-mix.ts('resources/js/set.tsx', 'public/js')
-    .ts('resources/js/song.tsx', 'public/js')
-    .ts('resources/js/ordinarius.tsx', 'public/js')
+mix.ts('frontend/roots/set.tsx', 'public/js/set.js')
+    .ts('frontend/roots/song.tsx', 'public/js/song.js')
+    .ts('frontend/roots/ordinarius.tsx', 'public/js/ordinarius.js')
     .react();
