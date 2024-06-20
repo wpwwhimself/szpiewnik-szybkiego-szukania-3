@@ -45,10 +45,12 @@ Route::controller(SetController::class)->prefix("sets")->group(function(){
 });
 
 Route::controller(SongController::class)->prefix("songs")->group(function(){
+    Route::get("/", "songs")->name("songs");
     Route::get("/present/{title_slug}", "songPresent")->name("song-present");
 });
 
 Route::controller(OrdinariusController::class)->prefix("ordinarium")->group(function(){
+    Route::get("/", "ordinarium")->name("ordinarium");
     Route::get("/present/{color}", "ordinariusPresent")->name("ordinarius-present");
 });
 
@@ -60,14 +62,12 @@ Route::middleware(Authenticate::class)->group(function(){
     });
 
     Route::controller(SongController::class)->prefix("songs")->group(function(){
-        Route::get("/", "songs")->name("songs");
         Route::get("/show/{title_slug}", "song")->name("song");
         Route::post("/edit", "songEdit")->name("song-edit");
         Route::get("/add", "songAdd")->name("song-add");
     });
 
     Route::controller(OrdinariusController::class)->prefix("ordinarium")->group(function(){
-        Route::get("/", "ordinarium")->name("ordinarium");
         Route::get("/show/{color_code}_{part}", "ordinarius")->name("ordinarius");
         Route::post("/edit", "ordinariusEdit")->name("ordinarius-edit");
     });

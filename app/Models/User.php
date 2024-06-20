@@ -20,6 +20,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        "clearance_id",
         "default_place",
     ];
 

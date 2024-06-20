@@ -28,6 +28,7 @@
             <x-list-element
                 :present="route('set-present', ['set_id' => $set->id]).(Auth::user()?->default_place ? '?place='.Str::slug(Auth::user()->default_place) : '')"
                 :edit="route('set', ['set_id' => $set->id])"
+                clearance-for-edit="1"
                 >
                 {{ $set->name }}
             </x-list-element>

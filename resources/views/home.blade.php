@@ -9,12 +9,6 @@
     pieśni, części stałe, wszystko w ładnym i zgrabnym porządku.
 </p>
 
-<div class="flex-right center wrap">
-    <a href="{{ route('sets') }}">
-        <x-button>Przeglądaj zestawy</x-button>
-    </a>
-</div>
-
 @auth
 
 <section>
@@ -57,7 +51,7 @@
 
 <section>
     <h2>Masz konto?</h2>
-    <p class="center">Za pomocą konta możesz tworzyć własne zestawy.</p>
+    <p class="center">Za pomocą konta możesz tworzyć własne zestawy i dodawać nowe pieśni oraz części stałe.</p>
 
     <div class="flex-right center wrap">
         <a href="{{ route('login') }}"><x-button>Zaloguj się</x-button></a>

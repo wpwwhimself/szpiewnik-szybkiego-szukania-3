@@ -2,6 +2,10 @@
 
 @section('content')
 
+<p>
+    Formuły dotyczą zmian w porządku mszy przy okazji pewnych okresów, świąt lub uroczystości.
+</p>
+
 @if (Auth::user()?->clearance->id >= 3)
 <a href="{{ route('formula-add') }}" class="flex-right stretch">
     <x-button>Dodaj nową</x-button>

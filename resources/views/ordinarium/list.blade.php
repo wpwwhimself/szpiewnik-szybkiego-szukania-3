@@ -2,6 +2,11 @@
 
 @section("content")
 
+<p>
+    Części stałe są pogrupowane w zestawy oznaczone kolorami, które luźno odpowiadają ich przeznaczeniu.
+    Wybierz zestaw, aby wyświetlić jego elementy.
+</p>
+
 <div class="grid-3">
     @foreach ($colors as $color)
     <div class="ordTile">
@@ -12,6 +17,7 @@
             <p>{{ $color->desc }}</p>
         </div>
         <div class="flex-right wrap center">
+            @if (Auth::user()?->clearance->id > 1)
             @foreach ($ordinarium[$color->name] as $ordinarius)
             <a href="{{ route('ordinarius', ['color_code' => $color->name, 'part' => $ordinarius->part]) }}">
                 {{ $ordinarius->part }}
@@ -20,12 +26,12 @@
                 @endif
             </a>
             @endforeach
+            @endif
         </div>
     </div>
     @endforeach
-{{-- </div>
 
-<div class="grid-2"> --}}
+    @if (Auth::user()?->clearance->id > 1)
     <div class="ordTile">
         <div class="ordTitleBox">
             <h1>Uniwersalne</h1>
@@ -52,6 +58,7 @@
             @endforeach
         </div>
     </div>
+    @endif
 </div>
 
 @endsection

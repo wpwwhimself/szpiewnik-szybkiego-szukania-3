@@ -15,6 +15,7 @@
         <x-list-element class="{{ substr($song->title, 0, 1) != ($initial ?? '') ? 'boldEm' : '' }}"
             :present="route('song-present', ['title_slug' => Str::slug($song->title)])"
             :edit="route('song', ['title_slug' => Str::slug($song->title)])"
+            clearance-for-edit="2"
             >
             {{ $song->title }}
         </x-list-element>

@@ -10,11 +10,13 @@
     </div>
     <nav class="flex-down but-mobile-right">
         <a href="{{ route('sets') }}">Zestawy</a>
-    @auth
         <a href="{{ route('songs') }}">Pieśni</a>
-        <a href="{{ route('places') }}">Miejsca</a>
         <a href="{{ route('ordinarium') }}">Części stałe</a>
+    @auth
+        <a href="{{ route('places') }}">Miejsca</a>
+        @if (Auth::user()?->clearance->id > 2)
         <a href="{{ route('formulas') }}">Formuły</a>
+        @endif
     @endauth
     </nav>
 </header>

@@ -9,6 +9,10 @@ class Clearance extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        "name", "can"
+    ];
+
     public function users(){
         return $this->hasMany(User::class);
     }
