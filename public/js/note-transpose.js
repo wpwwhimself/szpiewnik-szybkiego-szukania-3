@@ -2,7 +2,8 @@
 
 function Hoch(noteInput, e) {
     e.preventDefault();
-    verarbeiten = noteInput.value;
+    const fieldMode = noteInput instanceof HTMLElement;
+    verarbeiten = fieldMode ? noteInput.value : noteInput;
     neu = escape(verarbeiten);
 
     Reihe = neu.split("%0D%0A");
@@ -160,8 +161,13 @@ function Hoch(noteInput, e) {
 
     insfeld = Reihe.join("\n");
 
-    noteInput.value = insfeld;
-    Notenzeigen(noteInput);
+    if (fieldMode) {
+        noteInput.value = insfeld;
+        Notenzeigen(noteInput);
+    } else {
+        noteInput = insfield;
+        return noteInput;
+    }
 }
 
 function Notenzeigen(noteInput){
@@ -171,7 +177,8 @@ function Notenzeigen(noteInput){
 
 function Runter(noteInput, e) {
     e.preventDefault();
-    verarbeiten = noteInput.value;
+    const fieldMode = noteInput instanceof HTMLElement;
+    verarbeiten = fieldMode ? noteInput.value : noteInput;
 
     neu = escape(verarbeiten);
 
@@ -328,7 +335,12 @@ function Runter(noteInput, e) {
     }
 
     insfeld = Reihe.join("\n");
-    noteInput.value = insfeld;
-
-    Notenzeigen(noteInput);
+    
+    if (fieldMode) {
+        noteInput.value = insfeld;
+        Notenzeigen(noteInput);
+    } else {
+        noteInput = insfield;
+        return noteInput;
+    }
 }
