@@ -14,6 +14,7 @@ interface SRProps{
 
 export function SongRender({song, title, forceLyricsVariant}: SRProps){
     const [songSong, setSongSong] = useState<SongProps>()
+    const [transposerOn, setTransposerOn] = useState(false)
 
     useEffect(() => {
         if(title && !song){
@@ -29,9 +30,9 @@ export function SongRender({song, title, forceLyricsVariant}: SRProps){
             {songSong ?
             <>
                 <DummyInput label="Tonacja" value={songSong.key} />
+                <Button onClick={() => setTransposerOn(!transposerOn)}>T</Button>
                 <DummyInput label="Kategoria" value={songSong.category_desc} />
                 <DummyInput label="Numer w śpiewniku Preis" value={songSong.number_preis} />
-                <Button onClick={() => window.open(`/songs/show/${slugAndDePL(songSong.title)}`, "_blank")?.focus()}>Edytuj</Button>
             </>
             :
                 <span>Pieśń niezapisana</span>
@@ -39,7 +40,17 @@ export function SongRender({song, title, forceLyricsVariant}: SRProps){
         </div>
         <div>
             {songSong?.sheet_music_variants && <SheetMusicRender notes={songSong.sheet_music_variants} />}
+            {transposerOn && <div className="transposer-panel flex-right center wrap">
+                <Button className="slick" onClick={() => {}}>+</Button>
+                <Button className="slick" onClick={() => {}}>-</Button>
+                <Button className="slick" onClick={() => {}}>♯/♭</Button>
+                <Button className="slick" onClick={() => {}}>↺</Button>
+                <Button onClick={() => setTransposerOn(false)}>OK</Button>
+            </div>}
             {songSong?.lyrics && <SongLyrics lyrics={songSong.lyrics_variants} forceLyricsVariant={forceLyricsVariant} />}
+        </div>
+        <div className="flex-right center wrap">
+            {songSong && <Button onClick={() => window.open(`/songs/show/${slugAndDePL(songSong.title)}`, "_blank")?.focus()}>Edytuj pieśń</Button>}
         </div>
     </>)
 }

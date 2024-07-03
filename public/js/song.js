@@ -26091,6 +26091,9 @@ function SongRender(_a) {
   var _b = (0,react__WEBPACK_IMPORTED_MODULE_5__.useState)(),
     songSong = _b[0],
     setSongSong = _b[1];
+  var _c = (0,react__WEBPACK_IMPORTED_MODULE_5__.useState)(false),
+    transposerOn = _c[0],
+    setTransposerOn = _c[1];
   (0,react__WEBPACK_IMPORTED_MODULE_5__.useEffect)(function () {
     if (title && !song) {
       axios__WEBPACK_IMPORTED_MODULE_6__["default"].get("/api/song-data", {
@@ -26112,31 +26115,71 @@ function SongRender(_a) {
         children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_Interactives__WEBPACK_IMPORTED_MODULE_2__.DummyInput, {
           label: "Tonacja",
           value: songSong.key
-        }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_Interactives__WEBPACK_IMPORTED_MODULE_2__.DummyInput, {
+        }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_Interactives__WEBPACK_IMPORTED_MODULE_2__.Button, __assign({
+          onClick: function onClick() {
+            return setTransposerOn(!transposerOn);
+          }
+        }, {
+          children: "T"
+        })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_Interactives__WEBPACK_IMPORTED_MODULE_2__.DummyInput, {
           label: "Kategoria",
           value: songSong.category_desc
         }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_Interactives__WEBPACK_IMPORTED_MODULE_2__.DummyInput, {
           label: "Numer w \u015Bpiewniku Preis",
           value: songSong.number_preis
-        }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_Interactives__WEBPACK_IMPORTED_MODULE_2__.Button, __assign({
-          onClick: function onClick() {
-            var _a;
-            return (_a = window.open("/songs/show/".concat((0,_helpers__WEBPACK_IMPORTED_MODULE_1__.slugAndDePL)(songSong.title)), "_blank")) === null || _a === void 0 ? void 0 : _a.focus();
-          }
-        }, {
-          children: "Edytuj"
-        }))]
+        })]
       }) : (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", {
         children: "Pie\u015B\u0144 niezapisana"
       })
     })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
       children: [(songSong === null || songSong === void 0 ? void 0 : songSong.sheet_music_variants) && (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_SheetMusicRender__WEBPACK_IMPORTED_MODULE_4__.SheetMusicRender, {
         notes: songSong.sheet_music_variants
-      }), (songSong === null || songSong === void 0 ? void 0 : songSong.lyrics) && (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_MassElements__WEBPACK_IMPORTED_MODULE_3__.SongLyrics, {
+      }), transposerOn && (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({
+        className: "transposer-panel flex-right center wrap"
+      }, {
+        children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_Interactives__WEBPACK_IMPORTED_MODULE_2__.Button, __assign({
+          className: "slick",
+          onClick: function onClick() {}
+        }, {
+          children: "+"
+        })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_Interactives__WEBPACK_IMPORTED_MODULE_2__.Button, __assign({
+          className: "slick",
+          onClick: function onClick() {}
+        }, {
+          children: "-"
+        })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_Interactives__WEBPACK_IMPORTED_MODULE_2__.Button, __assign({
+          className: "slick",
+          onClick: function onClick() {}
+        }, {
+          children: "\u266F/\u266D"
+        })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_Interactives__WEBPACK_IMPORTED_MODULE_2__.Button, __assign({
+          className: "slick",
+          onClick: function onClick() {}
+        }, {
+          children: "\u21BA"
+        })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_Interactives__WEBPACK_IMPORTED_MODULE_2__.Button, __assign({
+          onClick: function onClick() {
+            return setTransposerOn(false);
+          }
+        }, {
+          children: "OK"
+        }))]
+      })), (songSong === null || songSong === void 0 ? void 0 : songSong.lyrics) && (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_MassElements__WEBPACK_IMPORTED_MODULE_3__.SongLyrics, {
         lyrics: songSong.lyrics_variants,
         forceLyricsVariant: forceLyricsVariant
       })]
-    })]
+    }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", __assign({
+      className: "flex-right center wrap"
+    }, {
+      children: songSong && (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_Interactives__WEBPACK_IMPORTED_MODULE_2__.Button, __assign({
+        onClick: function onClick() {
+          var _a;
+          return (_a = window.open("/songs/show/".concat((0,_helpers__WEBPACK_IMPORTED_MODULE_1__.slugAndDePL)(songSong.title)), "_blank")) === null || _a === void 0 ? void 0 : _a.focus();
+        }
+      }, {
+        children: "Edytuj pie\u015B\u0144"
+      }))
+    }))]
   });
 }
 
