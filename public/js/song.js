@@ -26168,10 +26168,10 @@ var massOrder = [{
   value: "xGreetings",
   label: "Powitanie"
 }, {
-  value: "oKyrie",
+  value: "!Kyrie",
   label: "Kyrie"
 }, {
-  value: "oGloria",
+  value: "!Gloria",
   label: "Gloria"
 }, {
   value: "xLUP1",
@@ -26195,7 +26195,7 @@ var massOrder = [{
   value: "xHomily",
   label: "Kazanie"
 }, {
-  value: "oCredo",
+  value: "!Credo",
   label: "Credo"
 }, {
   value: "xGI",
@@ -26204,16 +26204,16 @@ var massOrder = [{
   value: "sOffer",
   label: "Przygotowanie Darów"
 }, {
-  value: "oSanctus",
+  value: "!Sanctus",
   label: "Sanctus"
 }, {
   value: "xTransf",
   label: "Przemienienie"
 }, {
-  value: "oPaterNoster",
+  value: "!PaterNoster",
   label: "Ojcze nasz"
 }, {
-  value: "oAgnusDei",
+  value: "!AgnusDei",
   label: "Agnus Dei"
 }, {
   value: "sCommunion",
@@ -26412,11 +26412,11 @@ function MassSet() {
     var pre = extra.before === "summary" ? massOrder[0] : massOrder.filter(function (el2) {
       return el2.code === extra.before;
     })[0];
-    var code = ["x", "o"].includes(extra.name.charAt(0)) ? extra.name : after_flag ? (_c = extra.before) !== null && _c !== void 0 ? _c : "END" : "sB4" + ((_d = extra.before) !== null && _d !== void 0 ? _d : "END");
+    var code = ["x", "!"].includes(extra.name.charAt(0)) ? extra.name : after_flag ? (_c = extra.before) !== null && _c !== void 0 ? _c : "END" : "sB4" + ((_d = extra.before) !== null && _d !== void 0 ? _d : "END");
     var same_code_count = thisMassOrder.filter(function (el) {
       return el.code.match(code);
     }).length;
-    if (same_code_count > 0 && extra.name.charAt(0) !== "o") {
+    if (same_code_count > 0 && extra.name.charAt(0) !== "!") {
       code += same_code_count;
     }
     var content = extra.name.charAt(0) === "x" ? undefined : extra.name;
@@ -26500,7 +26500,7 @@ function MassSet() {
             lyrics: el.content
           })]
         }), i);
-      case "o":
+      case "!":
         // ordinarius
         return (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components_MassElements__WEBPACK_IMPORTED_MODULE_4__.MassElemSection, __assign({
           id: el.code

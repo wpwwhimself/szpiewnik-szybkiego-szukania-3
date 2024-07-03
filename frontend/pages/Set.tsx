@@ -88,13 +88,13 @@ export function MassSet(){
         const pre = extra.before === "summary"
             ? massOrder[0]
             : massOrder.filter(el2 => el2.code === extra.before)[0];
-        let code = (["x", "o"].includes(extra.name.charAt(0)))
+        let code = (["x", "!"].includes(extra.name.charAt(0)))
             ? extra.name
             : after_flag
                 ? extra.before ?? "END"
                 : "sB4"+(extra.before ?? "END");
         const same_code_count = thisMassOrder.filter(el => el.code.match(code)).length;
-        if(same_code_count > 0 && extra.name.charAt(0) !== "o"){
+        if(same_code_count > 0 && extra.name.charAt(0) !== "!"){
             code += same_code_count
         }
         const content = (extra.name.charAt(0) === "x") ? undefined : extra.name;
@@ -176,7 +176,7 @@ export function MassSet(){
                         <PsalmLyrics lyrics={el.content!} />
                     </MassElemSection>
                 )
-            case "o": // ordinarius
+            case "!": // ordinarius
                 return(
                     <MassElemSection id={el.code} key={i}>
                         <OrdinariumProcessor code={el.code} colorCode={set.color} />

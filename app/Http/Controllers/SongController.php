@@ -104,10 +104,10 @@ class SongController extends Controller
         $mass_order = collect(json_decode((new DataModController)->massOrder()->content()))
             ->pluck("value");
         if((strlen($rq->title) >= 3)){
-            $titles = !in_array($initial, ["x", "o"])
+            $titles = !in_array($initial, ["x", "!"])
                 ? Song::where("title", "like", "%$rq->title%")->pluck("title")
                 : $mass_order
-                    ->filter(fn($el) => preg_match("/$rq->title/", $el))
+                    ->filter(fn($el) => preg_match("/$rq->title/i", $el))
                     ->values();
         }else $titles = [];
         return response()->json($titles);
