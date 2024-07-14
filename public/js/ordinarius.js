@@ -26094,6 +26094,12 @@ function SongRender(_a) {
   var _c = (0,react__WEBPACK_IMPORTED_MODULE_5__.useState)(false),
     transposerOn = _c[0],
     setTransposerOn = _c[1];
+  var _d = (0,react__WEBPACK_IMPORTED_MODULE_5__.useState)(false),
+    transposerActive = _d[0],
+    setTransposerActive = _d[1];
+  var _e = (0,react__WEBPACK_IMPORTED_MODULE_5__.useState)(),
+    originalKey = _e[0],
+    setOriginalKey = _e[1];
   (0,react__WEBPACK_IMPORTED_MODULE_5__.useEffect)(function () {
     if (title && !song) {
       axios__WEBPACK_IMPORTED_MODULE_6__["default"].get("/api/song-data", {
@@ -26102,11 +26108,37 @@ function SongRender(_a) {
         }
       }).then(function (res) {
         setSongSong(res.data.song);
+        setOriginalKey({
+          key: res.data.song.key || null,
+          sheet_music_variants: res.data.song.sheet_music_variants || []
+        });
       });
     } else {
       setSongSong(song);
+      setOriginalKey({
+        key: (song === null || song === void 0 ? void 0 : song.key) || null,
+        sheet_music_variants: (song === null || song === void 0 ? void 0 : song.sheet_music_variants) || []
+      });
     }
   }, [song]);
+  var transpose = function transpose(direction) {
+    var processed = songSong === null || songSong === void 0 ? void 0 : songSong.sheet_music_variants.map(function (notes) {
+      return direction == "up" ? Hoch(notes) : Runter(notes);
+    });
+    var newKey = direction == "up" ? Hoch(songSong === null || songSong === void 0 ? void 0 : songSong.key) : Runter(songSong === null || songSong === void 0 ? void 0 : songSong.key);
+    setSongSong(__assign(__assign({}, songSong), {
+      key: newKey,
+      sheet_music_variants: processed
+    }));
+    setTransposerActive(true);
+  };
+  var restore = function restore() {
+    setSongSong(__assign(__assign({}, songSong), {
+      key: originalKey === null || originalKey === void 0 ? void 0 : originalKey.key,
+      sheet_music_variants: originalKey === null || originalKey === void 0 ? void 0 : originalKey.sheet_music_variants
+    }));
+    setTransposerActive(false);
+  };
   return (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
     children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", __assign({
       className: "flex-right center wrap"
@@ -26116,6 +26148,7 @@ function SongRender(_a) {
           label: "Tonacja",
           value: songSong.key
         }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_Interactives__WEBPACK_IMPORTED_MODULE_2__.Button, __assign({
+          className: transposerActive ? "accent-border" : "",
           onClick: function onClick() {
             return setTransposerOn(!transposerOn);
           }
@@ -26139,22 +26172,23 @@ function SongRender(_a) {
       }, {
         children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_Interactives__WEBPACK_IMPORTED_MODULE_2__.Button, __assign({
           className: "slick",
-          onClick: function onClick() {}
+          onClick: function onClick() {
+            return transpose("up");
+          }
         }, {
           children: "+"
         })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_Interactives__WEBPACK_IMPORTED_MODULE_2__.Button, __assign({
           className: "slick",
-          onClick: function onClick() {}
+          onClick: function onClick() {
+            return transpose("down");
+          }
         }, {
           children: "-"
         })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_Interactives__WEBPACK_IMPORTED_MODULE_2__.Button, __assign({
           className: "slick",
-          onClick: function onClick() {}
-        }, {
-          children: "\u266F/\u266D"
-        })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_Interactives__WEBPACK_IMPORTED_MODULE_2__.Button, __assign({
-          className: "slick",
-          onClick: function onClick() {}
+          onClick: function onClick() {
+            return restore();
+          }
         }, {
           children: "\u21BA"
         })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_Interactives__WEBPACK_IMPORTED_MODULE_2__.Button, __assign({

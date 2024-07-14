@@ -1,7 +1,7 @@
 // note transposer lifted from http://www.franziskaludwig.de/abctransposer/index.php
 
-function Hoch(noteInput, e) {
-    e.preventDefault();
+function Hoch(noteInput, e = undefined) {
+    e?.preventDefault();
     const fieldMode = noteInput instanceof HTMLElement;
     verarbeiten = fieldMode ? noteInput.value : noteInput;
     neu = escape(verarbeiten);
@@ -165,7 +165,7 @@ function Hoch(noteInput, e) {
         noteInput.value = insfeld;
         Notenzeigen(noteInput);
     } else {
-        noteInput = insfield;
+        noteInput = insfeld;
         return noteInput;
     }
 }
@@ -175,8 +175,8 @@ function Notenzeigen(noteInput){
     noteInput.dispatchEvent(event);
 }
 
-function Runter(noteInput, e) {
-    e.preventDefault();
+function Runter(noteInput, e = undefined) {
+    e?.preventDefault();
     const fieldMode = noteInput instanceof HTMLElement;
     verarbeiten = fieldMode ? noteInput.value : noteInput;
 
@@ -335,12 +335,12 @@ function Runter(noteInput, e) {
     }
 
     insfeld = Reihe.join("\n");
-    
+
     if (fieldMode) {
         noteInput.value = insfeld;
         Notenzeigen(noteInput);
     } else {
-        noteInput = insfield;
+        noteInput = insfeld;
         return noteInput;
     }
 }
