@@ -9,6 +9,8 @@ function Hoch(noteInput, e = undefined) {
     Reihe = neu.split("%0D%0A");
     Reihe = neu.split("%0A");
 
+    let key = "";
+
     for (i = 0; i < Reihe.length; ++i) {
         Reihe[i] = unescape(Reihe[i]); /* Macht die Steuerzeichen wieder weg */
         Aktuellereihe = Reihe[i].split(""); /* nochmal bei C. Walshaw crosschecken, ob alle mögl. ausser K: erfasst. */
@@ -50,6 +52,8 @@ function Hoch(noteInput, e = undefined) {
             else {
                 /* nur für den Fall, falls korrupt */
             }
+
+            key = Aktuellereihe.join("").substring(2);
         }
         else /* hier die Melodieabschnitte bearbeiten */ {
             Derarray = Reihe[i].split("");
@@ -145,9 +149,17 @@ function Hoch(noteInput, e = undefined) {
                 else {
                     Haukommaingriffweg[m] = Haukommaingriffweg[m].replace(/'/g, "");
                     Haukommaingriffweg[m] = Haukommaingriffweg[m].replace(/,/g, "");
-                    Doof = Haukommaingriffweg[m].split(""); // Damit Gitarrengriffe immer groß anfangen
-                    Doof[0] = Doof[0].toUpperCase();
-                    Haukommaingriffweg[m] = Doof.join("");
+                    // Doof = Haukommaingriffweg[m].split(""); // Damit Gitarrengriffe immer groß anfangen
+                    // Doof[0] = Doof[0].toUpperCase();
+                    // Haukommaingriffweg[m] = Doof.join("");
+
+                    // fix non-transposable symbols
+                    Haukommaingriffweg[m] = Haukommaingriffweg[m].replace(/mbj/g, "maj");
+                    // fix chords
+                    const transposedByOneStep = ["C", "F"].includes(key.toUpperCase())
+                    Haukommaingriffweg[m] = Haukommaingriffweg[m]
+                        .replace(/h/g, transposedByOneStep ? "c" : "cis")
+                        .replace(/H/g, transposedByOneStep ? "C" : "Cis")
                 }
             }
             alleszusammen = Haukommaingriffweg.join("\"");
@@ -184,6 +196,8 @@ function Runter(noteInput, e = undefined) {
 
     Reihe = neu.split("%0D%0A");
     Reihe = neu.split("%0A");
+
+    let key = "";
 
     for (i = 0; i < Reihe.length; ++i) {
         Reihe[i] = unescape(Reihe[i]); /* Macht die Steuerzeichen wieder weg */
@@ -227,6 +241,8 @@ function Runter(noteInput, e = undefined) {
             else {
                 /* nur für den Fall, falls korrupt */
             }
+
+            key = Aktuellereihe.join("").substring(2);
         }
         else /* hier die Melodieabschnitte bearbeiten */ {
             Derarray = Reihe[i].split("");
@@ -318,9 +334,17 @@ function Runter(noteInput, e = undefined) {
                 else {
                     Haukommaingriffweg[m] = Haukommaingriffweg[m].replace(/'/g, "");
                     Haukommaingriffweg[m] = Haukommaingriffweg[m].replace(/,/g, "");
-                    Doof = Haukommaingriffweg[m].split(""); // Damit Gitarrengriffe immer groß anfangen
-                    Doof[0] = Doof[0].toUpperCase();
-                    Haukommaingriffweg[m] = Doof.join("");
+                    // Doof = Haukommaingriffweg[m].split(""); // Damit Gitarrengriffe immer groß anfangen
+                    // Doof[0] = Doof[0].toUpperCase();
+                    // Haukommaingriffweg[m] = Doof.join("");
+
+                    // fix non-transposable symbols
+                    Haukommaingriffweg[m] = Haukommaingriffweg[m].replace(/mgj/g, "maj");
+                    // fix chords
+                    const transposedByOneStep = ["B", "E"].includes(key.toUpperCase())
+                    Haukommaingriffweg[m] = Haukommaingriffweg[m]
+                        .replace(/h/g, transposedByOneStep ? "ais" : "a")
+                        .replace(/H/g, transposedByOneStep ? "Ais" : "A")
                 }
             }
             alleszusammen = Haukommaingriffweg.join("\"");
