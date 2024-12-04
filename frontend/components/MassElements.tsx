@@ -100,7 +100,7 @@ export function Alternative({children}: {children: ReactNode}){
   )
 }
 
-export function OrdinariumProcessor({code, colorCode}: OrdinariumProcessorProps){
+export function OrdinariumProcessor({code, colorCode, formula}: OrdinariumProcessorProps){
   const showLyrics = useContext(ShowLyricsContext);
   const [ordinarium, setOrdinarium] = useState([] as OrdinariumProps[]);
   useEffect(() => {
@@ -110,7 +110,7 @@ export function OrdinariumProcessor({code, colorCode}: OrdinariumProcessorProps)
   }, []);
   if(ordinarium.length === 0) return <h2>Wczytuję...</h2>;
 
-  const parts = ordinarium.filter(el => (el.color_code === colorCode || el.color_code === "*") && el.part === slugAndDePL(code.substring(1)));
+  const parts = ordinarium.filter(el => [colorCode, "*", formula].includes(el.color_code) && el.part === slugAndDePL(code.substring(1)));
   switch(code.substring(1)){
     case "Kyrie":
       return(
@@ -555,15 +555,6 @@ export function ExtrasProcessor({elem}: {elem: MassElem}){
             które na zgubę dusz ludzkich po tym świecie krążą,
             mocą Bożą strąć do piekła. Amen.
           </p>
-        </>
-      )
-    case "IntChobienice":
-      return(
-        <>
-          <h1>Intencje mszalne (Chobienice)</h1>
-          <div className="flex-right center wrap">
-            <DummyInput label="Numer w śpiewniku Preis" value="1360-1366" />
-          </div>
         </>
       )
     case "Exposition":

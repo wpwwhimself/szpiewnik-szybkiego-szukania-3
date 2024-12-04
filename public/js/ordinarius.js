@@ -25265,7 +25265,8 @@ function Alternative(_a) {
 }
 function OrdinariumProcessor(_a) {
   var code = _a.code,
-    colorCode = _a.colorCode;
+    colorCode = _a.colorCode,
+    formula = _a.formula;
   var showLyrics = (0,react__WEBPACK_IMPORTED_MODULE_1__.useContext)(_pages_Set__WEBPACK_IMPORTED_MODULE_4__.ShowLyricsContext);
   var _b = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)([]),
     ordinarium = _b[0],
@@ -25279,7 +25280,7 @@ function OrdinariumProcessor(_a) {
     children: "Wczytuj\u0119..."
   });
   var parts = ordinarium.filter(function (el) {
-    return (el.color_code === colorCode || el.color_code === "*") && el.part === (0,_helpers__WEBPACK_IMPORTED_MODULE_2__.slugAndDePL)(code.substring(1));
+    return [colorCode, "*", formula].includes(el.color_code) && el.part === (0,_helpers__WEBPACK_IMPORTED_MODULE_2__.slugAndDePL)(code.substring(1));
   });
   switch (code.substring(1)) {
     case "Kyrie":
@@ -25819,19 +25820,6 @@ function ExtrasProcessor(_a) {
         })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("p", {
           children: "\u015Awi\u0119ty Michale, Archaniele, wspomagaj nas w walce, a przeciw niegodziwo\u015Bci i zasadzkom z\u0142ego ducha b\u0105d\u017A nam obron\u0105. Oby go B\xF3g pogromi\u0107 raczy\u0142, pokornie o to prosimy. A Ty, wodzu niebieskich zast\u0119p\xF3w, szatana i inne duchy z\u0142e, kt\xF3re na zgub\u0119 dusz ludzkich po tym \u015Bwiecie kr\u0105\u017C\u0105, moc\u0105 Bo\u017C\u0105 str\u0105\u0107 do piek\u0142a. Amen."
         })]
-      });
-    case "IntChobienice":
-      return (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
-        children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("h1", {
-          children: "Intencje mszalne (Chobienice)"
-        }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", __assign({
-          className: "flex-right center wrap"
-        }, {
-          children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_Interactives__WEBPACK_IMPORTED_MODULE_3__.DummyInput, {
-            label: "Numer w \u015Bpiewniku Preis",
-            value: "1360-1366"
-          })
-        }))]
       });
     case "Exposition":
       songs_to_add = ["O zbawcza Hostio", "Przed tak wielkim Sakramentem"];
@@ -26668,7 +26656,8 @@ function MassSet() {
         }, {
           children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components_MassElements__WEBPACK_IMPORTED_MODULE_4__.OrdinariumProcessor, {
             code: el.code,
-            colorCode: set.color
+            colorCode: set.color,
+            formula: formula.name
           })
         }), i);
       default:

@@ -105,6 +105,7 @@ export interface MassElemSectionProps{
 export interface OrdinariumProcessorProps{
     code: string,
     colorCode: string,
+    formula?: string,
 }
 
 export type InputProps = {

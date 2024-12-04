@@ -179,7 +179,7 @@ export function MassSet(){
             case "!": // ordinarius
                 return(
                     <MassElemSection id={el.code} key={i}>
-                        <OrdinariumProcessor code={el.code} colorCode={set.color} />
+                        <OrdinariumProcessor code={el.code} colorCode={set.color} formula={formula.name} />
                     </MassElemSection>
                 )
             default:
