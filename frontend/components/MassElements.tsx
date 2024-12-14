@@ -58,10 +58,24 @@ export function SongLyrics({lyrics, forceLyricsVariant}: {lyrics: string | strin
 }
 
 export function PsalmLyrics({lyrics}: {lyrics: string | null}){
-  const lyrics_split = lyrics?.split(/\r?\n?%%%\r?\n?/) ?? [];
+  let lyrics_split = lyrics?.split(/\s*%%%\s*/) ?? [];
   const render_variants = lyrics_split.length > 1;
   const [variant, setVariant] = useState(0);
   const changeVariant = (new_variant: number) => setVariant(new_variant);
+
+  /**
+   * account for variant labels:
+   * blocks prefaced with line `//{LABEL}` will translate to label `{LABEL}`
+   */
+  const lyrics_split_labels = lyrics_split.map((variant, var_no) => {
+    const variant_label = variant.match(/^\/\/(.*)\s+/)
+    return (variant_label) ? variant_label[1] : (var_no + 1)
+  })
+  lyrics_split = lyrics_split.map((variant, var_no) =>
+    (var_no + 1) === lyrics_split_labels[var_no]
+      ? variant
+      : variant.replace(/\/\/.*\s+/g, "")
+  )
 
   return(<>
     {render_variants &&
@@ -70,7 +84,7 @@ export function PsalmLyrics({lyrics}: {lyrics: string | null}){
         <Button key={var_no}
           className={[variant === var_no && 'accent-border'].filter(Boolean).join(" ")}
           onClick={() => changeVariant(var_no)}>
-          {var_no + 1}
+          {lyrics_split_labels[var_no]}
         </Button>)}
       </div>}
       <div className="psalm">

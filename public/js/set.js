@@ -25201,7 +25201,7 @@ function SongLyrics(_a) {
 function PsalmLyrics(_a) {
   var _b, _c;
   var lyrics = _a.lyrics;
-  var lyrics_split = (_b = lyrics === null || lyrics === void 0 ? void 0 : lyrics.split(/\r?\n?%%%\r?\n?/)) !== null && _b !== void 0 ? _b : [];
+  var lyrics_split = (_b = lyrics === null || lyrics === void 0 ? void 0 : lyrics.split(/\s*%%%\s*/)) !== null && _b !== void 0 ? _b : [];
   var render_variants = lyrics_split.length > 1;
   var _d = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(0),
     variant = _d[0],
@@ -25209,6 +25209,17 @@ function PsalmLyrics(_a) {
   var changeVariant = function changeVariant(new_variant) {
     return setVariant(new_variant);
   };
+  /**
+   * account for variant labels:
+   * blocks prefaced with line `//{LABEL}` will translate to label `{LABEL}`
+   */
+  var lyrics_split_labels = lyrics_split.map(function (variant, var_no) {
+    var variant_label = variant.match(/^\/\/(.*)\s+/);
+    return variant_label ? variant_label[1] : var_no + 1;
+  });
+  lyrics_split = lyrics_split.map(function (variant, var_no) {
+    return var_no + 1 === lyrics_split_labels[var_no] ? variant : variant.replace(/\/\/.*\s+/g, "");
+  });
   return (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
     children: [render_variants && (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", __assign({
       className: "flex-right center"
@@ -25220,7 +25231,7 @@ function PsalmLyrics(_a) {
             return changeVariant(var_no);
           }
         }, {
-          children: var_no + 1
+          children: lyrics_split_labels[var_no]
         }), var_no);
       })
     })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", __assign({
