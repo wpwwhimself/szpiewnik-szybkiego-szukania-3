@@ -58,7 +58,7 @@ export function SongLyrics({lyrics, forceLyricsVariant}: {lyrics: string | strin
 }
 
 export function PsalmLyrics({lyrics}: {lyrics: string | null}){
-  const lyrics_split = lyrics?.split("%%%") ?? [];
+  const lyrics_split = lyrics?.split(/\r?\n?%%%\r?\n?/) ?? [];
   const render_variants = lyrics_split.length > 1;
   const [variant, setVariant] = useState(0);
   const changeVariant = (new_variant: number) => setVariant(new_variant);

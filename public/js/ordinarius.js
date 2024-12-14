@@ -25201,7 +25201,7 @@ function SongLyrics(_a) {
 function PsalmLyrics(_a) {
   var _b, _c;
   var lyrics = _a.lyrics;
-  var lyrics_split = (_b = lyrics === null || lyrics === void 0 ? void 0 : lyrics.split("%%%")) !== null && _b !== void 0 ? _b : [];
+  var lyrics_split = (_b = lyrics === null || lyrics === void 0 ? void 0 : lyrics.split(/\r?\n?%%%\r?\n?/)) !== null && _b !== void 0 ? _b : [];
   var render_variants = lyrics_split.length > 1;
   var _d = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(0),
     variant = _d[0],
