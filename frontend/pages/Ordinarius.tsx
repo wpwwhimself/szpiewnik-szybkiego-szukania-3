@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { OrdinariumProps } from "../types";
 import axios from "axios";
 import { MassElemSection, OrdinariumProcessor, SongLyrics } from "../components/MassElements";

@@ -4,7 +4,7 @@ import { SongProps } from "../types";
 import { Button, DummyInput } from "./Interactives";
 import { SongLyrics } from "./MassElements";
 import { SheetMusicRender } from "./SheetMusicRender";
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 
 interface SRProps{
     song?: SongProps,
@@ -43,21 +43,24 @@ export function SongRender({song, title, forceLyricsVariant}: SRProps){
     }, [song])
 
     const transpose = (direction: "up" | "down") => {
-        const processed = songSong?.sheet_music_variants
-            .map(notes => (direction == "up" ? Hoch(notes) : Runter(notes)) as string)
+        let processed = songSong?.sheet_music_variants
+            // @ts-ignore
+            ?.map(notes => (direction == "up" ? Hoch(notes) : Runter(notes)) as string)
+
+        // @ts-ignore
         const newKey = direction == "up" ? Hoch(songSong?.key) : Runter(songSong?.key)
-        setSongSong({
+        if (songSong) setSongSong({
             ...songSong,
             key: newKey,
-            sheet_music_variants: processed,
+            sheet_music_variants: processed || [],
         })
         setTransposerActive(true)
     }
     const restore = () => {
-        setSongSong({
+        if (songSong) setSongSong({
             ...songSong,
-            key: originalKey?.key,
-            sheet_music_variants: originalKey?.sheet_music_variants,
+            key: originalKey?.key || null,
+            sheet_music_variants: originalKey?.sheet_music_variants || [],
         })
         setTransposerActive(false)
     }

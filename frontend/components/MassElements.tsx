@@ -1,6 +1,6 @@
 // import style from "./style.module.css"
 import { MassElem, MassElemSectionProps, OrdinariumProcessorProps, OrdinariumProps, SongProps } from "../types"
-import { ReactNode, useContext, useState, useEffect } from "react";
+import React, { ReactNode, useContext, useState, useEffect } from "react";
 import { slugAndDePL } from "../helpers";
 import { Button, DummyInput } from "./Interactives";
 import { MModContext, ShowLyricsContext } from "../pages/Set";

@@ -1,5 +1,5 @@
 import { DummyInputProps, InputProps, PreferencesProps, SelectProps } from "../types";
-import { ButtonHTMLAttributes } from "react";
+import React, { ButtonHTMLAttributes } from "react";
 
 export function Input({type, name, label, value, onChange, disabled}: InputProps){
   switch(type){
