@@ -6,6 +6,6 @@
     <p>Zestaw {{ lcfirst($color->display_name) }}: {{ $color->desc }}</p>
 </div>
 <div class="container" id="root"></div>
-<script src="{{ asset('/js/ordinarius.js') }}?{{ time() }}"></script>
+<script src="{{ asset('/js/react/ordinarius.js') }}?{{ time() }}"></script>
 
 @endsection

@@ -3,7 +3,7 @@
 @section("content")
 
 <div class="container" id="root"></div>
-<script src="{{ asset('/js/set.js') }}?{{ time() }}"></script>
+<script src="{{ asset('/js/react/set.js') }}?{{ time() }}"></script>
 <script src="{{ asset("js/note-transpose.js") }}"></script>
 
 <div class="flex-right stretch">
