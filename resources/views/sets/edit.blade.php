@@ -52,6 +52,11 @@
     </div>
 
     <h2>Zmiany</h2>
+    <p class="ghost">
+        Aby dodać pieśń, w pole <em>Element</em> wpisz jej tytuł.
+        Aby dodać część stałą, zacznij wpisywanie od <code>!<code>.
+        Aby dodać element specjalny, zacznij wpisywanie od <code>x</code>.
+    </p>
     <table>
         <thead>
             <tr>
