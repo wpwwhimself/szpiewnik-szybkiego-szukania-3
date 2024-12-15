@@ -18,13 +18,15 @@ class Formula extends Model
     ];
 
     public function sets(){
-        return $this->hasMany(Set::class, "formula", "name");
+        return $this->hasMany(Set::class, "formula", "name")
+            ->orderBy("name");
     }
     public function user_sets(){
         return $this->hasMany(Set::class, "formula", "name")
             ->where("user_id", Auth::id())
             ->orWhere("public", true)
-            ->where("formula", $this->name);
+            ->where("formula", $this->name)
+            ->orderBy("name");
     }
     public function extras(){
         return $this->hasMany(FormulaExtra::class, "formula", "name");
