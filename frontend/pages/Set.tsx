@@ -277,7 +277,20 @@ export function MassSet(){
     // Mass' summary
     const summary = set.thisMassOrder
         ?.filter(el => !!el.content)
-        .filter(el => el.code !== "pAccl");
+        .filter(el => el.code !== "pAccl")
+        .map(el => (el.code === "pPsalm"
+            ? {
+                ...el,
+                content: <ul>
+                    {el.content?.split(/\s*%%%\s*/)
+                        .map((variant, i) => <li key={i}>
+                            {variant.match(/\/*.*\s*(.*)\s/)?.[1]}
+                        </li>)
+                    }
+                </ul>
+            }
+            : el
+        ))
 
     // Set display color
     const current_color = ordinarius_colors.find(el => el.name === set.color);
@@ -461,11 +474,7 @@ export function MassSet(){
                             <ol className="summary">
                             {summary?.map((el, i) =>
                                 <li key={i}>
-                                    <span>{
-                                        (el.code === "pPsalm") ?
-                                        el.content?.substring(0, el.content?.indexOf("\n")) :
-                                        el.content
-                                    }</span>
+                                    <span>{el.content}</span>
                                     <span className="ghost">{el.label}</span>
                                 </li>
                             )}
