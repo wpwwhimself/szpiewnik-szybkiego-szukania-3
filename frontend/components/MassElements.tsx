@@ -115,7 +115,6 @@ export function Alternative({children}: {children: ReactNode}){
 }
 
 export function OrdinariumProcessor({code, colorCode, formula}: OrdinariumProcessorProps){
-  const showLyrics = useContext(ShowLyricsContext);
   const [ordinarium, setOrdinarium] = useState([] as OrdinariumProps[]);
   useEffect(() => {
     axios.get("/api/ordinarium").then(res => {
@@ -164,13 +163,13 @@ export function OrdinariumProcessor({code, colorCode, formula}: OrdinariumProces
 
           <h1>Kyrie</h1>
           {parts.map((part, i) => <SheetMusicRender notes={part.sheet_music} key={i} />)}
-          {showLyrics && <div className="lyrics">
+          <div className="lyrics">
             <p>
               Panie, zmiłuj się nad nami<br />
               Chryste, zmiłuj się nad nami<br />
               Panie, zmiłuj się nad nami
             </p>
-          </div>}
+          </div>
         </>
       )
     case "Gloria":
@@ -178,7 +177,7 @@ export function OrdinariumProcessor({code, colorCode, formula}: OrdinariumProces
         <>
           <h1>Gloria</h1>
           {parts.map((part, i) => <SheetMusicRender notes={part.sheet_music} key={i} />)}
-          {showLyrics && <div className="lyrics">
+          <div className="lyrics">
             <p>
               Chwała na wysokości Bogu<br />
               A na ziemi pokój ludziom dobrej woli<br />
@@ -199,7 +198,7 @@ export function OrdinariumProcessor({code, colorCode, formula}: OrdinariumProces
               Tylko Tyś najwyższy • Jezu Chryste<br />
               Z Duchem Świętym, w chwale Boga Ojca, amen
             </p>
-          </div>}
+          </div>
         </>
       )
     case "Credo":
@@ -208,7 +207,7 @@ export function OrdinariumProcessor({code, colorCode, formula}: OrdinariumProces
           <p className="ksiadz">Złóżmy wyznanie wiary:</p>
           <h1>Credo</h1>
           {parts.map((part, i) => <SheetMusicRender notes={part.sheet_music} key={i} />)}
-          {showLyrics && <table className="credo"><tbody>
+          <table className="credo"><tbody>
             <tr><td>Wierzę w jednego Boga, Ojca wszechmogącego, Stworzyciela nieba i ziemi</td></tr>
             <tr><td>Wszystkich rzeczy widzialnych i niewidzialnych</td></tr>
             <tr><td>I w jednego Pana Jezusa Chrystusa, Syna bożego Jednorodzonego</td></tr>
@@ -235,7 +234,7 @@ export function OrdinariumProcessor({code, colorCode, formula}: OrdinariumProces
             <tr><td>Wyznaję jeden chrzest na odpuszczenie grzechów</td></tr>
             <tr><td>I oczekuję wskrzeszenia umarłych</td></tr>
             <tr><td>I życia wiecznego w przyszłym świecie, amen</td></tr>
-          </tbody></table>}
+          </tbody></table>
         </>
       )
     case "Sanctus":
@@ -261,7 +260,7 @@ export function OrdinariumProcessor({code, colorCode, formula}: OrdinariumProces
 
           <h1>Sanctus</h1>
           {parts.map((part, i) => <SheetMusicRender notes={part.sheet_music} key={i} />)}
-          {showLyrics && <div className="lyrics">
+          <div className="lyrics">
             <p>
               Święty, Święty, Święty<br />
               Pan Bóg zastępów<br />
@@ -274,7 +273,7 @@ export function OrdinariumProcessor({code, colorCode, formula}: OrdinariumProces
               Który idzie w imię Pańskie<br />
               Hosanna na wysokości
             </p>
-          </div>}
+          </div>
         </>
       )
     case "PaterNoster":
@@ -283,7 +282,7 @@ export function OrdinariumProcessor({code, colorCode, formula}: OrdinariumProces
           <p className="ksiadz">Nazywamy się dziećmi Bożymi i nimi jesteśmy, dlatego ośmielamy się mówić:</p>
           <h1>Pater Noster</h1>
           {parts.map((part, i) => <SheetMusicRender notes={part.sheet_music} key={i} />)}
-          {showLyrics && <div className="lyrics">
+          <div className="lyrics">
             <p>
               Ojcze nasz, któryś jest w niebie<br />
               Święć się, imię Twoje<br />
@@ -298,7 +297,7 @@ export function OrdinariumProcessor({code, colorCode, formula}: OrdinariumProces
               I nie wódź nas na pokuszenie<br />
               Ale nas zbaw ode złego
             </p>
-          </div>}
+          </div>
           <Antiphon
             call="Wybaw nas, Panie, od zła wszelkiego... ...naszego Zbawiciela, Jezusa Chrystusa"
             resp="Bo Twoje jest Królestwo, i potęga i chwała na wieki"
@@ -316,7 +315,7 @@ export function OrdinariumProcessor({code, colorCode, formula}: OrdinariumProces
 
           <h1>Agnus Dei</h1>
           {parts.map((part, i) => <SheetMusicRender notes={part.sheet_music} key={i} />)}
-          {showLyrics && <div className="lyrics">
+          <div className="lyrics">
             <p>
               Baranku Boży<br />
               Który gładzisz grzechy świata<br />
@@ -332,7 +331,7 @@ export function OrdinariumProcessor({code, colorCode, formula}: OrdinariumProces
               Który gładzisz grzechy świata<br />
               Obdarz nas pokojem
             </p>
-          </div>}
+          </div>
         </>
       )
     default:
