@@ -289,7 +289,9 @@ export function MassSet(){
                     }
                 </ul>
             }
-            : el
+            : {
+                ...el, content: <span>{el.content}</span>
+            }
         ))
 
     // Set display color
@@ -474,7 +476,7 @@ export function MassSet(){
                             <ol className="summary">
                             {summary?.map((el, i) =>
                                 <li key={i}>
-                                    <span>{el.content}</span>
+                                    {el.content}
                                     <span className="ghost">{el.label}</span>
                                 </li>
                             )}
