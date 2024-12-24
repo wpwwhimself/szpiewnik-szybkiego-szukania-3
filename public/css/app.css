@@ -190,8 +190,14 @@ thead th, tfoot th{
   margin: 0;
 }
 
-.summary span:last-child{
-  margin-left: 0.5em;
+.summary {
+    & span:last-child{
+        margin-left: 0.5em;
+    }
+    & ul {
+        padding-left: 1em;
+        display: inline-block;
+    }
 }
 
 .songMeta{
