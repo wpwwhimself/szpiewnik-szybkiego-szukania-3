@@ -95,12 +95,17 @@ export function PsalmLyrics({lyrics}: {lyrics: string | null}){
   </>)
 }
 
-export function Antiphon({call, resp}: {call: string, resp: string}){
+export function Antiphon({call, resp, respMelody}: {call: string, resp: string, respMelody?: string}){
   return(
-    <div className="flex-right center antyfona">
-      <div>{call}</div>
+    <div className="flex-right antyfona">
+      <div className="ksiadz">{call}</div>
       <div>→</div>
-      <div dangerouslySetInnerHTML={{ __html : resp}}></div>
+      <div className="wierni-container">
+        <div dangerouslySetInnerHTML={{ __html: resp }}></div>
+        {respMelody && <div className="melody">
+            <SheetMusicRender notes={respMelody} />
+        </div>}
+      </div>
     </div>
   )
 }
@@ -301,6 +306,7 @@ export function OrdinariumProcessor({code, colorCode, formula}: OrdinariumProces
           <Antiphon
             call="Wybaw nas, Panie, od zła wszelkiego... ...naszego Zbawiciela, Jezusa Chrystusa"
             resp="Bo Twoje jest Królestwo, i potęga i chwała na wieki"
+            respMelody={`K:Cm\n(CE) FF EFGF2 | FFFFF FEF E2C4 |]`}
           />
         </>
       )
@@ -380,11 +386,13 @@ export function ExtrasProcessor({elem}: {elem: MassElem}){
           <Antiphon
             call="Słowa Ewangelii według świętego X"
             resp="Chwała Tobie, Panie"
+            respMelody={`FF DF F2F4 |]\nw: Chwa-ła To-bie, Pa-nie`}
           />
           <h1>Ewangelia</h1>
           <Antiphon
             call="Oto Słowo Pańskie"
             resp="Chwała Tobie, Chryste"
+            respMelody={`FF DF F2F4 |]\nw: Chwa-ła To-bie, Chry-ste`}
           />
         </>
       )
@@ -406,6 +414,7 @@ export function ExtrasProcessor({elem}: {elem: MassElem}){
           <Antiphon
             call="Ciebie prosimy"
             resp="Wysłuchaj nas, Panie"
+            respMelody={`K:F\nc2 cBA (GB) A4 |]\nw: Wy-słu-chaj nas, Pa_nie`}
           />
           <Antiphon
             call="Módlmy się... ...przez wszystkie wieki wieków"
@@ -445,24 +454,28 @@ export function ExtrasProcessor({elem}: {elem: MassElem}){
               <Antiphon
               call="Oto wielka tajemnica wiary"
               resp="Głosimy śmierć Twoją, Panie Jezu, <br />wyznajemy Twoje zmartwychwstanie <br />i oczekujemy Twego przyjścia w chwale"
+              respMelody={`K:Em\nE8 FGF2E2 | E8 FG (AB)B2 | A8 GFE2E2 |]`}
               />
             </div>
             <div className="alt_option">
               <Antiphon
               call="Tajemnica wiary"
               resp="Chrystus umarł, <br />Chrystus zmartwychwstał, <br />Chrystus powróci"
+              respMelody={`K:Gm\nG(GF) GG2 | AGF GG2 | GGF GD2 |]`}
               />
             </div>
             <div className="alt_option">
               <Antiphon
               call="Wielka jest tajemnica naszej wiary"
               resp="Ile razy ten chleb spożywamy <br />i pijemy z tego kielicha, <br />głosimy śmierć Twoją, Panie, <br />oczekując Twego przyjścia w chwale"
+              respMelody={`K:F\nF8 GA(GF)F2 | D8 DCD FF2 | A8 AGF GG2 | F8 GAGF (DF)F2 |]`}
               />
             </div>
             <div className="alt_option">
               <Antiphon
               call="Uwielbiajmy tajemnicę wiary"
               resp="Panie, Ty nas wybawiłeś <br />przez krzyż i zmartwychwstanie swoje, <br />Ty jesteś zbawicielem świata"
+              respMelody={`K:C\nCC DC EF (GA)G2 | A _BAGF GAGG2 | GGG AGFD (ED)C2 |]`}
               />
             </div>
           </Alternative>
@@ -490,6 +503,10 @@ export function ExtrasProcessor({elem}: {elem: MassElem}){
             <Antiphon
               call={`Idźcie w pokoju Chrystusa${easter_add}`}
               resp={`Bogu niech będą dzięki${easter_add}`}
+              respMelody={easter_flag
+                ? `K:Bb\nF8 (FG)G2 | FE (FG)G2 | G(F BAGF) (EFG) (G2F4) |]`
+                : `K:Dm\nDFG (AG)F E2D4 |]`
+              }
             />
           </>
         )
@@ -651,6 +668,7 @@ export function ExtrasProcessor({elem}: {elem: MassElem}){
         <Antiphon
           call="Oto drzewo krzyża, na którym zawisło zbawienie świata"
           resp="Pójdźmy z pokłonem"
+          respMelody={`K:F\nc2 AB (AG)F2 |]`}
         />
         <h2>Adoracja Krzyża</h2>
         <span className="ghost">Przy <i>Ludu, mój ludu</i> po każdej zwrotce dodatkowo 2× <i>Święty Boże</i></span>

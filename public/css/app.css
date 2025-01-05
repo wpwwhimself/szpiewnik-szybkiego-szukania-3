@@ -444,15 +444,28 @@ label{
 }
 
 .antyfona, .ksiadz{
-	width: -moz-fit-content;
-	width: fit-content;
-  margin: 0;
-}
-.antyfona :nth-child(1), .ksiadz{
-	color: hsl(var(--acc));
-}
-.antyfona div{
-    text-align: initial;
+    margin: 0;
+
+    &.ksiadz{
+        color: hsl(var(--acc));
+    }
+    &.antyfona {
+        position: relative;
+        text-align: initial;
+
+        & .wierni-container .melody {
+            position: absolute;
+            bottom: 0; left: 0;
+            opacity: 0;
+            background-color: hsl(var(--bg2));
+        }
+
+        &:hover .melody {
+            opacity: 1;
+            width: 100%;
+            bottom: 100%;
+        }
+    }
 }
 
 .alternative, .alt_group{
