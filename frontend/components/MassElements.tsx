@@ -252,14 +252,17 @@ export function OrdinariumProcessor({code, colorCode, formula}: OrdinariumProces
           <Antiphon
             call="Pan z wami"
             resp="I z duchem Twoim"
+            respMelody={`K:Bb\nF2 EF (GF)F2 |]`}
           />
           <Antiphon
             call="W górę serca"
             resp="Wznosimy je do Pana"
+            respMelody={`K:Eb\nG2 (FGA)G FG (FE)E2 |]`}
           />
           <Antiphon
             call="Dzięki składajmy Panu Bogu naszemu"
             resp="Godne to i sprawiedliwe"
+            respMelody={`K:Eb\n(F2GA)GGG FG(FE)E2 |]`}
           />
           <p className="ksiadz">Zaprawdę godne to i sprawiedliwe... ...jednym głosem wołając:</p>
 
