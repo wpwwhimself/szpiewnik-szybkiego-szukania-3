@@ -16,3 +16,10 @@ The website is capable of multiple handy things, including:
 ## Links
 
 This app is available at http://sz3.wpww.pl/. Most of the sets are available for the anonymous user but you are free to quickly create an account to see more of the backend.
+
+## Screenshots
+
+![set list](screenshots/set_list.png)
+![set](screenshots/set.png)
+![ordinarium](screenshots/ordinarium.png)
+![song](screenshots/song.png)
