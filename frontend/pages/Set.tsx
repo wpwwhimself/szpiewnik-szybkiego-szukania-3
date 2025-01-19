@@ -284,6 +284,7 @@ export function MassSet(){
                 content: <ul>
                     {el.content?.split(/\s*%%%\s*/)
                         .map((variant, i) => <li key={i}>
+                            <small className="ghost">{variant.match(/^(\/\/(\w)(\r?\n?)+)?(.*)\s/)?.[2]}:</small>&nbsp;
                             {variant.match(/^(\/\/\w(\r?\n?)+)?(.*)\s/)?.[3]}
                         </li>)
                     }

@@ -195,8 +195,10 @@ thead th, tfoot th{
         margin-left: 0.5em;
     }
     & ul {
-        padding-left: 1em;
+        padding-left: 0;
         display: inline-block;
+        list-style: none;
+        vertical-align: top;
     }
 }
 
