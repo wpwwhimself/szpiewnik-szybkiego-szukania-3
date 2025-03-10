@@ -573,6 +573,24 @@ export function ExtrasProcessor({elem}: {elem: MassElem}){
           </div>
         </>
       )
+    case "LitanyBlood":
+      songs_to_add = [
+        "Litania do Najdroższej Krwi Pana Jezusa",
+      ]
+
+      return(
+        <>
+          <div className="songMeta">
+            <h1>{songs_to_add[0]}</h1>
+          </div>
+          <hr />
+          <Antiphon
+            call="Odkupiłeś nas, Panie, Krwią swoją"
+            resp="I uczyniłeś nas królestwem Boga naszego"
+          />
+          <p>Módlmy się: Wszechmogący, wieczny Boże, Ty Jednorodzonego Syna swego ustanowiłeś Odkupicielem świata i Krwią Jego dałeś się przebłagać, daj nam, prosimy, godnie czcić zapłatę naszego zbawienia i dzięki niej doznawać obrony od zła doczesnego na ziemi, abyśmy wiekuistym szczęściem radowali się w niebie. Przez Chrystusa, Pana naszego...</p>
+        </>
+      )
     case "Michael":
       return(
         <>
@@ -683,6 +701,8 @@ export function ExtrasProcessor({elem}: {elem: MassElem}){
           resp="Bogu niech będą dzięki"
         />
       </>
+    case "MonstranceBlessing":
+      return <h2>Błogosławieństwo monstrancją</h2>
     default:{
       return(
         <>

@@ -395,7 +395,8 @@ export function MassSet(){
                     {[
                         { code: "xExposition", label: "Wystawienie Najświętszego Sakramentu" },
                         { code: "xLorette", label: "Litania Loretańska" },
-                        { code: "xHeart", label: "Litania do Serca Jezusowego" },
+                        { code: "xHeart", label: "Litania do Serca" },
+                        { code: "xLitanyBlood", label: "Litania do Krwi" },
                         { code: "Życzymy, życzymy", label: "Życzymy, Życzymy" },
                     ].map(({code, label}, i) =>
                         <Button key={i}
