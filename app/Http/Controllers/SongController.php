@@ -7,6 +7,7 @@ use App\Models\SongCategory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
+use SimpleXMLElement;
 
 class SongController extends Controller
 {
@@ -140,5 +141,78 @@ class SongController extends Controller
             ->get()->toArray();
 
         return response()->json($songs);
+    }
+
+    public function songExportOpenSong(string $title_slug)
+    {
+        $song = Song::all()->filter(function($song) use ($title_slug){
+            return Str::slug($song->title) === $title_slug;
+        })->first();
+        if(!$song) return abort(404);
+
+        foreach (explode(Song::$VAR_SEP, $song->lyrics) as $orig_lyrics) {
+            // transform lyrics
+            $lyrics = Str::of($orig_lyrics)
+                ->replaceMatches("/(\*\*|--)\s*/", "")
+                ->replaceMatches("/\*(?=\s)/", "\r\n[C]")
+                ->replaceMatches("/-\s+/", "||\r\n")
+                ->replaceMatches("/(\d+)\.(?=\s)/", "\r\n[V$1]")
+            ;
+
+            $repeated_choruses = $lyrics->matchAll("/\[C\]\s*.*(\.\.\.|…)\s*/");
+            if ($repeated_choruses->count()) {
+                $presentation = $lyrics->matchAll("/\[(\w+)\]/")->join(" ");
+                $lyrics = $lyrics->replaceMatches("/\[C\]\s*.*(\.\.\.|…)\s*/", ""); // remove extra choruses
+            } else {
+                foreach ($lyrics->matchAll("/\[C\]/") as $i => $chorus) {
+                    $lyrics = $lyrics->replaceMatches("/\[C\]/", "[C" . $i+1 . "]", 1);
+                }
+                $presentation = $lyrics->matchAll("/\[(\w+)\]/")->join(" ");
+            }
+
+            $lyrics = $lyrics
+                ->replaceMatches("/\n([^[\s])/", "\n $1") // add spacebar before text lines
+                ->replaceMatches("/^\s*/", "") // remove line break at the start
+                ->__toString()
+            ;
+
+            // create xml file
+            $xml = new SimpleXMLElement('<song/>');
+            $xml->addChild('title', $song->title);
+            $xml->addChild('lyrics', $lyrics);
+            $xml->addChild('author');
+            $xml->addChild('copyright');
+            $xml->addChild('hymn_number');
+            $xml->addChild('presentation', $presentation);
+            $xml->addChild('ccli');
+            $capo = $xml->addChild('capo');
+            $capo->addAttribute('print', "false");
+            $capo->addAttribute('sharp', "true");
+            $xml->addChild('key');
+            $xml->addChild('aka');
+            $xml->addChild('key_line');
+            $xml->addChild('user1');
+            $xml->addChild('user2');
+            $xml->addChild('user3');
+            $xml->addChild('theme');
+            $xml->addChild('linked_songs');
+            $xml->addChild('tempo');
+            $xml->addChild('time_sig');
+            $backgrounds = $xml->addChild('backgrounds');
+            $backgrounds->addAttribute('resize', "screen");
+            $backgrounds->addAttribute('keep_aspect', "false");
+            $backgrounds->addAttribute('link', "false");
+            $backgrounds->addAttribute('background_as_text', "false");
+
+            $dom = dom_import_simplexml($xml)->ownerDocument;
+            $dom->formatOutput = true;
+            $xmlString = $dom->saveXML();
+            $filename = $song->title;
+            $headers = [
+                'Content-Type' => "application/xml",
+                'Content-Disposition' => "attachment; filename=$filename",
+            ];
+            return response($xmlString, 200, $headers);
+        }
     }
 }

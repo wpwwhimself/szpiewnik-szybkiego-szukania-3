@@ -65,6 +65,7 @@ Route::middleware(Authenticate::class)->group(function(){
         Route::get("/show/{title_slug}", "song")->name("song");
         Route::post("/edit", "songEdit")->name("song-edit");
         Route::get("/add", "songAdd")->name("song-add");
+        Route::get("/export/opensong/{title_slug}", "songExportOpenSong")->name("song-export-opensong");
     });
 
     Route::controller(OrdinariusController::class)->prefix("ordinarium")->group(function(){

@@ -90,7 +90,10 @@ export function SongRender({song, title, forceLyricsVariant}: SRProps){
             {songSong?.lyrics && <SongLyrics lyrics={songSong.lyrics_variants} forceLyricsVariant={forceLyricsVariant} />}
         </div>
         <div className="flex-right center wrap">
-            {songSong && <Button onClick={() => window.open(`/songs/show/${slugAndDePL(songSong.title)}`, "_blank")?.focus()}>Edytuj pieśń</Button>}
+            {songSong && <>
+                <Button onClick={() => window.open(`/songs/show/${slugAndDePL(songSong.title)}`, "_blank")?.focus()}>Edytuj pieśń</Button>
+                <Button onClick={() => window.open(`/songs/export/opensong/${slugAndDePL(songSong.title)}`)}>Pobierz OpenSong</Button>
+            </>}
         </div>
     </>)
 }
