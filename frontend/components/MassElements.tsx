@@ -703,11 +703,15 @@ export function ExtrasProcessor({elem}: {elem: MassElem}){
       </>
     case "MonstranceBlessing":
       return <h2>Błogosławieństwo monstrancją</h2>
-    case "WielkanocResp":
+    case "EasterResp":
       return <>
         <Antiphon
           call="Niebo i ziemia się cieszą, alleluja"
           resp="Ze zmartwychwstania Twojego, Chryste, alleluja"
+        />
+        <Antiphon
+          call="Módlmy się..."
+          resp="Amen"
         />
       </>
     default:{
