@@ -127,25 +127,30 @@ export function MassSet(){
         };
     }
 
-    formula.extras?.forEach((el) => {
+    set.extras?.forEach((el) => {
+        insertExtras(el, thisMassOrder, true);
+    });
+    currentPlaceExtras?.forEach((el) => {
         if (set.extras?.filter(sex => (
             sex.name == el.name
             && sex.before == el.before
             && sex.replace == el.replace
         )).length) return;
         insertExtras(el, thisMassOrder, true);
-    });
-    set.extras?.forEach((el) => {
-        if (formula.extras?.filter(fex => (
-            fex.name == el.name
-            && fex.before == el.before
-            && fex.replace == el.replace
+    })
+    formula.extras?.forEach((el) => {
+        if (set.extras?.filter(sex => (
+            sex.name == el.name
+            && sex.before == el.before
+            && sex.replace == el.replace
+        )).length) return;
+        if (currentPlaceExtras?.filter(cpex => (
+            cpex.name == el.name
+            && cpex.before == el.before
+            && cpex.replace == el.replace
         )).length) return;
         insertExtras(el, thisMassOrder, true);
     });
-    currentPlaceExtras?.forEach((el) => {
-        insertExtras(el, thisMassOrder, true);
-    })
 
     if(set.thisMassOrder.length === 0) setSet({...set, thisMassOrder: thisMassOrder});;
 
