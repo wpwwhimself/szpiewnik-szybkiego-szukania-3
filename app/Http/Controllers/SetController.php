@@ -36,6 +36,11 @@ class SetController extends Controller
 
     public function set($set_id){
         $set = Set::findOrFail($set_id);
+
+        if ($set->user_id !== Auth::id()) {
+            return abort(403, "Nie możesz edytować tego zestawu.");
+        }
+
         $formulas = Formula::all()->pluck("name", "name");
         $colors = OrdinariusColor::all()->pluck("display_name", "name");
         $songs = Song::all()->pluck("title", "title");
@@ -56,8 +61,10 @@ class SetController extends Controller
     }
 
     public function setEdit(Request $rq){
+        $set = Set::findOrFail($rq->id);
+
         if($rq->action === "update"){
-            Set::findOrFail($rq->id)->update([
+            $set->update([
                 "name" => $rq->name,
                 "formula" => $rq->formula,
                 "color" => $rq->color,
@@ -86,7 +93,7 @@ class SetController extends Controller
             $response = "Msza poprawiona";
 
             // filling preferences
-            foreach(Set::findOrFail($rq->id)->all_songs as $pref_id => $songs){
+            foreach($set->all_songs as $pref_id => $songs){
                 if($songs === null) continue;
                 foreach($songs as $title){
                     $song = Song::where("title", $title)->first();
@@ -102,7 +109,7 @@ class SetController extends Controller
             }
         }elseif($rq->action === "delete"){
             SetExtra::where("set_id", $rq->id)->delete();
-            Set::findOrFail($rq->id)->delete();
+            $set->delete();
             $response = "Msza usunięta";
         }
 
