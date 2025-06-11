@@ -96,6 +96,10 @@ export function PsalmLyrics({lyrics}: {lyrics: string | null}){
 }
 
 export function Antiphon({call, resp, respMelody}: {call: string, resp: string, respMelody?: string}){
+  if (respMelody) {
+    resp += `<span> (🎼)</span>`;
+  }
+
   return(
     <div className="flex-right antyfona">
       <div className="ksiadz">{call}</div>
