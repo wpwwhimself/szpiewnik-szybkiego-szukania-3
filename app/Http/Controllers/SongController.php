@@ -95,6 +95,9 @@ class SongController extends Controller
         if(!Song::where("title", $new_song_title)->count()) Song::insert([
             "title" => $new_song_title,
             "song_category_id" => 1,
+            "lyrics" => <<<TUTORIAL
+-- samouczek pisania tekstów --\r\n-- usuń ten blok przed wprowadzeniem swojego tekstu --\r\n\r\n= budowa: zwrotka - zwrotka\r\n\r\n1.\r\nKażda zwrotka musi zaczynać się od numeru zwrotki, kropki po niej i pustej linii\r\nkolejne linijki zwrotki wpisujesz bezpośrednio pod nią\r\n2.\r\nŻeby zacząć kolejną zwrotkę, robisz podobnie\r\n3.\r\nI tak w koło\r\n10.\r\nMożesz numerować zwrotki poza kolejnością i tak też będzie to zapisane.\r\n\r\n= budowa: zwrotka - refren - zwrotka\r\n\r\n1.\r\nŻeby zacząć refren, użyj znaku pogrubienia\r\n*\r\nWszystko poniżej gwiazdki będzie pogrubione\r\nW ten sposób oznaczam refreny\r\n2.\r\nRozpoczęcie kolejnej zwrotki odwołuje pogrubienie\r\nwięc można pisać normalnie\r\n*\r\nWszystko poniżej gwiazdki będzie pogrubione...\r\n3.\r\nNie przepisuj kolejny raz refrenu w kolejnych zwrotkach,\r\ntylko pierwszą linijkę i wielokropek\r\n\r\n= budowa: refren - zwrotka - refren zwrotka\r\n\r\n*\r\nPierwszy refren zaczyna się od razu od gwiazdki\r\npo wypisaniu refrenu zamknij go dwoma gwiazdkami\r\n**\r\n1.\r\npotem zwrotki normalnie\r\n*\r\ni refren również normalnie...\r\n2.\r\ntest test test\r\n*\r\ni refren również normalnie...\r\n
+TUTORIAL
         ]);
 
         return redirect()->route("song", ["title_slug" => Str::slug($new_song_title)])->with("success", "Szablon utworzony, dodaj pieśń");

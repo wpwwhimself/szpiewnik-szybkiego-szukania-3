@@ -74,6 +74,10 @@
       <div class="flex-right stretch">
         <x-button id="addVariantButton">Dodaj wariant</x-button>
       </div>
+
+      <p class="ghost">
+        Zapis nutowy korzysta z formatu ABC. Dokumentacja jest <a href="https://abcnotation.com/wiki/abc:standard:v2.1" target="_blank">tutaj</a>.
+      </p>
     </div>
   </div>
 

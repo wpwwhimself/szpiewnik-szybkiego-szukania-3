@@ -7,6 +7,7 @@ use App\Http\Controllers\OrdinariusController;
 use App\Http\Controllers\PlaceController;
 use App\Http\Controllers\SetController;
 use App\Http\Controllers\SongController;
+use App\Http\Controllers\SpellbookController;
 use Illuminate\Auth\Middleware\Authenticate;
 use Illuminate\Support\Facades\Route;
 
@@ -33,6 +34,12 @@ Route::controller(AuthController::class)->group(function(){
             Route::post("/user-update", "userUpdate")->name("user-update");
         });
     });
+});
+
+Route::controller(SpellbookController::class)->group(function(){
+    foreach (SpellbookController::SPELLS as $name => $route) {
+        Route::get($route, $name);
+    }
 });
 
 Route::controller(HomeController::class)->group(function(){
