@@ -97,6 +97,7 @@ class SetController extends Controller
                 if($songs === null) continue;
                 foreach($songs as $title){
                     $song = Song::where("title", $title)->first();
+                    if (!$song) continue;
                     $preferences = explode("/", $song->preferences);
                     if($preferences[$pref_id] == 0){
                         $preferences[$pref_id] = 1;
