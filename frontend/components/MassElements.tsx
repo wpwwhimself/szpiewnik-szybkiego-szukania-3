@@ -39,7 +39,7 @@ export function SongLyrics({lyrics, forceLyricsVariant}: {lyrics: string | strin
     .replace(/-\s*\r?\n/g, `<span class="tabbed">`)
     .replace(/_(.{1,5})_/g, '<u>$1</u>')
     .replace(/(\d+)\.\s*\r?\n/g, "<li value='$1'>")
-    .replace(/\r?\n/g, "<br />");
+    .replace(/\s*\r?\n/g, "<br />");
 
   return showLyrics
     ? <>
