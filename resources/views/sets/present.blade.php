@@ -11,6 +11,13 @@
     <a href="{{ route('set', ['set_id' => $set->id]) }}" class="flex-right stretch">
         <x-button>Edytuj mszę</x-button>
     </a>
+
+    @if ($set->user->id != Auth::id() && Auth::user()->clearance->id >= 1)
+    <a href="{{ route('set-copy-for-user', ['set' => $set]) }}" class="flex-right stretch">
+        <x-button>Utwórz i edytuj kopię pod siebie</x-button>
+    </a>
+    @endif
+
     @endauth
     <x-button onclick="window.scrollTo({top: 0, behavior: 'smooth'});">
         Na początek

@@ -127,4 +127,31 @@ class SetController extends Controller
 
         return redirect()->route("set", ["set_id" => $new_set])->with("success", "Szablon utworzony, dodaj mszę");
     }
+
+    public function setCopyForUser(Set $set)
+    {
+        $new_set = Set::create([
+            "user_id" => Auth::id(),
+            "public" => false,
+            "name" => $set->name,
+            "formula" => $set->formula,
+            "color" => $set->color,
+            "sIntro" => $set->sIntro,
+            "sOffer" => $set->sOffer,
+            "sCommunion" => $set->sCommunion,
+            "sAdoration" => $set->sAdoration,
+            "sDismissal" => $set->sDismissal,
+            "pPsalm" => $set->pPsalm,
+            "pAccl" => $set->pAccl,
+        ]);
+        SetExtra::insert($set->extras->map(fn ($ex) => [
+            "set_id" => $new_set->id,
+            "name" => $ex->name,
+            "label" => $ex->label,
+            "before" => $ex->before,
+            "replace" => $ex->replace,
+        ])->toArray());
+
+        return redirect()->route("set", ["set_id" => $new_set])->with("success", "Msza skopiowana, możesz ją teraz dopasować pod siebie");
+    }
 }
