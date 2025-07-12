@@ -38,6 +38,7 @@
         </div>
     @endforeach
     </div>
+    <x-set-color-counter :sets="$sets[$formula->name]" />
 @endif @endforeach
 </div>
 
