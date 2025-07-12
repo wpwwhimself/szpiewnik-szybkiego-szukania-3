@@ -23,6 +23,8 @@
     <h2>{{ $formula->name }}</h2>
     <div class="flex-right center wrap">
     @foreach ($sets[$formula->name] as $set)
+        @continue (!($set->public || $set->user_id == Auth::id() || Auth::user()->clearance_id >= 4))
+
         <div class="flex-down center tight">
             @if ($set->user->id != Auth::id()) <label>{{ $set->user->name  }}</label> @endif
             <x-list-element
