@@ -10,6 +10,7 @@ interface SRProps{
     song?: SongProps,
     title?: string,
     forceLyricsVariant?: number,
+    dontHideEditBtns?: boolean,
 }
 
 interface OriginalKey {
@@ -17,7 +18,7 @@ interface OriginalKey {
     sheet_music_variants: string[],
 }
 
-export function SongRender({song, title, forceLyricsVariant}: SRProps){
+export function SongRender({song, title, forceLyricsVariant, dontHideEditBtns = false}: SRProps){
     const [songSong, setSongSong] = useState<SongProps>()
     const [transposerOn, setTransposerOn] = useState(false)
     const [transposerActive, setTransposerActive] = useState(false)
@@ -89,7 +90,7 @@ export function SongRender({song, title, forceLyricsVariant}: SRProps){
             </div>}
             {songSong?.lyrics && <SongLyrics lyrics={songSong.lyrics_variants} forceLyricsVariant={forceLyricsVariant} />}
         </div>
-        <div className="flex-right center wrap">
+        <div className={`${!dontHideEditBtns ? "show-after-click" : ""} flex-right center wrap`}>
             {songSong && <>
                 <Button onClick={() => window.open(`/songs/show/${slugAndDePL(songSong.title)}`, "_blank")?.focus()}>Edytuj pieśń</Button>
                 <Button onClick={() => window.open(`/songs/export/opensong/${slugAndDePL(songSong.title)}`)}>Pobierz OpenSong</Button>

@@ -209,8 +209,8 @@ export function MassSet(){
         }
     }
     document.addEventListener("click", (ev) => {
-        document.querySelectorAll(".massElemEditorElement").forEach((el) => el.classList.remove("show"));
-        (ev.target as HTMLElement).closest("section")?.querySelectorAll(".massElemEditorElement").forEach(el => el.classList.add("show"));
+        document.querySelectorAll(".show-after-click").forEach((el) => el.classList.remove("show"));
+        (ev.target as HTMLElement).closest("section")?.querySelectorAll(".show-after-click").forEach(el => el.classList.add("show"));
     });
 
     //adding

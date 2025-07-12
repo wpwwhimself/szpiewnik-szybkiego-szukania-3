@@ -20,8 +20,8 @@ export function PresentSong(){
     }, []);
 
     return(
-        <MassElemSection id="song">
-            <SongRender song={song} />
+        <MassElemSection id="song" uneresable>
+            <SongRender song={song} dontHideEditBtns />
         </MassElemSection>
     );
 }

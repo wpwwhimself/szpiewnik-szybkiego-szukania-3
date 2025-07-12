@@ -14,11 +14,11 @@ export function MassElemSection({id, uneresable = false, children}: MassElemSect
 
   return(
     <section id={id} className="massElemSection">
-      <div className="massElemEditorElement massElemEraser flex-right">
+      <div className="massElemEditorElement show-after-click massElemEraser flex-right">
         {is_communion && <Button onClick={() => document.getElementById("sAdoration")?.scrollIntoView({behavior: "smooth", block: "center"})}>»U</Button>}
         {!uneresable && <Button onClick={() => MMod.eraseMassElem(id)}>×</Button>}
       </div>
-      <div className="massElemEditorElement massElemAdder flex-right">
+      <div className="massElemEditorElement show-after-click massElemAdder flex-right">
         <Button onClick={() => MMod.addMassElem(id)}>+</Button>
       </div>
       {children}

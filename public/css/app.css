@@ -503,11 +503,13 @@ label{
 /* misc2 */
 
 .massElemEditorElement{
-    display: none;
     position: absolute;
     top: 0;
 }
-.massElemEditorElement.show{
+.show-after-click{
+    display: none;
+}
+.show-after-click.show{
     display: flex;
 }
 .massElemEraser{
