@@ -552,6 +552,15 @@ section>*:last-of-type{
     margin-bottom: 1em;
 }
 
+td {
+    & ul, & ol {
+        padding-left: 1em;
+    }
+    & pre, & ul, & ol {
+        margin: 0;
+    }
+}
+
 /*********************
  * MOBILE!!
  ****************/

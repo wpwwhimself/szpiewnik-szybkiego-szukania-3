@@ -64,32 +64,34 @@ class SetController extends Controller
         $set = Set::findOrFail($rq->id);
 
         if($rq->action === "update"){
-            $set->update([
-                "name" => $rq->name,
-                "formula" => $rq->formula,
-                "color" => $rq->color,
-                "public" => $rq->has("public"),
-                "sIntro" => $rq->sIntro,
-                "sOffer" => $rq->sOffer,
-                "sCommunion" => $rq->sCommunion,
-                "sAdoration" => $rq->sAdoration,
-                "sDismissal" => $rq->sDismissal,
-                "pPsalm" => $rq->pPsalm,
-                "pAccl" => $rq->pAccl,
-            ]);
-            for($i = 1; $i < count($rq->extraId); $i++){
-                if($rq->song[$i]){
-                    SetExtra::updateOrCreate(["id" => $rq->extraId[$i]], [
-                        "name" => $rq->song[$i],
-                        "label" => $rq->label[$i],
-                        "before" => $rq->before[$i],
-                        "replace" => $rq->replace[$i],
-                        "set_id" => $rq->id,
-                    ]);
-                }elseif($rq->extraId[$i]){
-                    SetExtra::findOrFail($rq->extraId[$i])->delete();
+            ChangeController::updateWithChange($set, "zmieniono", function () use ($rq, $set) {
+                $set->update([
+                    "name" => $rq->name,
+                    "formula" => $rq->formula,
+                    "color" => $rq->color,
+                    "public" => $rq->has("public"),
+                    "sIntro" => $rq->sIntro,
+                    "sOffer" => $rq->sOffer,
+                    "sCommunion" => $rq->sCommunion,
+                    "sAdoration" => $rq->sAdoration,
+                    "sDismissal" => $rq->sDismissal,
+                    "pPsalm" => $rq->pPsalm,
+                    "pAccl" => $rq->pAccl,
+                ]);
+                for($i = 1; $i < count($rq->extraId); $i++){
+                    if($rq->song[$i]){
+                        SetExtra::updateOrCreate(["id" => $rq->extraId[$i]], [
+                            "name" => $rq->song[$i],
+                            "label" => $rq->label[$i],
+                            "before" => $rq->before[$i],
+                            "replace" => $rq->replace[$i],
+                            "set_id" => $rq->id,
+                        ]);
+                    }elseif($rq->extraId[$i]){
+                        SetExtra::findOrFail($rq->extraId[$i])->delete();
+                    }
                 }
-            }
+            }, ["extras"]);
             $response = "Msza poprawiona";
 
             // filling preferences
@@ -126,6 +128,8 @@ class SetController extends Controller
             "color" => "green",
         ]);
 
+        ChangeController::add($new_set, "utworzono");
+
         return redirect()->route("set", ["set_id" => $new_set])->with("success", "Szablon utworzony, dodaj mszę");
     }
 
@@ -152,6 +156,8 @@ class SetController extends Controller
             "before" => $ex->before,
             "replace" => $ex->replace,
         ])->toArray());
+
+        ChangeController::add($new_set, "skopiowano z istniejącego");
 
         return redirect()->route("set", ["set_id" => $new_set])->with("success", "Msza skopiowana, możesz ją teraz dopasować pod siebie");
     }

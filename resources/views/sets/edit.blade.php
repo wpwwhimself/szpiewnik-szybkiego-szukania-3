@@ -54,7 +54,7 @@
     <h2>Zmiany</h2>
     <p class="ghost">
         Aby dodać pieśń, w pole <em>Element</em> wpisz jej tytuł.
-        Aby dodać część stałą, zacznij wpisywanie od <code>!<code>.
+        Aby dodać część stałą, zacznij wpisywanie od <code>!</code>.
         Aby dodać element specjalny, zacznij wpisywanie od <code>x</code>.
     </p>
     <table>
@@ -155,6 +155,9 @@
     <div class="flex-right stretch">
         <x-button type="submit" name="action" value="update">Zatwierdź i wróć</x-button>
         <x-button type="submit" name="action" value="delete">Usuń</x-button>
+        @if (Auth::user()->clearance_id >= 4)
+        <a href="{{ route('changes', ['type' => 'set', 'id' => $set->id]) }}" target="_blank" class="button">Historia zmian</a>
+        @endif
     </div>
 </form>
 

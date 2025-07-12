@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ChangeController;
 use App\Http\Controllers\FormulaController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\OrdinariusController;
@@ -94,4 +95,8 @@ Route::middleware(Authenticate::class)->group(function(){
         Route::post("/edit", "placeEdit")->name("place-edit");
         Route::get("/add", "placeAdd")->name("place-add");
     });
+});
+
+Route::controller(ChangeController::class)->prefix("changes")->group(function(){
+    Route::get("/{type}/{id}", "list")->name("changes");
 });
