@@ -32,6 +32,7 @@
                 :edit="route('set', ['set_id' => $set->id])"
                 clearance-for-edit="1"
                 >
+                <span style="color: {{ $set->colorData->display_color }};">⬤</span>
                 {{ $set->name }}
             </x-list-element>
         </div>

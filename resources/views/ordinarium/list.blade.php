@@ -10,7 +10,7 @@
 <div class="grid-3">
     @foreach ($colors as $color)
     <div class="ordTile">
-        <div class="ordTitleBox" style="border-color: {{ $color->display_color ?? $color->name }}">
+        <div class="ordTitleBox" style="border-color: {{ $color->display_color }}">
             <a href="{{ route('ordinarius-present', ['color' => $color->name]) }}">
                 <h1>{{ $color->display_name ?? $color->name }}</h1>
             </a>

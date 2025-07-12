@@ -31,8 +31,8 @@ class Set extends Model
     public function formulaData(){
         return $this->belongsTo(Formula::class, "formula", "name");
     }
-    public function color(){
-        return $this->hasOne(OrdinariusColor::class);
+    public function colorData(){
+        return $this->hasOne(OrdinariusColor::class, "name", "color");
     }
     public function extras(){
         return $this->hasMany(SetExtra::class);

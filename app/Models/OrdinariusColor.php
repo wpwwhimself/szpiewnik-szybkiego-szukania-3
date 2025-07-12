@@ -22,4 +22,8 @@ class OrdinariusColor extends Model
     public function ordinarium(){
         return $this->hasMany(Ordinarius::class, "color_code", "name");
     }
+
+    public function getDisplayColorAttribute($val){
+        return $val ?? $this->name;
+    }
 }
