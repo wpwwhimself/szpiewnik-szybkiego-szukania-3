@@ -36,26 +36,30 @@
             function extraReplaceCheck(el){
                 el.nextElementSibling.value = +el.checked;
             }
+            let songAutocompleteTimeout = null;
             function songAutocomplete(el){
-                const title = el.value;
-                const hintBox = document.getElementById("song-autocomplete");
+                clearTimeout(songAutocompleteTimeout);
+                songAutocompleteTimeout = setTimeout(() => {
+                    const title = el.value;
+                    const hintBox = document.getElementById("song-autocomplete");
 
-                fetch("{{ route('get-song-autocomplete') }}", {
-                    method: "post",
-                    body: JSON.stringify({
-                        title: title,
-                    }),
-                    headers: {
-                        "Content-Type": "application/json",
-                        "X-CSRF-TOKEN": "{{ csrf_token() }}",
-                    }
-                }).then(res => res.json()).then(data => {
-                    hintBox.innerHTML = "";
-                    window.songAutocompleteBox = el;
-                    data.forEach(title => {
-                        hintBox.innerHTML += `<span class="light-button clickable" onclick="songAutocompleteInsert('${title}')">${title}</span>`;
-                    });
-                }).catch(err => console.error(err));
+                    fetch("{{ route('get-song-autocomplete') }}", {
+                        method: "post",
+                        body: JSON.stringify({
+                            title: title,
+                        }),
+                        headers: {
+                            "Content-Type": "application/json",
+                            "X-CSRF-TOKEN": "{{ csrf_token() }}",
+                        }
+                    }).then(res => res.json()).then(data => {
+                        hintBox.innerHTML = "";
+                        window.songAutocompleteBox = el;
+                        data.forEach(title => {
+                            hintBox.innerHTML += `<span class="light-button clickable" onclick="songAutocompleteInsert('${title}')">${title}</span>`;
+                        });
+                    }).catch(err => console.error(err));
+                }, 0.5e3);
             }
             function songAutocompleteInsert(title){
                 window.songAutocompleteBox.value = title;
