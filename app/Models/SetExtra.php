@@ -14,8 +14,12 @@ class SetExtra extends Model
         "name", "label", "before", "replace",
     ];
 
+    public $appends = [
+        "for_changes",
+    ];
+
     #region attributes
-    public function for_changes()
+    public function getForChangesAttribute()
     {
         return [
             "name" => $this->name,

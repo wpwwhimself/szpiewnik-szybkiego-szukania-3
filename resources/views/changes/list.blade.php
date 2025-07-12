@@ -1,4 +1,4 @@
-@extends("layout", ["title" => implode(" | ", [$item->name, "Historia zmian"])])
+@extends("layout", ["title" => implode(" | ", [$item->name ?? $item->title, "Historia zmian"])])
 
 @section("content")
 

@@ -39,11 +39,18 @@ class ChangeController extends Controller
                     : $vals[0] != $vals[1]
                 )
                 ->map(fn ($vals, $fld) => (in_array($fld, $relations_to_track))
-                    ? array_map(fn ($val) => $val->for_changes, $vals)
+                    ? array_map(fn ($list_of_related) => $list_of_related->map(fn ($related) => $related->for_changes), $vals)
                     : $vals
                 )
                 ->except(["created_at", "updated_at"]),
         ]);
+
+        // update ids of models where id is not int
+        if (isset($old_data["title"], $new_data["title"])) {
+            Change::where("changeable_type", $model::class)
+                ->where("changeable_id", $old_data["title"])
+                ->update(["changeable_id" => $new_data["title"]]);
+        }
     }
 
     public static function updateWithChange($model, $action, $callback, $relations_to_track = [])

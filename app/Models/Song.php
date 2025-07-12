@@ -11,7 +11,7 @@ class Song extends Model
 
     public $incrementing = false;
     protected $keyType = "string";
-    protected $primaryKey = null;
+    protected $primaryKey = "title";
 
     protected $fillable = [
         "title",
@@ -35,5 +35,9 @@ class Song extends Model
 
     public function category(){
         return $this->belongsTo(SongCategory::class);
+    }
+    public function changes()
+    {
+        return $this->morphMany(Change::class, "changeable")->orderByDesc("date");
     }
 }

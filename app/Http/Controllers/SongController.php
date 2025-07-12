@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\FormulaExtra;
+use App\Models\PlaceExtra;
+use App\Models\SetExtra;
 use App\Models\Song;
 use App\Models\SongCategory;
 use Illuminate\Http\Request;
@@ -62,23 +65,35 @@ class SongController extends Controller
 
     public function songEdit(Request $rq){
         if($rq->action === "update"){
-            Song::where("title", $rq->old_title)->update([
-                "title" => $rq->title,
-                "song_category_id" => $rq->song_category_id,
-                "category_desc" => $rq->category_desc,
-                "number_preis" => $rq->number_preis,
-                "key" => $rq->key,
-                "preferences" => implode("/", [
-                    intval($rq->has("sIntro")),
-                    intval($rq->has("sOffer")),
-                    intval($rq->has("sCommunion")),
-                    intval($rq->has("sAdoration")),
-                    intval($rq->has("sDismissal")),
-                    $rq->pref5 ?: "0"
-                ]),
-                "lyrics" => implode(Song::$VAR_SEP, $rq->lyrics),
-                "sheet_music" => implode(Song::$VAR_SEP, $rq->sheet_music),
-            ]);
+            $song = Song::find($rq->old_title);
+            ChangeController::updateWithChange($song, "zmieniono", function () use ($rq, $song) {
+                $song->update([
+                    "title" => $rq->title,
+                    "song_category_id" => $rq->song_category_id,
+                    "category_desc" => $rq->category_desc,
+                    "number_preis" => $rq->number_preis,
+                    "key" => $rq->key,
+                    "preferences" => implode("/", [
+                        intval($rq->has("sIntro")),
+                        intval($rq->has("sOffer")),
+                        intval($rq->has("sCommunion")),
+                        intval($rq->has("sAdoration")),
+                        intval($rq->has("sDismissal")),
+                        $rq->pref5 ?: "0"
+                    ]),
+                    "lyrics" => implode(Song::$VAR_SEP, $rq->lyrics),
+                    "sheet_music" => implode(Song::$VAR_SEP, $rq->sheet_music),
+                ]);
+
+                // update extras
+                if ($rq->old_title !== $rq->title) {
+                    foreach ([SetExtra::class, PlaceExtra::class, FormulaExtra::class] as $extraClass) {
+                        $extraClass::where("name", $rq->old_title)->update([
+                            "name" => $rq->title,
+                        ]);
+                    }
+                }
+            });
             $response = "Pieśń poprawiona";
         }else{
             Song::where("title", $rq->old_title)->delete();
@@ -99,6 +114,8 @@ class SongController extends Controller
 -- samouczek pisania tekstów --\r\n-- usuń ten blok przed wprowadzeniem swojego tekstu --\r\n\r\n= budowa: zwrotka - zwrotka\r\n\r\n1.\r\nKażda zwrotka musi zaczynać się od numeru zwrotki, kropki po niej i pustej linii\r\nkolejne linijki zwrotki wpisujesz bezpośrednio pod nią\r\n2.\r\nŻeby zacząć kolejną zwrotkę, robisz podobnie\r\n3.\r\nI tak w koło\r\n10.\r\nMożesz numerować zwrotki poza kolejnością i tak też będzie to zapisane.\r\n\r\n= budowa: zwrotka - refren - zwrotka\r\n\r\n1.\r\nŻeby zacząć refren, użyj znaku pogrubienia\r\n*\r\nWszystko poniżej gwiazdki będzie pogrubione\r\nW ten sposób oznaczam refreny\r\n2.\r\nRozpoczęcie kolejnej zwrotki odwołuje pogrubienie\r\nwięc można pisać normalnie\r\n*\r\nWszystko poniżej gwiazdki będzie pogrubione...\r\n3.\r\nNie przepisuj kolejny raz refrenu w kolejnych zwrotkach,\r\ntylko pierwszą linijkę i wielokropek\r\n\r\n= budowa: refren - zwrotka - refren zwrotka\r\n\r\n*\r\nPierwszy refren zaczyna się od razu od gwiazdki\r\npo wypisaniu refrenu zamknij go dwoma gwiazdkami\r\n**\r\n1.\r\npotem zwrotki normalnie\r\n*\r\ni refren również normalnie...\r\n2.\r\ntest test test\r\n*\r\ni refren również normalnie...\r\n
 TUTORIAL
         ]);
+
+        ChangeController::add(Song::where("title", $new_song_title)->first(), "utworzono");
 
         return redirect()->route("song", ["title_slug" => Str::slug($new_song_title)])->with("success", "Szablon utworzony, dodaj pieśń");
     }

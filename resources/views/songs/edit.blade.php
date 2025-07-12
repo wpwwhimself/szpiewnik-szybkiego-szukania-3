@@ -85,6 +85,9 @@
   <div class="flex-right stretch">
     <x-button type="submit" name="action" value="update">Zatwierdź i wróć</x-button>
     <x-button type="submit" name="action" value="delete">Usuń</x-button>
+    @if (Auth::user()->clearance_id >= 4)
+    <a href="{{ route('changes', ['type' => 'song', 'id' => $song->title]) }}" target="_blank" class="button">Historia zmian</a>
+    @endif
   </div>
   @endif
 </form>
