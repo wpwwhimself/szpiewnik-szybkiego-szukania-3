@@ -333,9 +333,6 @@ textarea{
     width: 40vw; height: 30vh;
     transition: none;
 }
-.variant-container textarea{
-    height: 5em;
-}
 button, .button{
     color: hsl(var(--fg));
     background-color: hsl(var(--bg3));

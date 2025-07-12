@@ -11,7 +11,7 @@
     <input type="hidden" name="old_title" value="{{ $song->title }}" />
     <x-input type="text" name="title" label="Tytuł" value="{{ $song->title }}" />
     <x-select name="song_category_id" label="Grupa" value="{{ $song->song_category_id }}" :options="$categories" />
-    <x-input type="text" name="category_desc" label="Mini-opis" value="{{ $song->category_desc }}" />
+    <x-input type="text" name="category_desc" label="Kategoria (ze śpiewnika)" value="{{ $song->category_desc }}" />
     <x-input type="text" name="number_preis" label="Numer w projektorze Preis" value="{{ $song->number_preis }}" />
     <x-input type="text" name="key" label="Tonacja" value="{{ $song->key }}" />
     <div class="inputContainer">
