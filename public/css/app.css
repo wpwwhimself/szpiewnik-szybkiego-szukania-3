@@ -356,7 +356,7 @@ button::before, .button::before{
     border-top: 3px solid hsl(var(--bg3));
     border-bottom: 3px solid hsl(var(--bg3));
 }
-button{
+button, .button{
     font-family: Cinzel;
 }
 button:hover, .button:hover{

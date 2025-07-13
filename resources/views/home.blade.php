@@ -61,4 +61,16 @@
 
 @endauth
 
+<section>
+    <h2>Pamięć podręczna</h2>
+    <p>
+        Niektóre funkcje szpiewnika (zestawy i pieśni) mogą posiadać przestarzałe funkcje i nie działać poprawnie w toku aktualizacji.
+        Jeżeli coś nie działa tak, jak powinno, spróbuj odświeżyć pamięć podręczną przyciskiem poniżej.
+        Jeśli to nie pomoże, <a href="mailto:contact@wpww.pl">daj mi znać</a>.
+    </p>
+    <div class="flex-right center">
+        <div class="button" onclick="location.reload(true);">Odśwież pamięć podręczną</div>
+    </div>
+</section>
+
 @endsection
