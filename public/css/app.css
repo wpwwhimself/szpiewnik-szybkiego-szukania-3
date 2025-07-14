@@ -26,7 +26,7 @@ html, body{
 
 body{
     background-color: hsl(var(--bg1));
-    font-family: "EB Garamond";
+    font-family: "EB Garamond", serif;
     color: hsl(var(--fg));
     margin: 0;
     display: flex; flex-direction: column;
@@ -37,7 +37,7 @@ body{
 }
 
 h1, h2, h3, h4{
-    font-family: Cinzel;
+    font-family: Cinzel, serif;
     text-align: center;
 }
 h2{
@@ -498,6 +498,16 @@ label{
 }
 .credo tr:nth-child(odd){
 	background-color: hsl(var(--bg2));
+}
+
+/* ABC notation */
+
+text {
+    font-family: "EB Garamond";
+
+    &[data-name="lyric"] {
+        font-weight: normal;
+    }
 }
 
 /* misc2 */
