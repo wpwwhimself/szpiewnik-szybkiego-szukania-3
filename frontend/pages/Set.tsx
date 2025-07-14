@@ -53,11 +53,6 @@ export function MassSet(){
         return <h2>Wczytuję...</h2>;
     }
 
-    const ordColorOptions: SelectOption[] = [];
-    ordinarius_colors.forEach(color => ordColorOptions.push({ value: color.name, label: color.display_name }));
-    const handleColorChange = (ev: React.ChangeEvent<HTMLSelectElement>) => {
-        setSet({ ...set, color: ev.target.value });
-    }
     const thisMassOrdinarium = ordinarium.filter(el => el.color_code === set.color);
 
     // This mass' order
@@ -270,6 +265,21 @@ export function MassSet(){
         setAddCollector({...addCollector, [updatingField]: value});
     }
 
+    //ordinarium color
+    function colorOn() {
+        document.getElementById("color")!.classList.toggle("show");
+    }
+    const setColor = (color: OrdinariumColorProps) => {
+        setSet({ ...set, color: color.name });
+        colorOn();
+    }
+    const randomizeColor = () => {
+        let colors_pool = ordinarius_colors;
+        if (current_color) colors_pool = colors_pool.filter(el => el.name !== current_color?.name);
+        const randomColor = colors_pool[Math.floor(Math.random() * ordinarius_colors.length)];
+        setColor(randomColor);
+    }
+
     //jumping
     function jumperOn(){
         document.getElementById("jumper")!.classList.toggle("show");
@@ -305,7 +315,7 @@ export function MassSet(){
 
     return(<>
         <div className="flex-right center wrap settings">
-            <Select name="color" label="Kolor cz.st." options={ordColorOptions} value={set.color} onChange={handleColorChange} style={{ backgroundColor: current_color?.display_color ?? current_color?.name ?? 'none' }}/>
+            <Button onClick={() => colorOn()} style={{ backgroundColor: current_color?.display_color ?? current_color?.name ?? 'none' }}>Kolor cz. st.</Button>
             <Button onClick={() => jumperOn()}>»</Button>
             <Button onClick={() => addModeOn("END")}>+</Button>
             <Button className={[showLyrics && "accent-border", "slick"].filter(Boolean).join(" ")}
@@ -313,6 +323,28 @@ export function MassSet(){
                 Teksty
             </Button>
             <Button onClick={() => placerOn()}>{currentPlaceExtras ? currentPlaceExtras[0].place : "Miejsce"}</Button>
+        </div>
+
+        <div id="color" className="modal">
+            <h1>Kolor części stałych</h1>
+
+            <div className="scroll-list">
+                <div className="flex-right center">
+                    {ordinarius_colors.map((color, i) =>
+                        <Button key={i}
+                            style={{ backgroundColor: color.display_color ?? undefined }}
+                            onClick={() => setColor(color)}
+                        >
+                            {color.display_name}
+                        </Button>
+                    )}
+                </div>
+            </div>
+
+            <div className="flex-right stretch">
+                <Button onClick={() => colorOn()}>Anuluj</Button>
+                <Button onClick={() => randomizeColor()}>Losowo</Button>
+            </div>
         </div>
 
         <div id="jumper" className="modal">
