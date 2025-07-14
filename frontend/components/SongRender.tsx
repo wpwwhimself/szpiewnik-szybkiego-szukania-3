@@ -82,10 +82,11 @@ export function SongRender({song, title, forceLyricsVariant, dontHideEditBtns = 
         <div>
             {songSong?.sheet_music_variants && <SheetMusicRender notes={songSong.sheet_music_variants} />}
             {transposerOn && <div className="transposer-panel flex-right center wrap">
-                <Button className="slick" onClick={() => transpose("up")}>+</Button>
-                <Button className="slick" onClick={() => transpose("down")}>-</Button>
-                {/* <Button className="slick" onClick={() => {}}>♯/♭</Button> */}
-                <Button className="slick" onClick={() => restore()}>↺</Button>
+                <label>Transponuj:</label>
+                <Button onClick={() => transpose("up")}>+</Button>
+                <Button onClick={() => transpose("down")}>-</Button>
+                {/* <Button onClick={() => {}}>♯/♭</Button> */}
+                <Button onClick={() => restore()}>↺</Button>
                 <Button onClick={() => setTransposerOn(false)}>OK</Button>
             </div>}
             {songSong?.lyrics && <SongLyrics lyrics={songSong.lyrics_variants} forceLyricsVariant={forceLyricsVariant} />}

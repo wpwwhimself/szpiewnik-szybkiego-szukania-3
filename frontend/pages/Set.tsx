@@ -308,7 +308,7 @@ export function MassSet(){
             <Select name="color" label="Kolor cz.st." options={ordColorOptions} value={set.color} onChange={handleColorChange} style={{ backgroundColor: current_color?.display_color ?? current_color?.name ?? 'none' }}/>
             <Button onClick={() => jumperOn()}>»</Button>
             <Button onClick={() => addModeOn("END")}>+</Button>
-            <Button className={[showLyrics && "accent-border"].filter(Boolean).join(" ")}
+            <Button className={[showLyrics && "accent-border", "slick"].filter(Boolean).join(" ")}
                 onClick={() => setShowLyrics(!showLyrics)}>
                 Teksty
             </Button>
@@ -352,7 +352,7 @@ export function MassSet(){
             </div>
 
             <div className="flex-right stretch">
-                <Button className="slick" onClick={() => jumperOn()}>Anuluj</Button>
+                <Button onClick={() => jumperOn()}>Anuluj</Button>
             </div>
         </div>
 
@@ -374,23 +374,23 @@ export function MassSet(){
                 {categories.map((el, i) =>
                     <Button key={i}
                         onClick={() => toggleFilters(el.id)}
-                        className={adderFilters.categories.includes(el.id) ? "accent-border" : ""}
+                        className={"slick " + (adderFilters.categories.includes(el.id) ? "accent-border" : "")}
                         >
                         {el.name}
                     </Button>
                 )}
-                    <Button onClick={() => toggleFilters(null)} className="slick">{adderFilters.categories.length > 0 ? "×" : "⁂"}</Button>
+                    <Button onClick={() => toggleFilters(null)}>{adderFilters.categories.length > 0 ? "×" : "⁂"}</Button>
                 </div>
                 <div className="flex-right center wrap">
                 {preferences.map((el, i, ar) =>
                     <Button key={i}
                         onClick={() => toggleFilters(ar.indexOf(el), true)}
-                        className={adderFilters.preferences.includes(ar.indexOf(el)) ? "accent-border" : ""}
+                        className={"slick " + (adderFilters.preferences.includes(ar.indexOf(el)) ? "accent-border" : "")}
                         >
                         {el}
                     </Button>
                 )}
-                    <Button onClick={() => toggleFilters(null, true)} className="slick">{adderFilters.preferences.length > 0 ? "×" : "⁂"}</Button>
+                    <Button onClick={() => toggleFilters(null, true)}>{adderFilters.preferences.length > 0 ? "×" : "⁂"}</Button>
                 </div>
             </div>
 
@@ -439,7 +439,7 @@ export function MassSet(){
             </div>
 
             <div className="flex-right stretch">
-                <Button className="slick" onClick={() => addModeOn()}>Anuluj</Button>
+                <Button onClick={() => addModeOn()}>Anuluj</Button>
                 {addCollector.song && addCollector.before && <Button onClick={() => addModeOn(undefined, true)}>Dodaj</Button>}
             </div>
         </div>
@@ -460,7 +460,7 @@ export function MassSet(){
             </div>
 
             <div className="flex-right stretch">
-                <Button className="slick" onClick={() => placerOn()}>Anuluj</Button>
+                <Button onClick={() => placerOn()}>Anuluj</Button>
             </div>
         </div>
 

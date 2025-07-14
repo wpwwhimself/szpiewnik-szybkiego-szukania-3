@@ -47,7 +47,7 @@ export function SongLyrics({lyrics, forceLyricsVariant}: {lyrics: string | strin
         <div className="flex-right center">
         {lyrics.map((var_lyrics, var_no) =>
           <Button key={var_no}
-            className={[variant === var_no && 'accent-border'].filter(Boolean).join(" ")}
+            className={[variant === var_no && 'accent-border', 'slick'].filter(Boolean).join(" ")}
             onClick={() => changeVariant(var_no)}>
             {var_no + 1}
           </Button>)}
