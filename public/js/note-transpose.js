@@ -83,6 +83,21 @@ function Hoch(noteInput, e = undefined) {
             }
             for (y = 0; y < Derarray.length; ++y) /* Tonhöhe ändern */ {
                 Miniarray = Derarray[y].split("");
+
+                if (Derarray[y] == "!") { // ignore !special elements!
+                    do {
+                        y++;
+                    } while (Derarray[y] != "!");
+                    continue;
+                }
+
+                if (Derarray[y] == "\"" && Derarray[y + 1] == "^") { // ignore notes written as "^chords"
+                    do {
+                        y++;
+                    } while (Derarray[y] != "\"");
+                    continue;
+                }
+
                 if (Miniarray[0] == "B" && Miniarray[1] == ",") /* Ausnahmefall 1 (, löschen) */ {
                     Miniarray[0] = "C";
                     Miniarray[1] = "";
@@ -272,6 +287,21 @@ function Runter(noteInput, e = undefined) {
             }
             for (y = 0; y < Derarray.length; ++y) /* Tonhöhe ändern */ {
                 Miniarray = Derarray[y].split("");
+
+                if (Derarray[y] == "!") { // ignore !special elements!
+                    do {
+                        y++;
+                    } while (Derarray[y] != "!");
+                    continue;
+                }
+
+                if (Derarray[y] == "\"" && Derarray[y + 1] == "^") { // ignore notes written as "^chords"
+                    do {
+                        y++;
+                    } while (Derarray[y] != "\"");
+                    continue;
+                }
+
                 if (Miniarray[0] == "C" && Miniarray[1] == ",") /* Ausnahmefall 1 (, hinzufügen) */ {
                     Miniarray[0] = "B";
                     Miniarray[1] = ",,";
