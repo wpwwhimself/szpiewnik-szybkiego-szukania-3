@@ -21,6 +21,8 @@ export interface MModProps{
 
 export interface PlaceProps{
     name: string,
+    notes?: string,
+    extras?: Extra[],
 }
 
 export interface SongProps{

@@ -29,7 +29,6 @@ class PlaceController extends Controller
             ->pluck("label", "value")
             ->toArray();
 
-
         return view("places.edit", array_merge(
             ["title" => $place->name." | Edycja miejsca"],
             compact("place", "mass_order")
@@ -38,22 +37,27 @@ class PlaceController extends Controller
 
     public function placeEdit(Request $rq){
         if($rq->action === "update"){
-            Place::where("name", $rq->old_name)->update([
-                "name" => $rq->name,
-            ]);
-            for($i = 1; $i < count($rq->extraId); $i++){
-                if($rq->song[$i]){
-                    PlaceExtra::updateOrCreate(["id" => $rq->extraId[$i]], [
-                        "name" => $rq->song[$i],
-                        "label" => $rq->label[$i],
-                        "before" => $rq->before[$i],
-                        "replace" => $rq->replace[$i],
-                        "place" => $rq->name,
-                    ]);
-                }elseif($rq->extraId[$i]){
-                    PlaceExtra::findOrFail($rq->extraId[$i])->delete();
-                }
-            }
+            $place = Place::find($rq->old_name);
+            ChangeController::updateWithChange($place, "zmieniono", function () use ($rq, $place) {
+               $place->update([
+                   "name" => $rq->name,
+                   "notes" => $rq->notes,
+               ]);
+
+               for($i = 1; $i < count($rq->extraId); $i++){
+                   if($rq->song[$i]){
+                       PlaceExtra::updateOrCreate(["id" => $rq->extraId[$i]], [
+                           "name" => $rq->song[$i],
+                           "label" => $rq->label[$i],
+                           "before" => $rq->before[$i],
+                           "replace" => $rq->replace[$i],
+                           "place" => $rq->name,
+                       ]);
+                   }elseif($rq->extraId[$i]){
+                       PlaceExtra::findOrFail($rq->extraId[$i])->delete();
+                   }
+               }
+            });
             $response = "Miejsce poprawione";
         }else{
             PlaceExtra::where("place", $rq->old_name)->delete();
@@ -71,6 +75,8 @@ class PlaceController extends Controller
         if(!Place::where("name", $new_place_name)->count()) Place::insert([
             "name" => $new_place_name,
         ]);
+
+        ChangeController::add(Place::where("name", $new_place_name)->first(), "utworzono");
 
         return redirect()->route("place", ["name_slug" => Str::slug($new_place_name)])->with("success", "Szablon utworzony, dodaj miejsce");
     }

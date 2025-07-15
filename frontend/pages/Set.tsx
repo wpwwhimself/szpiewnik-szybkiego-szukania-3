@@ -24,7 +24,7 @@ export function MassSet(){
     const [categories, setCategories] = useState([] as SongCategoryProps[]);
     const [preferences, setPreferences] = useState(["Wejście", "Dary", "Komunia", "Uwielbienie", "Zakończenie"]);
     const [adderFilters, setAdderFilters] = useState({categories: [1], preferences: [0,1,2,3,4]} as AdderFilterProps);
-    const [currentPlaceExtras, setCurrentPlaceExtras] = useState([] as Extra[]);
+    const [currentPlace, setCurrentPlace] = useState({} as PlaceProps);
     const [places, setPlaces] = useState([] as PlaceProps[])
     const [showLyrics, setShowLyrics] = useState(true)
 
@@ -40,7 +40,7 @@ export function MassSet(){
             setSet({...res.data.set, thisMassOrder: []});
             setOrdinarium(res.data.ordinarium);
             setOrdColors(res.data.ordinarius_colors);
-            setCurrentPlaceExtras(res.data.place_extras);
+            setCurrentPlace(res.data.place);
             setFormula(res.data.formula);
             setSongs(res.data.songs);
             setCategories(res.data.categories);
@@ -125,7 +125,7 @@ export function MassSet(){
     set.extras?.forEach((el) => {
         insertExtras(el, thisMassOrder, true);
     });
-    currentPlaceExtras?.forEach((el) => {
+    currentPlace?.extras?.forEach((el) => {
         if (set.extras?.filter(sex => (
             sex.name == el.name
             && sex.before == el.before
@@ -139,7 +139,7 @@ export function MassSet(){
             && sex.before == el.before
             && sex.replace == el.replace
         )).length) return;
-        if (currentPlaceExtras?.filter(cpex => (
+        if (currentPlace?.extras?.filter(cpex => (
             cpex.name == el.name
             && cpex.before == el.before
             && cpex.replace == el.replace
@@ -322,7 +322,7 @@ export function MassSet(){
                 onClick={() => setShowLyrics(!showLyrics)}>
                 Teksty
             </Button>
-            <Button onClick={() => placerOn()}>{currentPlaceExtras ? currentPlaceExtras[0].place : "Miejsce"}</Button>
+            <Button onClick={() => placerOn()}>{currentPlace ? currentPlace.name : "Miejsce"}</Button>
         </div>
 
         <div id="color" className="modal">
@@ -501,7 +501,7 @@ export function MassSet(){
             <ShowLyricsContext.Provider value={showLyrics}>
                 <MassElemSection id="summary" uneresable>
                     <h1>Skrót</h1>
-                    <div className="grid-2">
+                    <div className="flex-right center center-vert" style={{ textAlign: "left", }}>
                         <div>
                             <h2>Meta</h2>
                             <div className="flex-down center">
@@ -521,6 +521,10 @@ export function MassSet(){
                             )}
                             </ol>
                         </div>
+                        {currentPlace?.notes && <div>
+                            <h2>Notatki dla: {currentPlace.name}</h2>
+                            <pre>{currentPlace.notes}</pre>
+                        </div>}
                     </div>
                 </MassElemSection>
                 {Mass}

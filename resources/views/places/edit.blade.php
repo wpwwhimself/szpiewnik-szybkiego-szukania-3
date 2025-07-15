@@ -10,6 +10,12 @@
         <x-input type="text" name="name" label="Nazwa" value="{{ $place->name }}" />
     </div>
 
+    <h2>Notatki</h2>
+    <p>Notatki wyświetlają się na początku zestawu. Możesz tu zapisać np. czy trzeba włączyć intencje mszy, albo w ramach pogrzebu, jaka jest kolejność.</p>
+    <div class="flex-right center wrap">
+        <x-input type="TEXT" name="notes" label="Notatki" :value="$place->notes" />
+    </div>
+
     <h2>Zmiany</h2>
     <p class="ghost">
         Aby dodać pieśń, w pole <em>Element</em> wpisz jej tytuł.
@@ -106,6 +112,9 @@
     <div class="flex-right stretch">
         <x-button type="submit" name="action" value="update">Zatwierdź i wróć</x-button>
         <x-button type="submit" name="action" value="delete">Usuń</x-button>
+        @if (Auth::user()->clearance_id >= 4)
+        <a href="{{ route('changes', ['type' => 'place', 'id' => $place->name]) }}" target="_blank" class="button">Historia zmian</a>
+        @endif
     </div>
 </form>
 

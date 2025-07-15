@@ -15,7 +15,7 @@ class DataModController extends Controller
 {
     public function setData(Request $rq){
         $set = Set::find($rq->set_id);
-        $place = Place::all()->filter(fn($el) => Str::slug($el->name) === $rq->place_slug)->first();
+        $place = Place::with("extras")->get()->filter(fn($el) => Str::slug($el->name) === $rq->place_slug)->first();
 
         return response()->json([
             "set" => collect(
@@ -32,7 +32,7 @@ class DataModController extends Controller
             "categories" => SongCategory::where("name", $set->formula)
                 ->orWhereIn("name", ["standard", "niestandard", "maryjne", "Serce"])
                 ->get(),
-            "place_extras" => $place?->extras,
+            "place" => $place,
             "places" => Place::all(),
         ]);
     }

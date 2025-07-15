@@ -28,16 +28,14 @@
         </div>
     </form>
     <h3>Uprawnienia</h3>
-    <div class="center">
-        <strong>Poziom {{ Auth::user()->clearance->id }}: {{ Auth::user()->clearance->name }}</strong><br />
-        <div class="flex-right center">
-            <span>Możesz:</span>
-            <ol style="text-align: left;">
-            @foreach (Auth::user()->clearance->allCan as $can)
-                <li>{{ $can }}</li>
-            @endforeach
-            </ol>
-        </div>
+    <div class="flex-right center middle">
+        <strong>Poziom {{ Auth::user()->clearance->id }}: <span class="accent">{{ Auth::user()->clearance->name }}</span></strong><br />
+        <span>Możesz:</span>
+        <ol style="text-align: left;">
+        @foreach (Auth::user()->clearance->allCan as $can)
+            <li>{{ $can }}</li>
+        @endforeach
+        </ol>
         @if(Auth::user()->clearance->id < $maxClearance)
         <em class="ghost">
             Potrzebujesz wyższych uprawnień?
