@@ -1,4 +1,5 @@
 // note transposer lifted from http://www.franziskaludwig.de/abctransposer/index.php
+// improved in some places to fit my needs
 
 function Hoch(noteInput, e = undefined) {
     e?.preventDefault();
