@@ -11,7 +11,7 @@
 <search>
     <x-input type="text" name="search" label="Szukaj po tytule" oninput="searchSongs()" />
 
-    <div class="flex-right center">
+    <div class="flex-right center wrap">
         <label>Szukaj po przeznaczeniu</label>
         @foreach ([
             ["Wejście", 0],
