@@ -329,7 +329,7 @@ export function MassSet(){
             <h1>Kolor części stałych</h1>
 
             <div className="scroll-list">
-                <div className="flex-right center">
+                <div className="flex-right center wrap">
                     {ordinarius_colors.map((color, i) =>
                         <Button key={i}
                             style={{ backgroundColor: color.display_color ?? undefined }}
@@ -351,27 +351,11 @@ export function MassSet(){
             <h1>Przejdź do</h1>
 
             <div>
-                <h2>Pieśni</h2>
                 <div className="flex-right center wrap">
                 {set.thisMassOrder
-                    .filter(el => el.code.charAt(0) === "s")
                     .map((el, i) =>
                     <Button key={i}
-                        onClick={() => {
-                            jumperOn();
-                            document.getElementById(el.code)?.scrollIntoView({behavior: "smooth", block: "center"});
-                        }}
-                        >
-                        {el.label}
-                    </Button>
-                )}
-                </div>
-                <h2>Części mszy</h2>
-                <div className="flex-right center wrap">
-                {set.thisMassOrder
-                    .filter(el => el.code.charAt(0) !== "s")
-                    .map((el, i) =>
-                    <Button key={i} className="less-interesting"
+                        className={el.code.charAt(0) === "s" ? "" : "less-interesting"}
                         onClick={() => {
                             jumperOn();
                             document.getElementById(el.code)?.scrollIntoView({behavior: "smooth", block: "center"});
@@ -400,35 +384,35 @@ export function MassSet(){
                     : " na koniec zestawu"}
             </h1>
 
-            <h2>Filtry</h2>
-            <div id="filters" className="grid-2">
-                <div className="flex-right center wrap">
-                {categories.map((el, i) =>
-                    <Button key={i}
-                        onClick={() => toggleFilters(el.id)}
-                        className={"slick " + (adderFilters.categories.includes(el.id) ? "accent-border" : "")}
-                        >
-                        {el.name}
-                    </Button>
-                )}
-                    <Button onClick={() => toggleFilters(null)}>{adderFilters.categories.length > 0 ? "×" : "⁂"}</Button>
-                </div>
-                <div className="flex-right center wrap">
-                {preferences.map((el, i, ar) =>
-                    <Button key={i}
-                        onClick={() => toggleFilters(ar.indexOf(el), true)}
-                        className={"slick " + (adderFilters.preferences.includes(ar.indexOf(el)) ? "accent-border" : "")}
-                        >
-                        {el}
-                    </Button>
-                )}
-                    <Button onClick={() => toggleFilters(null, true)}>{adderFilters.preferences.length > 0 ? "×" : "⁂"}</Button>
-                </div>
-            </div>
-
             <div className="scroll-list">
+                <h2>Filtry</h2>
+                <div id="filters" className="grid-2">
+                    <div className="flex-right center wrap">
+                    {categories.map((el, i) =>
+                        <Button key={i}
+                            onClick={() => toggleFilters(el.id)}
+                            className={"slick " + (adderFilters.categories.includes(el.id) ? "accent-border" : "")}
+                            >
+                            {el.name}
+                        </Button>
+                    )}
+                        <Button onClick={() => toggleFilters(null)}>{adderFilters.categories.length > 0 ? "×" : "⁂"}</Button>
+                    </div>
+                    <div className="flex-right center wrap">
+                    {preferences.map((el, i, ar) =>
+                        <Button key={i}
+                            onClick={() => toggleFilters(ar.indexOf(el), true)}
+                            className={"slick " + (adderFilters.preferences.includes(ar.indexOf(el)) ? "accent-border" : "")}
+                            >
+                            {el}
+                        </Button>
+                    )}
+                        <Button onClick={() => toggleFilters(null, true)}>{adderFilters.preferences.length > 0 ? "×" : "⁂"}</Button>
+                    </div>
+                </div>
+
                 <h2>Specjalne</h2>
-                <div className="flex-right center">
+                <div className="flex-right center wrap">
                     {[
                         { code: "xExposition", label: "Wystawienie Najświętszego Sakramentu" },
                         { code: "xLorette", label: "Litania Loretańska" },
@@ -478,7 +462,6 @@ export function MassSet(){
 
         <div id="placer" className="modal">
             <h1>Zmień miejsce</h1>
-            <h2>Wymaga przeładowania, utracisz wprowadzone zmiany!</h2>
 
             <div className="flex-right center wrap">
                 <a href="?">
@@ -491,6 +474,7 @@ export function MassSet(){
             )}
             </div>
 
+            <h2>Wymaga przeładowania, utracisz wprowadzone zmiany!</h2>
             <div className="flex-right stretch">
                 <Button onClick={() => placerOn()}>Anuluj</Button>
             </div>
