@@ -77,15 +77,24 @@ export function PsalmLyrics({lyrics}: {lyrics: string | null}){
       : variant.replace(/\/\/.*\s+/g, "")
   )
 
+  const randomizeVariant = () => {
+    let new_variant;
+    do {
+      new_variant = Math.floor(Math.random() * lyrics_split.length);
+    } while (new_variant === variant);
+    changeVariant(new_variant);
+  }
+
   return(<>
     {render_variants &&
       <div className="flex-right center">
       {lyrics_split.map((var_lyrics, var_no) =>
         <Button key={var_no}
-          className={[variant === var_no && 'accent-border'].filter(Boolean).join(" ")}
+          className={[variant === var_no && 'accent-border', 'slick'].filter(Boolean).join(" ")}
           onClick={() => changeVariant(var_no)}>
           {lyrics_split_labels[var_no]}
         </Button>)}
+        <Button onClick={() => randomizeVariant()} title="Losowo">L</Button>
       </div>}
       <div className="psalm">
       {lyrics_split[variant]?.split(/\r?\n\r?\n/).map((out, i) =>
@@ -97,7 +106,7 @@ export function PsalmLyrics({lyrics}: {lyrics: string | null}){
 
 export function Antiphon({call, resp, respMelody}: {call: string, resp: string, respMelody?: string}){
   if (respMelody) {
-    resp += `<span> (🎼)</span>`;
+    resp += `<span title="Nuty"> (?)</span>`;
   }
 
   return(

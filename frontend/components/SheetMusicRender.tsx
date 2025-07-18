@@ -42,6 +42,13 @@ export function SheetMusicRender({notes}: SMRProps){
     const changeVariant = (var_no: number) => {
         setVariant(var_no);
     }
+    const randomizeVariant = () => {
+        let new_variant;
+        do {
+            new_variant = Math.floor(Math.random() * (notes?.length || 1));
+        } while (new_variant === variant);
+        changeVariant(new_variant);
+    }
 
     useEffect(() => render(), [notes_ready]);
 
@@ -54,6 +61,7 @@ export function SheetMusicRender({notes}: SMRProps){
                 onClick={() => changeVariant(var_no)}>
                 {var_no + 1}
             </Button>)}
+            <Button onClick={randomizeVariant} title="Losowo">L</Button>
         </div>
         }
         <div className="flex-right center sheet-container">
