@@ -4,7 +4,7 @@
 
 <div class="container" id="root"></div>
 <script src="{{ asset('/js/react/set.js') }}?{{ time() }}"></script>
-<script src="{{ asset("js/note-transpose.js") }}"></script>
+<script src="{{ asset("js/note-transpose.js") }}?{{ time() }}"></script>
 
 <div class="flex-right stretch">
     @auth
@@ -24,13 +24,11 @@
     </x-button>
 </div>
 
-@if ($set->notesForCurrentUser)
 <script>
 const notes_for_current_user = {
-    user_id: {{ Auth::id() }},
-    notes: {!! json_encode($set->notesForCurrentUser) !!},
+    user_id: {{ Auth::id() ?? "null" }},
+    notes: {!! json_encode($set->notesForCurrentUser->count() ? $set->notesForCurrentUser : []) !!},
 };
 </script>
-@endif
 
 @endsection

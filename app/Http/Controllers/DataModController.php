@@ -9,6 +9,7 @@ use App\Models\Set;
 use App\Models\SetNote;
 use App\Models\Song;
 use App\Models\SongCategory;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
@@ -95,6 +96,11 @@ class DataModController extends Controller
     }
 
     public function processSetNote(Request $rq){
+        if (User::find($rq->input("user_id"))?->clearance_id < 1) return response()->json([
+            "success" => false,
+            "message" => "Nie masz uprawnień do edycji notatek",
+        ], 403);
+
         if (empty($rq->input("content"))) {
             SetNote::where("set_id", $rq->input("set_id"))
                 ->where("user_id", $rq->input("user_id"))
