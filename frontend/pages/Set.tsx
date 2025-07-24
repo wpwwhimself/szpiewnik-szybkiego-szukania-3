@@ -30,6 +30,9 @@ export function MassSet(){
 
     const [addCollector, setAddCollector] = useState({song: undefined, before: undefined} as AddCollectorProps);
 
+    const [setNoteElement, setSetNoteElement] = useState({} as MassElem);
+    const [setNoteContent, setSetNoteContent] = useState("");
+
     const czsts = ["sIntro", "sOffer", "sCommunion", "sAdoration", "sDismissal"];
 
     useEffect(() => {
@@ -149,12 +152,15 @@ export function MassSet(){
 
     if(set.thisMassOrder.length === 0) setSet({...set, thisMassOrder: thisMassOrder});;
 
+    // @ts-ignore, ta zmienna istnieje w `resources/views/sets/present.blade.php`
+    const notesForCurrentUser: {user_id: number, notes: SetNote[]} = notes_for_current_user;
+
     const Mass = set.thisMassOrder?.map<React.ReactNode>((el, i) => {
         switch(el.code.charAt(0)){
             case "s": // song
                 const song = songs.filter(s => s.title === el.content)[0];
                 return(
-                    <MassElemSection id={el.code} key={i}>
+                    <MassElemSection id={el.code} key={i} notes={notesForCurrentUser?.notes.find(n => n.set_id === set_id && n.element_code === el.code)?.content}>
                         <div className="songMeta">
                             <h2>{el.label}</h2>
                             <h1>{el.content}</h1>
@@ -169,7 +175,7 @@ export function MassSet(){
                     .find(el2 => el2.part === el.label.toLocaleLowerCase());
                 const isNotWielkiPostAklamacja = !(baseFormula(set.formula) === "Wielki Post" && el.code === "pAccl");
                 return(
-                    <MassElemSection id={el.code} key={i}>
+                    <MassElemSection id={el.code} key={i} notes={notesForCurrentUser?.notes.find(n => n.set_id === set_id && n.element_code === el.code)?.content}>
                         <h1>{el.label}</h1>
                         {isNotWielkiPostAklamacja && <SheetMusicRender notes={part.sheet_music_variants} />}
                         {formulaPart && <SheetMusicRender notes={formulaPart.sheet_music_variants} />}
@@ -178,13 +184,13 @@ export function MassSet(){
                 )
             case "!": // ordinarius
                 return(
-                    <MassElemSection id={el.code} key={i}>
+                    <MassElemSection id={el.code} key={i} notes={notesForCurrentUser?.notes.find(n => n.set_id === set_id && n.element_code === el.code)?.content}>
                         <OrdinariumProcessor code={el.code} colorCode={set.color} formula={formula.name} />
                     </MassElemSection>
                 )
             default:
                 return(
-                    <MassElemSection id={el.code} key={i}>
+                    <MassElemSection id={el.code} key={i} notes={notesForCurrentUser?.notes.find(n => n.set_id === set_id && n.element_code === el.code)?.content}>
                         <ExtrasProcessor elem={el} />
                     </MassElemSection>
                 )
@@ -201,7 +207,10 @@ export function MassSet(){
               thisMassOrder = set.thisMassOrder!.filter(el => el.code !== id);
               setSet({...set, thisMassOrder: thisMassOrder});
             }
-        }
+        },
+        editSetNote: (id) => {
+            editSetNoteOn(id);
+        },
     }
     document.addEventListener("click", (ev) => {
         document.querySelectorAll(".show-after-click").forEach((el) => el.classList.remove("show"));
@@ -263,6 +272,45 @@ export function MassSet(){
     }
     const handleAddCollector: HandleAddCollectorProps = (updatingField, value) => {
         setAddCollector({...addCollector, [updatingField]: value});
+    }
+
+    // set notes
+    function editSetNoteOn(id?: string){
+        document.getElementById("setNoteEditor")!.classList.toggle("show", !!id);
+        setSetNoteElement(thisMassOrder.find(el => el.code === id)!);
+        setSetNoteContent(notesForCurrentUser?.notes.find(n => n.set_id === set_id && n.element_code === id)?.content || "");
+    }
+    function submitSetNote(){
+        fetch(`/api/set-notes`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                set_id: set_id,
+                user_id: notesForCurrentUser.user_id,
+                element_code: setNoteElement.code,
+                content: setNoteContent,
+            }),
+        })
+            .then(res => res.json())
+            .then(res => {
+                if (!res.success) throw new Error(res.message);
+
+                if (res.note) {
+                    if (notesForCurrentUser.notes.find(n => n.id === res.note.id)) {
+                        notesForCurrentUser.notes.find(n => n.id === res.note.id)!.content = res.note.content;
+                    } else {
+                        notesForCurrentUser.notes.push(res.note);
+                    }
+                } else {
+                    notesForCurrentUser.notes = notesForCurrentUser.notes.filter(n => n.id !== res.id);
+                }
+            })
+            .catch(err => console.error(err))
+            .finally(() => {
+                editSetNoteOn();
+            })
     }
 
     //ordinarium color
@@ -457,6 +505,21 @@ export function MassSet(){
             <div className="flex-right stretch">
                 <Button onClick={() => addModeOn()}>Anuluj</Button>
                 {addCollector.song && addCollector.before && <Button onClick={() => addModeOn(undefined, true)}>Dodaj</Button>}
+            </div>
+        </div>
+
+        <div id="setNoteEditor" className="modal">
+            <h1>Edytuj notatkę dla: {setNoteElement?.label}</h1>
+
+            <div className="scroll-list">
+                <div className="flex-right center wrap">
+                    <textarea value={setNoteContent} onChange={(e) => setSetNoteContent(e.target.value)} />
+                </div>
+            </div>
+
+            <div className="flex-right stretch">
+                <Button onClick={() => editSetNoteOn()}>Anuluj</Button>
+                <Button onClick={() => submitSetNote()}>Zatwierdź</Button>
             </div>
         </div>
 

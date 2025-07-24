@@ -6,6 +6,7 @@ use App\Models\Ordinarius;
 use App\Models\OrdinariusColor;
 use App\Models\Place;
 use App\Models\Set;
+use App\Models\SetNote;
 use App\Models\Song;
 use App\Models\SongCategory;
 use Illuminate\Http\Request;
@@ -91,5 +92,36 @@ class DataModController extends Controller
             [ "value" => "xBlessing", "label" => "Błogosławieństwo"],
             [ "value" => "sDismissal", "label" => "Zakończenie"],
         ]);
+    }
+
+    public function processSetNote(Request $rq){
+        if (empty($rq->input("content"))) {
+            SetNote::where("set_id", $rq->input("set_id"))
+                ->where("user_id", $rq->input("user_id"))
+                ->where("element_code", $rq->input("element_code"))
+                ->delete();
+            return response()->json([
+                "success" => true,
+                "message" => "Notatka usunięta",
+            ]);
+        } else {
+            $note = SetNote::updateOrCreate([
+                "set_id" => $rq->input("set_id"),
+                "user_id" => $rq->input("user_id"),
+                "element_code" => $rq->input("element_code"),
+            ], [
+                "content" => $rq->input("content"),
+            ]);
+            return response()->json([
+                "success" => true,
+                "message" => "Notatka zapisana",
+                "note" => $note,
+            ]);
+        }
+
+        return response()->json([
+            "success" => false,
+            "message" => "Błąd w zapisie notatki",
+        ], 500);
     }
 }

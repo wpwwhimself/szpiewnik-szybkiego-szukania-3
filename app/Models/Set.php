@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Auth;
 
 class Set extends Model
 {
@@ -43,5 +44,13 @@ class Set extends Model
     public function changes()
     {
         return $this->morphMany(Change::class, "changeable")->orderByDesc("date");
+    }
+    public function notes()
+    {
+        return $this->hasMany(SetNote::class);
+    }
+    public function notesForCurrentUser()
+    {
+        return $this->hasMany(SetNote::class)->where("user_id", Auth::id());
     }
 }

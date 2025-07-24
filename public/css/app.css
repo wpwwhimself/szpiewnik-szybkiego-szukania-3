@@ -500,6 +500,12 @@ label{
 	background-color: hsl(var(--bg2));
 }
 
+.notes {
+    font-style: italic;
+    text-align: right;
+    position: absolute; right: 0; top: 0;
+}
+
 /* ABC notation */
 
 text {
@@ -515,6 +521,7 @@ text {
 .massElemEditorElement{
     position: absolute;
     top: 0;
+    z-index: 2;
 }
 .show-after-click{
     display: none;

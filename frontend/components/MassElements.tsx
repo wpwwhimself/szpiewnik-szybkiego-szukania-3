@@ -8,7 +8,7 @@ import { SheetMusicRender } from "./SheetMusicRender";
 import axios from "axios";
 import { SongRender } from "./SongRender";
 
-export function MassElemSection({id, uneresable = false, children}: MassElemSectionProps){
+export function MassElemSection({id, uneresable = false, notes = undefined, children}: MassElemSectionProps){
   const MMod = useContext(MModContext);
   const is_communion = id.match(/sCommunion/) && document.getElementById("sAdoration");
 
@@ -20,7 +20,11 @@ export function MassElemSection({id, uneresable = false, children}: MassElemSect
       </div>
       <div className="massElemEditorElement show-after-click massElemAdder flex-right">
         <Button onClick={() => MMod.addMassElem(id)}>+</Button>
+        {id !== "summary" && <Button onClick={() => MMod.editSetNote(id)}>?</Button>}
       </div>
+
+      {notes && <div className="notes ghost">{notes}</div>}
+
       {children}
     </section>
   )

@@ -24,4 +24,13 @@
     </x-button>
 </div>
 
+@if ($set->notesForCurrentUser)
+<script>
+const notes_for_current_user = {
+    user_id: {{ Auth::id() }},
+    notes: {!! json_encode($set->notesForCurrentUser) !!},
+};
+</script>
+@endif
+
 @endsection

@@ -17,6 +17,7 @@ export interface HandleAddCollectorProps{
 export interface MModProps{
     addMassElem: (id?: string) => void,
     eraseMassElem: (id: string) => void,
+    editSetNote: (id: string) => void,
 }
 
 export interface PlaceProps{
@@ -36,6 +37,7 @@ export interface SongProps{
     sheet_music: string | null,
     sheet_music_variants: string[],
     lyrics_variants: string[],
+    set_notes: SetNote[],
 }
 
 export interface SongCategoryProps{
@@ -76,6 +78,7 @@ export interface Formula{
 }
 
 export interface Set{
+    id: number,
     name: string,
     formula: string,
     color: string,
@@ -90,6 +93,16 @@ export interface Set{
     updated_at: string | null,
     extras?: Extra[],
     thisMassOrder: MassElem[],
+    notes?: SetNote[],
+}
+
+export interface SetNote {
+    set_id: number,
+    set: Set,
+    user_id: number,
+    user: any, //todo zrobić typ usera
+    element_code: string,
+    content: string,
 }
 
 export interface MassElem{
@@ -101,6 +114,7 @@ export interface MassElem{
 export interface MassElemSectionProps{
     id: string,
     uneresable?: boolean,
+    notes?: string,
     children: ReactNode,
 }
 
