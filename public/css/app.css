@@ -128,7 +128,7 @@ thead th, tfoot th{
     align-items: center;
     text-align: center;
 }
-.center-vert{
+.vert-baseline{
     align-items: baseline;
 }
 .stretch *{
@@ -593,6 +593,9 @@ td {
   }
   .grid-2, .grid-3{
     display: block;
+  }
+  .vert-baseline {
+    align-items: center;
   }
 
   textarea{

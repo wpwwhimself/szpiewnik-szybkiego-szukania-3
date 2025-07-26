@@ -548,7 +548,7 @@ export function MassSet(){
             <ShowLyricsContext.Provider value={showLyrics}>
                 <MassElemSection id="summary" uneresable>
                     <h1>Skrót</h1>
-                    <div className="flex-right center center-vert" style={{ textAlign: "left", }}>
+                    <div className="flex-right but-mobile-down center vert-baseline" style={{ textAlign: "left", }}>
                         <div>
                             <h2>Meta</h2>
                             <div className="flex-down center">
