@@ -13,7 +13,7 @@ export function slugAndDePL(string: string): string{
     .replace(/[ŹŻźż]/g, "z")
     .toLocaleLowerCase()
     .replace(/ /g, "-")
-    .replace(/[,:]/g, "")
+    .replace(/[,:\(\)]/g, "")
 }
 
 export function baseFormula(formula: string): string{
