@@ -1,6 +1,6 @@
 import axios from "axios";
 import { slugAndDePL } from "../helpers";
-import { SongProps } from "../types";
+import { SongNote, SongProps } from "../types";
 import { Button, DummyInput } from "./Interactives";
 import { SongLyrics } from "./MassElements";
 import { SheetMusicRender } from "./SheetMusicRender";
@@ -23,6 +23,7 @@ export function SongRender({song, title, forceLyricsVariant, dontHideEditBtns = 
     const [transposerOn, setTransposerOn] = useState(false)
     const [transposerActive, setTransposerActive] = useState(false)
     const [originalKey, setOriginalKey] = useState<OriginalKey>()
+    const [noteForCurrentUser, setNoteForCurrentUser] = useState({} as SongNote)
 
     useEffect(() => {
         if(title && !song){
@@ -33,6 +34,11 @@ export function SongRender({song, title, forceLyricsVariant, dontHideEditBtns = 
                         key: res.data.song.key || null,
                         sheet_music_variants: res.data.song.sheet_music_variants || [],
                     })
+                    setNoteForCurrentUser(res.data.song?.notes.find((n: SongNote) =>
+                        // @ts-ignore, ta zmienna istnieje w `resources/views/layout.blade.php`
+                        n.user_id == user_id
+                        && n.title == res.data.song.title
+                    ));
                 })
         }else{
             setSongSong(song)
@@ -40,6 +46,11 @@ export function SongRender({song, title, forceLyricsVariant, dontHideEditBtns = 
                 key: song?.key || null,
                 sheet_music_variants: song?.sheet_music_variants || [],
             })
+            setNoteForCurrentUser(song?.notes?.find((n: SongNote) =>
+                // @ts-ignore, ta zmienna istnieje w `resources/views/layout.blade.php`
+                n.user_id == user_id
+                && n.title == song.title
+            ) || {} as SongNote);
         }
     }, [song])
 
@@ -79,6 +90,7 @@ export function SongRender({song, title, forceLyricsVariant, dontHideEditBtns = 
                 <span>Pieśń niezapisana</span>
             }
         </div>
+        {noteForCurrentUser && <div className="notes ghost">{noteForCurrentUser.content}</div>}
         <div>
             {songSong?.sheet_music_variants && <SheetMusicRender notes={songSong.sheet_music_variants} />}
             {transposerOn && <div className="transposer-panel flex-right center wrap">

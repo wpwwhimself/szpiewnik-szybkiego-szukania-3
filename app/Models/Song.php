@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
 
 class Song extends Model
 {
@@ -39,5 +40,13 @@ class Song extends Model
     public function changes()
     {
         return $this->morphMany(Change::class, "changeable")->orderByDesc("date");
+    }
+    public function notes()
+    {
+        return $this->hasMany(SongNote::class, "title");
+    }
+    public function notesForCurrentUser()
+    {
+        return $this->hasMany(SongNote::class)->where("user_id", Auth::id());
     }
 }

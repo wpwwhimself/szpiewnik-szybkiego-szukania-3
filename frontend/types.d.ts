@@ -37,7 +37,7 @@ export interface SongProps{
     sheet_music: string | null,
     sheet_music_variants: string[],
     lyrics_variants: string[],
-    set_notes: SetNote[],
+    notes: SongNote[],
 }
 
 export interface SongCategoryProps{
@@ -102,6 +102,14 @@ export interface SetNote {
     user_id: number,
     user: any, //todo zrobić typ usera
     element_code: string,
+    content: string,
+}
+
+export interface SongNote {
+    user_id: number,
+    user: any, //todo zrobić typ usera
+    title: string,
+    song: SongProps,
     content: string,
 }
 

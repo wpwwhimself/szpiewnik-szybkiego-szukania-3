@@ -15,6 +15,10 @@
         <title>{{ $title ? "$title | " : "" }}{{ env("APP_NAME") }}</title>
     </head>
     <body>
+        <script>
+        const user_id = {{ Auth::id() ?? "null" }}
+        </script>
+
         <x-header title="{{ $title }}" />
         <div id="main-wrapper">
             @foreach (["success", "error"] as $status)

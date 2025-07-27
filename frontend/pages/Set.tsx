@@ -32,6 +32,8 @@ export function MassSet(){
 
     const [setNoteElement, setSetNoteElement] = useState({} as MassElem);
     const [setNoteContent, setSetNoteContent] = useState("");
+    const [songNoteIsEdited, setSongNoteIsEdited] = useState(false);
+    const [songNoteContent, setSongNoteContent] = useState("");
 
     const czsts = ["sIntro", "sOffer", "sCommunion", "sAdoration", "sDismissal"];
 
@@ -153,14 +155,14 @@ export function MassSet(){
     if(set.thisMassOrder.length === 0) setSet({...set, thisMassOrder: thisMassOrder});;
 
     // @ts-ignore, ta zmienna istnieje w `resources/views/sets/present.blade.php`
-    const notesForCurrentUser: {user_id: number, notes: SetNote[]} = notes_for_current_user;
+    let notesForCurrentUser: SetNote[] = set_notes_for_current_user;
 
     const Mass = set.thisMassOrder?.map<React.ReactNode>((el, i) => {
         switch(el.code.charAt(0)){
             case "s": // song
                 const song = songs.filter(s => s.title === el.content)[0];
                 return(
-                    <MassElemSection id={el.code} key={i} notes={notesForCurrentUser?.notes.find(n => n.set_id === set_id && n.element_code === el.code)?.content}>
+                    <MassElemSection id={el.code} key={i} notes={notesForCurrentUser?.find(n => n.set_id === set_id && n.element_code === el.code)?.content}>
                         <div className="songMeta">
                             <h2>{el.label}</h2>
                             <h1>{el.content}</h1>
@@ -175,7 +177,7 @@ export function MassSet(){
                     .find(el2 => el2.part === el.label.toLocaleLowerCase());
                 const isNotWielkiPostAklamacja = !(baseFormula(set.formula) === "Wielki Post" && el.code === "pAccl");
                 return(
-                    <MassElemSection id={el.code} key={i} notes={notesForCurrentUser?.notes.find(n => n.set_id === set_id && n.element_code === el.code)?.content}>
+                    <MassElemSection id={el.code} key={i} notes={notesForCurrentUser?.find(n => n.set_id === set_id && n.element_code === el.code)?.content}>
                         <h1>{el.label}</h1>
                         {isNotWielkiPostAklamacja && <SheetMusicRender notes={part.sheet_music_variants} />}
                         {formulaPart && <SheetMusicRender notes={formulaPart.sheet_music_variants} />}
@@ -184,13 +186,13 @@ export function MassSet(){
                 )
             case "!": // ordinarius
                 return(
-                    <MassElemSection id={el.code} key={i} notes={notesForCurrentUser?.notes.find(n => n.set_id === set_id && n.element_code === el.code)?.content}>
+                    <MassElemSection id={el.code} key={i} notes={notesForCurrentUser?.find(n => n.set_id === set_id && n.element_code === el.code)?.content}>
                         <OrdinariumProcessor code={el.code} colorCode={set.color} formula={formula.name} />
                     </MassElemSection>
                 )
             default:
                 return(
-                    <MassElemSection id={el.code} key={i} notes={notesForCurrentUser?.notes.find(n => n.set_id === set_id && n.element_code === el.code)?.content}>
+                    <MassElemSection id={el.code} key={i} notes={notesForCurrentUser?.find(n => n.set_id === set_id && n.element_code === el.code)?.content}>
                         <ExtrasProcessor elem={el} />
                     </MassElemSection>
                 )
@@ -278,7 +280,13 @@ export function MassSet(){
     function editSetNoteOn(id?: string){
         document.getElementById("setNoteEditor")!.classList.toggle("show", !!id);
         setSetNoteElement(thisMassOrder.find(el => el.code === id)!);
-        setSetNoteContent(notesForCurrentUser?.notes.find(n => n.set_id === set_id && n.element_code === id)?.content || "");
+        setSetNoteContent(notesForCurrentUser?.find(n => n.set_id === set_id && n.element_code === id)?.content || "");
+        setSongNoteIsEdited(false);
+        if (id?.charAt(0) === "s") {
+            setSongNoteIsEdited(true);
+            // @ts-ignore, ta zmienna istnieje w `resources/views/layout.blade.php`
+            setSongNoteContent(songs.find(s => s.title === thisMassOrder.find(el => el.code === id)?.content)?.notes.find(n => n.user_id === user_id)?.content || "");
+        }
     }
     function submitSetNote(){
         fetch(`/api/set-notes`, {
@@ -288,7 +296,8 @@ export function MassSet(){
             },
             body: JSON.stringify({
                 set_id: set_id,
-                user_id: notesForCurrentUser.user_id,
+                // @ts-ignore, ta zmienna istnieje w `resources/views/layout.blade.php`
+                user_id: user_id,
                 element_code: setNoteElement.code,
                 content: setNoteContent,
             }),
@@ -298,17 +307,49 @@ export function MassSet(){
                 if (!res.success) throw new Error(res.message);
 
                 if (res.note) {
-                    if (notesForCurrentUser.notes.find(n => n.id === res.note.id)) {
-                        notesForCurrentUser.notes.find(n => n.id === res.note.id)!.content = res.note.content;
+                    if (notesForCurrentUser.find(n => n.id === res.note.id)) {
+                        notesForCurrentUser.find(n => n.id === res.note.id)!.content = res.note.content;
                     } else {
-                        notesForCurrentUser.notes.push(res.note);
+                        notesForCurrentUser.push(res.note);
                     }
                 } else {
-                    notesForCurrentUser.notes = notesForCurrentUser.notes.filter(n => n.id !== res.id);
+                    notesForCurrentUser = notesForCurrentUser.filter(n => n.id !== res.id);
                 }
             })
             .catch(err => console.error(err))
             .finally(() => {
+                if (songNoteIsEdited) {
+                    const song = songs.find(s => s.title === thisMassOrder.find(el => el.code === setNoteElement.code)?.content)!;
+                    fetch(`/api/song-notes`, {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json",
+                        },
+                        body: JSON.stringify({
+                            // @ts-ignore, ta zmienna istnieje w `resources/views/layout.blade.php`
+                            user_id: user_id,
+                            title: song.title,
+                            content: songNoteContent,
+                        }),
+                    })
+                        .then(res => res.json())
+                        .then(res => {
+                            if (!res.success) throw new Error(res.message);
+
+                            //todo dodać live update
+                            // if (res.note) {
+                            //     if (song.notes.find(n => n.user_id === user_id)) { //todo dokończyć
+                            //         songs.find(s => s.title === thisMassOrder.find(el => el.code === setNoteElement.code)?.content)?.notes.find(n => n.user_id === user_id)!.content = res.note.content;
+                            //     } else {
+                            //         songs.find(s => s.title === thisMassOrder.find(el => el.code === setNoteElement.code)?.content)?.notes.push(res.note);
+                            //     }
+                            // } else {
+
+                            // }
+                        })
+                        .catch(err => console.error(err))
+                }
+
                 editSetNoteOn();
             })
     }
@@ -509,13 +550,24 @@ export function MassSet(){
         </div>
 
         <div id="setNoteEditor" className="modal">
-            <h1>Edytuj notatkę dla: {setNoteElement?.label}</h1>
+            <h1>Edytuj notatkę</h1>
 
-            <div className="scroll-list">
-                <div className="flex-right center wrap">
-                    <textarea value={setNoteContent} onChange={(e) => setSetNoteContent(e.target.value)} />
+            <div className="flex-right center">
+                <div className="scroll-list">
+                    <h2>dla cz. zestawu: {setNoteElement?.label}</h2>
+                    <div className="flex-right center wrap">
+                        <textarea value={setNoteContent} onChange={(e) => setSetNoteContent(e.target.value)} />
+                    </div>
                 </div>
+                {songNoteIsEdited &&
+                <div className="scroll-list">
+                    <h2>dla pieśni: {setNoteElement?.content}</h2>
+                    <div className="flex-right center wrap">
+                        <textarea value={songNoteContent} onChange={(e) => setSongNoteContent(e.target.value)} />
+                    </div>
+                </div>}
             </div>
+
 
             <div className="flex-right stretch">
                 <Button onClick={() => editSetNoteOn()}>Anuluj</Button>

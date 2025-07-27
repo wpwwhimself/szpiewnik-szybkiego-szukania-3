@@ -502,8 +502,13 @@ label{
 
 .notes {
     font-style: italic;
-    text-align: right;
-    position: absolute; right: 0; top: 0;
+    text-align: center;
+    margin-bottom: 1em;
+
+    &.in-right-corner {
+        text-align: right;
+        position: absolute; right: 0; top: 0;
+    }
 }
 
 /* ABC notation */

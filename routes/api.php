@@ -25,6 +25,7 @@ Route::controller(DataModController::class)->group(function(){
     Route::get("/ordinarius-data", "ordinariusData")->name("get-ordinarius-data");
 
     Route::post("/set-notes", "processSetNote");
+    Route::post("/song-notes", "processSongNote");
 });
 
 Route::controller(SongController::class)->group(function(){

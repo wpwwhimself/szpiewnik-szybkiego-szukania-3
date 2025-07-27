@@ -20,10 +20,10 @@ export function MassElemSection({id, uneresable = false, notes = undefined, chil
       </div>
       <div className="massElemEditorElement show-after-click massElemAdder flex-right">
         <Button onClick={() => MMod.addMassElem(id)}>+</Button>
-        {id !== "summary" && <Button onClick={() => MMod.editSetNote(id)}>?</Button>}
+        {id !== "summary" && <Button onClick={() => MMod.editSetNote(id)}>Nt</Button>}
       </div>
 
-      {notes && <div className="notes ghost">{notes}</div>}
+      {notes && <div className="notes in-right-corner ghost">{notes}</div>}
 
       {children}
     </section>

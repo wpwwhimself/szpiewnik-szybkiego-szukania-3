@@ -9,6 +9,7 @@ use App\Models\Set;
 use App\Models\SetNote;
 use App\Models\Song;
 use App\Models\SongCategory;
+use App\Models\SongNote;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -30,7 +31,7 @@ class DataModController extends Controller
                 $set->formulaData,
                 ["extras" => $set->formulaData->extras]
             ),
-            "songs" => Song::all(),
+            "songs" => Song::with("notes")->get(),
             "categories" => SongCategory::where("name", $set->formula)
                 ->orWhereIn("name", ["standard", "niestandard", "maryjne", "Serce"])
                 ->get(),
@@ -41,7 +42,7 @@ class DataModController extends Controller
 
     public function songData(Request $rq){
         $title_slug = $rq->title_slug;
-        $song = Song::all()->filter(function($song) use ($title_slug){
+        $song = Song::with("notes")->get()->filter(function($song) use ($title_slug){
             return Str::slug($song->title) === $title_slug;
         })->first();
 
@@ -115,6 +116,40 @@ class DataModController extends Controller
                 "set_id" => $rq->input("set_id"),
                 "user_id" => $rq->input("user_id"),
                 "element_code" => $rq->input("element_code"),
+            ], [
+                "content" => $rq->input("content"),
+            ]);
+            return response()->json([
+                "success" => true,
+                "message" => "Notatka zapisana",
+                "note" => $note,
+            ]);
+        }
+
+        return response()->json([
+            "success" => false,
+            "message" => "Błąd w zapisie notatki",
+        ], 500);
+    }
+
+    public function processSongNote(Request $rq){
+        if (User::find($rq->input("user_id"))?->clearance_id < 1) return response()->json([
+            "success" => false,
+            "message" => "Nie masz uprawnień do edycji notatek",
+        ], 403);
+
+        if (empty($rq->input("content"))) {
+            SongNote::where("title", $rq->input("title"))
+                ->where("user_id", $rq->input("user_id"))
+                ->delete();
+            return response()->json([
+                "success" => true,
+                "message" => "Notatka usunięta",
+            ]);
+        } else {
+            $note = SongNote::updateOrCreate([
+                "title" => $rq->input("title"),
+                "user_id" => $rq->input("user_id"),
             ], [
                 "content" => $rq->input("content"),
             ]);

@@ -25,10 +25,7 @@
 </div>
 
 <script>
-const notes_for_current_user = {
-    user_id: {{ Auth::id() ?? "null" }},
-    notes: {!! json_encode($set->notesForCurrentUser->count() ? $set->notesForCurrentUser : []) !!},
-};
+const set_notes_for_current_user = {!! json_encode($set->notesForCurrentUser->count() ? $set->notesForCurrentUser : []) !!};
 </script>
 
 @endsection
