@@ -11,16 +11,38 @@ use Illuminate\Support\Str;
 class OrdinariusController extends Controller
 {
     public function ordinarium(){
-        $colors = OrdinariusColor::all();
+        $colors = OrdinariusColor::orderByRaw("case when ordering is null then 99 else ordering end")->get();
         $ordinarium = [];
         foreach($colors as $color){
             $ordinarium[$color->name] = $color->ordinarium;
         }
-        $ordinarium["*"] = Ordinarius::where("color_code", "*")->get();
+        $ordinarium["*"] = Ordinarius::where("color_code", "*")
+            ->orderByRaw(
+                "case
+                    when part regexp '^kyrie' then 1
+                    when part regexp '^gloria' then 2
+                    when part regexp '^psalm' then 3
+                    when part regexp '^aklamacja' then 4
+                    when part regexp '^sanctus' then 5
+                    when part regexp '^agnus-dei' then 6
+                else 99 end"
+            )
+            ->get();
         $ordinarium["events"] = Ordinarius::whereIn(
             "color_code",
             Formula::get("name")->toArray()
-        )->get();
+        )
+            ->orderByRaw(
+                "case
+                    when part regexp '^kyrie' then 1
+                    when part regexp '^gloria' then 2
+                    when part regexp '^psalm' then 3
+                    when part regexp '^aklamacja' then 4
+                    when part regexp '^sanctus' then 5
+                    when part regexp '^agnus-dei' then 6
+                else 99 end"
+            )
+            ->get();
 
         return view("ordinarium.list", array_merge(
             ["title" => "Lista mszy"],
@@ -53,7 +75,7 @@ class OrdinariusController extends Controller
         if(!$ordinarium) return abort(404);
 
         return view("ordinarium.present", array_merge(
-            ["title" => "Msza: zestaw ".lcfirst($color->display_name)],
+            ["title" => "Części stałe: ".$color->display_name],
             compact("ordinarium", "color")
         ));
     }

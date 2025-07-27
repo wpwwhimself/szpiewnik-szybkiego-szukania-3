@@ -30,7 +30,9 @@
         </div>
     </div>
     @endforeach
+</div>
 
+<div class="grid-2">
     @if (Auth::user()?->clearance->id > 1)
     <div class="ordTile">
         <div class="ordTitleBox">
