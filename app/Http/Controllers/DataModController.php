@@ -50,6 +50,18 @@ class DataModController extends Controller
             "song" => $song,
         ]);
     }
+    
+    public function songsForAspersion(Request $rq)
+    {
+        $songs = Song::with("notes")
+            ->where("preferences", "regexp", "aspersja")
+            ->orderBy("title")
+            ->get();
+        
+        return response()->json([
+            "songs" => $songs,
+        ]);
+    }
 
     public function ordinariusData(Request $rq){
         $part_order = [];

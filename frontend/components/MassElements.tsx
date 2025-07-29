@@ -138,10 +138,27 @@ export function Alternative({children}: {children: ReactNode}){
 
 export function OrdinariumProcessor({code, colorCode, formula}: OrdinariumProcessorProps){
   const [ordinarium, setOrdinarium] = useState([] as OrdinariumProps[]);
+  const [aspersionSongs, setAspersionSongs] = useState([] as SongProps[]);
+  const [aspersionSongVisible, setAspersionSongVisible] = useState(-1); // -1: off, 0+: index of a song
+  
+  const isAspersionSongVisible = () => aspersionSongVisible > -1;
+  const toggleAspersionSongVisible = () => isAspersionSongVisible()
+    ? setAspersionSongVisible(-1)
+    : randomizeAspersionSongVisible();
+  const randomizeAspersionSongVisible = () => {
+    let new_variant;
+    do {
+      new_variant = Math.floor(Math.random() * aspersionSongs.length);
+    } while (new_variant === aspersionSongVisible);
+    setAspersionSongVisible(new_variant);
+  }
+
   useEffect(() => {
     axios.get("/api/ordinarium").then(res => {
       setOrdinarium(res.data);
     });
+    axios.get("/api/songs-for-aspersion")
+      .then(res => setAspersionSongs(res.data.songs));
   }, []);
   if(ordinarium.length === 0) return <h2>Wczytuję...</h2>;
 
@@ -175,9 +192,41 @@ export function OrdinariumProcessor({code, colorCode, formula}: OrdinariumProces
                   call="Panie... ...Zmiłuj się nad nami"
                   resp="Zmiłuj się nad nami"
                 />
+                <Antiphon
+                  call="Chryste... ...Zmiłuj się nad nami"
+                  resp="Zmiłuj się nad nami"
+                />
+                <Antiphon
+                  call="Panie... ...Zmiłuj się nad nami"
+                  resp="Zmiłuj się nad nami"
+                />
               </div>
               <div className="alt_option">
-                <i>Aspersja</i>
+                <div className="flex-right" style={{ justifyContent: "space-between" }}>
+                  <i>Aspersja</i>
+                  <Button onClick={() => toggleAspersionSongVisible()}
+                    className={[`slick`, isAspersionSongVisible() && 'accent-border'].filter(Boolean).join(" ")}
+                  >
+                    Pieśni
+                  </Button>
+                </div>
+                
+                {isAspersionSongVisible() && <div>
+                  <div className="flex-right center">
+                  {aspersionSongs.map((song, i) =>
+                    <Button key={i}
+                      className={['slick', aspersionSongVisible === i && 'accent-border'].filter(Boolean).join(" ")}
+                      onClick={() => setAspersionSongVisible(i)}>
+                      {i + 1}
+                    </Button>)}
+                    <Button onClick={() => randomizeAspersionSongVisible()}>L</Button>
+                  </div>
+
+                  <div className="songMeta">
+                    <h1>{aspersionSongs[aspersionSongVisible].title}</h1>
+                    <SongRender song={aspersionSongs[aspersionSongVisible]} />
+                  </div>
+                </div>}
               </div>
             </div>
           </Alternative>
