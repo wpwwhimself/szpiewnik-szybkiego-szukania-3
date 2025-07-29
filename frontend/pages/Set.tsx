@@ -336,22 +336,45 @@ export function MassSet(){
                         .then(res => {
                             if (!res.success) throw new Error(res.message);
 
-                            //todo dodać live update
-                            // if (res.note) {
-                            //     if (song.notes.find(n => n.user_id === user_id)) { //todo dokończyć
-                            //         songs.find(s => s.title === thisMassOrder.find(el => el.code === setNoteElement.code)?.content)?.notes.find(n => n.user_id === user_id)!.content = res.note.content;
-                            //     } else {
-                            //         songs.find(s => s.title === thisMassOrder.find(el => el.code === setNoteElement.code)?.content)?.notes.push(res.note);
-                            //     }
-                            // } else {
-
-                            // }
+                            if (res.note) {
+                                // @ts-ignore, ta zmienna istnieje w `resources/views/layout.blade.php`
+                                if (song.notes.find(n => n.user_id === user_id)) {
+                                    setSongs(songs.map(s => s.title === song.title
+                                        ? {
+                                            ...s,
+                                            // @ts-ignore, ta zmienna istnieje w `resources/views/layout.blade.php`
+                                            notes: s.notes.map(n => n.user_id === user_id
+                                                ? { ...n, content: res.note.content }
+                                                : n
+                                            )
+                                        }
+                                        : s
+                                    ));
+                                } else {
+                                    setSongs(songs.map(s => s.title === song.title
+                                        ? {
+                                            ...s,
+                                            notes: [...s.notes, res.note]
+                                        }
+                                        : s
+                                    ));
+                                }
+                            } else {
+                                setSongs(songs.map(s => s.title === song.title
+                                    ? {
+                                        ...s,
+                                        // @ts-ignore, ta zmienna istnieje w `resources/views/layout.blade.php`
+                                        notes: s.notes.filter(n => n.user_id !== user_id)
+                                    }
+                                    : s
+                                ));
+                            }
                         })
                         .catch(err => console.error(err))
                 }
-
-                editSetNoteOn();
             })
+
+        editSetNoteOn();
     }
 
     //ordinarium color
