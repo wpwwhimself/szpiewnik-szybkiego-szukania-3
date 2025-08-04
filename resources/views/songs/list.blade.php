@@ -21,7 +21,7 @@
             ["Zakończenie", 8],
             ["Pozostałe", "*"],
         ] as [$label, $pref_index])
-        <span role="filter" class="button slick" onclick="showSongsByPref('{{ $pref_index }}', this);">{{ $label }}</span>
+        <span role="filter" class="button sleek" onclick="showSongsByPref('{{ $pref_index }}', this);">{{ $label }}</span>
         @endforeach
         <span role="filter-reset" class="button hidden" onclick="filterReset()">↺</span>
     </div>

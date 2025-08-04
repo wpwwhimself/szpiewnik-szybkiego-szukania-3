@@ -430,7 +430,7 @@ export function MassSet(){
             <Button onClick={() => colorOn()} style={{ backgroundColor: current_color?.display_color ?? current_color?.name ?? 'none' }}>Kolor cz. st.</Button>
             <Button onClick={() => jumperOn()}>»</Button>
             <Button onClick={() => addModeOn("END")}>+</Button>
-            <Button className={[showLyrics && "accent-border", "slick"].filter(Boolean).join(" ")}
+            <Button className={[showLyrics && "accent-border", "sleek"].filter(Boolean).join(" ")}
                 onClick={() => setShowLyrics(!showLyrics)}>
                 Teksty
             </Button>
@@ -503,7 +503,7 @@ export function MassSet(){
                     {categories.map((el, i) =>
                         <Button key={i}
                             onClick={() => toggleFilters(el.id)}
-                            className={"slick " + (adderFilters.categories.includes(el.id) ? "accent-border" : "")}
+                            className={"sleek " + (adderFilters.categories.includes(el.id) ? "accent-border" : "")}
                             >
                             {el.name}
                         </Button>
@@ -514,7 +514,7 @@ export function MassSet(){
                     {preferences.map((el, i, ar) =>
                         <Button key={i}
                             onClick={() => toggleFilters(ar.indexOf(el), true)}
-                            className={"slick " + (adderFilters.preferences.includes(ar.indexOf(el)) ? "accent-border" : "")}
+                            className={"sleek " + (adderFilters.preferences.includes(ar.indexOf(el)) ? "accent-border" : "")}
                             >
                             {el}
                         </Button>

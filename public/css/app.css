@@ -358,13 +358,20 @@ button::before, .button::before{
 }
 button, .button{
     font-family: Cinzel;
+
+    &.sleek, &.sleek:hover {
+        background: none;
+        color: hsl(var(--fg));
+    }
 }
 button:hover, .button:hover{
-    color: black;
+    color: hsl(var(--fg));
     background-color: hsl(var(--acc));
-}
-button.slick:hover::before, .button.slick:hover::before{
-    border-color: hsl(var(--acc));
+
+    &.sleek {
+        background: none;
+        color: hsl(var(--acc));
+    }
 }
 .light-button{
     font-family: "EB Garamond";
@@ -376,10 +383,6 @@ button.slick:hover::before, .button.slick:hover::before{
     font-family: "EB Garamond";
     font-weight: normal;
     background-color: hsl(var(--bg2));
-}
-.slick, .slick:hover{
-    background: none;
-    color: hsl(var(--fg));
 }
 
 input:focus, select:focus, textarea:focus{
