@@ -55,8 +55,9 @@ function searchSongs() {
 
     // hide songs not matching search
     document.querySelectorAll(`#main-wrapper .list-element`).forEach(el => {
+        const title = el.querySelector(`.main`).textContent;
         const hide = (q != "")
-            ? !(new RegExp(q, "i").test(el.querySelector(`.main`).textContent))
+            ? !(new RegExp(q, "i").test(title.replace(/[\.,\-]/g, "")))
             : false;
         el.classList.toggle("hidden", hide);
     });
