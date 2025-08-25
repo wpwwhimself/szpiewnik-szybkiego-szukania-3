@@ -25,7 +25,7 @@ class DataModController extends Controller
                 $set,
                 ["extras" => $set->extras]
             ),
-            "ordinarius_colors" => OrdinariusColor::orderByRaw("case when ordering is null then 99 else ordering end")->orderBy("display_name")->get(),
+            "ordinarius_colors" => OrdinariusColor::ordered(),
             "ordinarium" => Ordinarius::all(),
             "formula" => collect(
                 $set->formulaData,

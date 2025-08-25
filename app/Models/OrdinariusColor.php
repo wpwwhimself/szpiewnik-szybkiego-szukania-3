@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class OrdinariusColor extends Model
 {
@@ -37,4 +38,30 @@ class OrdinariusColor extends Model
     public function getDisplayColorAttribute($val){
         return $val ?? $this->name;
     }
+
+    #region helpers
+    public static function ordered()
+    {
+        return collect(DB::select(<<<SQL
+            with recursive ordered as (
+                select oc.name, oc.ordering, 1 as lvl
+                from ordinarius_colors oc
+                where oc.name not in (select ordering from ordinarius_colors where ordering is not null)
+                    union all
+                select oc.name, oc.ordering, o.lvl + 1
+                from ordered o
+                    join ordinarius_colors oc on oc.name = o.ordering
+            )
+            select
+                oc.name,
+                coalesce(oc.display_name, oc.name) as display_name,
+                coalesce(oc.display_color, oc.name) as display_color,
+                oc.desc,
+                o.lvl
+            from ordinarius_colors oc
+                join ordered o on o.name = oc.name
+            order by lvl;
+        SQL));
+    }
+    #endregion
 }

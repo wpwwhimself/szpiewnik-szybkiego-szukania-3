@@ -11,7 +11,7 @@ use Illuminate\Support\Str;
 class OrdinariusController extends Controller
 {
     public function ordinarium(){
-        $colors = OrdinariusColor::orderByRaw("case when ordering is null then 99 else ordering end")->get();
+        $colors = OrdinariusColor::ordered();
         $ordinarium = [];
         foreach($colors as $color){
             $ordinarium[$color->name] = $color->ordinarium;
