@@ -401,6 +401,10 @@ export function MassSet(){
         document.getElementById("placer")!.classList.toggle("show");
     }
 
+    function placeNotesOn() {
+        document.getElementById("placeNotes")!.classList.toggle("show");
+    }
+
     // Mass' summary
     const summary = set.thisMassOrder
         ?.filter(el => !!el.content)
@@ -427,14 +431,17 @@ export function MassSet(){
 
     return(<>
         <div className="flex-right center wrap settings">
-            <Button onClick={() => colorOn()} style={{ backgroundColor: current_color?.display_color ?? current_color?.name ?? 'none' }}>Kolor cz. st.</Button>
+            <Button onClick={() => colorOn()} style={{ backgroundColor: current_color?.display_color ?? current_color?.name ?? 'none' }}>
+                {current_color?.display_name ?? current_color?.name ?? 'Kolor cz. st.'}
+            </Button>
             <Button onClick={() => jumperOn()}>»</Button>
             <Button onClick={() => addModeOn("END")}>+</Button>
             <Button className={[showLyrics && "accent-border", "sleek"].filter(Boolean).join(" ")}
                 onClick={() => setShowLyrics(!showLyrics)}>
-                Teksty
+                Txt
             </Button>
-            <Button onClick={() => placerOn()}>{currentPlace ? currentPlace.name : "Miejsce"}</Button>
+            <Button onClick={() => placerOn()}>{currentPlace?.name ?? "Miejsce"}</Button>
+            {currentPlace?.notes && <Button onClick={() => placeNotesOn()}>Nttk</Button>}
         </div>
 
         <div id="color" className="modal">
@@ -618,6 +625,16 @@ export function MassSet(){
             </div>
         </div>
 
+        {currentPlace?.notes && <div id="placeNotes" className="modal">
+            <h1>Notatki dla: {currentPlace.name}</h1>
+            
+            <pre>{currentPlace.notes}</pre>
+
+            <div className="flex-right stretch">
+                <Button onClick={() => placeNotesOn()}>Zamknij</Button>
+            </div>
+        </div>}
+
         <div className="flex-down">
             <MModContext.Provider value={MMod}>
             <ShowLyricsContext.Provider value={showLyrics}>
@@ -643,10 +660,6 @@ export function MassSet(){
                             )}
                             </ol>
                         </div>
-                        {currentPlace?.notes && <div>
-                            <h2>Notatki dla: {currentPlace.name}</h2>
-                            <pre>{currentPlace.notes}</pre>
-                        </div>}
                     </div>
                 </MassElemSection>
                 {Mass}
