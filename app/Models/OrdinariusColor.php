@@ -42,7 +42,7 @@ class OrdinariusColor extends Model
     #region helpers
     public static function ordered()
     {
-        return collect(DB::select(<<<SQL
+        $ordered = collect(DB::select(<<<SQL
             with recursive ordered as (
                 select oc.name, oc.ordering, 1 as lvl
                 from ordinarius_colors oc
@@ -62,6 +62,10 @@ class OrdinariusColor extends Model
                 join ordered o on o.name = oc.name
             order by lvl;
         SQL));
+
+        return self::with("ordinarium")
+            ->get()
+            ->sortBy(fn ($oc) => $ordered->firstWhere("name", $oc->name)->lvl);
     }
     #endregion
 }
