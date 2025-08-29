@@ -65,7 +65,8 @@ class OrdinariusColor extends Model
 
         return self::with("ordinarium")
             ->get()
-            ->sortBy(fn ($oc) => $ordered->firstWhere("name", $oc->name)->lvl);
+            ->sortBy(fn ($oc) => $ordered->firstWhere("name", $oc->name)->lvl)
+            ->values();
     }
     #endregion
 }
