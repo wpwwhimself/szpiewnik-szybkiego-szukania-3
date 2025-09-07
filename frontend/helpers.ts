@@ -12,8 +12,8 @@ export function slugAndDePL(string: string): string{
     .replace(/[Śś]/g, "s")
     .replace(/[ŹŻźż]/g, "z")
     .toLocaleLowerCase()
-    .replace(/-/g, "")
     .replace(/ +/g, "-")
+    .replace(/-+/g, "-")
     .replace(/[,:\(\)]/g, "")
 }
 

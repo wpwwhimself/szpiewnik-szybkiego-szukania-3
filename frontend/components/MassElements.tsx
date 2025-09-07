@@ -140,7 +140,7 @@ export function OrdinariumProcessor({code, colorCode, formula}: OrdinariumProces
   const [ordinarium, setOrdinarium] = useState([] as OrdinariumProps[]);
   const [aspersionSongs, setAspersionSongs] = useState([] as SongProps[]);
   const [aspersionSongVisible, setAspersionSongVisible] = useState(-1); // -1: off, 0+: index of a song
-  
+
   const isAspersionSongVisible = () => aspersionSongVisible > -1;
   const toggleAspersionSongVisible = () => isAspersionSongVisible()
     ? setAspersionSongVisible(-1)
@@ -161,6 +161,12 @@ export function OrdinariumProcessor({code, colorCode, formula}: OrdinariumProces
       .then(res => setAspersionSongs(res.data.songs));
   }, []);
   if(ordinarium.length === 0) return <h2>Wczytuję...</h2>;
+
+  console.log(
+    code.substring(1),
+    slugAndDePL(code.substring(1)),
+    slugAndDePL("Bla bla bla - bla (bla)"),
+  );
 
   const parts = ordinarium.filter(el => [colorCode, "*", formula].includes(el.color_code) && el.part === slugAndDePL(code.substring(1)));
   switch(code.substring(1)){
@@ -210,7 +216,7 @@ export function OrdinariumProcessor({code, colorCode, formula}: OrdinariumProces
                     Pieśni
                   </Button>
                 </div>
-                
+
                 {isAspersionSongVisible() && <div>
                   <div className="flex-right center">
                   {aspersionSongs.map((song, i) =>
