@@ -429,6 +429,15 @@ label{
 	width: -moz-fit-content;
 	width: fit-content;
 	margin-bottom: 10px;
+
+    &.lettered {
+        list-style-type: none;
+
+        & > .letter {
+            position: absolute;
+            margin-left: -1em;
+        }
+    }
 }
 .chorus{
   font-weight: bold;

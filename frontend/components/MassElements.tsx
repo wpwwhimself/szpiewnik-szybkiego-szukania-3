@@ -38,10 +38,11 @@ export function SongLyrics({lyrics, forceLyricsVariant}: {lyrics: string | strin
   const render_variants = Array.isArray(lyrics) && lyrics.length > 1;
   const lyrics_ready = Array.isArray(lyrics) ? lyrics[forceLyricsVariant ?? variant] ?? lyrics[0] : lyrics;
 
-  const lyrics_processed = lyrics_ready?.replace(/(\*\*|--)\s*\r?\n/g, '</span><br>')
+  const lyrics_processed = lyrics_ready?.replace(/(\*\*|--|>>)\s*\r?\n/g, '</span><br>')
     .replace(/\*\s*\r?\n/g, `<span class="chorus">`)
-    .replace(/-\s*\r?\n/g, `<span class="tabbed">`)
+    .replace(/[->]\s*\r?\n/g, `<span class="tabbed">`)
     .replace(/_(.{1,5})_/g, '<u>$1</u>')
+    .replace(/([A-Z]+)\.\s*\r?\n/g, "<li class='lettered'><span class='letter'>$1.</span>")
     .replace(/(\d+)\.\s*\r?\n/g, "<li value='$1'>")
     .replace(/\s*\r?\n/g, "<br />");
 
