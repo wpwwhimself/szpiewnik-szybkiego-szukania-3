@@ -179,7 +179,7 @@ export function MassSet(){
                 return(
                     <MassElemSection id={el.code} key={i} notes={notesForCurrentUser?.find(n => n.set_id === set_id && n.element_code === el.code)?.content}>
                         <h1>{el.label}</h1>
-                        <div className="grid-2 but-mobile-down">
+                        <div className="notes-and-lyrics-container">
                             <div>
                                 {isNotWielkiPostAklamacja && <SheetMusicRender notes={part.sheet_music_variants} />}
                                 {formulaPart && <SheetMusicRender notes={formulaPart.sheet_music_variants} />}
