@@ -163,13 +163,8 @@ export function OrdinariumProcessor({code, colorCode, formula}: OrdinariumProces
   }, []);
   if(ordinarium.length === 0) return <h2>Wczytuję...</h2>;
 
-  console.log(
-    code.substring(1),
-    slugAndDePL(code.substring(1)),
-    slugAndDePL("Bla bla bla - bla (bla)"),
-  );
-
-  const parts = ordinarium.filter(el => [colorCode, "*", formula].includes(el.color_code) && el.part === slugAndDePL(code.substring(1)));
+  const parts = ordinarium.filter(el => [colorCode, "*", formula].includes(el.color_code) && el.part === slugAndDePL(code.substring(1)))
+    .flatMap(o => o.sheet_music_variants);
   switch(code.substring(1)){
     case "Kyrie":
       return(
@@ -240,13 +235,17 @@ export function OrdinariumProcessor({code, colorCode, formula}: OrdinariumProces
           <p className="ksiadz">Niech się zmiłuje nad nami Bóg Wszechmogący i, odpuściwszy nam grzechy, doprowadzi nas do życia wiecznego...</p>
 
           <h1>Kyrie</h1>
-          {parts.map((part, i) => <SheetMusicRender notes={part.sheet_music} key={i} />)}
-          <div className="lyrics">
-            <p>
-              Panie, zmiłuj się nad nami<br />
-              Chryste, zmiłuj się nad nami<br />
-              Panie, zmiłuj się nad nami
-            </p>
+          <div className="notes-and-lyrics-container">
+            <div>
+              <SheetMusicRender notes={parts} />
+            </div>
+            <div className="lyrics">
+              <p>
+                Panie, zmiłuj się nad nami<br />
+                Chryste, zmiłuj się nad nami<br />
+                Panie, zmiłuj się nad nami
+              </p>
+            </div>
           </div>
         </>
       )
@@ -254,28 +253,32 @@ export function OrdinariumProcessor({code, colorCode, formula}: OrdinariumProces
       return(
         <>
           <h1>Gloria</h1>
-          {parts.map((part, i) => <SheetMusicRender notes={part.sheet_music} key={i} />)}
-          <div className="lyrics">
-            <p>
-              Chwała na wysokości Bogu<br />
-              A na ziemi pokój ludziom dobrej woli<br />
-              Chwalimy Cię • Błogosławimy Cię<br />
-              Wielbimy Cię • Wysławiamy Cię<br />
-              Dzięki Ci składamy • Bo wielka jest chwała Twoja
-            </p>
-            <p>
-              Panie Boże, królu nieba • Boże, Ojcze wszechmogący<br />
-              Panie, Synu jednorodzony • Jezu Chryste<br />
-              Panie Boże, Baranku Boży • Synu Ojca<br />
-              Który gładzisz grzechy świata • Zmiłuj się nad nami<br />
-              Który gładzisz grzechy świata • Przyjm błagania nasze<br />
-              Który siedzisz po prawicy Ojca • Zmiłuj się nad nami
-            </p>
-            <p>
-              Albowiem tylko Tyś jest święty • Tylko Tyś jest Panem<br />
-              Tylko Tyś najwyższy • Jezu Chryste<br />
-              Z Duchem Świętym, w chwale Boga Ojca, amen
-            </p>
+          <div className="notes-and-lyrics-container">
+            <div>
+              <SheetMusicRender notes={parts} />
+            </div>
+            <div className="lyrics">
+              <p>
+                Chwała na wysokości Bogu<br />
+                A na ziemi pokój ludziom dobrej woli<br />
+                Chwalimy Cię • Błogosławimy Cię<br />
+                Wielbimy Cię • Wysławiamy Cię<br />
+                Dzięki Ci składamy • Bo wielka jest chwała Twoja
+              </p>
+              <p>
+                Panie Boże, królu nieba • Boże, Ojcze wszechmogący<br />
+                Panie, Synu jednorodzony • Jezu Chryste<br />
+                Panie Boże, Baranku Boży • Synu Ojca<br />
+                Który gładzisz grzechy świata • Zmiłuj się nad nami<br />
+                Który gładzisz grzechy świata • Przyjm błagania nasze<br />
+                Który siedzisz po prawicy Ojca • Zmiłuj się nad nami
+              </p>
+              <p>
+                Albowiem tylko Tyś jest święty • Tylko Tyś jest Panem<br />
+                Tylko Tyś najwyższy • Jezu Chryste<br />
+                Z Duchem Świętym, w chwale Boga Ojca, amen
+              </p>
+            </div>
           </div>
         </>
       )
@@ -284,35 +287,39 @@ export function OrdinariumProcessor({code, colorCode, formula}: OrdinariumProces
         <>
           <p className="ksiadz">Złóżmy wyznanie wiary:</p>
           <h1>Credo</h1>
-          {parts.map((part, i) => <SheetMusicRender notes={part.sheet_music} key={i} />)}
-          <table className="credo"><tbody>
-            <tr><td>Wierzę w jednego Boga, Ojca wszechmogącego, Stworzyciela nieba i ziemi</td></tr>
-            <tr><td>Wszystkich rzeczy widzialnych i niewidzialnych</td></tr>
-            <tr><td>I w jednego Pana Jezusa Chrystusa, Syna bożego Jednorodzonego</td></tr>
-            <tr><td>Który z Ojca jest zrodzony przed wszystkimi wiekami</td></tr>
-            <tr><td>Bóg z Boga, światłość ze światłości</td></tr>
-            <tr><td>Bóg prawdziwy z Boga prawdziwego</td></tr>
-            <tr><td>Zrodzony a nie stworzony, współistotny Ojcu</td></tr>
-            <tr><td>A przez niego wszystko się stało</td></tr>
-            <tr><td>On to dla nas ludzi i dla naszego zbawienia</td></tr>
-            <tr><td>Zstąpił z nieba</td></tr>
-            <tr><td>I za sprawą Ducha świętego</td></tr>
-            <tr><td>Przyjął ciało z Maryi Dziewicy i stał się człowiekiem</td></tr>
-            <tr><td>Ukrzyżowany również za nas</td></tr>
-            <tr><td>Pod Poncjuszem Piłatem został umęczony i pogrzebany</td></tr>
-            <tr><td>I zmartwychwstał dnia trzeciego, jak oznajmia pismo</td></tr>
-            <tr><td>I wstąpił do nieba, siedzi po prawicy Ojca</td></tr>
-            <tr><td>I powtórnie przyjdzie w chwale sądzić żywych i umarłych</td></tr>
-            <tr><td>A królestwu jego nie będzie końca</td></tr>
-            <tr><td>Wierzę w Ducha Świętego, Pana i Ożywiciela</td></tr>
-            <tr><td>Który od ojca i syna pochodzi</td></tr>
-            <tr><td>Który z ojcem i synem wspólnie odbiera uwielbienie i chwałę</td></tr>
-            <tr><td>Który mówił przez proroków</td></tr>
-            <tr><td>Wierzę w jeden, święty, powszechny i apostolski kościół</td></tr>
-            <tr><td>Wyznaję jeden chrzest na odpuszczenie grzechów</td></tr>
-            <tr><td>I oczekuję wskrzeszenia umarłych</td></tr>
-            <tr><td>I życia wiecznego w przyszłym świecie, amen</td></tr>
-          </tbody></table>
+          <div className="notes-and-lyrics-container">
+            <div>
+              <SheetMusicRender notes={parts} />
+            </div>
+            <table className="credo"><tbody>
+              <tr><td>Wierzę w jednego Boga, Ojca wszechmogącego, Stworzyciela nieba i ziemi</td></tr>
+              <tr><td>Wszystkich rzeczy widzialnych i niewidzialnych</td></tr>
+              <tr><td>I w jednego Pana Jezusa Chrystusa, Syna bożego Jednorodzonego</td></tr>
+              <tr><td>Który z Ojca jest zrodzony przed wszystkimi wiekami</td></tr>
+              <tr><td>Bóg z Boga, światłość ze światłości</td></tr>
+              <tr><td>Bóg prawdziwy z Boga prawdziwego</td></tr>
+              <tr><td>Zrodzony a nie stworzony, współistotny Ojcu</td></tr>
+              <tr><td>A przez niego wszystko się stało</td></tr>
+              <tr><td>On to dla nas ludzi i dla naszego zbawienia</td></tr>
+              <tr><td>Zstąpił z nieba</td></tr>
+              <tr><td>I za sprawą Ducha świętego</td></tr>
+              <tr><td>Przyjął ciało z Maryi Dziewicy i stał się człowiekiem</td></tr>
+              <tr><td>Ukrzyżowany również za nas</td></tr>
+              <tr><td>Pod Poncjuszem Piłatem został umęczony i pogrzebany</td></tr>
+              <tr><td>I zmartwychwstał dnia trzeciego, jak oznajmia pismo</td></tr>
+              <tr><td>I wstąpił do nieba, siedzi po prawicy Ojca</td></tr>
+              <tr><td>I powtórnie przyjdzie w chwale sądzić żywych i umarłych</td></tr>
+              <tr><td>A królestwu jego nie będzie końca</td></tr>
+              <tr><td>Wierzę w Ducha Świętego, Pana i Ożywiciela</td></tr>
+              <tr><td>Który od ojca i syna pochodzi</td></tr>
+              <tr><td>Który z ojcem i synem wspólnie odbiera uwielbienie i chwałę</td></tr>
+              <tr><td>Który mówił przez proroków</td></tr>
+              <tr><td>Wierzę w jeden, święty, powszechny i apostolski kościół</td></tr>
+              <tr><td>Wyznaję jeden chrzest na odpuszczenie grzechów</td></tr>
+              <tr><td>I oczekuję wskrzeszenia umarłych</td></tr>
+              <tr><td>I życia wiecznego w przyszłym świecie, amen</td></tr>
+            </tbody></table>
+          </div>
         </>
       )
     case "Sanctus":
@@ -340,20 +347,24 @@ export function OrdinariumProcessor({code, colorCode, formula}: OrdinariumProces
           <p className="ksiadz">Zaprawdę godne to i sprawiedliwe... ...jednym głosem wołając:</p>
 
           <h1>Sanctus</h1>
-          {parts.map((part, i) => <SheetMusicRender notes={part.sheet_music} key={i} />)}
-          <div className="lyrics">
-            <p>
-              Święty, Święty, Święty<br />
-              Pan Bóg zastępów<br />
-              Pełne są niebiosa<br />
-              I ziema chwały Twojej<br />
-              Hosanna na wysokości
-            </p>
-            <p>
-              Błogosławiony<br />
-              Który idzie w imię Pańskie<br />
-              Hosanna na wysokości
-            </p>
+          <div className="notes-and-lyrics-container">
+            <div>
+              <SheetMusicRender notes={parts} />
+            </div>
+            <div className="lyrics">
+              <p>
+                Święty, Święty, Święty<br />
+                Pan Bóg zastępów<br />
+                Pełne są niebiosa<br />
+                I ziema chwały Twojej<br />
+                Hosanna na wysokości
+              </p>
+              <p>
+                Błogosławiony<br />
+                Który idzie w imię Pańskie<br />
+                Hosanna na wysokości
+              </p>
+            </div>
           </div>
         </>
       )
@@ -362,22 +373,26 @@ export function OrdinariumProcessor({code, colorCode, formula}: OrdinariumProces
         <>
           <p className="ksiadz">Nazywamy się dziećmi Bożymi i nimi jesteśmy, dlatego ośmielamy się mówić:</p>
           <h1>Pater Noster</h1>
-          {parts.map((part, i) => <SheetMusicRender notes={part.sheet_music} key={i} />)}
-          <div className="lyrics">
-            <p>
-              Ojcze nasz, któryś jest w niebie<br />
-              Święć się, imię Twoje<br />
-              Przyjdź Królestwo Twoje<br />
-              Bądź wola Twoja<br />
-              Jako w niebie, tak i na ziemi
-            </p>
-            <p>
-              Chleba naszego powszedniego daj nam dzisiaj<br />
-              I odpuść nam nasze winy<br />
-              Jako i my odpuszczamy naszem winowajcom<br />
-              I nie wódź nas na pokuszenie<br />
-              Ale nas zbaw ode złego
-            </p>
+          <div className="notes-and-lyrics-container">
+            <div>
+              <SheetMusicRender notes={parts} />
+            </div>
+            <div className="lyrics">
+              <p>
+                Ojcze nasz, któryś jest w niebie<br />
+                Święć się, imię Twoje<br />
+                Przyjdź Królestwo Twoje<br />
+                Bądź wola Twoja<br />
+                Jako w niebie, tak i na ziemi
+              </p>
+              <p>
+                Chleba naszego powszedniego daj nam dzisiaj<br />
+                I odpuść nam nasze winy<br />
+                Jako i my odpuszczamy naszem winowajcom<br />
+                I nie wódź nas na pokuszenie<br />
+                Ale nas zbaw ode złego
+              </p>
+            </div>
           </div>
           <Antiphon
             call="Wybaw nas, Panie, od zła wszelkiego... ...naszego Zbawiciela, Jezusa Chrystusa"
@@ -396,23 +411,27 @@ export function OrdinariumProcessor({code, colorCode, formula}: OrdinariumProces
           <p className="ksiadz">Przekażcie sobie znak pokoju:</p>
 
           <h1>Agnus Dei</h1>
-          {parts.map((part, i) => <SheetMusicRender notes={part.sheet_music} key={i} />)}
-          <div className="lyrics">
-            <p>
-              Baranku Boży<br />
-              Który gładzisz grzechy świata<br />
-              Zmiłuj się nad nami
-            </p>
-            <p>
-              Baranku Boży<br />
-              Który gładzisz grzechy świata<br />
-              Zmiłuj się nad nami
-            </p>
-            <p>
-              Baranku Boży<br />
-              Który gładzisz grzechy świata<br />
-              Obdarz nas pokojem
-            </p>
+          <div className="notes-and-lyrics-container">
+            <div>
+              <SheetMusicRender notes={parts} />
+            </div>
+            <div className="lyrics">
+              <p>
+                Baranku Boży<br />
+                Który gładzisz grzechy świata<br />
+                Zmiłuj się nad nami
+              </p>
+              <p>
+                Baranku Boży<br />
+                Który gładzisz grzechy świata<br />
+                Zmiłuj się nad nami
+              </p>
+              <p>
+                Baranku Boży<br />
+                Który gładzisz grzechy świata<br />
+                Obdarz nas pokojem
+              </p>
+            </div>
           </div>
         </>
       )

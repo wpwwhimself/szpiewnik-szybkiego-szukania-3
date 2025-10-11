@@ -91,17 +91,21 @@ export function SongRender({song, title, forceLyricsVariant, dontHideEditBtns = 
             }
         </div>
         {noteForCurrentUser && <div className="notes ghost">{noteForCurrentUser.content}</div>}
-        <div>
-            {songSong?.sheet_music_variants && <SheetMusicRender notes={songSong.sheet_music_variants} />}
-            {transposerOn && <div className="transposer-panel flex-right center wrap">
-                <label>Transponuj:</label>
-                <Button onClick={() => transpose("up")}>+</Button>
-                <Button onClick={() => transpose("down")}>-</Button>
-                {/* <Button onClick={() => {}}>♯/♭</Button> */}
-                <Button onClick={() => restore()}>↺</Button>
-                <Button onClick={() => setTransposerOn(false)}>OK</Button>
-            </div>}
-            {songSong?.lyrics && <SongLyrics lyrics={songSong.lyrics_variants} forceLyricsVariant={forceLyricsVariant} />}
+        <div className="notes-and-lyrics-container">
+            <div>
+                {songSong?.sheet_music_variants && <SheetMusicRender notes={songSong.sheet_music_variants} />}
+                {transposerOn && <div className="transposer-panel flex-right center wrap">
+                    <label>Transponuj:</label>
+                    <Button onClick={() => transpose("up")}>+</Button>
+                    <Button onClick={() => transpose("down")}>-</Button>
+                    {/* <Button onClick={() => {}}>♯/♭</Button> */}
+                    <Button onClick={() => restore()}>↺</Button>
+                    <Button onClick={() => setTransposerOn(false)}>OK</Button>
+                </div>}
+            </div>
+            <div>
+                {songSong?.lyrics && <SongLyrics lyrics={songSong.lyrics_variants} forceLyricsVariant={forceLyricsVariant} />}
+            </div>
         </div>
         <div className={`${!dontHideEditBtns ? "show-after-click" : ""} flex-right center wrap`}>
             {songSong && <>
