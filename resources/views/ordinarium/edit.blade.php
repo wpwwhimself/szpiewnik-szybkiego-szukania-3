@@ -49,7 +49,7 @@ function render(noteInput){
     sheet,
     {
       responsive: "resize",
-      // germanAlphabet: true, // zmienia B -> H w akordach, bezużyteczne
+      jazzchords: true,
     }
   );
 }

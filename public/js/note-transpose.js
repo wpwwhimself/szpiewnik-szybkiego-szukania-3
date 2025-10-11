@@ -165,9 +165,9 @@ function Hoch(noteInput, e = undefined) {
                 else {
                     Haukommaingriffweg[m] = Haukommaingriffweg[m].replace(/'/g, "");
                     Haukommaingriffweg[m] = Haukommaingriffweg[m].replace(/,/g, "");
-                    // Doof = Haukommaingriffweg[m].split(""); // Damit Gitarrengriffe immer groß anfangen
-                    // Doof[0] = Doof[0].toUpperCase();
-                    // Haukommaingriffweg[m] = Doof.join("");
+                    Doof = Haukommaingriffweg[m].split(""); // Damit Gitarrengriffe immer groß anfangen
+                    Doof[0] = Doof[0].toUpperCase();
+                    Haukommaingriffweg[m] = Doof.join("");
 
                     // fix non-transposable symbols
                     Haukommaingriffweg[m] = Haukommaingriffweg[m].replace(/mbj/g, "maj");
@@ -365,9 +365,9 @@ function Runter(noteInput, e = undefined) {
                 else {
                     Haukommaingriffweg[m] = Haukommaingriffweg[m].replace(/'/g, "");
                     Haukommaingriffweg[m] = Haukommaingriffweg[m].replace(/,/g, "");
-                    // Doof = Haukommaingriffweg[m].split(""); // Damit Gitarrengriffe immer groß anfangen
-                    // Doof[0] = Doof[0].toUpperCase();
-                    // Haukommaingriffweg[m] = Doof.join("");
+                    Doof = Haukommaingriffweg[m].split(""); // Damit Gitarrengriffe immer groß anfangen
+                    Doof[0] = Doof[0].toUpperCase();
+                    Haukommaingriffweg[m] = Doof.join("");
 
                     // fix non-transposable symbols
                     Haukommaingriffweg[m] = Haukommaingriffweg[m].replace(/mgj/g, "maj");
