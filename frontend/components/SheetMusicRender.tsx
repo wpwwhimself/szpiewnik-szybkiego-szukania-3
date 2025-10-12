@@ -5,9 +5,10 @@ import moment from "moment";
 
 interface SMRProps{
     notes: string | string[] | null,
+    transpose?: number;
 }
 
-export function SheetMusicRender({notes}: SMRProps){
+export function SheetMusicRender({notes, transpose}: SMRProps){
     const this_id = Date.now() + Math.random();
 
     const engraverParams = {
@@ -35,6 +36,7 @@ export function SheetMusicRender({notes}: SMRProps){
             {
                 responsive: "resize",
                 jazzchords: true,
+                visualTranspose: transpose || 0,
             }
         );
     }
@@ -50,7 +52,7 @@ export function SheetMusicRender({notes}: SMRProps){
         changeVariant(new_variant);
     }
 
-    useEffect(() => render(), [notes_ready]);
+    useEffect(() => render(), [notes_ready, transpose]);
 
     return(<>
         {render_variants &&
