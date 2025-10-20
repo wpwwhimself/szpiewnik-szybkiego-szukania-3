@@ -36,6 +36,7 @@ export function SheetMusicRender({notes, transpose}: SMRProps){
             {
                 responsive: "resize",
                 jazzchords: true,
+                germanAlphabet: true,
                 visualTranspose: transpose || 0,
             }
         );

@@ -50,6 +50,7 @@ function render(noteInput){
     {
       responsive: "resize",
       jazzchords: true,
+      germanAlphabet: true,
     }
   );
 }

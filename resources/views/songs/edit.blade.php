@@ -103,6 +103,7 @@
       {
         responsive: "resize",
         jazzchords: true,
+        germanAlphabet: true,
       }
     );
   }
