@@ -1,4 +1,6 @@
-@extends("layout")
+@extends("layouts.shipyard.admin")
+@section("title", $ordinarius ?? "Nowa część stała")
+@section("subtitle", "Edycja części stałej")
 
 @section("content")
 
@@ -12,12 +14,12 @@
     @foreach ($ordinarius->sheet_music_variants as $var_no => $notes)
         <div class="variant-container">
             <x-input type="TEXT" name="sheet_music[]" :var-no="$var_no" label="Nuty" value="{!! $notes !!}" />
-            <div id="note-transpose-{{ $var_no }}" class="flex-right center wrap">
+            <div id="note-transpose-{{ $var_no }}" class="flex right center wrap">
                 <x-button name="up">♪+</x-button>
                 <x-button name="down">♪-</x-button>
             </div>
             <div id="sheet-music-container-{{ $var_no }}"></div>
-            <div class="flex-right stretch">
+            <div class="flex right stretch">
                 <x-button id="remove-variant" :var-no="$var_no">Usuń wariant</x-button>
             </div>
             <hr>
@@ -33,7 +35,7 @@
     <input type="hidden" name="color_code" value="{{ $ordinarius->color_code }}" />
     <input type="hidden" name="part" value="{{ $ordinarius->part }}" />
 
-    <div class="flex-right stretch">
+    <div class="flex right stretch">
         <x-button id="addVariantButton">Dodaj wariant</x-button>
         <x-button type="submit">Zatwierdź i wróć</x-button>
     </div>

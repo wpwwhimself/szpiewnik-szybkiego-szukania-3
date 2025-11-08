@@ -436,8 +436,9 @@ export function MassSet(){
     const current_color = ordinarius_colors.find(el => el.name === set.color);
 
     return(<>
-        <div className="flex-right center wrap settings">
-            <Button onClick={() => colorOn()} style={{ backgroundColor: current_color?.display_color ?? current_color?.name ?? 'none' }}>
+        <div className="flex right center wrap settings">
+            <Button onClick={() => colorOn()}>
+                <span style={{ color: current_color?.display_color ?? current_color?.name ?? 'none' }}>⬤</span>
                 {current_color?.display_name ?? current_color?.name ?? 'Kolor cz. st.'}
             </Button>
             <Button onClick={() => jumperOn()}>»</Button>
@@ -454,19 +455,17 @@ export function MassSet(){
             <h1>Kolor części stałych</h1>
 
             <div className="scroll-list">
-                <div className="flex-right center wrap">
+                <div className="flex right center wrap">
                     {ordinarius_colors.map((color, i) =>
-                        <Button key={i}
-                            style={{ backgroundColor: color.display_color ?? undefined }}
-                            onClick={() => setColor(color)}
-                        >
+                        <Button key={i} onClick={() => setColor(color)}>
+                            <span style={{ color: color.display_color ?? color.name ?? 'none' }}>⬤</span>
                             {color.display_name}
                         </Button>
                     )}
                 </div>
             </div>
 
-            <div className="flex-right stretch">
+            <div className="flex right stretch">
                 <Button onClick={() => colorOn()}>Anuluj</Button>
                 <Button onClick={() => randomizeColor()}>Losowo</Button>
             </div>
@@ -476,7 +475,7 @@ export function MassSet(){
             <h1>Przejdź do</h1>
 
             <div>
-                <div className="flex-right center wrap">
+                <div className="flex right center wrap">
                 {set.thisMassOrder
                     .map((el, i) =>
                     <Button key={i}
@@ -492,7 +491,7 @@ export function MassSet(){
                 </div>
             </div>
 
-            <div className="flex-right stretch">
+            <div className="flex right stretch">
                 <Button onClick={() => jumperOn()}>Anuluj</Button>
             </div>
         </div>
@@ -512,7 +511,7 @@ export function MassSet(){
             <div className="scroll-list">
                 <h2>Filtry</h2>
                 <div id="filters" className="grid-2">
-                    <div className="flex-right center wrap">
+                    <div className="flex right center wrap">
                     {categories.map((el, i) =>
                         <Button key={i}
                             onClick={() => toggleFilters(el.id)}
@@ -523,7 +522,7 @@ export function MassSet(){
                     )}
                         <Button onClick={() => toggleFilters(null)}>{adderFilters.categories.length > 0 ? "×" : "⁂"}</Button>
                     </div>
-                    <div className="flex-right center wrap">
+                    <div className="flex right center wrap">
                     {preferences.map((el, i, ar) =>
                         <Button key={i}
                             onClick={() => toggleFilters(ar.indexOf(el), true)}
@@ -537,7 +536,7 @@ export function MassSet(){
                 </div>
 
                 <h2>Specjalne</h2>
-                <div className="flex-right center wrap">
+                <div className="flex right center wrap">
                     {[
                         { code: "xExposition", label: "Wystawienie Najświętszego Sakramentu" },
                         { code: "xLorette", label: "Litania Loretańska" },
@@ -558,7 +557,7 @@ export function MassSet(){
                 </div>
 
                 <h2>Pieśni</h2>
-                <div id="song-list" className="flex-right center wrap">
+                <div id="song-list" className="flex right center wrap">
                 {songs.filter(el => adderFilters.categories.includes(el.song_category_id))
                     .filter(el => {
                         if(adderFilters.preferences.length === 0){
@@ -579,7 +578,7 @@ export function MassSet(){
                 </div>
             </div>
 
-            <div className="flex-right stretch">
+            <div className="flex right stretch">
                 <Button onClick={() => addModeOn()}>Anuluj</Button>
                 {addCollector.song && addCollector.before && <Button onClick={() => addModeOn(undefined, true)}>Dodaj</Button>}
             </div>
@@ -588,24 +587,24 @@ export function MassSet(){
         <div id="setNoteEditor" className="modal">
             <h1>Edytuj notatkę</h1>
 
-            <div className="flex-right center">
+            <div className="flex right center">
                 <div className="scroll-list">
                     <h2>dla cz. zestawu: {setNoteElement?.label}</h2>
-                    <div className="flex-right center wrap">
+                    <div className="flex right center wrap">
                         <textarea value={setNoteContent} onChange={(e) => setSetNoteContent(e.target.value)} />
                     </div>
                 </div>
                 {songNoteIsEdited &&
                 <div className="scroll-list">
                     <h2>dla pieśni: {setNoteElement?.content}</h2>
-                    <div className="flex-right center wrap">
+                    <div className="flex right center wrap">
                         <textarea value={songNoteContent} onChange={(e) => setSongNoteContent(e.target.value)} />
                     </div>
                 </div>}
             </div>
 
 
-            <div className="flex-right stretch">
+            <div className="flex right stretch">
                 <Button onClick={() => editSetNoteOn()}>Anuluj</Button>
                 <Button onClick={() => submitSetNote()}>Zatwierdź</Button>
             </div>
@@ -614,7 +613,7 @@ export function MassSet(){
         <div id="placer" className="modal">
             <h1>Zmień miejsce</h1>
 
-            <div className="flex-right center wrap">
+            <div className="flex right center wrap">
                 <a href="?">
                     <Button>domyślne</Button>
                 </a>
@@ -626,7 +625,7 @@ export function MassSet(){
             </div>
 
             <h2>Wymaga przeładowania, utracisz wprowadzone zmiany!</h2>
-            <div className="flex-right stretch">
+            <div className="flex right stretch">
                 <Button onClick={() => placerOn()}>Anuluj</Button>
             </div>
         </div>
@@ -636,20 +635,20 @@ export function MassSet(){
 
             <pre>{currentPlace.notes}</pre>
 
-            <div className="flex-right stretch">
+            <div className="flex right stretch">
                 <Button onClick={() => placeNotesOn()}>Zamknij</Button>
             </div>
         </div>}
 
-        <div className="flex-down">
+        <div className="flex down">
             <MModContext.Provider value={MMod}>
             <ShowLyricsContext.Provider value={showLyrics}>
                 <MassElemSection id="summary" uneresable>
                     <h1>Skrót</h1>
-                    <div className="flex-right but-mobile-down center vert-baseline" style={{ textAlign: "left", }}>
+                    <div className="flex right but-mobile-down center vert-baseline" style={{ textAlign: "left", }}>
                         <div>
                             <h2>Meta</h2>
-                            <div className="flex-down center">
+                            <div className="flex down center">
                                 <DummyInput label="Formuła" value={set.formula} />
                                 <DummyInput label="Utworzony" value={moment(set.created_at).format("DD.MM.YYYY")} />
                                 <DummyInput label="Zmodyfikowany" value={moment(set.updated_at).format("DD.MM.YYYY")} />

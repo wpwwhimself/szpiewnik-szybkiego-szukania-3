@@ -14,11 +14,11 @@ export function MassElemSection({id, uneresable = false, notes = undefined, chil
 
   return(
     <section id={id} className="massElemSection">
-      <div className="massElemEditorElement show-after-click massElemEraser flex-right">
+      <div className="massElemEditorElement show-after-click massElemEraser flex right">
         {is_communion && <Button onClick={() => document.getElementById("sAdoration")?.scrollIntoView({behavior: "smooth", block: "center"})}>»U</Button>}
         {!uneresable && <Button onClick={() => MMod.eraseMassElem(id)}>×</Button>}
       </div>
-      <div className="massElemEditorElement show-after-click massElemAdder flex-right">
+      <div className="massElemEditorElement show-after-click massElemAdder flex right">
         <Button onClick={() => MMod.addMassElem(id)}>+</Button>
         {id !== "summary" && <Button onClick={() => MMod.editSetNote(id)}>Nt</Button>}
       </div>
@@ -49,7 +49,7 @@ export function SongLyrics({lyrics, forceLyricsVariant}: {lyrics: string | strin
   return showLyrics
     ? <>
       {render_variants && forceLyricsVariant === undefined &&
-        <div className="flex-right center">
+        <div className="flex right center">
         {lyrics.map((var_lyrics, var_no) =>
           <Button key={var_no}
             className={[variant === var_no && 'accent-border', 'sleek'].filter(Boolean).join(" ")}
@@ -92,7 +92,7 @@ export function PsalmLyrics({lyrics}: {lyrics: string | null}){
 
   return(<>
     {render_variants &&
-      <div className="flex-right center">
+      <div className="flex right center">
       {lyrics_split.map((var_lyrics, var_no) =>
         <Button key={var_no}
           className={[variant === var_no && 'accent-border', 'sleek'].filter(Boolean).join(" ")}
@@ -115,7 +115,7 @@ export function Antiphon({call, resp, respMelody}: {call: string, resp: string, 
   }
 
   return(
-    <div className="flex-right antyfona">
+    <div className="flex right antyfona">
       <div className="ksiadz">{call}</div>
       <div>→</div>
       <div className="wierni-container">
@@ -204,7 +204,7 @@ export function OrdinariumProcessor({code, colorCode, formula}: OrdinariumProces
                 />
               </div>
               <div className="alt_option">
-                <div className="flex-right" style={{ justifyContent: "space-between" }}>
+                <div className="flex right" style={{ justifyContent: "space-between" }}>
                   <i>Aspersja</i>
                   <Button onClick={() => toggleAspersionSongVisible()}
                     className={[`sleek`, isAspersionSongVisible() && 'accent-border'].filter(Boolean).join(" ")}
@@ -214,7 +214,7 @@ export function OrdinariumProcessor({code, colorCode, formula}: OrdinariumProces
                 </div>
 
                 {isAspersionSongVisible() && <div>
-                  <div className="flex-right center">
+                  <div className="flex right center">
                   {aspersionSongs.map((song, i) =>
                     <Button key={i}
                       className={['sleek', aspersionSongVisible === i && 'accent-border'].filter(Boolean).join(" ")}
@@ -687,7 +687,7 @@ export function ExtrasProcessor({elem}: {elem: MassElem}){
       return(
         <>
           <h1>Modlitwa do Michała Archanioła</h1>
-          <div className="flex-right center wrap">
+          <div className="flex right center wrap">
             <DummyInput label="Numer w śpiewniku Preis" value={601} />
           </div>
           <p>
@@ -752,7 +752,7 @@ export function ExtrasProcessor({elem}: {elem: MassElem}){
         <>
           <h1>Gorzkie żale</h1>
 
-          <div className="flex-right center">
+          <div className="flex right center">
           {[0, 1, 2].map(var_no =>
             <Button key={var_no}
               className={[variant === var_no && 'accent-border'].filter(Boolean).join(" ")}

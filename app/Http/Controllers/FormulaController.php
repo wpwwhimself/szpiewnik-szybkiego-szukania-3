@@ -59,17 +59,17 @@ class FormulaController extends Controller
             $response = "Formuła usunięta";
         }
 
-        return redirect()->route("formulas")->with("success", $response);
+        return redirect()->route("formulas")->with("toast", ["success", $response]);
     }
 
     public function formulaAdd(){
-        if(Auth::user()?->clearance->id < 3) return back()->with("error", "Nie masz uprawnień do utworzenia formuł");
+        if(!Auth::user()?->hasRole("formula-manager")) return back()->with("toast", ["error", "Nie masz uprawnień do utworzenia formuł"]);
 
         $new_formula_name = "--Nowa formuła--";
         if(!Formula::where("name", $new_formula_name)->count()) Formula::insert([
             "name" => $new_formula_name,
         ]);
 
-        return redirect()->route("formula", ["name_slug" => Str::slug($new_formula_name)])->with("success", "Szablon utworzony, dodaj formułę");
+        return redirect()->route("formula", ["name_slug" => Str::slug($new_formula_name)])->with("toast", ["success", "Szablon utworzony, dodaj formułę"]);
     }
 }

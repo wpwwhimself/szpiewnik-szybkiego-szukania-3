@@ -1,4 +1,5 @@
-@extends("layout")
+@extends("layouts.shipyard.admin")
+@section("title", "Miejsca")
 
 @section("content")
 
@@ -9,13 +10,15 @@
     jakie będzie się wyświetlać przy otwieraniu zestawów.
 </p>
 
-@if (Auth::user()?->clearance->id >= 1)
-<a href="{{ route('place-add') }}" class="flex-right stretch">
-    <x-button>Dodaj nowe</x-button>
-</a>
+@if (Auth::user()?->hasRole("place-manager"))
+<x-shipyard.ui.button
+    :action="route('place-add')"
+    label="Dodaj nowe"
+    icon="plus"
+/>
 @endif
 
-<div class="flex-right center wrap">
+<div class="flex right center wrap">
 @foreach ($places as $place)
     <a href="{{ route('place', ['name_slug' => Str::slug($place->name)]) }}">
         {{ $place->name }}

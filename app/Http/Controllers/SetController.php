@@ -116,7 +116,7 @@ class SetController extends Controller
             $response = "Msza usunięta";
         }
 
-        return redirect()->route("sets")->with("success", $response);
+        return redirect()->route("sets")->with("toast", ["success", $response]);
     }
 
     public function setAdd(){
@@ -130,7 +130,7 @@ class SetController extends Controller
 
         ChangeController::add($new_set, "utworzono");
 
-        return redirect()->route("set", ["set_id" => $new_set])->with("success", "Szablon utworzony, dodaj mszę");
+        return redirect()->route("set", ["set_id" => $new_set])->with("toast", ["success", "Szablon utworzony, dodaj mszę"]);
     }
 
     public function setCopyForUser(Set $set)
@@ -159,6 +159,6 @@ class SetController extends Controller
 
         ChangeController::add($new_set, "skopiowano z istniejącego");
 
-        return redirect()->route("set", ["set_id" => $new_set])->with("success", "Msza skopiowana, możesz ją teraz dopasować pod siebie");
+        return redirect()->route("set", ["set_id" => $new_set])->with("toast", ["success", "Msza skopiowana, możesz ją teraz dopasować pod siebie"]);
     }
 }

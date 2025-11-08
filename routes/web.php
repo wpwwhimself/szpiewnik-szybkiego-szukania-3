@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ChangeController;
 use App\Http\Controllers\FormulaController;
 use App\Http\Controllers\HomeController;
@@ -8,7 +7,6 @@ use App\Http\Controllers\OrdinariusController;
 use App\Http\Controllers\PlaceController;
 use App\Http\Controllers\SetController;
 use App\Http\Controllers\SongController;
-use App\Http\Controllers\SpellbookController;
 use Illuminate\Auth\Middleware\Authenticate;
 use Illuminate\Support\Facades\Route;
 
@@ -23,25 +21,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::controller(AuthController::class)->group(function(){
-    Route::prefix("auth")->group(function(){
-        Route::get('/login', "input")->name("login");
-        Route::post('/login/process', "authenticate")->name("authenticate");
-        Route::get("/register", "register")->name("register");
-        Route::post('/register/process', "registerProcess")->name("register-process");
-
-        Route::middleware(Authenticate::class)->group(function(){
-            Route::get('/logout', "logout")->name("logout");
-            Route::post("/user-update", "userUpdate")->name("user-update");
-        });
-    });
-});
-
-Route::controller(SpellbookController::class)->group(function(){
-    foreach (SpellbookController::SPELLS as $name => $route) {
-        Route::get($route, $name);
-    }
-});
+if (file_exists(__DIR__.'/Shipyard/shipyard.php')) require __DIR__.'/Shipyard/shipyard.php';
 
 Route::controller(HomeController::class)->group(function(){
     Route::get("/", "index")->name("home");

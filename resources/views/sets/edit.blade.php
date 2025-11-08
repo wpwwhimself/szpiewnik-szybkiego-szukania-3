@@ -1,4 +1,6 @@
-@extends("layout")
+@extends("layouts.shipyard.admin")
+@section("title", $set ?? "Nowy zestaw")
+@section("subtitle", "Edycja zestawu")
 
 @section("content")
 
@@ -6,7 +8,7 @@
 <form method="post" action="{{ route('set-edit') }}">
     @csrf
     <input type='hidden' name="id" value="{{ $set->id }}" />
-    <div class="flex-right center wrap">
+    <div class="flex right center wrap">
         <x-input type="text" name="name" label="Nazwa" value="{{ $set->name }}" />
         <x-select name="formula" label="Formuła" value="{{ $set->formula }}" :options="$formulas" />
         <x-select name="color" label="Kolor cz.st." value="{{ $set->color }}" :options="$colors" />
@@ -15,12 +17,12 @@
     </div>
 
     <h2>Pieśni</h2>
-    <div class="flex-down center wrap">
+    <div class="flex down center wrap">
         <x-input type="text" name="song-adder" label="Pieśń" onkeyup="songAdderAutocomplete(this)" />
-        <div id="song-adder-autocomplete" class="flex-right center wrap"></div>
+        <div id="song-adder-autocomplete" class="flex right center wrap"></div>
         <span id="song-adder-duplicate" class="alert-color error hidden"></span>
     </div>
-    <div class="grid-5">
+    <div class="grid" style="--col-count: 5;">
     @foreach ([
         "sIntro" => "Wejście",
         "sOffer" => "Przygotowanie Darów",
@@ -29,13 +31,13 @@
         "sDismissal" => "Zakończenie",
     ] as $code => $label)
         @php $i ??= -1; $i++ @endphp
-        <div class="flex-down center">
-            <div class="flex-right center">
+        <div class="flex down center">
+            <div class="flex right center">
                 <x-button class="song-adder-trigger" data-elem="{{ $code }}" title="Wybierz pieśń">↓</x-button>
                 <x-button class="song-randomizer-trigger" data-elem="{{ $i }}" title="Zaproponuj pieśń">?</x-button>
             </div>
             <label>{{ $label }}</label>
-            <div class="flex-down center">
+            <div class="flex down center">
             @foreach (explode("\n", $set->{$code}) as $song)
                 <a href="#/" class="song-adder-song">{{ $song }}</a>
             @endforeach
@@ -46,7 +48,7 @@
     </div>
 
     <h2>Psalm i aklamacja</h2>
-    <div class="grid-2">
+    <div class="grid" style="--col-count: 2;">
         <x-input type="TEXT" name="pPsalm" label="Psalm" value="{!! $set->pPsalm !!}" />
         <x-input type="TEXT" name="pAccl" label="Aklamacja" value="{!! $set->pAccl !!}" />
     </div>
@@ -116,7 +118,7 @@
             </tr>
             <tr>
                 <td colspan="5">
-                    <div id="song-autocomplete" class="flex-right center wrap"></div>
+                    <div id="song-autocomplete" class="flex right center wrap"></div>
                 </td>
             </tr>
             <tr id="row-adder">
@@ -156,10 +158,10 @@
         </tbody>
     </table>
 
-    <div class="flex-right stretch">
+    <div class="flex right stretch">
         <x-button type="submit" name="action" value="update">Zatwierdź i wróć</x-button>
         <x-button type="submit" name="action" value="delete">Usuń</x-button>
-        @if (Auth::user()->clearance_id >= 4)
+        @if (Auth::user()->hasRole("technical"))
         <a href="{{ route('changes', ['type' => 'set', 'id' => $set->id]) }}" target="_blank" class="button">Historia zmian</a>
         @endif
     </div>

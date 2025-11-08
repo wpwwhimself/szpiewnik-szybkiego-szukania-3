@@ -1,6 +1,6 @@
 @props(['status'])
 
-<div class="alert flex-right center {{ $status }}">
+<div class="alert flex right center {{ $status }}">
     <b>{{ session($status) }}</b>
 </div>
 <script>

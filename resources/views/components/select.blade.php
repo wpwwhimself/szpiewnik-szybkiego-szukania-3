@@ -10,7 +10,7 @@
   'dataItems' => null,
 ])
 
-<div class="inputContainer">
+<div class="input-container">
   <label for="{{ $name }}">{{ $label }}</label>
   <select
     name="{{ $name }}"

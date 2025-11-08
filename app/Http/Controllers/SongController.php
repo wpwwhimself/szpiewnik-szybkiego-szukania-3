@@ -100,11 +100,11 @@ class SongController extends Controller
             $response = "Pieśń usunięta";
         }
 
-        return redirect()->route("songs")->with("success", $response);
+        return redirect()->route("songs")->with("toast", ["success", $response]);
     }
 
     public function songAdd(){
-        if(Auth::user()?->clearance->id < 2) return back()->with("error", "Nie masz uprawnień do utworzenia pieśni");
+        if(!Auth::user()?->hasRole("song-manager")) return back()->with("toast", ["error", "Nie masz uprawnień do utworzenia pieśni"]);
 
         $new_song_title = "--Nowa pieśń--";
         if(!Song::where("title", $new_song_title)->count()) Song::insert([
@@ -117,7 +117,7 @@ TUTORIAL
 
         ChangeController::add(Song::where("title", $new_song_title)->first(), "utworzono");
 
-        return redirect()->route("song", ["title_slug" => Str::slug($new_song_title)])->with("success", "Szablon utworzony, dodaj pieśń");
+        return redirect()->route("song", ["title_slug" => Str::slug($new_song_title)])->with("toast", ["success", "Szablon utworzony, dodaj pieśń"]);
     }
 
     public function songAutocomplete(Request $rq){

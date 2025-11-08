@@ -1,4 +1,6 @@
-@extends("layout")
+@extends("layouts.shipyard.admin")
+@section("title", $place ?? "Nowe miejsce")
+@section("subtitle", "Edycja miejsca")
 
 @section("content")
 
@@ -6,13 +8,13 @@
 <form method="post" action="{{ route('place-edit') }}">
     @csrf
     <input type='hidden' name="old_name" value="{{ $place->name }}" />
-    <div class="flex-right center wrap">
+    <div class="flex right center wrap">
         <x-input type="text" name="name" label="Nazwa" value="{{ $place->name }}" />
     </div>
 
     <h2>Notatki</h2>
     <p>Notatki wyświetlają się na początku zestawu. Możesz tu zapisać np. czy trzeba włączyć intencje mszy, albo w ramach pogrzebu, jaka jest kolejność.</p>
-    <div class="flex-right center wrap">
+    <div class="flex right center wrap">
         <x-input type="TEXT" name="notes" label="Notatki" :value="$place->notes" />
     </div>
 
@@ -80,7 +82,7 @@
             </tr>
             <tr>
                 <td colspan="4">
-                    <div id="song-autocomplete" class="flex-right center wrap"></div>
+                    <div id="song-autocomplete" class="flex right center wrap"></div>
                 </td>
             </tr>
             <tr id="row-adder">
@@ -109,10 +111,10 @@
         </tbody>
     </table>
 
-    <div class="flex-right stretch">
+    <div class="flex right stretch">
         <x-button type="submit" name="action" value="update">Zatwierdź i wróć</x-button>
         <x-button type="submit" name="action" value="delete">Usuń</x-button>
-        @if (Auth::user()->clearance_id >= 4)
+        @if (Auth::user()->hasRole("technical"))
         <a href="{{ route('changes', ['type' => 'place', 'id' => $place->name]) }}" target="_blank" class="button">Historia zmian</a>
         @endif
     </div>

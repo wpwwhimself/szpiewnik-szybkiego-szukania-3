@@ -1,4 +1,6 @@
-@extends("layout")
+@extends("layouts.shipyard.admin")
+@section("title", $song ?? "Nowa pieśń")
+@section("subtitle", "Edycja pieśni")
 
 @section("content")
 
@@ -7,16 +9,16 @@
   @csrf
   <script src="{{ asset("js/note-transpose.js") }}"></script>
 
-  <div class="grid-3">
+  <div class="grid" style="--col-count: 3;">
     <input type="hidden" name="old_title" value="{{ $song->title }}" />
     <x-input type="text" name="title" label="Tytuł" value="{{ $song->title }}" />
     <x-select name="song_category_id" label="Grupa" value="{{ $song->song_category_id }}" :options="$categories" />
     <x-input type="text" name="category_desc" label="Kategoria (ze śpiewnika)" value="{{ $song->category_desc }}" />
     <x-input type="text" name="number_preis" label="Numer w projektorze Preis" value="{{ $song->number_preis }}" />
     <x-input type="text" name="key" label="Tonacja" value="{{ $song->key }}" />
-    <div class="inputContainer">
+    <div class="input-container">
       <x-input type="text" name="pref5" label="Uwagi" value="{{ $prefs['other'] ?: '' }}" />
-      <div class="flex-right center">
+      <div class="flex right center">
         @foreach ([
           "sIntro" => "Wejście",
           "sOffer" => "Dary",
@@ -29,13 +31,13 @@
       </div>
     </div>
   </div>
-  <div class="grid-2">
+  <div class="grid" style="--col-count: 2;">
     <div>
       <div id="lyrics-variant-big-container">
       @foreach ($song->lyrics_variants as $var_no => $lyrics)
         <div class="variant-container">
           <x-input type="TEXT" name="lyrics[]" :var-no="$var_no" label="Tekst" value="{!! $lyrics !!}" />
-          <div class="flex-right stretch">
+          <div class="flex right stretch">
             <x-button id="remove-lyrics-variant" :var-no="$var_no">Usuń wariant</x-button>
           </div>
           <hr>
@@ -45,7 +47,7 @@
         </script>
       @endforeach
       </div>
-      <div class="flex-right stretch">
+      <div class="flex right stretch">
         <x-button id="addLyricsVariantButton">Dodaj wariant</x-button>
       </div>
     </div>
@@ -54,12 +56,12 @@
       @foreach ($song->sheet_music_variants as $var_no => $notes)
         <div class="variant-container">
           <x-input type="TEXT" name="sheet_music[]" :var-no="$var_no" label="Nuty" value="{!! $notes !!}" />
-          <div id="note-transpose-{{ $var_no }}" class="flex-right center wrap">
+          <div id="note-transpose-{{ $var_no }}" class="flex right center wrap">
             <x-button name="up">♪+</x-button>
             <x-button name="down">♪-</x-button>
           </div>
           <div id="sheet-music-container-{{ $var_no }}"></div>
-          <div class="flex-right stretch">
+          <div class="flex right stretch">
             <x-button id="remove-variant" :var-no="$var_no">Usuń wariant</x-button>
           </div>
           <hr>
@@ -71,7 +73,7 @@
         </script>
       @endforeach
       </div>
-      <div class="flex-right stretch">
+      <div class="flex right stretch">
         <x-button id="addVariantButton">Dodaj wariant</x-button>
       </div>
 
@@ -81,11 +83,11 @@
     </div>
   </div>
 
-  @if (Auth::user()?->clearance->id >= 2)
-  <div class="flex-right stretch">
+  @if (Auth::user()?->hasRole("song-manager"))
+  <div class="flex right stretch">
     <x-button type="submit" name="action" value="update">Zatwierdź i wróć</x-button>
     <x-button type="submit" name="action" value="delete">Usuń</x-button>
-    @if (Auth::user()->clearance_id >= 4)
+    @if (Auth::user()?->hasRole("technical"))
     <a href="{{ route('changes', ['type' => 'song', 'id' => $song->title]) }}" target="_blank" class="button">Historia zmian</a>
     @endif
   </div>

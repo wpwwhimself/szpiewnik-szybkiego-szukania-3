@@ -57,7 +57,7 @@ export function SheetMusicRender({notes, transpose}: SMRProps){
 
     return(<>
         {render_variants &&
-        <div className="flex-right center">
+        <div className="flex right center">
         {notes.map((var_notes, var_no) =>
             <Button key={var_no}
                 className={[variant === var_no && 'accent-border', 'sleek'].filter(Boolean).join(" ")}
@@ -67,7 +67,7 @@ export function SheetMusicRender({notes, transpose}: SMRProps){
             <Button onClick={randomizeVariant} title="Losowo">L</Button>
         </div>
         }
-        <div className="flex-right center sheet-container">
+        <div className="flex right center sheet-container">
             <div id={`sheet-${this_id}`}></div>
         </div>
     </>)

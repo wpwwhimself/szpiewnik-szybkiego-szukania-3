@@ -4,26 +4,26 @@ import React, { ButtonHTMLAttributes } from "react";
 export function Input({type, name, label, value, onChange, disabled}: InputProps){
   switch(type){
     case "TEXT": return(
-      <div className="inputContainer">
+      <div className="input-container">
         <label htmlFor={name}>{label}</label>
         <textarea name={name} id={name} defaultValue={value ?? undefined} onChange={onChange} />
       </div>
     );
     case "checkbox": return(
-      <div className="inputContainer">
+      <div className="input-container">
         <label htmlFor={name}>{label}</label>
         <input type={type} name={name} id={name} defaultChecked={value} onChange={onChange} />
       </div>
     );
     case "text":
     case "password": return(
-      <div className="inputContainer">
+      <div className="input-container">
         <label htmlFor={name}>{label}</label>
         <input type={type} name={name} id={name} defaultValue={value ?? undefined} onChange={onChange} disabled={disabled} />
       </div>
     );
     default: return(
-      <div className="inputContainer">
+      <div className="input-container">
         <label htmlFor={name}>{label}</label>
         <span>⚠️Dodaj osobnego case'a z onChange⚠️</span>
       </div>
@@ -33,7 +33,7 @@ export function Input({type, name, label, value, onChange, disabled}: InputProps
 
 export function DummyInput({label, value}: DummyInputProps){
   return(
-    <div className="inputContainer">
+    <div className="input-container">
       <label htmlFor="">{label}</label>
       <span className="dummyInput">{value ?? "—"}</span>
     </div>
@@ -42,7 +42,7 @@ export function DummyInput({label, value}: DummyInputProps){
 
 export function Select({name, label, value, firstEmpty, options, onChange, style}: SelectProps){
   return(
-    <div className="inputContainer">
+    <div className="input-container">
       <label htmlFor={name}>{label}</label>
       <select name={name} id={name} onChange={onChange} defaultValue={value} style={style}>
         {firstEmpty && <option key="_first"></option>}
@@ -72,9 +72,9 @@ export function Preferences({preferences, onChange}: PreferencesProps){
   ];
 
   return(
-    <div className="inputContainer">
+    <div className="input-container">
       <Input type="text" name="pref5" label="Uwagi" value={other_prefs} onChange={onChange} />
-      <div className="flex-right center">
+      <div className="flex right center">
       {possibilities.map((labels, ind) =>
         <Input key={ind}
           type="checkbox"
@@ -89,7 +89,11 @@ export function Preferences({preferences, onChange}: PreferencesProps){
 }
 
 export function Button(props: ButtonHTMLAttributes<HTMLButtonElement>){
+  const classes = props.className?.split(" ") ?? [];
+  classes.push("button");
+  props = {...props, className: classes.join(" ")}
+
   return(
-    <button {...props}>{props.children}</button>
+    <span {...props}>{props.children}</span>
   )
 }

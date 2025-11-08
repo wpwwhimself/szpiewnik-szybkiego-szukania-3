@@ -26,12 +26,12 @@ export function PresentOrdinarium(){
         });
     }, []);
 
-    return <div className="flex-down">
+    return <div className="flex down">
       {ordinarium.map((el, key) =>
       <MassElemSection id={el.part} key={key}>
         <h1>{dParts[el.part as keyof typeof dParts]}</h1>
         <SheetMusicRender notes={el.sheet_music} />
-        <div className="flex-right stretch">
+        <div className="flex right stretch">
           <Button onClick={() => {window.location.href = `/ordinarium/show/${el.color_code}_${el.part}`}}>Edytuj</Button>
         </div>
       </MassElemSection>)}

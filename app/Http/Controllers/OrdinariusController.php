@@ -88,6 +88,6 @@ class OrdinariusController extends Controller
                 "sheet_music" => implode(Ordinarius::$VAR_SEP, $rq->sheet_music),
             ]);
 
-        return redirect()->route("ordinarium")->with("success", "Część stała poprawiona");
+        return redirect()->route("ordinarium")->with("toast", ["success", "Część stała poprawiona"]);
     }
 }

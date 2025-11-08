@@ -1,18 +1,33 @@
-@extends("layout")
+@extends("layouts.shipyard.admin")
+@section("title", "Pieśni i utwory")
 
 @section("content")
 
-@if (Auth::user()?->clearance->id >= 2)
-<a href="{{ route('song-add') }}" class="flex-right stretch">
-    <x-button>Dodaj nową</x-button>
-</a>
+@if (Auth::user()?->hasRole("song-manager"))
+<x-shipyard.ui.button
+    :action="route('song-add')"
+    label="Dodaj nową"
+    icon="plus"
+/>
 @endif
 
-<search>
-    <x-input type="text" name="search" label="Szukaj po tytule" oninput="searchSongs()" />
+<x-shipyard.app.section
+    title="Filtry"
+    icon="filter"
+    :extended="true"
+>
+    <x-shipyard.ui.input type="text"
+        name="search"
+        label="Szukaj po tytule"
+        icon="file-search"
+        oninput="searchSongs()"
+    />
 
-    <div class="flex-right center wrap">
-        <label>Szukaj po przeznaczeniu</label>
+    <div class="flex right middle wrap">
+        <span role="label-wrapper" class="ghost">
+            <x-shipyard.app.icon name="select-place" />
+            <label>Szukaj po przeznaczeniu</label>
+        </span>
         @foreach ([
             ["Wejście", 0],
             ["Dary", 2],
@@ -25,7 +40,7 @@
         @endforeach
         <span role="filter-reset" class="button hidden" onclick="filterReset()">↺</span>
     </div>
-</search>
+</x-shipyard.app.section>
 
 <script>
 //* helpers *//
@@ -93,14 +108,15 @@ function filterReset() {
 }
 </script>
 
+<div class="flex down middle">
 @foreach ($categories as $cat)
-    <h1 class="cap-initial">{{ $cat->name }}</h1>
-    <div class="flex-right wrap center">
+    <h1>{{ Str::of($cat->name)->ucfirst() }}</h1>
+    <div class="flex right wrap center">
     @foreach ($songs[$cat->name] as $song)
         <x-list-element class="{{ substr($song->title, 0, 1) != ($initial ?? '') ? 'boldEm' : '' }}"
             :present="route('song-present', ['title_slug' => Str::slug($song->title)])"
             :edit="route('song', ['title_slug' => Str::slug($song->title)])"
-            clearance-for-edit="2"
+            role-for-edit="2"
             :data-prefs="$song->preferences"
         >
             {{ $song->title }}
@@ -109,5 +125,6 @@ function filterReset() {
     @endforeach
     </div>
 @endforeach
+</div>
 
 @endsection

@@ -1,4 +1,6 @@
-@extends("layout")
+@extends("layouts.shipyard.admin")
+@section("title", $song)
+@section("subtitle", "Pieśń")
 
 @section("content")
 

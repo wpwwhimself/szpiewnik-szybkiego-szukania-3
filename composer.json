@@ -5,21 +5,27 @@
     "keywords": ["framework", "laravel"],
     "license": "MIT",
     "require": {
-        "php": "^7.3|^8.1",
+        "php": "^8.2",
         "doctrine/dbal": "^3.6",
-        "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.5",
-        "laravel/framework": "^8.75",
+        "laravel/framework": "^12.0",
         "laravel/tinker": "^2.5",
-        "laravel/ui": "^3.4"
+        "laravel/ui": "^4.0",
+        "wpwwhimself/shipyard": "*"
     },
     "require-dev": {
-        "facade/ignition": "^2.5",
+        "spatie/laravel-ignition": "^2.0",
         "fakerphp/faker": "^1.9.1",
         "laravel/sail": "^1.0.1",
         "mockery/mockery": "^1.4.4",
-        "nunomaduro/collision": "^5.10",
-        "phpunit/phpunit": "^9.5.10"
+        "nunomaduro/collision": "^8.1",
+        "phpunit/phpunit": "^11.0"
+    },
+    "repositories": {
+        "shipyard": {
+            "type": "vcs",
+            "url": "https://github.com/wpwwhimself/shipyard.git"
+        }
     },
     "autoload": {
         "psr-4": {
@@ -39,7 +45,8 @@
             "@php artisan package:discover --ansi"
         ],
         "post-update-cmd": [
-            "@php artisan vendor:publish --tag=laravel-assets --ansi --force"
+            "@php artisan vendor:publish --tag=laravel-assets --ansi --force",
+            "@php artisan shipyard:install"
         ],
         "post-root-package-install": [
             "@php -r \"file_exists('.env') || copy('.env.example', '.env');\""

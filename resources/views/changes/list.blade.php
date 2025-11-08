@@ -1,4 +1,6 @@
-@extends("layout", ["title" => implode(" | ", [$item->name ?? $item->title, "Historia zmian"])])
+@extends("layouts.shipyard.admin")
+@section("title" , $item->name ?? $item->title)
+@section("subtitle", "Historia zmian")
 
 @section("content")
 
@@ -22,7 +24,7 @@
                     @forelse ($change->details ?? [] as $field => $old_and_new)
                     <li>
                         <strong>{{ $field }}</strong>:
-                        <div class="grid-2">
+                        <div class="grid" style="--col-count: 2;">
                             @foreach ($old_and_new as $i => $value)
                                 @if (is_array($value))
                                 {{-- $value is a relationship - list all related --}}

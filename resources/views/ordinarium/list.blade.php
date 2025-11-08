@@ -1,4 +1,5 @@
-@extends("layout")
+@extends("layouts.shipyard.admin")
+@section("title", "Części stałe")
 
 @section("content")
 
@@ -7,7 +8,7 @@
     Wybierz zestaw, aby wyświetlić jego elementy.
 </p>
 
-<div class="grid-3">
+<div class="grid" style="--col-count: 3;">
     @foreach ($colors as $color)
     <div class="ordTile">
         <div class="ordTitleBox" style="border-color: {{ $color->display_color }}">
@@ -16,8 +17,8 @@
             </a>
             <p>{{ $color->desc }}</p>
         </div>
-        <div class="flex-right wrap center">
-            @if (Auth::user()?->clearance->id > 1)
+        <div class="flex right wrap center">
+            @if (Auth::user()?->hasRole("ordinarius-manager"))
             @foreach ($ordinarium[$color->name] as $ordinarius)
             <a href="{{ route('ordinarius', ['color_code' => $color->name, 'part' => $ordinarius->part]) }}">
                 {{ $ordinarius->part }}
@@ -32,14 +33,14 @@
     @endforeach
 </div>
 
-<div class="grid-2">
-    @if (Auth::user()?->clearance->id > 1)
+<div class="grid" style="--col-count: 2;">
+    @if (Auth::user()?->hasRole("ordinarius-manager"))
     <div class="ordTile">
         <div class="ordTitleBox">
             <h1>Uniwersalne</h1>
             <p>dużo ich nie ma, ale...</p>
         </div>
-        <div class="flex-right wrap center">
+        <div class="flex right wrap center">
             @foreach ($ordinarium["*"] as $ordinarius)
             <a href="{{ route('ordinarius', ['color_code' => "*", 'part' => $ordinarius->part]) }}">
                 {{ $ordinarius->part }}
@@ -52,7 +53,7 @@
             <h1>Okazjonalne</h1>
             <p>na potrzeby świąt</p>
         </div>
-        <div class="flex-right wrap center">
+        <div class="flex right wrap center">
             @foreach ($ordinarium["events"] as $ordinarius)
             <a href="{{ route('ordinarius', ['color_code' => Str::slug($ordinarius->color_code), 'part' => $ordinarius->part]) }}">
                 {{ $ordinarius->part }} ({{ $ordinarius->color_code }})

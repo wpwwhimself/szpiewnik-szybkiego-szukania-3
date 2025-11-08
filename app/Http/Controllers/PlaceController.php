@@ -65,11 +65,11 @@ class PlaceController extends Controller
             $response = "Miejsce usunięte";
         }
 
-        return redirect()->route("places")->with("success", $response);
+        return redirect()->route("places")->with("toast", ["success", $response]);
     }
 
     public function placeAdd(){
-        if(Auth::user()?->clearance->id < 2) return back()->with("error", "Nie masz uprawnień do utworzenia miejsca");
+        if(!Auth::user()?->hasRole("place-manager")) return back()->with("toast", ["error", "Nie masz uprawnień do utworzenia miejsca"]);
 
         $new_place_name = "--Nowe miejsce--";
         if(!Place::where("name", $new_place_name)->count()) Place::insert([
@@ -78,6 +78,6 @@ class PlaceController extends Controller
 
         ChangeController::add(Place::where("name", $new_place_name)->first(), "utworzono");
 
-        return redirect()->route("place", ["name_slug" => Str::slug($new_place_name)])->with("success", "Szablon utworzony, dodaj miejsce");
+        return redirect()->route("place", ["name_slug" => Str::slug($new_place_name)])->with("toast", ["success", "Szablon utworzony, dodaj miejsce"]);
     }
 }

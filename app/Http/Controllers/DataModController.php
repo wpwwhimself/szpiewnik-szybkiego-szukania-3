@@ -50,14 +50,14 @@ class DataModController extends Controller
             "song" => $song,
         ]);
     }
-    
+
     public function songsForAspersion(Request $rq)
     {
         $songs = Song::with("notes")
             ->where("preferences", "regexp", "aspersja")
             ->orderBy("title")
             ->get();
-        
+
         return response()->json([
             "songs" => $songs,
         ]);
@@ -109,7 +109,7 @@ class DataModController extends Controller
     }
 
     public function processSetNote(Request $rq){
-        if (User::find($rq->input("user_id"))?->clearance_id < 1) return response()->json([
+        if (!User::find($rq->input("user_id"))?->hasRole("set-manager")) return response()->json([
             "success" => false,
             "message" => "Nie masz uprawnień do edycji notatek",
         ], 403);
@@ -145,7 +145,7 @@ class DataModController extends Controller
     }
 
     public function processSongNote(Request $rq){
-        if (User::find($rq->input("user_id"))?->clearance_id < 1) return response()->json([
+        if (!User::find($rq->input("user_id"))?->hasRole("song-manager")) return response()->json([
             "success" => false,
             "message" => "Nie masz uprawnień do edycji notatek",
         ], 403);

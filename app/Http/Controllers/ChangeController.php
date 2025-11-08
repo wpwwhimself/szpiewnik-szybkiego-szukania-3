@@ -11,7 +11,7 @@ class ChangeController extends Controller
 {
     public function list(string $type, string|int $id)
     {
-        if (auth()->user()->clearance_id < 4) abort(403);
+        if (!Auth::user()->hasRole("technical")) abort(403);
 
         $model = "App\\Models\\" . Str::studly($type);
         $item = $model::find($id);

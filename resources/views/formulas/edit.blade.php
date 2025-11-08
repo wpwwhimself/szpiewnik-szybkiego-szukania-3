@@ -1,4 +1,6 @@
-@extends("layout")
+@extends("layouts.shipyard.admin")
+@section("title", $formula ?? "Nowa formuła")
+@section("subtitle", "Edycja formuły")
 
 @section("content")
 
@@ -6,7 +8,7 @@
 <form method="post" action="{{ route('formula-edit') }}">
     @csrf
     <input type='hidden' name="old_name" value="{{ $formula->name }}" />
-    <div class="flex-right center wrap">
+    <div class="flex right center wrap">
         <x-input type="text" name="name" label="Nazwa" value="{{ $formula->name }}" />
     </div>
 
@@ -74,7 +76,7 @@
             </tr>
             <tr>
                 <td colspan="4">
-                    <div id="song-autocomplete" class="flex-right center wrap"></div>
+                    <div id="song-autocomplete" class="flex right center wrap"></div>
                 </td>
             </tr>
             <tr id="row-adder">
@@ -103,7 +105,7 @@
         </tbody>
     </table>
 
-    <div class="flex-right stretch">
+    <div class="flex right stretch">
         <x-button type="submit" name="action" value="update">Zatwierdź i wróć</x-button>
         <x-button type="submit" name="action" value="delete">Usuń</x-button>
     </div>

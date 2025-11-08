@@ -1,4 +1,6 @@
-@extends("layout")
+@extends("layouts.shipyard.admin")
+@section("title", $ordinarius)
+@section("subtitle", "Części stałe")
 
 @section("content")
 
