@@ -16,14 +16,16 @@ body {
 }
 
 .button {
-    --spacing: 0.5em;
-    --button-color: light-dark(#a5a5a53d, #8181817f);
+    --spacing: 4px;
+    --button-color: light-dark(#c0c0c086, #4e4e4e7f);
 
     position: relative;
     border: none;
     font-family: var(--heading-font);
+    font-size: 1.25em;
     font-weight: bold;
     background-color: var(--button-color);
+    padding: 0 0.75em;
 
     &::before {
         content: "";
@@ -31,7 +33,7 @@ body {
         position: absolute;
         top: calc(var(--spacing) * -1); bottom: calc(var(--spacing) * -1);
         left: 0; right: 0;
-        border-block: 3px solid var(--button-color);
+        border-block: calc(var(--spacing) / 2) solid var(--button-color);
     }
 
     &.accent-border {
@@ -173,9 +175,13 @@ thead th, tfoot th{
     & h6 {
         text-align: center;
     }
+
+    & * {
+        transition-duration: 0.3s;
+    }
 }
 .massElemSection:not(:last-of-type), hr{
-    border-bottom: 3px solid var(--bg-lite);
+    border-bottom: 3px solid var(--bg-lite2);
     border-top: none;
 }
 .massElemSection:not(:last-of-type){
@@ -184,6 +190,7 @@ thead th, tfoot th{
 }
 .massElemSection h2{
   font-size: 1.2em;
+  color: var(--primary);
 }
 
 .lyrics{

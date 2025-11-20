@@ -26,7 +26,7 @@ class ShipyardTheme
      */
     public const COLORS = [
         "primary" => "#a2d122",
-        "secondary" => "#739b17",
+        "secondary" => "#9e8b20",
         "tertiary" => "#57b3ff",
     ];
     #endregion
@@ -38,10 +38,10 @@ class ShipyardTheme
     public const FONTS = [
         "base" => ["EB Garamond", "serif"],
         "heading" => ["Cinzel", "serif"],
-        "mono" => ["Ubuntu Mono", "monospace"],
+        "mono" => ["Space Mono", "monospace"],
     ];
 
     // if fonts come from Google Fonts, add the URL here
-    public const FONT_IMPORT_URL = 'https://fonts.googleapis.com/css2?family=Cinzel&family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Ubuntu+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap';
+    public const FONT_IMPORT_URL = 'https://fonts.googleapis.com/css2?family=Cinzel&family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap';
     #endregion
 }

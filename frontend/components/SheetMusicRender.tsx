@@ -67,7 +67,7 @@ export function SheetMusicRender({notes, transpose}: SMRProps){
             <Button onClick={randomizeVariant} title="Losowo">L</Button>
         </div>
         }
-        <div className="flex right center sheet-container">
+        <div className="sheet-container">
             <div id={`sheet-${this_id}`}></div>
         </div>
     </>)

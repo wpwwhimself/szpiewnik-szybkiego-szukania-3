@@ -46,7 +46,7 @@
 //* helpers *//
 function cleanUpHeadings() {
     // cleanup headings (hide if all songs are hidden)
-    document.querySelectorAll(`#main-wrapper > h1`).forEach(el => {
+    document.querySelectorAll(`[role="song-list"] > h1`).forEach(el => {
         const hide = el.nextElementSibling.querySelectorAll(`.list-element:not(.hidden)`).length == 0;
         el.classList.toggle("hidden", hide);
     });
@@ -69,7 +69,7 @@ function searchSongs() {
     const q = document.querySelector("input[name='search']").value;
 
     // hide songs not matching search
-    document.querySelectorAll(`#main-wrapper .list-element`).forEach(el => {
+    document.querySelectorAll(`[role="song-list"] .list-element`).forEach(el => {
         const title = el.querySelector(`.main`).textContent;
         const hide = (q != "")
             ? !(new RegExp(q, "i").test(title.replace(/[\.,\-]/g, "")))
@@ -83,7 +83,7 @@ function searchSongs() {
 function showSongsByPref(pref_index, btn) {
     searchReset();
 
-    document.querySelectorAll(`#main-wrapper .list-element`).forEach(el => {
+    document.querySelectorAll(`[role="song-list"] .list-element`).forEach(el => {
         const prefs = el.querySelector(`.main`).dataset.prefs;
         const hide = (pref_index != "*")
             ? prefs.charAt(pref_index) != "1"
@@ -103,12 +103,12 @@ function filterReset() {
     activateFilterBtn();
     showFilterResetBtn(false);
 
-    document.querySelectorAll(`#main-wrapper .list-element`).forEach(el => el.classList.remove("hidden"));
+    document.querySelectorAll(`[role="song-list"] .list-element`).forEach(el => el.classList.remove("hidden"));
     cleanUpHeadings();
 }
 </script>
 
-<div class="flex down middle">
+<div class="flex down middle" role="song-list">
 @foreach ($categories as $cat)
     <h1>{{ Str::of($cat->name)->ucfirst() }}</h1>
     <div class="flex right wrap center">
