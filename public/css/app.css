@@ -15,29 +15,39 @@ pre {
 
 /*****************************************/
 
-body {
-    font-size: 14px;
-}
-
+.barred,
 .button {
-    --spacing: 4px;
-    --button-color: light-dark(#c0c0c086, #4e4e4e7f);
-
-    position: relative;
-    border: none;
-    font-family: var(--heading-font);
-    font-size: 1.25em;
-    font-weight: bold;
-    background-color: var(--button-color);
-    padding: 0 0.75em;
+    --spacing: 6px;
 
     &::before {
         content: "";
         transition-duration: 0.3s;
         position: absolute;
-        top: calc(var(--spacing) * -1); bottom: calc(var(--spacing) * -1);
+        top: calc(var(--spacing) * -1.2); bottom: calc(var(--spacing) * -1.2);
         left: 0; right: 0;
         border-block: calc(var(--spacing) / 2) solid var(--button-color);
+    }
+}
+
+body {
+    font-size: 14px;
+}
+
+.button {
+    --button-color: light-dark(#d5d5d5, #4e4e4e);
+
+    position: relative;
+    border-block: calc(var(--spacing) / 4) solid transparent;
+    border-inline: calc(var(--spacing) / 4) solid var(--button-color);
+    font-family: var(--heading-font);
+    font-size: 1.25em;
+    font-weight: bold;
+    background-color: var(--button-color);
+    padding: 0 0.75em;
+    margin-block: var(--spacing);
+
+    &:hover {
+        border-inline-color: var(--accent-color);
     }
 
     &.accent-border {
@@ -51,6 +61,7 @@ body {
     &.toggle {
         background: none;
         color: var(--fg);
+        border-inline: none;
 
         &:hover {
             color: var(--secondary);
@@ -59,7 +70,7 @@ body {
 
     &.safety {
         font-weight: normal;
-        border: 2px solid var(--bg-lite2);
+        border-color: var(--button-color);
         background: none;
         color: var(--fg);
 
@@ -102,7 +113,8 @@ thead th, tfoot th{
 
 .settings{
   position: sticky; top: 0;
-  background-color: var(--bg-lite2);
+  background-color: var(--bg-ghost);
+  backdrop-filter: blur(1em);
   z-index: 9;
   padding: 1em;
 }
@@ -139,8 +151,8 @@ thead th, tfoot th{
     overflow-y: scroll;
     padding: 2em 4em; box-sizing: border-box;
     z-index: 99;
-    background-color: hsla(var(--bg1), 0.5);
-    backdrop-filter: blur(10px);
+    background-color: var(--bg-ghost);
+    backdrop-filter: blur(1em);
     flex-direction: column;
     justify-content: start;
 

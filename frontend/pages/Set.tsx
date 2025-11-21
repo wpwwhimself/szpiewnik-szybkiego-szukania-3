@@ -27,6 +27,7 @@ export function MassSet(){
     const [currentPlace, setCurrentPlace] = useState({} as PlaceProps);
     const [places, setPlaces] = useState([] as PlaceProps[])
     const [showLyrics, setShowLyrics] = useState(true)
+    const [currentSafetyPick, setCurrentSafetyPick] = useState("");
 
     const [addCollector, setAddCollector] = useState({song: undefined, before: undefined} as AddCollectorProps);
 
@@ -386,6 +387,7 @@ export function MassSet(){
     //ordinarium color
     function colorOn() {
         document.getElementById("color")!.classList.toggle("show");
+        setCurrentSafetyPick("");
     }
     const setColor = (color: OrdinariumColorProps) => {
         setSet({ ...set, color: color.name });
@@ -454,20 +456,22 @@ export function MassSet(){
         <div id="color" className="modal">
             <h1>Kolor części stałych</h1>
 
-            <div className="scroll-list">
-                <div className="flex right center wrap">
-                    {ordinarius_colors.map((color, i) =>
-                        <Button key={i} onClick={() => setColor(color)}>
-                            <span style={{ color: color.display_color ?? color.name ?? 'none' }}>⬤</span>
-                            {color.display_name}
-                        </Button>
-                    )}
-                </div>
+            <div className="scroll-list flex right center wrap">
+                {ordinarius_colors.map((color, i) =>
+                    <Button key={i}
+                        className={["safety", currentSafetyPick === color.name && "accent-border"].filter(Boolean).join(" ")}
+                        onClick={() => setCurrentSafetyPick(color.name)}
+                    >
+                        <span style={{ color: color.display_color ?? color.name ?? 'none' }}>⬤</span>
+                        {color.display_name}
+                    </Button>
+                )}
             </div>
 
             <div className="flex right spread and-cover">
                 <Button onClick={() => colorOn()}>Anuluj</Button>
                 <Button onClick={() => randomizeColor()}>Losowo</Button>
+                {currentSafetyPick && <Button className="primary" onClick={() => setColor(ordinarius_colors.find(el => el.name === currentSafetyPick)!)}>Wybierz</Button>}
             </div>
         </div>
 
@@ -476,9 +480,9 @@ export function MassSet(){
 
             <div className="flex right center middle wrap">
             {set.thisMassOrder
+                .filter(el => ["s", "p"].includes(el.code.charAt(0)))
                 .map((el, i) =>
                 <Button key={i}
-                    className={el.code.charAt(0) === "s" ? "" : "safety"}
                     onClick={() => {
                         jumperOn();
                         document.getElementById(el.code)?.scrollIntoView({behavior: "smooth", block: "center"});
