@@ -465,7 +465,7 @@ export function MassSet(){
                 </div>
             </div>
 
-            <div className="flex right stretch">
+            <div className="flex right spread and-cover">
                 <Button onClick={() => colorOn()}>Anuluj</Button>
                 <Button onClick={() => randomizeColor()}>Losowo</Button>
             </div>
@@ -474,24 +474,22 @@ export function MassSet(){
         <div id="jumper" className="modal">
             <h1>Przejdź do</h1>
 
-            <div>
-                <div className="flex right center wrap">
-                {set.thisMassOrder
-                    .map((el, i) =>
-                    <Button key={i}
-                        className={el.code.charAt(0) === "s" ? "" : "less-interesting"}
-                        onClick={() => {
-                            jumperOn();
-                            document.getElementById(el.code)?.scrollIntoView({behavior: "smooth", block: "center"});
-                        }}
-                        >
-                        {el.label}
-                    </Button>
-                )}
-                </div>
+            <div className="flex right center middle wrap">
+            {set.thisMassOrder
+                .map((el, i) =>
+                <Button key={i}
+                    className={el.code.charAt(0) === "s" ? "" : "light-button"}
+                    onClick={() => {
+                        jumperOn();
+                        document.getElementById(el.code)?.scrollIntoView({behavior: "smooth", block: "center"});
+                    }}
+                    >
+                    {el.label}
+                </Button>
+            )}
             </div>
 
-            <div className="flex right stretch">
+            <div className="flex right spread and-cover">
                 <Button onClick={() => jumperOn()}>Anuluj</Button>
             </div>
         </div>
@@ -510,7 +508,7 @@ export function MassSet(){
 
             <div className="scroll-list">
                 <h2>Filtry</h2>
-                <div id="filters" className="grid-2">
+                <div id="filters" className="grid" style={{ "--col-count": 2 } as React.CSSProperties}>
                     <div className="flex right center wrap">
                     {categories.map((el, i) =>
                         <Button key={i}
@@ -578,7 +576,7 @@ export function MassSet(){
                 </div>
             </div>
 
-            <div className="flex right stretch">
+            <div className="flex right spread and-cover">
                 <Button onClick={() => addModeOn()}>Anuluj</Button>
                 {addCollector.song && addCollector.before && <Button onClick={() => addModeOn(undefined, true)}>Dodaj</Button>}
             </div>
@@ -603,8 +601,7 @@ export function MassSet(){
                 </div>}
             </div>
 
-
-            <div className="flex right stretch">
+            <div className="flex right spread and-cover">
                 <Button onClick={() => editSetNoteOn()}>Anuluj</Button>
                 <Button onClick={() => submitSetNote()}>Zatwierdź</Button>
             </div>
@@ -622,10 +619,10 @@ export function MassSet(){
                     <Button>{place.name}</Button>
                 </a>
             )}
+                <h2 className="accent danger">Wymaga przeładowania, utracisz wprowadzone zmiany!</h2>
             </div>
 
-            <h2>Wymaga przeładowania, utracisz wprowadzone zmiany!</h2>
-            <div className="flex right stretch">
+            <div className="flex right spread and-cover">
                 <Button onClick={() => placerOn()}>Anuluj</Button>
             </div>
         </div>
@@ -635,7 +632,7 @@ export function MassSet(){
 
             <pre>{currentPlace.notes}</pre>
 
-            <div className="flex right stretch">
+            <div className="flex right spread and-cover">
                 <Button onClick={() => placeNotesOn()}>Zamknij</Button>
             </div>
         </div>}

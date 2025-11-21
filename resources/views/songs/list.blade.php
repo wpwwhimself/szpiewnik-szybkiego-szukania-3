@@ -108,7 +108,7 @@ function filterReset() {
 }
 </script>
 
-<div class="flex down middle" role="song-list">
+<div role="song-list">
 @foreach ($categories as $cat)
     <h1>{{ Str::of($cat->name)->ucfirst() }}</h1>
     <div class="flex right wrap center">

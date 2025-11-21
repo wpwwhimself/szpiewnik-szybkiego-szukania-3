@@ -9,6 +9,10 @@ a:hover {
     border-radius: 0 !important;
 }
 
+pre {
+    background: none;
+}
+
 /*****************************************/
 
 body {
@@ -55,16 +59,9 @@ body {
     }
 
     &.light-button{
-        font-family: var(--heading-font);
         font-weight: normal;
         border: 2px solid var(--bg-lite2);
         background: none;
-    }
-
-    &.less-interesting{
-        font-family: var(--heading-font);
-        font-weight: normal;
-        background-color: var(--bg-lite);
     }
 }
 
@@ -142,9 +139,25 @@ thead th, tfoot th{
     backdrop-filter: blur(10px);
     flex-direction: column;
     justify-content: start;
+
+    & h1 {
+        margin: 0;
+    }
+    & h1,
+    & h2 {
+        text-align: center;
+    }
+
+    & > :nth-child(2) {
+        align-self: baseline;
+        max-height: 100%;
+    }
 }
 .modal.show{
-    display: flex;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    grid-template-columns: 1fr;
+    gap: 1em;
 }
 
 .scroll-list{
@@ -177,6 +190,7 @@ thead th, tfoot th{
     & h5,
     & h6 {
         text-align: center;
+        margin-top: 0;
     }
 
     & * {
@@ -345,6 +359,10 @@ text {
 }
 .massElemAdder{
     left: 0;
+}
+
+[role$="-list"] > * {
+    text-align: center;
 }
 
 .list-element{

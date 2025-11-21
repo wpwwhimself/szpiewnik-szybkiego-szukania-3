@@ -19,7 +19,7 @@
 </p>
 @endguest
 
-<div class="flex down middle no-gap">
+<div role="set-list">
 @foreach ($formulas as $formula) @if(count($formula->sets))
     <h2>{{ $formula->name }}</h2>
     <div class="flex right center wrap">

@@ -31,7 +31,7 @@ export function PresentOrdinarium(){
       <MassElemSection id={el.part} key={key}>
         <h1>{dParts[el.part as keyof typeof dParts]}</h1>
         <SheetMusicRender notes={el.sheet_music} />
-        <div className="flex right stretch">
+        <div className="flex right spread and-cover">
           <Button onClick={() => {window.location.href = `/ordinarium/show/${el.color_code}_${el.part}`}}>Edytuj</Button>
         </div>
       </MassElemSection>)}

@@ -37,7 +37,7 @@
       @foreach ($song->lyrics_variants as $var_no => $lyrics)
         <div class="variant-container">
           <x-input type="TEXT" name="lyrics[]" :var-no="$var_no" label="Tekst" value="{!! $lyrics !!}" />
-          <div class="flex right stretch">
+          <div class="flex right spread and-cover">
             <x-button id="remove-lyrics-variant" :var-no="$var_no">Usuń wariant</x-button>
           </div>
           <hr>
@@ -47,7 +47,7 @@
         </script>
       @endforeach
       </div>
-      <div class="flex right stretch">
+      <div class="flex right spread and-cover">
         <x-button id="addLyricsVariantButton">Dodaj wariant</x-button>
       </div>
     </div>
@@ -61,7 +61,7 @@
             <x-button name="down">♪-</x-button>
           </div>
           <div id="sheet-music-container-{{ $var_no }}"></div>
-          <div class="flex right stretch">
+          <div class="flex right spread and-cover">
             <x-button id="remove-variant" :var-no="$var_no">Usuń wariant</x-button>
           </div>
           <hr>
@@ -73,7 +73,7 @@
         </script>
       @endforeach
       </div>
-      <div class="flex right stretch">
+      <div class="flex right spread and-cover">
         <x-button id="addVariantButton">Dodaj wariant</x-button>
       </div>
 
@@ -84,7 +84,7 @@
   </div>
 
   @if (Auth::user()?->hasRole("song-manager"))
-  <div class="flex right stretch">
+  <div class="flex right spread and-cover">
     <x-button type="submit" name="action" value="update">Zatwierdź i wróć</x-button>
     <x-button type="submit" name="action" value="delete">Usuń</x-button>
     @if (Auth::user()?->hasRole("technical"))

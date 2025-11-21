@@ -19,7 +19,7 @@
                 <x-button name="down">♪-</x-button>
             </div>
             <div id="sheet-music-container-{{ $var_no }}"></div>
-            <div class="flex right stretch">
+            <div class="flex right spread and-cover">
                 <x-button id="remove-variant" :var-no="$var_no">Usuń wariant</x-button>
             </div>
             <hr>
@@ -35,7 +35,7 @@
     <input type="hidden" name="color_code" value="{{ $ordinarius->color_code }}" />
     <input type="hidden" name="part" value="{{ $ordinarius->part }}" />
 
-    <div class="flex right stretch">
+    <div class="flex right spread and-cover">
         <x-button id="addVariantButton">Dodaj wariant</x-button>
         <x-button type="submit">Zatwierdź i wróć</x-button>
     </div>

@@ -8,22 +8,31 @@
 <script src="{{ asset('/js/react/set.js') }}?{{ time() }}"></script>
 <script src="{{ asset("js/note-transpose.js") }}?{{ time() }}"></script>
 
-<div class="flex right stretch">
+<div class="flex right spread and-cover">
     @auth
-    <a href="{{ route('set', ['set_id' => $set->id]) }}" class="flex right stretch">
-        <x-button>Edytuj mszę</x-button>
-    </a>
+    <x-shipyard.ui.button
+        label="Edytuj mszę"
+        icon="pencil"
+        :action="route('set', ['set_id' => $set->id])"
+    />
 
-    @if ($set->user->id != Auth::id() && Auth::user()->hasRole("set-manager"))
-    <a href="{{ route('set-copy-for-user', ['set' => $set]) }}" class="flex right stretch">
-        <x-button>Utwórz i edytuj kopię pod siebie</x-button>
-    </a>
+    @if (Auth::user()->hasRole("set-manager"))
+    <x-shipyard.ui.button
+        label="Utwórz i edytuj kopię"
+        icon="content-copy"
+        :action="route('set-copy-for-user', ['set' => $set])"
+        class="danger"
+    />
     @endif
 
     @endauth
-    <x-button onclick="window.scrollTo({top: 0, behavior: 'smooth'});">
-        Na początek
-    </x-button>
+    <x-shipyard.ui.button
+        label="Na początek"
+        icon="arrow-up"
+        action="none"
+        onclick="window.scrollTo({top: 0, behavior: 'smooth'});"
+        class="tertiary"
+    />
 </div>
 
 <script>
