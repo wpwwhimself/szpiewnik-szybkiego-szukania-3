@@ -4,15 +4,14 @@
 
 @section("content")
 
-<h1>Parametry pieśni</h1>
-<form method="post" action="{{ route('song-edit') }}">
-  @csrf
+<x-shipyard.app.form method="post" :action="route('song-edit')">
   <script src="{{ asset("js/note-transpose.js") }}"></script>
+  <input type="hidden" name="old_title" value="{{ $song->title }}" />
 
-  <div class="grid" style="--col-count: 3;">
-    <input type="hidden" name="old_title" value="{{ $song->title }}" />
-    <x-input type="text" name="title" label="Tytuł" value="{{ $song->title }}" />
-    <x-select name="song_category_id" label="Grupa" value="{{ $song->song_category_id }}" :options="$categories" />
+<x-shipyard.app.section title="Podstawowe informacje" :icon="model_icon('songs')">
+  <div class="grid" style="--col-count: 2;">
+    <x-shipyard.ui.field-input :model="$song" field-name="title" />
+    <x-shipyard.ui.connection-input :model="$song" connection-name="category" />
     <x-input type="text" name="category_desc" label="Kategoria (ze śpiewnika)" value="{{ $song->category_desc }}" />
     <x-input type="text" name="number_preis" label="Numer w projektorze Preis" value="{{ $song->number_preis }}" />
     <x-input type="text" name="key" label="Tonacja" value="{{ $song->key }}" />
@@ -31,14 +30,23 @@
       </div>
     </div>
   </div>
+</x-shipyard.app.section>
+
+<x-shipyard.app.section title="Teksty i nuty" icon="playlist-music">
   <div class="grid" style="--col-count: 2;">
     <div>
       <div id="lyrics-variant-big-container">
       @foreach ($song->lyrics_variants as $var_no => $lyrics)
         <div class="variant-container">
-          <x-input type="TEXT" name="lyrics[]" :var-no="$var_no" label="Tekst" value="{!! $lyrics !!}" />
+          <x-input type="TEXT" name="lyrics[]" :var-no="$var_no" label="Tekst" value="{!! $lyrics !!}" rows="20" />
           <div class="flex right spread and-cover">
-            <x-button id="remove-lyrics-variant" :var-no="$var_no">Usuń wariant</x-button>
+            <x-shipyard.ui.button id="remove-lyrics-variant"
+              :var-no="$var_no"
+              label="Usuń wariant"
+              icon="delete"
+              action="none"
+              class="danger"
+            />
           </div>
           <hr>
         </div>
@@ -48,21 +56,44 @@
       @endforeach
       </div>
       <div class="flex right spread and-cover">
-        <x-button id="addLyricsVariantButton">Dodaj wariant</x-button>
+        <x-shipyard.ui.button id="addLyricsVariantButton"
+          label="Dodaj wariant"
+          icon="plus"
+          action="none"
+          class="tertiary"
+        />
       </div>
     </div>
     <div>
       <div id="variant-big-container">
       @foreach ($song->sheet_music_variants as $var_no => $notes)
         <div class="variant-container">
-          <x-input type="TEXT" name="sheet_music[]" :var-no="$var_no" label="Nuty" value="{!! $notes !!}" />
+          <x-input type="TEXT" name="sheet_music[]" :var-no="$var_no" label="Nuty" value="{!! $notes !!}" rows="10" />
           <div id="note-transpose-{{ $var_no }}" class="flex right center wrap">
-            <x-button name="up">♪+</x-button>
-            <x-button name="down">♪-</x-button>
+            <x-shipyard.ui.button
+              icon="music-note-plus"
+              pop="Transponuj w górę"
+              action="none"
+              class="tertiary"
+              name="up"
+            />
+            <x-shipyard.ui.button
+              icon="music-note-minus"
+              pop="Transponuj w dół"
+              action="none"
+              class="tertiary"
+              name="down"
+            />
           </div>
           <div id="sheet-music-container-{{ $var_no }}"></div>
           <div class="flex right spread and-cover">
-            <x-button id="remove-variant" :var-no="$var_no">Usuń wariant</x-button>
+            <x-shipyard.ui.button id="remove-variant"
+              :var-no="$var_no"
+              label="Usuń wariant"
+              icon="delete"
+              action="none"
+              class="danger"
+            />
           </div>
           <hr>
         </div>
@@ -74,7 +105,12 @@
       @endforeach
       </div>
       <div class="flex right spread and-cover">
-        <x-button id="addVariantButton">Dodaj wariant</x-button>
+        <x-shipyard.ui.button id="addVariantButton"
+          label="Dodaj wariant"
+          icon="plus"
+          action="none"
+          class="tertiary"
+        />
       </div>
 
       <p class="ghost">
@@ -82,17 +118,35 @@
       </p>
     </div>
   </div>
+</x-shipyard.app.section>
 
-  @if (Auth::user()?->hasRole("song-manager"))
-  <div class="flex right spread and-cover">
-    <x-button type="submit" name="action" value="update">Zatwierdź i wróć</x-button>
-    <x-button type="submit" name="action" value="delete">Usuń</x-button>
-    @if (Auth::user()?->hasRole("technical"))
-    <a href="{{ route('changes', ['type' => 'song', 'id' => $song->title]) }}" target="_blank" class="button">Historia zmian</a>
+  <x-slot:actions>
+    <x-shipyard.ui.button
+      label="Zatwierdź i wróć"
+      icon="check"
+      action="submit"
+      name="action"
+      value="update"
+      class="primary"
+    />
+    <x-shipyard.ui.button
+      label="Usuń"
+      icon="delete"
+      action="submit"
+      name="action"
+      value="delete"
+      class="danger"
+    />
+    @if (Auth::user()->hasRole("technical"))
+    <x-shipyard.ui.button
+      label="Historia zmian"
+      icon="history"
+      :action="route('changes', ['type' => 'song', 'id' => $song->title])"
+      target="_blank"
+    />
     @endif
-  </div>
-  @endif
-</form>
+  </x-slot:actions>
+</x-shipyard.app.form>
 
 <script src="{{ asset("js/abcjs-basic-min.js") }}"></script>
 <script defer>

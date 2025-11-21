@@ -86,33 +86,20 @@ class Song extends Model
     use HasStandardFields;
 
     public const FIELDS = [
-        // "<column_name>" => [
-        //     "type" => "<input_type>",
-        //     "columnTypes" => [ // for JSON
-        //         "<label>" => "<input_type>",
-        //     ],
-        //     "selectData" => [ // for select
-        //         "options" => ["label" => "", "value" => ""],
-        //         "emptyOption" => "",
-        //     ],
-        //     "label" => "",
-        //     "hint" => "",
-        //     "icon" => "",
-        //     // "required" => true,
-        //     // "autofillFrom" => ["<route>", "<model_name>"],
-        //     // "characterLimit" => 999, // for text fields
-        //     // "hideForEntmgr" => true,
-        //     // "role" => "",
-        // ],
+        "title" => [
+            "type" => "text",
+            "label" => "Tytuł",
+            "icon" => "badge-account",
+        ],
     ];
 
     public const CONNECTIONS = [
-        // "<name>" => [
-        //     "model" => ,
-        //     "mode" => "<one|many>",
-        //     // "field_name" => "",
-        //     // "field_label" => "",
-        // ],
+        "category" => [
+            "model" => SongCategory::class,
+            "mode" => "one",
+            "field_name" => "song_category_id",
+            "field_label" => "Kategoria",
+        ],
     ];
 
     public const ACTIONS = [
