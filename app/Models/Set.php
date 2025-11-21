@@ -82,33 +82,27 @@ class Set extends Model
     use HasStandardFields;
 
     public const FIELDS = [
-        // "<column_name>" => [
-        //     "type" => "<input_type>",
-        //     "columnTypes" => [ // for JSON
-        //         "<label>" => "<input_type>",
-        //     ],
-        //     "selectData" => [ // for select
-        //         "options" => ["label" => "", "value" => ""],
-        //         "emptyOption" => "",
-        //     ],
-        //     "label" => "",
-        //     "hint" => "",
-        //     "icon" => "",
-        //     // "required" => true,
-        //     // "autofillFrom" => ["<route>", "<model_name>"],
-        //     // "characterLimit" => 999, // for text fields
-        //     // "hideForEntmgr" => true,
-        //     // "role" => "",
-        // ],
+        "public" => [
+            "type" => "checkbox",
+            "label" => "Publiczny",
+            "hint" => "Zestaw publiczny jest możliwy do przeglądania przez innych użytkowników.",
+            "icon" => "earth",
+        ],
     ];
 
     public const CONNECTIONS = [
-        // "<name>" => [
-        //     "model" => ,
-        //     "mode" => "<one|many>",
-        //     // "field_name" => "",
-        //     // "field_label" => "",
-        // ],
+        "formulaData" => [
+            "model" => Formula::class,
+            "mode" => "one",
+            "field_name" => "formula",
+            "field_label" => "Formuła",
+        ],
+        "colorData" => [
+            "model" => OrdinariusColor::class,
+            "mode" => "one",
+            "field_name" => "color",
+            "field_label" => "Kolor cz. st.",
+        ],
     ];
 
     public const ACTIONS = [

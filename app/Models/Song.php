@@ -152,6 +152,23 @@ class Song extends Model
 
     #region scopes
     use HasStandardScopes;
+
+    public function scopeForSetPicker($query, ?string $pref = null)
+    {
+        if (!$pref) {
+            return $query;
+        }
+
+        $preference_pattern = [
+            "intro" => "1/_/_/_/_%",
+            "offer" => "_/1/_/_/_%",
+            "communion" => "_/_/1/_/_%",
+            "adoration" => "_/_/_/1/_%",
+            "dismissal" => "_/_/_/_/1%",
+        ][$pref];
+
+        return $query->where("preferences", "like", $preference_pattern);
+    }
     #endregion
 
     #region attributes

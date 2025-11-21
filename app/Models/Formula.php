@@ -25,6 +25,7 @@ class Formula extends Model
 
     public $incrementing = false;
     protected $keyType = "string";
+    protected $primaryKey = "name";
 
     protected $fillable = [
         "name",

@@ -41,7 +41,7 @@ class SetController extends Controller
             return abort(403, "Nie możesz edytować tego zestawu.");
         }
 
-        $formulas = Formula::all()->pluck("name", "name");
+        $formulas = Formula::all()->map(fn ($f) => ["label" => $f->name, "value" => $f->name]);
         $colors = OrdinariusColor::all()->pluck("display_name", "name");
         $songs = Song::all()->pluck("title", "title");
         $song_preferences = Song::all()->pluck("preferences", "title");

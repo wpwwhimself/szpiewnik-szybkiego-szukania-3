@@ -4,24 +4,25 @@
 
 @section("content")
 
-<h1>Parametry mszy</h1>
-<form method="post" action="{{ route('set-edit') }}">
-    @csrf
+<x-shipyard.app.form method="post" :action="route('set-edit')">
     <input type='hidden' name="id" value="{{ $set->id }}" />
-    <div class="flex right center wrap">
-        <x-input type="text" name="name" label="Nazwa" value="{{ $set->name }}" />
-        <x-select name="formula" label="Formuła" value="{{ $set->formula }}" :options="$formulas" />
-        <x-select name="color" label="Kolor cz.st." value="{{ $set->color }}" :options="$colors" />
-        <x-input type="text" name="user_id" label="Twórca" value="{{ $set->user->name }}" :disabled="true" />
-        <x-input type="checkbox" name="public" label="Publiczny" value="{{ $set->public }}" :disabled="$set->user_id !== Auth::id()" />
-    </div>
 
-    <h2>Pieśni</h2>
-    <div class="flex down center wrap">
-        <x-input type="text" name="song-adder" label="Pieśń" onkeyup="songAdderAutocomplete(this)" />
+<x-shipyard.app.section title="Podstawowe informacje" :icon="model_icon('sets')">
+    <div class="grid" style="--col-count: 2;">
+        <x-shipyard.ui.field-input :model="$set" field-name="name" />
+        <x-shipyard.ui.connection-input :model="$set" connection-name="formulaData" />
+        <x-shipyard.ui.connection-input :model="$set" connection-name="colorData" />
+        <x-shipyard.ui.field-input :model="$set" field-name="public" />
+    </div>
+</x-shipyard.app.section>
+
+<x-shipyard.app.section title="Pieśni" :icon="model_icon('songs')">
+    <div class="flex down center">
+        <x-input type="text" name="song-adder" label="Dopisz pieśń" onkeyup="songAdderAutocomplete(this)" />
         <div id="song-adder-autocomplete" class="flex right center wrap"></div>
         <span id="song-adder-duplicate" class="alert-color error hidden"></span>
     </div>
+
     <div class="grid" style="--col-count: 5;">
     @foreach ([
         "sIntro" => "Wejście",
@@ -31,12 +32,24 @@
         "sDismissal" => "Zakończenie",
     ] as $code => $label)
         @php $i ??= -1; $i++ @endphp
-        <div class="flex down center">
+        <div class="flex down center middle">
+            <label class="accent secondary">{{ $label }}</label>
             <div class="flex right center">
-                <x-button class="song-adder-trigger" data-elem="{{ $code }}" title="Wybierz pieśń">↓</x-button>
-                <x-button class="song-randomizer-trigger" data-elem="{{ $i }}" title="Zaproponuj pieśń">?</x-button>
+                <x-shipyard.ui.button
+                    pop="Dodaj powyższą pieśń do listy poniżej"
+                    icon="plus"
+                    action="none"
+                    class="tertiary song-adder-trigger"
+                    :data-elem="$code"
+                />
+                <x-shipyard.ui.button
+                    pop="Zaproponuj pieśń na to miejsce"
+                    icon="dice-3"
+                    action="none"
+                    class="tertiary song-randomizer-trigger"
+                    :data-elem="$i"
+                />
             </div>
-            <label>{{ $label }}</label>
             <div class="flex down center">
             @foreach (explode("\n", $set->{$code}) as $song)
                 <a href="#/" class="song-adder-song">{{ $song }}</a>
@@ -46,14 +59,16 @@
         </div>
     @endforeach
     </div>
+</x-shipyard.app.section>
 
-    <h2>Psalm i aklamacja</h2>
+<x-shipyard.app.section title="Psalm i aklamacja" icon="script">
     <div class="grid" style="--col-count: 2;">
-        <x-input type="TEXT" name="pPsalm" label="Psalm" value="{!! $set->pPsalm !!}" />
-        <x-input type="TEXT" name="pAccl" label="Aklamacja" value="{!! $set->pAccl !!}" />
+        <x-input type="TEXT" name="pPsalm" label="Psalm" value="{!! $set->pPsalm !!}" rows="20" />
+        <x-input type="TEXT" name="pAccl" label="Aklamacja" value="{!! $set->pAccl !!}" rows="20" />
     </div>
+</x-shipyard.app.section>
 
-    <h2>Zmiany</h2>
+<x-shipyard.app.section title="Zmiany" icon="details">
     <p class="ghost">
         Aby dodać pieśń, w pole <em>Element</em> wpisz jej tytuł.
         Aby dodać część stałą, zacznij wpisywanie od <code>!</code>.
@@ -157,15 +172,35 @@
         @endforeach
         </tbody>
     </table>
+</x-shipyard.app.section>
 
-    <div class="flex right spread and-cover">
-        <x-button type="submit" name="action" value="update">Zatwierdź i wróć</x-button>
-        <x-button type="submit" name="action" value="delete">Usuń</x-button>
+    <x-slot:actions>
+        <x-shipyard.ui.button
+            label="Zatwierdź i wróć"
+            icon="check"
+            action="submit"
+            name="action"
+            value="update"
+            class="primary"
+        />
+        <x-shipyard.ui.button
+            label="Usuń"
+            icon="delete"
+            action="submit"
+            name="action"
+            value="delete"
+            class="danger"
+        />
         @if (Auth::user()->hasRole("technical"))
-        <a href="{{ route('changes', ['type' => 'set', 'id' => $set->id]) }}" target="_blank" class="button">Historia zmian</a>
+        <x-shipyard.ui.button
+            label="Historia zmian"
+            icon="history"
+            :action="route('changes', ['type' => 'set', 'id' => $set->id])"
+            target="_blank"
+        />
         @endif
-    </div>
-</form>
+    </x-slot:actions>
+</x-shipyard.app.form>
 
 <script defer>
 function songAdderAutocomplete(el){

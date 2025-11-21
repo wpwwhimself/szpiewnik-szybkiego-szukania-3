@@ -17,8 +17,8 @@ class OrdinariusColor extends Model
 
     public const META = [
         "label" => "Kolory części stałych",
-        "icon" => "Msze lub zestawy części stałych",
-        "description" => "",
+        "icon" => "palette",
+        "description" => "Msze lub zestawy części stałych.",
         "role" => "technical",
         "ordering" => 12,
     ];
