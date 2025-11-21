@@ -17,23 +17,35 @@ export function PresentOrdinarium(){
     }
 
     const [ordinarium, setOrdinarium] = useState([] as OrdinariumProps[]);
+    const [currentOrdinarius, setCurrentOrdinarius] = useState({} as OrdinariumProps);
+    const changeCurrentOrdinarius = (new_ordinarius: OrdinariumProps) => {
+        setCurrentOrdinarius(new_ordinarius);
+    };
 
     useEffect(() => {
         axios.get("/api/ordinarius-data", {params: {
             color: color,
         }}).then(res => {
             setOrdinarium(res.data.ordinarium);
+            setCurrentOrdinarius(res.data.ordinarium[0]);
         });
     }, []);
 
-    return <div className="flex down">
-      {ordinarium.map((el, key) =>
-      <MassElemSection id={el.part} key={key}>
-        <h1>{dParts[el.part as keyof typeof dParts]}</h1>
-        <SheetMusicRender notes={el.sheet_music} />
-        <div className="flex right spread and-cover">
-          <Button onClick={() => {window.location.href = `/ordinarium/show/${el.color_code}_${el.part}`}}>Edytuj</Button>
+    return <div>
+        <div className="flex right center">
+            {ordinarium.map((el, key) =>
+                <Button key={key}
+                    className={[currentOrdinarius.part === el.part && 'accent-border', 'sleek'].filter(Boolean).join(" ")}
+                    onClick={() => changeCurrentOrdinarius(el)}
+                >
+                    {dParts[el.part as keyof typeof dParts]}
+                </Button>
+            )}
         </div>
-      </MassElemSection>)}
+
+        <SheetMusicRender notes={currentOrdinarius.sheet_music} />
+        <div className="flex right spread and-cover">
+            <Button onClick={() => {window.location.href = `/ordinarium/show/${currentOrdinarius.color_code}_${currentOrdinarius.part}`}}>Edytuj</Button>
+        </div>
     </div>
 }

@@ -1,5 +1,5 @@
 @extends("layouts.shipyard.admin")
-@section("title", $ordinarius)
+@section("title", $color->display_name)
 @section("subtitle", "Części stałe")
 
 @section("content")
