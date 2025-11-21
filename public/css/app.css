@@ -167,6 +167,9 @@ thead th, tfoot th{
 .massElemSection{
 	position: relative;
 
+    padding-block: 0.5em;
+    margin: 0;
+
     & h1,
     & h2,
     & h3,
@@ -181,12 +184,8 @@ thead th, tfoot th{
     }
 }
 .massElemSection:not(:last-of-type), hr{
-    border-bottom: 3px solid var(--bg-lite2);
+    border-bottom: 1px solid var(--bg-lite2);
     border-top: none;
-}
-.massElemSection:not(:last-of-type){
-  padding-bottom: 0.5em;
-  margin: 0;
 }
 .massElemSection h2{
   font-size: 1.2em;
@@ -332,7 +331,7 @@ text {
 
 .massElemEditorElement{
     position: absolute;
-    top: 0;
+    top: 0.25em;
     z-index: 2;
 }
 .show-after-click{
@@ -377,9 +376,6 @@ section{
     /* border-top: 3px solid var(--bg-lite); */
     /* border-bottom: 3px solid var(--bg-lite); */
     margin: 1em 0;
-}
-section>*:last-of-type{
-    margin-bottom: 1em;
 }
 
 td {

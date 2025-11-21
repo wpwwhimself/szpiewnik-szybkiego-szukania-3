@@ -640,7 +640,7 @@ export function MassSet(){
             </div>
         </div>}
 
-        <div className="flex down">
+        <div>
             <MModContext.Provider value={MMod}>
             <ShowLyricsContext.Provider value={showLyrics}>
                 <MassElemSection id="summary" uneresable>
