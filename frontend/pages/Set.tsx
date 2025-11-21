@@ -443,7 +443,7 @@ export function MassSet(){
             </Button>
             <Button onClick={() => jumperOn()}>»</Button>
             <Button onClick={() => addModeOn("END")}>+</Button>
-            <Button className={[showLyrics && "accent-border", "sleek"].filter(Boolean).join(" ")}
+            <Button className={[showLyrics && "accent-border", "toggle"].filter(Boolean).join(" ")}
                 onClick={() => setShowLyrics(!showLyrics)}>
                 Txt
             </Button>
@@ -478,7 +478,7 @@ export function MassSet(){
             {set.thisMassOrder
                 .map((el, i) =>
                 <Button key={i}
-                    className={el.code.charAt(0) === "s" ? "" : "light-button"}
+                    className={el.code.charAt(0) === "s" ? "" : "safety"}
                     onClick={() => {
                         jumperOn();
                         document.getElementById(el.code)?.scrollIntoView({behavior: "smooth", block: "center"});
@@ -513,7 +513,7 @@ export function MassSet(){
                     {categories.map((el, i) =>
                         <Button key={i}
                             onClick={() => toggleFilters(el.id)}
-                            className={"sleek " + (adderFilters.categories.includes(el.id) ? "accent-border" : "")}
+                            className={"toggle " + (adderFilters.categories.includes(el.id) ? "accent-border" : "")}
                             >
                             {el.name}
                         </Button>
@@ -524,7 +524,7 @@ export function MassSet(){
                     {preferences.map((el, i, ar) =>
                         <Button key={i}
                             onClick={() => toggleFilters(ar.indexOf(el), true)}
-                            className={"sleek " + (adderFilters.preferences.includes(ar.indexOf(el)) ? "accent-border" : "")}
+                            className={"toggle " + (adderFilters.preferences.includes(ar.indexOf(el)) ? "accent-border" : "")}
                             >
                             {el}
                         </Button>
@@ -546,7 +546,7 @@ export function MassSet(){
                             onClick={() => handleAddCollector("song", code)}
                             className={[
                                 addCollector.song === code && "accent-border",
-                                "light-button",
+                                "safety",
                             ].filter(Boolean).join(" ")}
                             >
                             {label}
@@ -568,7 +568,7 @@ export function MassSet(){
                     .map((song, i) =>
                     <Button key={i}
                         onClick={() => handleAddCollector("song", song.title)}
-                        className={`light-button ${addCollector.song === song.title && "accent-border"}`}
+                        className={`safety ${addCollector.song === song.title && "accent-border"}`}
                         >
                         {song.title}
                     </Button>

@@ -60,7 +60,7 @@ export function SheetMusicRender({notes, transpose}: SMRProps){
         <div className="flex right center">
         {notes.map((var_notes, var_no) =>
             <Button key={var_no}
-                className={[variant === var_no && 'accent-border', 'sleek'].filter(Boolean).join(" ")}
+                className={[variant === var_no && 'accent-border', 'toggle'].filter(Boolean).join(" ")}
                 onClick={() => changeVariant(var_no)}>
                 {var_no + 1}
             </Button>)}

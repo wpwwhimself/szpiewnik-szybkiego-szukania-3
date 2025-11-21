@@ -15,12 +15,28 @@
         <div class="variant-container">
             <x-input type="TEXT" name="sheet_music[]" :var-no="$var_no" label="Nuty" value="{!! $notes !!}" />
             <div id="note-transpose-{{ $var_no }}" class="flex right center wrap">
-                <x-button name="up">♪+</x-button>
-                <x-button name="down">♪-</x-button>
+                <x-shipyard.ui.button
+                    icon="music-note-plus"
+                    pop="Transponuj w górę"
+                    action="none"
+                    class="tertiary"
+                    name="up"
+                />
+                <x-shipyard.ui.button
+                    icon="music-note-minus"
+                    pop="Transponuj w dół"
+                    action="none"
+                    class="tertiary"
+                    name="down"
+                />
             </div>
             <div id="sheet-music-container-{{ $var_no }}"></div>
             <div class="flex right spread and-cover">
-                <x-button id="remove-variant" :var-no="$var_no">Usuń wariant</x-button>
+                <x-shipyard.ui.button id="remove-variant" :var-no="$var_no"
+                    label="Usuń wariant"
+                    action="none"
+                    class="danger"
+                />
             </div>
             <hr>
         </div>
@@ -36,8 +52,17 @@
     <input type="hidden" name="part" value="{{ $ordinarius->part }}" />
 
     <div class="flex right spread and-cover">
-        <x-button id="addVariantButton">Dodaj wariant</x-button>
-        <x-button type="submit">Zatwierdź i wróć</x-button>
+        <x-shipyard.ui.button
+            label="Dodaj wariant"
+            class="tertiary"
+            action="none"
+            onclick="addVariant(event);"
+        />
+        <x-shipyard.ui.button
+            label="Zatwierdź i wróć"
+            class="primary"
+            action="submit"
+        />
     </div>
 </form>
 
@@ -81,7 +106,6 @@ function addVariant(ev){
     newVariant.querySelector(`#note-transpose-${new_var_no} button[name=down]`).addEventListener("click", (e) => { e.preventDefault(); Runter(document.querySelector(`textarea[var-no='${new_var_no}']`), e); });
     newVariant.querySelector(`#remove-variant`).addEventListener("click", (e) => { e.preventDefault(); e.target.closest(".variant-container").remove(); })
 }
-document.getElementById("addVariantButton").addEventListener("click", addVariant);
 </script>
 
 @endsection

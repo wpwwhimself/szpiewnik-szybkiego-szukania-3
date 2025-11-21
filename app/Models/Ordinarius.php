@@ -33,7 +33,7 @@ class Ordinarius extends Model
     public function __toString(): string
     {
         return implode(", ", [
-            $this->color->display_color,
+            $this->color->display_name,
             $this->part,
         ]);
     }
@@ -196,7 +196,7 @@ class Ordinarius extends Model
     #region relations
     public function color()
     {
-        return $this->belongsTo(OrdinariusColor::class, "name", "color_code");
+        return $this->belongsTo(OrdinariusColor::class, "color_code", "name");
     }
     #endregion
 

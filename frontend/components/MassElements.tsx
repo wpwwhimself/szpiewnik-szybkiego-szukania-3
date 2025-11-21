@@ -52,7 +52,7 @@ export function SongLyrics({lyrics, forceLyricsVariant}: {lyrics: string | strin
         <div className="flex right center">
         {lyrics.map((var_lyrics, var_no) =>
           <Button key={var_no}
-            className={[variant === var_no && 'accent-border', 'sleek'].filter(Boolean).join(" ")}
+            className={[variant === var_no && 'accent-border', 'toggle'].filter(Boolean).join(" ")}
             onClick={() => changeVariant(var_no)}>
             {var_no + 1}
           </Button>)}
@@ -95,7 +95,7 @@ export function PsalmLyrics({lyrics}: {lyrics: string | null}){
       <div className="flex right center">
       {lyrics_split.map((var_lyrics, var_no) =>
         <Button key={var_no}
-          className={[variant === var_no && 'accent-border', 'sleek'].filter(Boolean).join(" ")}
+          className={[variant === var_no && 'accent-border', 'toggle'].filter(Boolean).join(" ")}
           onClick={() => changeVariant(var_no)}>
           {lyrics_split_labels[var_no]}
         </Button>)}
@@ -207,7 +207,7 @@ export function OrdinariumProcessor({code, colorCode, formula}: OrdinariumProces
                 <div className="flex right" style={{ justifyContent: "space-between" }}>
                   <i>Aspersja</i>
                   <Button onClick={() => toggleAspersionSongVisible()}
-                    className={[`sleek`, isAspersionSongVisible() && 'accent-border'].filter(Boolean).join(" ")}
+                    className={[`toggle`, isAspersionSongVisible() && 'accent-border'].filter(Boolean).join(" ")}
                   >
                     Pieśni
                   </Button>
@@ -217,7 +217,7 @@ export function OrdinariumProcessor({code, colorCode, formula}: OrdinariumProces
                   <div className="flex right center">
                   {aspersionSongs.map((song, i) =>
                     <Button key={i}
-                      className={['sleek', aspersionSongVisible === i && 'accent-border'].filter(Boolean).join(" ")}
+                      className={['toggle', aspersionSongVisible === i && 'accent-border'].filter(Boolean).join(" ")}
                       onClick={() => setAspersionSongVisible(i)}>
                       {i + 1}
                     </Button>)}

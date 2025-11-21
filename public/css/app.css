@@ -48,20 +48,24 @@ body {
         }
     }
 
-    &.colored {
-
-    }
-
-    &.sleek,
-    &.sleek:hover {
+    &.toggle {
         background: none;
-        color: var(--secondary) !important;
+        color: var(--fg);
+
+        &:hover {
+            color: var(--secondary);
+        }
     }
 
-    &.light-button{
+    &.safety {
         font-weight: normal;
         border: 2px solid var(--bg-lite2);
         background: none;
+        color: var(--fg);
+
+        &:hover {
+            color: var(--secondary);
+        }
     }
 }
 

@@ -35,7 +35,7 @@ export function PresentOrdinarium(){
         <div className="flex right center">
             {ordinarium.map((el, key) =>
                 <Button key={key}
-                    className={[currentOrdinarius.part === el.part && 'accent-border', 'sleek'].filter(Boolean).join(" ")}
+                    className={[currentOrdinarius.part === el.part && 'accent-border', 'toggle'].filter(Boolean).join(" ")}
                     onClick={() => changeCurrentOrdinarius(el)}
                 >
                     {dParts[el.part as keyof typeof dParts]}

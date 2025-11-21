@@ -64,7 +64,7 @@
                         hintBox.innerHTML = "";
                         window.songAutocompleteBox = el;
                         data.forEach(title => {
-                            hintBox.innerHTML += `<span class="light-button clickable" onclick="songAutocompleteInsert('${title}')">${title}</span>`;
+                            hintBox.innerHTML += `<span class="safety clickable" onclick="songAutocompleteInsert('${title}')">${title}</span>`;
                         });
                     }).catch(err => console.error(err));
                 }, 0.5e3);
