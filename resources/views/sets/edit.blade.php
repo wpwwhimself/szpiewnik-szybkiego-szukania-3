@@ -118,7 +118,7 @@ function songAdderAutocomplete(el){
         hintBox.innerHTML = "";
         window.songAutocompleteBox = el;
         data.forEach(title => {
-            hintBox.innerHTML += `<span class="safety clickable" onclick="songAdderAutocompleteInsert('${title}')">${title}</span>`;
+            hintBox.innerHTML += `<span class="safety interactive" onclick="songAdderAutocompleteInsert('${title}')">${title}</span>`;
         });
     }).catch(err => console.error(err));
 }

@@ -3,7 +3,7 @@ a:hover {
 }
 
 .section,
-.card,
+.card, [role$="card"],
 .button,
 #toast {
     border-radius: 0 !important;

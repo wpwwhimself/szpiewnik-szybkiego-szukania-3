@@ -116,7 +116,7 @@ function filterReset() {
         <x-list-element class="{{ substr($song->title, 0, 1) != ($initial ?? '') ? 'boldEm' : '' }}"
             :present="route('song-present', ['title_slug' => Str::slug($song->title)])"
             :edit="route('song', ['title_slug' => Str::slug($song->title)])"
-            role-for-edit="2"
+            role-for-edit="song-manager"
             :data-prefs="$song->preferences"
         >
             {{ $song->title }}
