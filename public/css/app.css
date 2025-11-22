@@ -5,7 +5,7 @@ a:hover {
 .section,
 .card,
 .button,
-.toast {
+#toast {
     border-radius: 0 !important;
 }
 
@@ -26,6 +26,14 @@ pre {
         top: calc(var(--spacing) * -1.2); bottom: calc(var(--spacing) * -1.2);
         left: 0; right: 0;
         border-block: calc(var(--spacing) / 2) solid var(--button-color);
+    }
+
+    &.active {
+        border-color: var(--button-color);
+
+        &::before {
+            border-color: var(--primary);
+        }
     }
 }
 
@@ -80,14 +88,27 @@ body {
     }
 }
 
+#row-adder {
+    display: none;
+}
+
 table{
     width: 100%;
     border-spacing: 0;
+
+    & input,
+    & select {
+        border-bottom: 1px solid var(--bg-lite2);
+    }
 }
 thead th, tfoot th{
     border-top: 1px solid var(--secondary);
     border-bottom: 1px solid var(--secondary);
     text-align: left;
+}
+
+#toast {
+    border-inline: none;
 }
 
 /**********************************************************************************

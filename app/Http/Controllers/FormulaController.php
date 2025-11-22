@@ -24,13 +24,10 @@ class FormulaController extends Controller
             return Str::slug($formula->name) === $name_slug;
         })->first();
         if(!$formula) return abort(404);
-        $mass_order = collect(json_decode((new DataModController)->massOrder()->content()))
-            ->pluck("label", "value")
-            ->toArray();
 
         return view("formulas.edit", array_merge(
             ["title" => $formula->name." | Edycja formuły"],
-            compact("formula", "mass_order")
+            compact("formula")
         ));
     }
 

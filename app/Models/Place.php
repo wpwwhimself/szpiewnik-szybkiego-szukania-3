@@ -82,24 +82,12 @@ class Place extends Model
     use HasStandardFields;
 
     public const FIELDS = [
-        // "<column_name>" => [
-        //     "type" => "<input_type>",
-        //     "columnTypes" => [ // for JSON
-        //         "<label>" => "<input_type>",
-        //     ],
-        //     "selectData" => [ // for select
-        //         "options" => ["label" => "", "value" => ""],
-        //         "emptyOption" => "",
-        //     ],
-        //     "label" => "",
-        //     "hint" => "",
-        //     "icon" => "",
-        //     // "required" => true,
-        //     // "autofillFrom" => ["<route>", "<model_name>"],
-        //     // "characterLimit" => 999, // for text fields
-        //     // "hideForEntmgr" => true,
-        //     // "role" => "",
-        // ],
+        "notes" => [
+            "type" => "TEXT",
+            "label" => "Notatki",
+            "hint" => "Notatki wyświetlają się na początku zestawu. Możesz tu zapisać np. czy trzeba włączyć intencje mszy, albo w ramach pogrzebu, jaka jest kolejność.",
+            "icon" => "note",
+        ],
     ];
 
     public const CONNECTIONS = [

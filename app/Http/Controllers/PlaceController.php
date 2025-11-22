@@ -25,13 +25,9 @@ class PlaceController extends Controller
         })->first();
         if(!$place) return abort(404);
 
-        $mass_order = collect(json_decode((new DataModController)->massOrder()->content()))
-            ->pluck("label", "value")
-            ->toArray();
-
         return view("places.edit", array_merge(
             ["title" => $place->name." | Edycja miejsca"],
-            compact("place", "mass_order")
+            compact("place")
         ));
     }
 
