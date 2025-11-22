@@ -91,6 +91,22 @@ class Song extends Model
             "label" => "Tytuł",
             "icon" => "badge-account",
         ],
+        "category_desc" => [
+            "type" => "text",
+            "label" => "Opis kategorii",
+            "icon" => "note",
+            "hint" => "Kategoria ze śpiewnika albo dodatkowy opis.",
+        ],
+        "number_preis" => [
+            "type" => "text",
+            "label" => "Numer w projektorze Preis",
+            "icon" => "projector",
+        ],
+        "key" => [
+            "type" => "text",
+            "label" => "Tonacja",
+            "icon" => "music-clef-treble",
+        ],
     ];
 
     public const CONNECTIONS = [

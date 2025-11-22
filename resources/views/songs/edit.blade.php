@@ -12,23 +12,23 @@
   <div class="grid" style="--col-count: 2;">
     <x-shipyard.ui.field-input :model="$song" field-name="title" />
     <x-shipyard.ui.connection-input :model="$song" connection-name="category" />
-    <x-input type="text" name="category_desc" label="Kategoria (ze śpiewnika)" value="{{ $song->category_desc }}" />
-    <x-input type="text" name="number_preis" label="Numer w projektorze Preis" value="{{ $song->number_preis }}" />
-    <x-input type="text" name="key" label="Tonacja" value="{{ $song->key }}" />
-    <div class="input-container">
-      <x-input type="text" name="pref5" label="Uwagi" value="{{ $prefs['other'] ?: '' }}" />
-      <div class="flex right center">
-        @foreach ([
-          "sIntro" => "Wejście",
-          "sOffer" => "Dary",
-          "sCommunion" => "Komunia",
-          "sAdoration" => "Uwielbienie",
-          "sDismissal" => "Zakończenie",
-        ] as $code => $label)
-          <x-input type="checkbox" name="{{ $code }}" label="{{ $label }}" value="{{ $prefs[$code] }}" />
-        @endforeach
-      </div>
-    </div>
+    <x-shipyard.ui.field-input :model="$song" field-name="category_desc" />
+    <x-shipyard.ui.field-input :model="$song" field-name="number_preis" />
+    <x-shipyard.ui.field-input :model="$song" field-name="key" />
+    <x-shipyard.ui.input type="text" name="pref5" label="Uwagi" icon="note" value="{{ $prefs['other'] ?: '' }}" />
+  </div>
+
+  <x-shipyard.app.h lvl="3">Preferencje</x-shipyard.app.h>
+  <div class="grid" style="--col-count: 5;">
+    @foreach ([
+      "sIntro" => "Wejście",
+      "sOffer" => "Dary",
+      "sCommunion" => "Komunia",
+      "sAdoration" => "Uwielbienie",
+      "sDismissal" => "Zakończenie",
+    ] as $code => $label)
+      <x-input type="checkbox" name="{{ $code }}" label="{{ $label }}" value="{{ $prefs[$code] }}" />
+    @endforeach
   </div>
 </x-shipyard.app.section>
 
@@ -45,14 +45,12 @@
               label="Usuń wariant"
               icon="delete"
               action="none"
-              class="danger"
+              onclick="event.target.closest(`.variant-container`).remove();"
+              class="tertiary"
             />
           </div>
           <hr>
         </div>
-        <script>
-          document.querySelector("#remove-lyrics-variant[var-no='{{ $var_no }}']").addEventListener("click", (e) => { e.preventDefault(); e.target.closest(".variant-container").remove(); })
-        </script>
       @endforeach
       </div>
       <div class="flex right spread and-cover">
@@ -76,6 +74,7 @@
               action="none"
               class="tertiary"
               name="up"
+              onclick="Hoch(this.closest(`.variant-container`).querySelector(`textarea[name^='sheet_music']`));"
             />
             <x-shipyard.ui.button
               icon="music-note-minus"
@@ -83,6 +82,7 @@
               action="none"
               class="tertiary"
               name="down"
+              onclick="Runter(this.closest(`.variant-container`).querySelector(`textarea[name^='sheet_music']`));"
             />
           </div>
           <div id="sheet-music-container-{{ $var_no }}"></div>
@@ -92,16 +92,12 @@
               label="Usuń wariant"
               icon="delete"
               action="none"
-              class="danger"
+              class="tertiary"
+              onclick="event.target.closest(`.variant-container`).remove();"
             />
           </div>
           <hr>
         </div>
-        <script>
-        document.querySelector("#note-transpose-{{ $var_no }} button[name=up]").addEventListener("click", (e) => { e.preventDefault(); Hoch(document.querySelector("textarea[name^='sheet_music'][var-no='{{ $var_no }}']"), e); });
-        document.querySelector("#note-transpose-{{ $var_no }} button[name=down]").addEventListener("click", (e) => { e.preventDefault(); Runter(document.querySelector("textarea[name^='sheet_music'][var-no='{{ $var_no }}']"), e); });
-        document.querySelector("#remove-variant[var-no='{{ $var_no }}']").addEventListener("click", (e) => { e.preventDefault(); e.target.closest(".variant-container").remove(); })
-        </script>
       @endforeach
       </div>
       <div class="flex right spread and-cover">
@@ -184,9 +180,6 @@
 
     render(newNoteInput);
     newNoteInput.addEventListener("keyup", () => render(newNoteInput));
-    newVariant.querySelector(`#note-transpose-${new_var_no} button[name=up]`).addEventListener("click", (e) => { e.preventDefault(); Hoch(document.querySelector(`textarea[name^='sheet_music'][var-no='${new_var_no}']`), e); });
-    newVariant.querySelector(`#note-transpose-${new_var_no} button[name=down]`).addEventListener("click", (e) => { e.preventDefault(); Runter(document.querySelector(`textarea[name^='sheet_music'][var-no='${new_var_no}']`), e); });
-    newVariant.querySelector(`#remove-variant`).addEventListener("click", (e) => { e.preventDefault(); e.target.closest(".variant-container").remove(); })
   }
   document.getElementById("addVariantButton").addEventListener("click", addVariant);
 
@@ -202,7 +195,6 @@
     document.getElementById("lyrics-variant-big-container").appendChild(newVariant);
 
     render(newLyricsInput);
-    newVariant.querySelector(`#remove-lyrics-variant`).addEventListener("click", (e) => { e.preventDefault(); e.target.closest(".variant-container").remove(); })
   }
   document.getElementById("addLyricsVariantButton").addEventListener("click", addLyricsVariant);
 </script>
