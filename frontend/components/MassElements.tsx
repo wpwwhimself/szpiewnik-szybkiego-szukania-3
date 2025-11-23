@@ -487,7 +487,7 @@ export function ExtrasProcessor({elem}: {elem: MassElem}){
           <Antiphon
             call="Oto Słowo Pańskie"
             resp="Chwała Tobie, Chryste"
-            respMelody={`FF DF F2F4 |]\nw: Chwa-ła To-bie, Chry-ste`}
+            respMelody={`[K:F]FF DF F2F4 || FF DF F2F4 |]\nw: O-to Sło-wo Pań-skie Chwa-ła To-bie, Chry-ste\n%%%\n[K:Gm]GG FG F2D4 || GG FG F2D4 |]\nw: O-to Sło-wo Pań-skie Chwa-ła To-bie, Chry-ste\n%%%\n[K:F]FF (DPEF)F F2F4 || AA BA G2F4 |]\nw: O-to Sło---wo Pań-skie Chwa-ła To-bie, Chry-ste\n%%%\nFF (GF)E (DEF)E4 || FF (GF)E (DEF)E4 |]\nw: O-to Sło--wo Pań---skie Chwa-ła To--bie, Chry---ste`}
           />
         </>
       )
