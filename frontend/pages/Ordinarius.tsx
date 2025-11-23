@@ -41,6 +41,7 @@ export function PresentOrdinarium(){
                     {dParts[el.part as keyof typeof dParts]}
                 </Button>
             )}
+
         </div>
 
         <SheetMusicRender notes={currentOrdinarius.sheet_music} />

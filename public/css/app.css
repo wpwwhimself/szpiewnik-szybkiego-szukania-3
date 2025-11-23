@@ -5,6 +5,7 @@ a:hover {
 .section,
 .card, [role$="card"],
 .button,
+.alternative,
 #toast {
     border-radius: 0 !important;
 }

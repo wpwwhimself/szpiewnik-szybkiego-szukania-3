@@ -111,11 +111,11 @@ export function PsalmLyrics({lyrics}: {lyrics: string | null}){
 
 export function Antiphon({call, resp, respMelody}: {call: string, resp: string, respMelody?: string}){
   if (respMelody) {
-    resp += `<span title="Nuty"> (?)</span>`;
+    resp += `<span title="Nuty"> (♪)</span>`;
   }
 
   return(
-    <div className="flex right antyfona">
+    <div className="flex right nowrap antyfona">
       <div className="ksiadz">{call}</div>
       <div>→</div>
       <div className="wierni-container">

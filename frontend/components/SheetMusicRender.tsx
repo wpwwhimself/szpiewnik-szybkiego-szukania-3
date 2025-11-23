@@ -5,10 +5,10 @@ import moment from "moment";
 
 interface SMRProps{
     notes: string | string[] | null,
-    transpose?: number;
+    withoutTransposer?: boolean,
 }
 
-export function SheetMusicRender({notes, transpose}: SMRProps){
+export function SheetMusicRender({notes, withoutTransposer = false}: SMRProps){
     const this_id = Date.now() + Math.random();
 
     const engraverParams = {
@@ -37,7 +37,7 @@ export function SheetMusicRender({notes, transpose}: SMRProps){
                 responsive: "resize",
                 jazzchords: true,
                 germanAlphabet: true,
-                visualTranspose: transpose || 0,
+                visualTranspose: transposer || 0,
             }
         );
     }
@@ -53,18 +53,44 @@ export function SheetMusicRender({notes, transpose}: SMRProps){
         changeVariant(new_variant);
     }
 
-    useEffect(() => render(), [notes_ready, transpose]);
+    const [transposerOn, setTransposerOn] = useState(false);
+    const [transposer, setTransposer] = useState(0);
+    const transpose = (direction: "up" | "down") => {
+        setTransposer(transposer + (direction == "up" ? 1 : -1));
+    }
+    const restore = () => {
+        setTransposer(0);
+        setTransposerOn(false);
+    }
+
+    useEffect(() => render(), [notes_ready, transposer]);
 
     return(<>
-        {render_variants &&
+        {(render_variants || !withoutTransposer) &&
         <div className="flex right center">
-        {notes.map((var_notes, var_no) =>
-            <Button key={var_no}
-                className={[variant === var_no && 'accent-border', 'toggle'].filter(Boolean).join(" ")}
-                onClick={() => changeVariant(var_no)}>
-                {var_no + 1}
-            </Button>)}
-            <Button onClick={randomizeVariant} title="Losowo">L</Button>
+            {render_variants && <>
+                {notes.map((var_notes, var_no) =>
+                    <Button key={var_no}
+                        className={[variant === var_no && 'accent-border', 'toggle'].filter(Boolean).join(" ")}
+                        onClick={() => changeVariant(var_no)}>
+                        {var_no + 1}
+                    </Button>)}
+                <Button onClick={randomizeVariant} title="Losowo">L</Button>
+            </>}
+            {!withoutTransposer && <>
+                <Button className={(transposerOn || transposer != 0) ? "accent-border" : ""} onClick={() => setTransposerOn(!transposerOn)}>
+                    T {(
+                        transposer != 0
+                            ? (transposer > 0 ? " +" : " ") + transposer.toString()
+                            : ""
+                    )}
+                </Button>
+                {transposerOn && <div className="transposer-panel flex right center middle wrap">
+                    <Button onClick={() => transpose("up")}>+</Button>
+                    <Button onClick={() => transpose("down")}>-</Button>
+                    <Button onClick={() => restore()}>↺</Button>
+                </div>}
+            </>}
         </div>
         }
         <div className="sheet-container">

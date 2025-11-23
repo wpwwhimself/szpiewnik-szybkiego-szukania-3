@@ -20,8 +20,6 @@ interface OriginalKey {
 
 export function SongRender({song, title, forceLyricsVariant, dontHideEditBtns = false}: SRProps){
     const [songSong, setSongSong] = useState<SongProps>()
-    const [transposerOn, setTransposerOn] = useState(false)
-    const [transposer, setTransposer] = useState(0)
     const [noteForCurrentUser, setNoteForCurrentUser] = useState({} as SongNote)
 
     useEffect(() => {
@@ -45,25 +43,12 @@ export function SongRender({song, title, forceLyricsVariant, dontHideEditBtns = 
         }
     }, [song])
 
-    const transpose = (direction: "up" | "down") => {
-        // @ts-ignore
-        setTransposer(transposer + (direction == "up" ? 1 : -1));
-    }
-    const restore = () => {
-        setTransposer(0);
-    }
-
     return(<>
         <div className="flex right center wrap">
             {songSong ?
             <div className="flex right center middle nowrap">
                 <div className="flex right center middle">
-                    <DummyInput label="Tonacja" value={songSong.key + (
-                        transposer != 0
-                            ? (transposer > 0 ? " +" : " ") + transposer.toString()
-                            : ""
-                    )} />
-                    <Button className={transposerOn ? "accent-border" : ""} onClick={() => setTransposerOn(!transposerOn)}>T</Button>
+                    <DummyInput label="Tonacja" value={songSong.key} />
                 </div>
                 <DummyInput label="Kategoria" value={songSong.category_desc} />
                 <DummyInput label="Numer w śpiewniku Preis" value={songSong.number_preis} />
@@ -75,15 +60,7 @@ export function SongRender({song, title, forceLyricsVariant, dontHideEditBtns = 
         {noteForCurrentUser && <div className="notes ghost">{noteForCurrentUser.content}</div>}
         <div className="notes-and-lyrics-container">
             <div>
-                {songSong?.sheet_music_variants && <SheetMusicRender notes={songSong.sheet_music_variants} transpose={transposer} />}
-                {transposerOn && <div className="transposer-panel flex right center middle wrap">
-                    <label>Transponuj:</label>
-                    <Button onClick={() => transpose("up")}>+</Button>
-                    <Button onClick={() => transpose("down")}>-</Button>
-                    {/* <Button onClick={() => {}}>♯/♭</Button> */}
-                    <Button onClick={() => restore()}>↺</Button>
-                    <Button onClick={() => setTransposerOn(false)}>OK</Button>
-                </div>}
+                {songSong?.sheet_music_variants && <SheetMusicRender notes={songSong.sheet_music_variants} />}
             </div>
             <div>
                 {songSong?.lyrics && <SongLyrics lyrics={songSong.lyrics_variants} forceLyricsVariant={forceLyricsVariant} />}
