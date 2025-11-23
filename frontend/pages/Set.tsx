@@ -512,8 +512,9 @@ export function MassSet(){
 
             <div className="scroll-list">
                 <h2>Filtry</h2>
-                <div id="filters" className="grid" style={{ "--col-count": 2 } as React.CSSProperties}>
-                    <div className="flex right center wrap">
+                <div id="filters" className="grid" style={{ "--col-count": 1 } as React.CSSProperties}>
+                    <div className="flex right center middle">
+                        <span className="ghost">Kat.:</span>
                     {categories.map((el, i) =>
                         <Button key={i}
                             onClick={() => toggleFilters(el.id)}
@@ -524,7 +525,8 @@ export function MassSet(){
                     )}
                         <Button className="tertiary" onClick={() => toggleFilters(null)}>{adderFilters.categories.length > 0 ? "×" : "⁂"}</Button>
                     </div>
-                    <div className="flex right center wrap">
+                    <div className="flex right center middle">
+                        <span className="ghost">Na:</span>
                     {preferences.map((el, i, ar) =>
                         <Button key={i}
                             onClick={() => toggleFilters(ar.indexOf(el), true)}

@@ -32,9 +32,7 @@ class DataModController extends Controller
                 ["extras" => $set->formulaData->extras]
             ),
             "songs" => Song::with("notes")->get(),
-            "categories" => SongCategory::where("name", $set->formula)
-                ->orWhereIn("name", ["standard", "niestandard", "maryjne", "Serce"])
-                ->get(),
+            "categories" => SongCategory::all(),
             "place" => $place,
             "places" => Place::all(),
         ]);
