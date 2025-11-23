@@ -46,7 +46,7 @@ export function PresentOrdinarium(){
 
         <SheetMusicRender notes={currentOrdinarius.sheet_music} />
         <div className="flex right spread and-cover">
-            <Button onClick={() => {window.location.href = `/ordinarium/show/${currentOrdinarius.color_code}_${currentOrdinarius.part}`}}>Edytuj</Button>
+            <Button className="primary" onClick={() => {window.location.href = `/ordinarium/show/${currentOrdinarius.color_code}_${currentOrdinarius.part}`}}>Edytuj</Button>
         </div>
     </div>
 }

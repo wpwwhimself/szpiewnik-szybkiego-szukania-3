@@ -470,7 +470,7 @@ export function MassSet(){
 
             <div className="flex right spread and-cover">
                 <Button onClick={() => colorOn()}>Anuluj</Button>
-                <Button onClick={() => randomizeColor()}>Losowo</Button>
+                <Button className="primary" onClick={() => randomizeColor()}>Losowo</Button>
                 {currentSafetyPick && <Button className="primary" onClick={() => setColor(ordinarius_colors.find(el => el.name === currentSafetyPick)!)}>Wybierz</Button>}
             </div>
         </div>
@@ -522,7 +522,7 @@ export function MassSet(){
                             {el.name}
                         </Button>
                     )}
-                        <Button onClick={() => toggleFilters(null)}>{adderFilters.categories.length > 0 ? "×" : "⁂"}</Button>
+                        <Button className="tertiary" onClick={() => toggleFilters(null)}>{adderFilters.categories.length > 0 ? "×" : "⁂"}</Button>
                     </div>
                     <div className="flex right center wrap">
                     {preferences.map((el, i, ar) =>
@@ -533,7 +533,7 @@ export function MassSet(){
                             {el}
                         </Button>
                     )}
-                        <Button onClick={() => toggleFilters(null, true)}>{adderFilters.preferences.length > 0 ? "×" : "⁂"}</Button>
+                        <Button className="tertiary" onClick={() => toggleFilters(null, true)}>{adderFilters.preferences.length > 0 ? "×" : "⁂"}</Button>
                     </div>
                 </div>
 
@@ -582,7 +582,7 @@ export function MassSet(){
 
             <div className="flex right spread and-cover">
                 <Button onClick={() => addModeOn()}>Anuluj</Button>
-                {addCollector.song && addCollector.before && <Button onClick={() => addModeOn(undefined, true)}>Dodaj</Button>}
+                {addCollector.song && addCollector.before && <Button className="primary" onClick={() => addModeOn(undefined, true)}>Dodaj</Button>}
             </div>
         </div>
 
@@ -607,7 +607,7 @@ export function MassSet(){
 
             <div className="flex right spread and-cover">
                 <Button onClick={() => editSetNoteOn()}>Anuluj</Button>
-                <Button onClick={() => submitSetNote()}>Zatwierdź</Button>
+                <Button className="primary" onClick={() => submitSetNote()}>Zatwierdź</Button>
             </div>
         </div>
 

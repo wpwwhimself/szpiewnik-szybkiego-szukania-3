@@ -15,8 +15,8 @@ export function MassElemSection({id, uneresable = false, notes = undefined, chil
   return(
     <section id={id} className="massElemSection">
       <div className="massElemEditorElement show-after-click massElemEraser flex right">
-        {is_communion && <Button onClick={() => document.getElementById("sAdoration")?.scrollIntoView({behavior: "smooth", block: "center"})}>»U</Button>}
-        {!uneresable && <Button onClick={() => MMod.eraseMassElem(id)}>×</Button>}
+        {is_communion && <Button className="tertiary" onClick={() => document.getElementById("sAdoration")?.scrollIntoView({behavior: "smooth", block: "center"})}>»U</Button>}
+        {!uneresable && <Button className="danger" onClick={() => MMod.eraseMassElem(id)}>×</Button>}
       </div>
       <div className="massElemEditorElement show-after-click massElemAdder flex right">
         <Button onClick={() => MMod.addMassElem(id)}>+</Button>
@@ -99,7 +99,7 @@ export function PsalmLyrics({lyrics}: {lyrics: string | null}){
           onClick={() => changeVariant(var_no)}>
           {lyrics_split_labels[var_no]}
         </Button>)}
-        <Button onClick={() => randomizeVariant()} title="Losowo">L</Button>
+        <Button className="tertiary" onClick={() => randomizeVariant()} title="Losowo">L</Button>
       </div>}
       <div className="psalm">
       {lyrics_split[variant]?.split(/\r?\n\r?\n/).map((out, i) =>
@@ -221,7 +221,7 @@ export function OrdinariumProcessor({code, colorCode, formula}: OrdinariumProces
                       onClick={() => setAspersionSongVisible(i)}>
                       {i + 1}
                     </Button>)}
-                    <Button onClick={() => randomizeAspersionSongVisible()}>L</Button>
+                    <Button className="tertiary" onClick={() => randomizeAspersionSongVisible()}>L</Button>
                   </div>
 
                   <div className="songMeta">

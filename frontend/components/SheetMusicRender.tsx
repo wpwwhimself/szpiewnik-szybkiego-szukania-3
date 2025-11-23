@@ -75,10 +75,10 @@ export function SheetMusicRender({notes, withoutTransposer = false}: SMRProps){
                         onClick={() => changeVariant(var_no)}>
                         {var_no + 1}
                     </Button>)}
-                <Button onClick={randomizeVariant} title="Losowo">L</Button>
+                <Button className="tertiary" onClick={randomizeVariant} title="Losowo">L</Button>
             </>}
             {!withoutTransposer && <>
-                <Button className={(transposerOn || transposer != 0) ? "accent-border" : ""} onClick={() => setTransposerOn(!transposerOn)}>
+                <Button className={[(transposerOn || transposer != 0) && "accent-border", "toggle"].filter(Boolean).join(" ")} onClick={() => setTransposerOn(!transposerOn)}>
                     T {(
                         transposer != 0
                             ? (transposer > 0 ? " +" : " ") + transposer.toString()
@@ -86,8 +86,8 @@ export function SheetMusicRender({notes, withoutTransposer = false}: SMRProps){
                     )}
                 </Button>
                 {transposerOn && <div className="transposer-panel flex right center middle wrap">
-                    <Button onClick={() => transpose("up")}>+</Button>
-                    <Button onClick={() => transpose("down")}>-</Button>
+                    <Button className="tertiary" onClick={() => transpose("up")}>+</Button>
+                    <Button className="tertiary" onClick={() => transpose("down")}>-</Button>
                     <Button onClick={() => restore()}>↺</Button>
                 </div>}
             </>}

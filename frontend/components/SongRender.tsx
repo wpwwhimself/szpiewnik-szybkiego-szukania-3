@@ -68,7 +68,7 @@ export function SongRender({song, title, forceLyricsVariant, dontHideEditBtns = 
         </div>
         <div className={`${!dontHideEditBtns ? "show-after-click" : ""} flex right center wrap`}>
             {songSong && <>
-                <Button onClick={() => window.open(`/songs/show/${slugAndDePL(songSong.title)}`, "_blank")?.focus()}>Edytuj pieśń</Button>
+                <Button className="primary" onClick={() => window.open(`/songs/show/${slugAndDePL(songSong.title)}`, "_blank")?.focus()}>Edytuj pieśń</Button>
                 <Button onClick={() => window.open(`/songs/export/opensong/${slugAndDePL(songSong.title)}`)}>Pobierz OpenSong</Button>
             </>}
         </div>
