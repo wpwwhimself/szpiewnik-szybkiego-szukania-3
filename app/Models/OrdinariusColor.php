@@ -43,7 +43,7 @@ class OrdinariusColor extends Model
     public function optionLabel(): Attribute
     {
         return Attribute::make(
-            get: fn () => $this->__toString(),
+            get: fn () => "$this ($this->name)",
         );
     }
 
@@ -73,8 +73,8 @@ class OrdinariusColor extends Model
     public function displayMiddlePart(): Attribute
     {
         return Attribute::make(
-            get: fn () => view("components.shipyard.app.model.connections-preview", [
-                "connections" => self::getConnections(),
+            get: fn () => view("components.shipyard.app.model.field-value", [
+                "field" => "ordering",
                 "model" => $this,
             ])->render(),
         );
@@ -85,24 +85,12 @@ class OrdinariusColor extends Model
     use HasStandardFields;
 
     public const FIELDS = [
-        // "<column_name>" => [
-        //     "type" => "<input_type>",
-        //     "columnTypes" => [ // for JSON
-        //         "<label>" => "<input_type>",
-        //     ],
-        //     "selectData" => [ // for select
-        //         "options" => ["label" => "", "value" => ""],
-        //         "emptyOption" => "",
-        //     ],
-        //     "label" => "",
-        //     "hint" => "",
-        //     "icon" => "",
-        //     // "required" => true,
-        //     // "autofillFrom" => ["<route>", "<model_name>"],
-        //     // "characterLimit" => 999, // for text fields
-        //     // "hideForEntmgr" => true,
-        //     // "role" => "",
-        // ],
+        "ordering" => [
+            "type" => "number",
+            "label" => "Kolejność",
+            "hint" => "Dyktuje kolejność kolorów. Im dalej w kolejności, tym bardziej uroczyście.",
+            "icon" => "sort",
+        ],
     ];
 
     public const CONNECTIONS = [
@@ -151,6 +139,16 @@ class OrdinariusColor extends Model
 
     #region scopes
     use HasStandardScopes;
+
+    public function scopeOrdered($query)
+    {
+        return $query->orderBy("ordering");
+    }
+
+    public function scopeForConnection($query)
+    {
+        return $query->orderBy("ordering");
+    }
     #endregion
 
     #region attributes
@@ -207,33 +205,5 @@ class OrdinariusColor extends Model
     #endregion
 
     #region helpers
-    public static function ordered()
-    {
-        $ordered = collect(DB::select(<<<SQL
-            with recursive ordered as (
-                select oc.name, oc.ordering, 1 as lvl
-                from ordinarius_colors oc
-                where oc.name not in (select ordering from ordinarius_colors where ordering is not null)
-                    union all
-                select oc.name, oc.ordering, o.lvl + 1
-                from ordered o
-                    join ordinarius_colors oc on oc.name = o.ordering
-            )
-            select
-                oc.name,
-                coalesce(oc.display_name, oc.name) as display_name,
-                coalesce(oc.display_color, oc.name) as display_color,
-                oc.desc,
-                o.lvl
-            from ordinarius_colors oc
-                join ordered o on o.name = oc.name
-            order by lvl;
-        SQL));
-
-        return self::with("ordinarium")
-            ->get()
-            ->sortBy(fn ($oc) => $ordered->firstWhere("name", $oc->name)->lvl)
-            ->values();
-    }
     #endregion
 }

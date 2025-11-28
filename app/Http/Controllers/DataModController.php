@@ -25,7 +25,7 @@ class DataModController extends Controller
                 $set,
                 ["extras" => $set->extras]
             ),
-            "ordinarius_colors" => OrdinariusColor::ordered(),
+            "ordinarius_colors" => OrdinariusColor::ordered()->get(),
             "ordinarium" => Ordinarius::all(),
             "formula" => collect(
                 $set->formulaData,

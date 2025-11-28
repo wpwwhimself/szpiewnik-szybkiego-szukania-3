@@ -11,7 +11,7 @@ use Illuminate\Support\Str;
 class OrdinariusController extends Controller
 {
     public function ordinarium(){
-        $colors = OrdinariusColor::ordered();
+        $colors = OrdinariusColor::ordered()->get();
         $ordinarium = [];
         foreach($colors as $color){
             $ordinarium[$color->name] = $color->ordinarium;

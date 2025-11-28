@@ -26,8 +26,8 @@
     @foreach ($sets[$formula->name] as $set)
         @continue (!($set->public || $set->user_id == Auth::id() || Auth::user()->hasRole("technical")))
 
-        <div class="flex down center tight">
-            @if ($set->user->id != Auth::id()) <label>{{ $set->user->name  }}</label> @endif
+        <div class="flex down center no-gap">
+            @if ($set->user->id != Auth::id()) <label class="ghost">{{ $set->user->name }}</label> @endif
             <x-list-element
                 :present="route('set-present', ['set_id' => $set->id]).(Auth::user()?->default_place ? '?place='.Str::slug(Auth::user()->default_place) : '')"
                 :edit="route('set', ['set_id' => $set->id])"

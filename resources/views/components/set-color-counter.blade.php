@@ -3,7 +3,7 @@
 ])
 
 @php
-$color_ordering = App\Models\OrdinariusColor::ordered()->pluck("lvl", "name");
+$color_ordering = App\Models\OrdinariusColor::ordered()->pluck("ordering", "name");
 $ordered_sets = $sets->groupBy("color")->sortBy(fn ($clr, $k) => $color_ordering[$k]);
 @endphp
 
