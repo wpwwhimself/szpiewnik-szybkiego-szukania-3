@@ -191,16 +191,9 @@ export function OrdinariumProcessor({code, colorCode, formula}: OrdinariumProces
               <h4><strong>Kyrie</strong> pominięte</h4>
               <div className="alt_option">
                 <Antiphon
-                  call="Panie... ...Zmiłuj się nad nami"
+                  call="Panie/Chryste/Panie... ...Zmiłuj się nad nami"
                   resp="Zmiłuj się nad nami"
-                />
-                <Antiphon
-                  call="Chryste... ...Zmiłuj się nad nami"
-                  resp="Zmiłuj się nad nami"
-                />
-                <Antiphon
-                  call="Panie... ...Zmiłuj się nad nami"
-                  resp="Zmiłuj się nad nami"
+                  respMelody={`[K:Em]B2E2 | F8G2G2 A8B2B2 | cBAGA2A2 || BAGFE2E4 :|]\n%%%\n[K:D] (FG)A2 | G8AGF2E2 | EFGAB2B2 || BcdB (AG)F4 :|]\n%%%\n[K:F](ABA)G2 | G8FGA2A2 | cBABG2G2 || GABAG2F4 :|]\n`}
                 />
               </div>
               <div className="alt_option">
