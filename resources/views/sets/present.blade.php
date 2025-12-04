@@ -2,6 +2,12 @@
 @section("title", $set)
 @section("subtitle", "Zestaw")
 
+@section("prepends")
+<script>
+const user_id = {{ Auth::id() ?? "null" }};
+</script>
+@endsection
+
 @section("content")
 
 <div class="container" id="root"></div>
