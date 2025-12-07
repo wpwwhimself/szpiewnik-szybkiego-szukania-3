@@ -67,13 +67,21 @@ body {
         }
     }
 
+    &[target="_blank"] {
+        border: inherit;
+
+        &::before {
+            border-block-style: double;
+            border-block-width: calc(var(--spacing));
+        }
+    }
+
     &.toggle {
         background: none;
-        color: var(--fg);
         border-inline: none;
 
-        &:hover {
-            color: var(--secondary);
+        &.active {
+            border: none;
         }
     }
 
