@@ -8,7 +8,7 @@
     Wybierz zestaw, aby wyświetlić jego elementy.
 </p>
 
-<div class="grid" style="--col-count: 3;">
+<div class="grid but-mobile-down" style="--col-count: 3;">
     @foreach ($colors as $color)
     <div class="ordTile">
         <div class="ordTitleBox" style="border-color: {{ $color->display_color }}">
@@ -33,7 +33,7 @@
     @endforeach
 </div>
 
-<div class="grid" style="--col-count: 2;">
+<div class="grid but-mobile-down" style="--col-count: 2;">
     @if (Auth::user()?->hasRole("ordinarius-manager"))
     <div class="ordTile">
         <div class="ordTitleBox">
