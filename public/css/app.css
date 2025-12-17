@@ -97,6 +97,10 @@ body {
     }
 }
 
+header > [role="bottom-part"] {
+    padding-block: 5px;
+}
+
 #row-adder {
     display: none;
 }
