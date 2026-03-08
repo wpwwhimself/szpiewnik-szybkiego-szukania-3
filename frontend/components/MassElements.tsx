@@ -748,7 +748,7 @@ export function ExtrasProcessor({elem}: {elem: MassElem}){
           <div className="flex right center">
           {[0, 1, 2].map(var_no =>
             <Button key={var_no}
-              className={[variant === var_no && 'accent-border'].filter(Boolean).join(" ")}
+              className={[variant === var_no && 'accent-border', "toggle"].filter(Boolean).join(" ")}
               onClick={() => changeVariant(var_no)}>
               {var_no + 1}
             </Button>)}
