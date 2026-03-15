@@ -437,6 +437,8 @@ export function MassSet(){
     // Set display color
     const current_color = ordinarius_colors.find(el => el.name === set.color);
 
+    console.log(set.thisMassOrder);
+
     return(<>
         <div className="flex right center wrap settings">
             <Button onClick={() => colorOn()}>
@@ -478,19 +480,38 @@ export function MassSet(){
         <div id="jumper" className="modal">
             <h1>Przejdź do</h1>
 
-            <div className="flex right center middle wrap">
-            {set.thisMassOrder
-                .filter(el => ["s", "p"].includes(el.code.charAt(0)))
-                .map((el, i) =>
-                <Button key={i}
-                    onClick={() => {
-                        jumperOn();
-                        document.getElementById(el.code)?.scrollIntoView({behavior: "smooth", block: "center"});
-                    }}
-                    >
-                    {el.label}
-                </Button>
-            )}
+            <div className="flex down">
+                <div className="flex right center middle wrap">
+                {set.thisMassOrder
+                    .filter(el => ["s", "p"].includes(el.code.charAt(0)))
+                    .map((el, i) =>
+                    <Button key={i}
+                        onClick={() => {
+                            jumperOn();
+                            document.getElementById(el.code)?.scrollIntoView({behavior: "smooth", block: "center"});
+                        }}
+                        >
+                        {el.label}
+                    </Button>
+                )}
+                </div>
+
+                <hr />
+
+                <div className="flex right center middle wrap">
+                {set.thisMassOrder
+                    .filter(el => ["!", "p"].includes(el.code.charAt(0)))
+                    .map((el, i) =>
+                    <Button key={i}
+                        onClick={() => {
+                            jumperOn();
+                            document.getElementById(el.code)?.scrollIntoView({behavior: "smooth", block: "center"});
+                        }}
+                        >
+                        {el.label}
+                    </Button>
+                )}
+                </div>
             </div>
 
             <div className="flex right spread and-cover">
