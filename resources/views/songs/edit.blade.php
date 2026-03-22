@@ -33,7 +33,7 @@
 </x-shipyard.app.section>
 
 <x-shipyard.app.section title="Teksty i nuty" icon="playlist-music">
-  <div class="grid" style="--col-count: 2;">
+  <div class="grid but-mobile-down" style="--col-count: 2;">
     <div>
       <div id="lyrics-variant-big-container">
       @foreach ($song->lyrics_variants as $var_no => $lyrics)
