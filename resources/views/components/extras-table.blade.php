@@ -14,6 +14,7 @@ $mass_order = collect(json_decode((new \App\Http\Controllers\DataModController)-
     Aby dodać pieśń, w pole <em>Element</em> wpisz jej tytuł.
     Aby dodać część stałą, zacznij wpisywanie od <code>!</code>.
     Aby dodać element specjalny, zacznij wpisywanie od <code>x</code>.
+    Aby zignorować wpis pochodzący z Formuły, dodaj wpis wypełniony identycznie z ignorowanym.
 </p>
 
 {{-- intercept choices setup --}}

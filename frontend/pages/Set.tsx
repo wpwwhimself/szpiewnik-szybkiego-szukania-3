@@ -129,17 +129,35 @@ export function MassSet(){
     }
 
     set.extras?.forEach((el) => {
+        // duplicate extras cancel each other out
+        if (currentPlace?.extras?.filter(cpex => (
+            cpex.name == el.name
+            && cpex.before == el.before
+            && cpex.replace == el.replace
+        )).length) return;
+        if (formula.extras?.filter(fex => (
+            fex.name == el.name
+            && fex.before == el.before
+            && fex.replace == el.replace
+        )).length) return;
         insertExtras(el, thisMassOrder, true);
     });
     currentPlace?.extras?.forEach((el) => {
+        // duplicate extras cancel each other out
         if (set.extras?.filter(sex => (
             sex.name == el.name
             && sex.before == el.before
             && sex.replace == el.replace
         )).length) return;
+        if (formula.extras?.filter(fex => (
+            fex.name == el.name
+            && fex.before == el.before
+            && fex.replace == el.replace
+        )).length) return;
         insertExtras(el, thisMassOrder, true);
     })
     formula.extras?.forEach((el) => {
+        // duplicate extras cancel each other out
         if (set.extras?.filter(sex => (
             sex.name == el.name
             && sex.before == el.before
