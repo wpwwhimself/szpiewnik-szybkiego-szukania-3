@@ -499,6 +499,14 @@ export function MassSet(){
             <h1>Przejdź do</h1>
 
             <div className="flex down">
+                <Button onClick={() => {
+                    jumperOn();
+                    window.scrollTo({top: 0, behavior: 'smooth'});
+                }}>
+                    Na początek
+                </Button>
+
+                <h2>Pieśni</h2>
                 <div className="flex right center middle wrap">
                 {set.thisMassOrder
                     .filter(el => ["s", "p"].includes(el.code.charAt(0)))
@@ -514,8 +522,7 @@ export function MassSet(){
                 )}
                 </div>
 
-                <hr />
-
+                <h2>Części stałe</h2>
                 <div className="flex right center middle wrap">
                 {set.thisMassOrder
                     .filter(el => ["!", "p"].includes(el.code.charAt(0)))
