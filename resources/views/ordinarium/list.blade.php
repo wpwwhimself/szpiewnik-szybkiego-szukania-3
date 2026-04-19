@@ -8,30 +8,38 @@
     Wybierz zestaw, aby wyświetlić jego elementy.
 </p>
 
-<div class="grid but-mobile-down" style="--col-count: 3;">
-    @foreach ($colors as $color)
-    <div class="ordTile">
-        <div class="ordTitleBox" style="border-color: {{ $color->display_color }}">
-            <a href="{{ route('ordinarius-present', ['color' => $color->name]) }}">
-                <h1>{{ $color->display_name ?? $color->name }}</h1>
-            </a>
-            <p>{{ $color->desc }}</p>
-        </div>
-        <div class="flex right wrap center">
-            @if (Auth::user()?->hasRole("ordinarius-manager"))
-            @foreach ($ordinarium[$color->name] as $ordinarius)
-            <a href="{{ route('ordinarius', ['color_code' => $color->name, 'part' => $ordinarius->part]) }}">
-                {{ $ordinarius->part }}
-                @if(count($ordinarius->sheet_music_variants) > 1)
-                <small class="ghost">({{ count($ordinarius->sheet_music_variants) }} war.)</small>
+@foreach ([
+    0 => "Zwykłe",
+    1 => "Melancholijne",
+    2 => "Świąteczne",
+] as $color_group => $label)
+    <h1>{{ $label }}</h1>
+    <div class="grid but-mobile-down" style="--col-count: 3;">
+        @foreach ($colors->filter(fn ($clr) => $clr->group === $color_group) as $color)
+        <div class="ordTile">
+            <div class="ordTitleBox" style="border-color: {{ $color->display_color }}">
+                <a href="{{ route('ordinarius-present', ['color' => $color->name]) }}">
+                    <h2>{{ $color->display_name ?? $color->name }}</h2>
+                </a>
+                <p>{{ $color->desc }}</p>
+            </div>
+            <div class="flex right wrap center">
+                @if (Auth::user()?->hasRole("ordinarius-manager"))
+                @foreach ($ordinarium[$color->name] as $ordinarius)
+                <a href="{{ route('ordinarius', ['color_code' => $color->name, 'part' => $ordinarius->part]) }}">
+                    {{ $ordinarius->part }}
+                    @if(count($ordinarius->sheet_music_variants) > 1)
+                    <small class="ghost">({{ count($ordinarius->sheet_music_variants) }} war.)</small>
+                    @endif
+                </a>
+                @endforeach
                 @endif
-            </a>
-            @endforeach
-            @endif
+            </div>
         </div>
+        @endforeach
     </div>
-    @endforeach
-</div>
+@endforeach
+
 
 <div class="grid but-mobile-down" style="--col-count: 2;">
     @if (Auth::user()?->hasRole("ordinarius-manager"))

@@ -32,6 +32,7 @@ class OrdinariusColor extends Model
         "display_color",
         "desc",
         "ordering",
+        "group",
     ];
 
     #region presentation
@@ -91,6 +92,19 @@ class OrdinariusColor extends Model
             "hint" => "Dyktuje kolejność kolorów. Im dalej w kolejności, tym bardziej uroczyście.",
             "icon" => "sort",
         ],
+        "group" => [
+            "type" => "select",
+            "label" => "Grupa",
+            "icon" => "format-list-group",
+            "selectData" => [
+                "options" => [
+                    ["label" => "zwykłe", "value" => 0],
+                    ["label" => "melancholijne", "value" => 1],
+                    ["label" => "świąteczne", "value" => 2],
+                ],
+            ],
+            "required" => true,
+        ]
     ];
 
     public const CONNECTIONS = [

@@ -60,6 +60,7 @@ export interface OrdinariumColorProps{
     display_color: string | null,
     display_name: string,
     desc: string,
+    group: 0 | 1 | 2,
 }
 
 export interface Extra{

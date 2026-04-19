@@ -476,15 +476,27 @@ export function MassSet(){
         <div id="color" className="modal">
             <h1>Kolor części stałych</h1>
 
-            <div className="scroll-list flex right center wrap">
-                {ordinarius_colors.map((color, i) =>
-                    <Button key={i}
-                        className={["safety", currentSafetyPick === color.name && "accent-border"].filter(Boolean).join(" ")}
-                        onClick={() => setCurrentSafetyPick(color.name)}
-                    >
-                        <span style={{ color: color.display_color ?? color.name ?? 'none' }}>⬤</span>
-                        {color.display_name}
-                    </Button>
+            <div className="flex down">
+                {[
+                    { label: "Podobne", seek_similar: true },
+                    { label: "Pozostałe", seek_similar: false },
+                ].map(({ label, seek_similar }, i) => <>
+                    <h2>{label}</h2>
+                    <div className="scroll-list flex right center wrap">
+                        {ordinarius_colors
+                            .filter((color) => (color.group === current_color?.group) === seek_similar)
+                            .map((color, i) =>
+                                <Button key={i}
+                                    className={["safety", currentSafetyPick === color.name && "accent-border"].filter(Boolean).join(" ")}
+                                    onClick={() => setCurrentSafetyPick(color.name)}
+                                >
+                                    <span style={{ color: color.display_color ?? color.name ?? 'none' }}>⬤</span>
+                                    {color.display_name}
+                                </Button>
+                            )
+                        }
+                    </div>
+                </>
                 )}
             </div>
 
