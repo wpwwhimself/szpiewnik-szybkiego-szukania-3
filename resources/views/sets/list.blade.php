@@ -43,4 +43,9 @@
 @endif @endforeach
 </div>
 
+<x-shipyard.app.h lvl="3" icon="more">Dodatkowe źródła</x-shipyard.app.h>
+<ul>
+    <li><a href="https://musicamsacram.pl/propozycje-spiewow">Musicam Sacram</a></li>
+</ul>
+
 @endsection
