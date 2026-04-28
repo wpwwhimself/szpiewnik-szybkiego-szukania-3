@@ -13,13 +13,16 @@ export const ShowLyricsContext = createContext(true);
 
 export function MassSet(){
     const set_id = +window.location.href.replace(/.*\/(\d+).*/, "$1");
-    const place_slug_match = window.location.href.match(/.*\?place=(.*)/);
+    const place_slug_match = window.location.href.match(/.*place=([a-z\-]*)/);
     const place_slug = place_slug_match ? place_slug_match[1] : null;
+    const formula_slug_match = window.location.href.match(/.*formula=([a-z\-]*)/);
+    const formula_slug = formula_slug_match ? formula_slug_match[1] : null;
 
     const [set, setSet] = useState({} as Set);
     const [ordinarium, setOrdinarium] = useState([] as OrdinariumProps[]);
     const [ordinarius_colors, setOrdColors] = useState([] as OrdinariumColorProps[]);
     const [formula, setFormula] = useState({} as Formula);
+    const [formulas, setFormulas] = useState([] as Formula[]);
     const [songs, setSongs] = useState([] as SongProps[]);
     const [categories, setCategories] = useState([] as SongCategoryProps[]);
     const [preferences, setPreferences] = useState(["Wejście", "Dary", "Komunia", "Uwielbienie", "Zakończenie"]);
@@ -42,12 +45,14 @@ export function MassSet(){
         axios.get("/api/set-data", {params: {
                 set_id: set_id,
                 place_slug: place_slug,
+                formula_slug: formula_slug,
         }}).then(res => {
             setSet({...res.data.set, thisMassOrder: []});
             setOrdinarium(res.data.ordinarium);
             setOrdColors(res.data.ordinarius_colors);
             setCurrentPlace(res.data.place);
             setFormula(res.data.formula);
+            setFormulas(res.data.formulas);
             setSongs(res.data.songs);
             setCategories(res.data.categories);
             setPlaces(res.data.places);
@@ -418,7 +423,7 @@ export function MassSet(){
         setColor(randomColor);
     }
 
-    //jumping
+    // modals
     function jumperOn(){
         document.getElementById("jumper")!.classList.toggle("show");
     }
@@ -427,8 +432,21 @@ export function MassSet(){
         document.getElementById("placer")!.classList.toggle("show");
     }
 
+    function formulaOn(){
+        document.getElementById("formula")!.classList.toggle("show");
+    }
+
     function placeNotesOn() {
         document.getElementById("placeNotes")!.classList.toggle("show");
+    }
+
+    // reloads with parameters
+    function reloadWith(place?: string, formula?: string) {
+        let params = new URLSearchParams();
+        if (place) params.set("place", slugAndDePL(place));
+        if (formula) params.set("formula", slugAndDePL(formula));
+
+        window.location.href = `?` + new URLSearchParams(params);
     }
 
     // Mass' summary
@@ -469,8 +487,15 @@ export function MassSet(){
                 onClick={() => setShowLyrics(!showLyrics)}>
                 Txt
             </Button>
-            <Button onClick={() => placerOn()}>{currentPlace?.name ?? "Miejsce"}</Button>
-            {currentPlace?.notes && <Button onClick={() => placeNotesOn()}>Nttk</Button>}
+            <Button className={[currentPlace && "accent-border"].filter(Boolean).join(" ")}
+                onClick={() => placerOn()}>
+                Msc
+            </Button>
+            <Button
+                onClick={() => formulaOn()}>
+                Frm
+            </Button>
+            {currentPlace?.notes && <Button onClick={() => placeNotesOn()}>Ntk</Button>}
         </div>
 
         <div id="color" className="modal">
@@ -675,19 +700,44 @@ export function MassSet(){
             <h1>Zmień miejsce</h1>
 
             <div className="flex right center wrap">
-                <a href="?">
-                    <Button>domyślne</Button>
-                </a>
-            {places.map((place, i) =>
-                <a href={`?place=${slugAndDePL(place.name)}`} key={i}>
-                    <Button>{place.name}</Button>
-                </a>
-            )}
+                <Button className={[!currentPlace && "accent-border"].filter(Boolean).join(" ")}
+                    onClick={() => reloadWith(undefined, formula.name)}
+                >
+                    domyślne
+                </Button>
+                {places.map((place, i) =>
+                    <Button key={i}
+                        className={[place.name === currentPlace?.name && "accent-border"].filter(Boolean).join(" ")}
+                        onClick={() => reloadWith(place.name, formula.name)}
+                    >
+                        {place.name}
+                    </Button>
+                )}
                 <h2 className="accent danger">Wymaga przeładowania, utracisz wprowadzone zmiany!</h2>
             </div>
 
             <div className="flex right spread and-cover">
                 <Button onClick={() => placerOn()}>Anuluj</Button>
+            </div>
+        </div>
+
+        <div id="formula" className="modal">
+            <h1>Zmień formułę</h1>
+
+            <div className="flex right center wrap">
+                {formulas.map((frm, i) =>
+                    <Button key={i}
+                        className={[frm.name === formula.name && "accent-border"].filter(Boolean).join(" ")}
+                        onClick={() => reloadWith(currentPlace?.name, frm.name)}
+                    >
+                        {frm.name}
+                    </Button>
+                )}
+                <h2 className="accent danger">Wymaga przeładowania, utracisz wprowadzone zmiany!</h2>
+            </div>
+
+            <div className="flex right spread and-cover">
+                <Button onClick={() => formulaOn()}>Anuluj</Button>
             </div>
         </div>
 
@@ -709,8 +759,9 @@ export function MassSet(){
                     <div className="flex right but-mobile-down center vert-baseline" style={{ textAlign: "left", }}>
                         <div>
                             <h2>Meta</h2>
-                            <div className="flex down center">
-                                <DummyInput label="Formuła" value={set.formula} />
+                            <div className="flex down center no-gap">
+                                <DummyInput label="Formuła" value={formula.name} />
+                                <DummyInput label="Miejsce" value={currentPlace?.name ?? "—"} />
                                 <DummyInput label="Utworzony" value={moment(set.created_at).format("DD.MM.YYYY")} />
                                 <DummyInput label="Zmodyfikowany" value={moment(set.updated_at).format("DD.MM.YYYY")} />
                             </div>

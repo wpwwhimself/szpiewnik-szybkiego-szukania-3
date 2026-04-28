@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Formula;
 use App\Models\Ordinarius;
 use App\Models\OrdinariusColor;
 use App\Models\Place;
@@ -19,6 +20,9 @@ class DataModController extends Controller
     public function setData(Request $rq){
         $set = Set::find($rq->set_id);
         $place = Place::with("extras")->get()->filter(fn($el) => Str::slug($el->name) === $rq->place_slug)->first();
+        $formula = ($rq->has("formula_slug"))
+            ? Formula::with("extras")->get()->filter(fn($el) => Str::slug($el->name) === $rq->formula_slug)->first()
+            : $set->formulaData;
 
         return response()->json([
             "set" => collect(
@@ -28,9 +32,10 @@ class DataModController extends Controller
             "ordinarius_colors" => OrdinariusColor::ordered()->get(),
             "ordinarium" => Ordinarius::all(),
             "formula" => collect(
-                $set->formulaData,
-                ["extras" => $set->formulaData->extras]
+                $formula,
+                ["extras" => $formula->extras]
             ),
+            "formulas" => Formula::all(),
             "songs" => Song::with("notes")->get(),
             "categories" => SongCategory::all(),
             "place" => $place,
