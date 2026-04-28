@@ -85,7 +85,7 @@ class Set extends Model
         "public" => [
             "type" => "checkbox",
             "label" => "Publiczny",
-            "hint" => "Zestaw publiczny jest możliwy do przeglądania przez innych użytkowników.",
+            "hint" => "Zestaw publiczny jest widoczny na liście zestawów dla wszystkich użytkowników, również niezalogowanych. Niepubliczne zestawy nadal mogą być wyświetlone po przejściu bezpośrednio przez link do zestawu.",
             "icon" => "earth",
         ],
     ];
