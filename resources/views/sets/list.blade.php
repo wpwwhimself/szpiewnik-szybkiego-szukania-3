@@ -19,29 +19,42 @@
 </p>
 @endguest
 
-<div role="set-list">
-@foreach ($formulas as $formula) @if(count($formula->sets))
-    <h2>{{ $formula->name }}</h2>
-    <div class="flex right center wrap">
-    @foreach ($sets[$formula->name] as $set)
-        @continue (!($set->public || $set->user_id == Auth::id() || Auth::user()->hasRole("technical")))
-
-        <div class="flex down center no-gap">
-            @if ($set->user->id != Auth::id()) <label class="ghost">{{ $set->user->name }}</label> @endif
-            <x-list-element
-                :present="route('set-present', ['set_id' => $set->id]).(Auth::user()?->default_place ? '?place='.Str::slug(Auth::user()->default_place) : '')"
-                :edit="route('set', ['set_id' => $set->id])"
-                role-for-edit="1"
-                >
+<table>
+    <thead>
+        <tr>
+            <th class="sortable">Nazwa</th>
+            <th class="sortable">Formuła</th>
+            <th class="sortable">Twórca</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach ($sets as $set)
+        @continue (!($set->public || $set->user_id == Auth::id() || Auth::user()?->hasRole("technical")))
+        <tr>
+            <td>
                 <span style="color: {{ $set->colorData->display_color }};">⬤</span>
                 {{ $set->name }}
-            </x-list-element>
-        </div>
-    @endforeach
-    </div>
-    <x-set-color-counter :sets="$sets[$formula->name]" />
-@endif @endforeach
-</div>
+            </td>
+            <td>{{ $set->formulaData->name }}</td>
+            <td @class([
+                "ghost" => $set->user->id != Auth::id(),
+            ])>
+                @if ($set->user->id != Auth::id())
+                {{ $set->user->name }}
+                @endif
+            </td>
+            <td>
+                <a href="{{ route('set-present', ['set_id' => $set->id]).(Auth::user()?->default_place ? '?place='.Str::slug(Auth::user()->default_place) : '') }}">
+                    Otwórz
+                </a>
+            </td>
+        </tr>
+        @endforeach
+    </tbody>
+</table>
+
+<x-set-color-counter :sets="$sets" />
 
 <x-shipyard.app.h lvl="3" icon="more">Dodatkowe źródła</x-shipyard.app.h>
 <ul>

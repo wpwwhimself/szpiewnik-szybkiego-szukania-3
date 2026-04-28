@@ -13,15 +13,14 @@ use Illuminate\Support\Facades\Auth;
 class SetController extends Controller
 {
     public function sets(){
-        $formulas = Formula::all();
-        $sets = [];
-        foreach($formulas as $formula){
-            $sets[$formula->name] = $formula->user_sets;
-        }
+        $sets = Set::with(["formulaData", "colorData"])
+            ->orderBy("formula")
+            ->orderBy("name")
+            ->get();
 
         return view("sets.list", array_merge(
             ["title" => "Dostępne zestawy"],
-            compact("formulas", "sets")
+            compact("sets")
         ));
     }
 
