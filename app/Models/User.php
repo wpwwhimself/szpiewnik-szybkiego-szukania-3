@@ -11,6 +11,7 @@ class User extends ShipyardUser
     protected $fillable = [
         "name",
         "email",
+        "roles",
         "default_place",
     ];
 }
