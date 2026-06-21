@@ -14,13 +14,14 @@ class SetController extends Controller
 {
     public function sets(){
         $sets = Set::with(["formulaData", "colorData"])
-            ->orderBy("formula")
-            ->orderBy("name")
+            ->forUser()
             ->get();
+        $setGroups = $sets->groupBy(fn ($s) => $s->public)
+            ->sortKeys();
 
         return view("sets.list", array_merge(
             ["title" => "Dostępne zestawy"],
-            compact("sets")
+            compact("setGroups")
         ));
     }
 

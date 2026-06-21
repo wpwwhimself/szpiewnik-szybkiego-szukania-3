@@ -14,17 +14,24 @@
 @guest
 <p>
     Obecnie jesteś niezalogowany
-    – poniżej widoczne są tylko zestawy,
-    które zostały ustawione przez innych użytkowników jako publiczne.
+    – poniżej widoczne są tylko publicznie dostępne zestawy.
 </p>
 @endguest
+
+@foreach ($setGroups as $is_public => $sets)
+<x-shipyard.app.h lvl="3" :icon="model_icon('sets')">
+    @if ($is_public)
+    Publiczne zestawy
+    @else
+    Moje zestawy
+    @endif
+</x-shipyard.app.h>
 
 <table>
     <thead>
         <tr>
             <th class="sortable">Nazwa</th>
             <th class="sortable">Formuła</th>
-            <th class="sortable">Twórca</th>
             <th></th>
         </tr>
     </thead>
@@ -37,13 +44,6 @@
                 {{ $set->name }}
             </td>
             <td>{{ $set->formulaData->name }}</td>
-            <td @class([
-                "ghost" => $set->user->id != Auth::id(),
-            ])>
-                @if ($set->user->id != Auth::id())
-                {{ $set->user->name }}
-                @endif
-            </td>
             <td>
                 <a href="{{ route('set-present', ['set_id' => $set->id]).(Auth::user()?->default_place ? '?place='.Str::slug(Auth::user()->default_place) : '') }}">
                     Otwórz
@@ -55,6 +55,8 @@
 </table>
 
 <x-set-color-counter :sets="$sets" />
+
+@endforeach
 
 <x-shipyard.app.h lvl="3" icon="more">Dodatkowe źródła</x-shipyard.app.h>
 <ul>

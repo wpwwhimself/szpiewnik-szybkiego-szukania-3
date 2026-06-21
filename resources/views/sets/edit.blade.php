@@ -12,7 +12,9 @@
         <x-shipyard.ui.field-input :model="$set" field-name="name" />
         <x-shipyard.ui.connection-input :model="$set" connection-name="formulaData" />
         <x-shipyard.ui.connection-input :model="$set" connection-name="colorData" />
+        @if (Auth::user()->hasRole("spellcaster"))
         <x-shipyard.ui.field-input :model="$set" field-name="public" />
+        @endif
     </div>
 </x-shipyard.app.section>
 

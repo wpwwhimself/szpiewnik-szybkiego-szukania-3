@@ -142,6 +142,14 @@ class Set extends Model
 
     #region scopes
     use HasStandardScopes;
+
+    public function scopeForUser($query)
+    {
+        return $query->where("user_id", Auth::id())
+            ->orWhere("public", true)
+            ->orderBy("formula")
+            ->orderBy("name");
+    }
     #endregion
 
     #region attributes
