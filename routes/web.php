@@ -47,7 +47,7 @@ Route::middleware(Authenticate::class)->group(function(){
     Route::controller(SetController::class)->prefix("sets")->middleware(EnsureUserHasRole::class.":set-manager")->group(function(){
         Route::get("/show/{set_id}", "set")->name("set");
         Route::post("/edit", "setEdit")->name("set-edit");
-        Route::get("/add", "setAdd")->name("set-add");
+        Route::post("/add", "setAdd")->name("set-add");
         Route::get("/copy-for-user/{set}", "setCopyForUser")->name("set-copy-for-user");
     });
 

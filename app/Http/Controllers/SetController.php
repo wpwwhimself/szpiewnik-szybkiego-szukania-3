@@ -122,13 +122,13 @@ class SetController extends Controller
         return redirect()->route("sets")->with("toast", ["success", $response]);
     }
 
-    public function setAdd(){
+    public function setAdd(Request $rq){
         $new_set = Set::create([
             "user_id" => Auth::id(),
             "public" => false,
-            "name" => "--Nowa msza--",
-            "formula" => "zwykła",
-            "color" => "green",
+            "name" => $rq->name,
+            "formula" => $rq->formula,
+            "color" => $rq->color,
         ]);
 
         ChangeController::add($new_set, "utworzono");

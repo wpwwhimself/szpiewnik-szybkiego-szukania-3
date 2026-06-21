@@ -5,9 +5,11 @@
 
 @auth
 <x-shipyard.ui.button
-    :action="route('set-add')"
-    label="Dodaj nowy"
     icon="plus"
+    label="Dodaj nowy"
+    action="none"
+    onclick="openModal('add-set');"
+    class="primary"
 />
 @endauth
 
