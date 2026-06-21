@@ -19,6 +19,12 @@ class SetController extends Controller
         $setGroups = $sets->groupBy(fn ($s) => $s->public)
             ->sortKeys();
 
+        if (Auth::user()->hasRole("spellcaster")) {
+            $setGroups[2] = Set::with(["formulaData", "colorData"])
+                ->whereNot("user_id", Auth::id())
+                ->get();
+        }
+
         return view("sets.list", array_merge(
             ["title" => "Dostępne zestawy"],
             compact("setGroups")

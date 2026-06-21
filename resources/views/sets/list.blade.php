@@ -20,11 +20,11 @@
 
 @foreach ($setGroups as $is_public => $sets)
 <x-shipyard.app.h lvl="3" :icon="model_icon('sets')">
-    @if ($is_public)
-    Publiczne zestawy
-    @else
-    Moje zestawy
-    @endif
+    @switch ($is_public)
+        @case (0) Moje zestawy @break
+        @case (1) Publiczne zestawy @break
+        @case (2) Zestawy innych @break
+    @endswitch
 </x-shipyard.app.h>
 
 <table>
@@ -32,6 +32,7 @@
         <tr>
             <th class="sortable">Nazwa</th>
             <th class="sortable">Formuła</th>
+            @if ($is_public === 2) <th class="sortable">Twórca</th> @endif
             <th></th>
         </tr>
     </thead>
@@ -44,6 +45,9 @@
                 {{ $set->name }}
             </td>
             <td>{{ $set->formulaData->name }}</td>
+            @if ($is_public === 2)
+            <td>{{ $set->user }}</td>
+            @endif
             <td>
                 <a href="{{ route('set-present', ['set_id' => $set->id]).(Auth::user()?->default_place ? '?place='.Str::slug(Auth::user()->default_place) : '') }}">
                     Otwórz
