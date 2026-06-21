@@ -178,7 +178,7 @@ thead th, tfoot th{
 }
 /* Modals */
 
-.modal{
+#root .modal {
     display: none;
     position: fixed;
     top: 0; left: 0;
@@ -203,12 +203,13 @@ thead th, tfoot th{
         align-self: baseline;
         max-height: 100%;
     }
-}
-.modal.show{
-    display: grid;
-    grid-template-rows: auto 1fr auto;
-    grid-template-columns: 1fr;
-    gap: 1em;
+
+    &.show{
+        display: grid;
+        grid-template-rows: auto 1fr auto;
+        grid-template-columns: 1fr;
+        gap: 1em;
+    }
 }
 
 .scroll-list{
