@@ -51,9 +51,8 @@
             <td>{{ $set->user }}</td>
             @endif
             <td>
-                <a href="{{ route('set-present', ['set_id' => $set->id]).(Auth::user()?->default_place ? '?place='.Str::slug(Auth::user()->default_place) : '') }}">
-                    Otwórz
-                </a>
+                <a href="{{ route('set-present', ['set_id' => $set->id]).(Auth::user()?->default_place ? '?place='.Str::slug(Auth::user()->default_place) : '') }}">Otwórz</a>
+                @if ($set->user_id === Auth::id()) <a href="{{ route('set', ['set_id' => $set->id]) }}">Edytuj</a> @endif
             </td>
         </tr>
         @endforeach
