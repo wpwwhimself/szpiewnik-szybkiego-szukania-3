@@ -103,26 +103,35 @@
 </x-shipyard.app.form>
 
 <script defer>
+let autocompleteController;
+
 function songAdderAutocomplete(el){
     const title = el.value;
     const hintBox = document.getElementById("song-adder-autocomplete");
 
-    fetch("{{ route('get-song-autocomplete') }}", {
-        method: "post",
-        body: JSON.stringify({
-            title: title,
-        }),
-        headers: {
-            "Content-Type": "application/json",
-            "X-CSRF-TOKEN": "{{ csrf_token() }}",
-        }
-    }).then(res => res.json()).then(data => {
-        hintBox.innerHTML = "";
-        window.songAutocompleteBox = el;
-        data.forEach(title => {
-            hintBox.innerHTML += `<span class="safety interactive" onclick="songAdderAutocompleteInsert('${title}')">${title}</span>`;
-        });
-    }).catch(err => console.error(err));
+    clearTimeout(debounce_timer);
+    debounce_timer = setTimeout(() => {
+        autocompleteController?.abort();
+        autocompleteController = new AbortController();
+
+        fetch("{{ route('get-song-autocomplete') }}", {
+            method: "post",
+            body: JSON.stringify({
+                title: title,
+            }),
+            headers: {
+                "Content-Type": "application/json",
+                "X-CSRF-TOKEN": "{{ csrf_token() }}",
+            },
+            signal: autocompleteController.signal,
+        }).then(res => res.json()).then(data => {
+            hintBox.innerHTML = "";
+            window.songAutocompleteBox = el;
+            data.forEach(title => {
+                hintBox.innerHTML += `<span class="safety interactive" onclick="songAdderAutocompleteInsert('${title}')">${title}</span>`;
+            });
+        }).catch(err => console.error(err));
+    }, 0.3e3);
 }
 function songAdderAutocompleteInsert(title){
     document.getElementById("song-adder").value = title;
