@@ -44,4 +44,15 @@ class ShipyardTheme
     // if fonts come from Google Fonts, add the URL here
     public const FONT_IMPORT_URL = 'https://fonts.googleapis.com/css2?family=Cinzel&family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap';
     #endregion
+
+    #region optional modules
+    /**
+     * list of optional includes to extend functionalities of this app
+     * uncomment those you need
+     */
+    public const MODULES = [
+        "sheetmusic",
+        // "wysiwyg",
+    ];
+    #endregion
 }
