@@ -9,3 +9,9 @@
 <script src="{{ asset("js/note-transpose.js") }}?{{ time() }}"></script>
 
 @endsection
+
+@section("prepends")
+<script>
+const user_id = {{ Auth::id() ?? "null" }};
+</script>
+@endsection

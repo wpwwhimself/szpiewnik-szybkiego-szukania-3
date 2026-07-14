@@ -229,7 +229,7 @@ class Song extends Model
     }
     public function notesForCurrentUser()
     {
-        return $this->hasMany(SongNote::class)->where("user_id", Auth::id());
+        return $this->hasMany(SongNote::class, "title")->where("user_id", Auth::id());
     }
     #endregion
 

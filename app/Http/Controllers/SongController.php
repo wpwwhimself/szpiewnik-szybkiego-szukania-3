@@ -93,6 +93,11 @@ class SongController extends Controller
                         ]);
                     }
                 }
+
+                // update song notes
+                $song->notesForCurrentUser->each(fn ($n) => $n->update([
+                    "content" => $rq->song_notes,
+                ]));
             });
             $response = "Pieśń poprawiona";
         }else{

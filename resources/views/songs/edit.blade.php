@@ -15,7 +15,14 @@
     <x-shipyard.ui.field-input :model="$song" field-name="category_desc" />
     <x-shipyard.ui.field-input :model="$song" field-name="number_preis" />
     <x-shipyard.ui.field-input :model="$song" field-name="key" />
-    <x-shipyard.ui.input type="text" name="pref5" label="Uwagi" icon="note" value="{{ $prefs['other'] ?: '' }}" />
+    <input type="hidden" name="pref5" />
+    <x-shipyard.ui.input type="text"
+        name="song_notes"
+        label="Moje notatki"
+        hint="Notatki tutaj podane należą i są wyświetlane tylko dla Ciebie."
+        icon="note"
+        :value="$song->notesForCurrentUser->first()->content"
+    />
   </div>
 
   <x-shipyard.app.h lvl="3">Preferencje</x-shipyard.app.h>
