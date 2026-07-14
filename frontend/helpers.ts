@@ -39,6 +39,7 @@ export const massOrder: SelectOption[] = [
   { value: "!Sanctus", label: "Sanctus" },
   { value: "xTransf", label: "Przemienienie" },
   { value: "!PaterNoster", label: "Ojcze nasz" },
+  { value: "xPreCommunion", label: "Przygotowanie do Komunii" },
   { value: "!AgnusDei", label: "Agnus Dei" },
   { value: "sCommunion", label: "Komunia" },
   { value: "sAdoration", label: "Uwielbienie" },

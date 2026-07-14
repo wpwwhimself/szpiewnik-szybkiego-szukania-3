@@ -387,11 +387,6 @@ export function OrdinariumProcessor({code, colorCode, formula}: OrdinariumProces
               </p>
             </div>
           </div>
-          <Antiphon
-            call="Wybaw nas, Panie, od zła wszelkiego... ...naszego Zbawiciela, Jezusa Chrystusa"
-            resp="Bo Twoje jest Królestwo, i potęga i chwała na wieki"
-            respMelody={`K:Cm\n(CE) FF EFGF2 | FFFFF FEF E2C4 |]`}
-          />
         </>
       )
     case "AgnusDei":
@@ -797,6 +792,14 @@ export function ExtrasProcessor({elem}: {elem: MassElem}){
         <Antiphon
           call="Módlmy się..."
           resp="Amen"
+        />
+      </>
+    case "PreCommunion":
+      return <>
+        <Antiphon
+          call="Wybaw nas, Panie, od zła wszelkiego... ...naszego Zbawiciela, Jezusa Chrystusa"
+          resp="Bo Twoje jest Królestwo, i potęga i chwała na wieki"
+          respMelody={`K:Cm\n(CE) FF EFGF2 | FFFFF FEF E2C4 |]`}
         />
       </>
     default:{
