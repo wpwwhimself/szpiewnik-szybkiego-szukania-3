@@ -83,6 +83,7 @@ class DataModController extends Controller
     }
 
     public function massOrder(){
+        //? the same should be in frontend/helpers.ts
         return response()->json([
             [ "value" => "sIntro", "label" => "Wejście"],
             [ "value" => "xGreetings", "label" => "Powitanie"],
@@ -101,6 +102,7 @@ class DataModController extends Controller
             [ "value" => "!Sanctus", "label" => "Sanctus"],
             [ "value" => "xTransf", "label" => "Przemienienie"],
             [ "value" => "!PaterNoster", "label" => "Ojcze nasz"],
+            [ "value" => "xPreCommunion", "label" => "Przygotowanie do Komunii"],
             [ "value" => "!AgnusDei", "label" => "Agnus Dei"],
             [ "value" => "sCommunion", "label" => "Komunia"],
             [ "value" => "sAdoration", "label" => "Uwielbienie"],

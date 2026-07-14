@@ -21,6 +21,7 @@ export function baseFormula(formula: string): string{
   return formula.replace(/(.*) \((.*)\)/, "$1");
 }
 
+//? the same should be in app/Http/Controllers/DataModController.php
 export const massOrder: SelectOption[] = [
   { value: "sIntro", label: "Wejście" },
   { value: "xGreetings", label: "Powitanie" },
