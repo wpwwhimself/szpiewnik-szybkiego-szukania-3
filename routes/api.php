@@ -17,8 +17,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-if (file_exists(__DIR__.'/Shipyard/shipyard_api.php')) require __DIR__.'/Shipyard/shipyard_api.php';
-
 Route::controller(DataModController::class)->group(function(){
     Route::get("/set-data", "setData")->name("get-set-data");
     Route::get("/ordinarium", "ordinarium")->name("get-ordinarium");

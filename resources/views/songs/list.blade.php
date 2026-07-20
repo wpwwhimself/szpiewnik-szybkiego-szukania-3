@@ -4,19 +4,19 @@
 @section("content")
 
 @if (Auth::user()?->hasRole("song-manager"))
-<x-shipyard.ui.button
+<x-shipyard::ui.button
     :action="route('song-add')"
     label="Dodaj nową"
     icon="plus"
 />
 @endif
 
-<x-shipyard.app.section
+<x-shipyard::app.section
     title="Filtry"
     icon="filter"
     :extended="true"
 >
-    <x-shipyard.ui.input type="text"
+    <x-shipyard::ui.input type="text"
         name="search"
         label="Szukaj po tytule"
         icon="file-search"
@@ -25,7 +25,7 @@
 
     <div class="flex right middle wrap">
         <span role="label-wrapper" class="ghost">
-            <x-shipyard.app.icon name="select-place" />
+            <x-shipyard::app.icon name="select-place" />
             <label>Szukaj po przeznaczeniu</label>
         </span>
         @foreach ([
@@ -40,7 +40,7 @@
         @endforeach
         <span role="filter-reset" class="button hidden" onclick="filterReset()">↺</span>
     </div>
-</x-shipyard.app.section>
+</x-shipyard::app.section>
 
 <script>
 //* helpers *//

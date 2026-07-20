@@ -4,7 +4,7 @@
 @section("content")
 
 @auth
-<x-shipyard.ui.button
+<x-shipyard::ui.button
     icon="plus"
     label="Dodaj nowy"
     action="none"
@@ -21,13 +21,13 @@
 @endguest
 
 @foreach ($setGroups as $is_public => $sets)
-<x-shipyard.app.h lvl="3" :icon="model_icon('sets')">
+<x-shipyard::app.h lvl="3" :icon="model_icon('sets')">
     @switch ($is_public)
         @case (0) Moje zestawy @break
         @case (1) Publiczne zestawy @break
         @case (2) Zestawy innych @break
     @endswitch
-</x-shipyard.app.h>
+</x-shipyard::app.h>
 
 <table>
     <thead>
@@ -63,7 +63,7 @@
 
 @endforeach
 
-<x-shipyard.app.h lvl="3" icon="more">Dodatkowe źródła</x-shipyard.app.h>
+<x-shipyard::app.h lvl="3" icon="more">Dodatkowe źródła</x-shipyard::app.h>
 <ul>
     <li><a href="https://musicamsacram.pl/propozycje-spiewow">Musicam Sacram</a></li>
 </ul>

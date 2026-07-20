@@ -8,7 +8,7 @@
 </p>
 
 @if (Auth::user()?->hasRole("formula-manager"))
-<x-shipyard.ui.button
+<x-shipyard::ui.button
     :action="route('formula-add')"
     label="Dodaj nową"
     icon="plus"

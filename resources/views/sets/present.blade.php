@@ -16,14 +16,14 @@ const user_id = {{ Auth::id() ?? "null" }};
 
 <div class="flex right spread and-cover">
     @auth
-    <x-shipyard.ui.button
+    <x-shipyard::ui.button
         label="Edytuj mszę"
         icon="pencil"
         :action="route('set', ['set_id' => $set->id])"
     />
 
     @if (Auth::user()->hasRole("set-manager"))
-    <x-shipyard.ui.button
+    <x-shipyard::ui.button
         label="Utwórz i edytuj kopię"
         icon="content-copy"
         :action="route('set-copy-for-user', ['set' => $set])"
@@ -32,7 +32,7 @@ const user_id = {{ Auth::id() ?? "null" }};
     @endif
 
     @endauth
-    <x-shipyard.ui.button
+    <x-shipyard::ui.button
         label="Na początek"
         icon="arrow-up"
         action="none"

@@ -11,7 +11,7 @@
 </p>
 
 @if (Auth::user()?->hasRole("place-manager"))
-<x-shipyard.ui.button
+<x-shipyard::ui.button
     :action="route('place-add')"
     label="Dodaj nowe"
     icon="plus"

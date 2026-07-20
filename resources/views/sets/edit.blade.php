@@ -4,21 +4,21 @@
 
 @section("content")
 
-<x-shipyard.app.form method="post" :action="route('set-edit')">
+<x-shipyard::app.form method="post" :action="route('set-edit')">
     <input type='hidden' name="id" value="{{ $set->id }}" />
 
-<x-shipyard.app.section title="Podstawowe informacje" :icon="model_icon('sets')">
+<x-shipyard::app.section title="Podstawowe informacje" :icon="model_icon('sets')">
     <div class="grid" style="--col-count: 2;">
-        <x-shipyard.ui.field-input :model="$set" field-name="name" />
-        <x-shipyard.ui.connection-input :model="$set" connection-name="formulaData" />
-        <x-shipyard.ui.connection-input :model="$set" connection-name="colorData" />
+        <x-shipyard::ui.field-input :model="$set" field-name="name" />
+        <x-shipyard::ui.connection-input :model="$set" connection-name="formulaData" />
+        <x-shipyard::ui.connection-input :model="$set" connection-name="colorData" />
         @if (Auth::user()->hasRole("spellcaster"))
-        <x-shipyard.ui.field-input :model="$set" field-name="public" />
+        <x-shipyard::ui.field-input :model="$set" field-name="public" />
         @endif
     </div>
-</x-shipyard.app.section>
+</x-shipyard::app.section>
 
-<x-shipyard.app.section title="Pieśni" :icon="model_icon('songs')">
+<x-shipyard::app.section title="Pieśni" :icon="model_icon('songs')">
     <div class="flex down center">
         <x-input type="text" name="song-adder" label="Dopisz pieśń" onkeyup="songAdderAutocomplete(this)" />
         <div id="song-adder-autocomplete" class="flex right center wrap"></div>
@@ -37,14 +37,14 @@
         <div class="flex down center middle">
             <label class="accent secondary">{{ $label }}</label>
             <div class="flex right center">
-                <x-shipyard.ui.button
+                <x-shipyard::ui.button
                     pop="Dodaj powyższą pieśń do listy poniżej"
                     icon="plus"
                     action="none"
                     class="tertiary song-adder-trigger"
                     :data-elem="$code"
                 />
-                <x-shipyard.ui.button
+                <x-shipyard::ui.button
                     pop="Zaproponuj pieśń na to miejsce"
                     icon="dice-3"
                     action="none"
@@ -61,21 +61,21 @@
         </div>
     @endforeach
     </div>
-</x-shipyard.app.section>
+</x-shipyard::app.section>
 
-<x-shipyard.app.section title="Psalm i aklamacja" icon="script">
+<x-shipyard::app.section title="Psalm i aklamacja" icon="script">
     <div class="grid" style="--col-count: 2;">
         <x-input type="TEXT" name="pPsalm" label="Psalm" value="{!! $set->pPsalm !!}" rows="20" />
         <x-input type="TEXT" name="pAccl" label="Aklamacja" value="{!! $set->pAccl !!}" rows="20" />
     </div>
-</x-shipyard.app.section>
+</x-shipyard::app.section>
 
-<x-shipyard.app.section title="Zmiany" icon="details">
+<x-shipyard::app.section title="Zmiany" icon="details">
     <x-extras-table :model="$set" />
-</x-shipyard.app.section>
+</x-shipyard::app.section>
 
     <x-slot:actions>
-        <x-shipyard.ui.button
+        <x-shipyard::ui.button
             label="Zatwierdź i wróć"
             icon="check"
             action="submit"
@@ -83,7 +83,7 @@
             value="update"
             class="primary"
         />
-        <x-shipyard.ui.button
+        <x-shipyard::ui.button
             label="Usuń"
             icon="delete"
             action="submit"
@@ -92,7 +92,7 @@
             class="danger"
         />
         @if (Auth::user()->hasRole("technical"))
-        <x-shipyard.ui.button
+        <x-shipyard::ui.button
             label="Historia zmian"
             icon="history"
             :action="route('changes', ['type' => 'set', 'id' => $set->id])"
@@ -100,7 +100,7 @@
         />
         @endif
     </x-slot:actions>
-</x-shipyard.app.form>
+</x-shipyard::app.form>
 
 <script defer>
 let autocompleteController;

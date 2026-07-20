@@ -36,7 +36,7 @@ $mass_order = collect(json_decode((new \App\Http\Controllers\DataModController)-
         <tr>
             <td colspan="{{ 4 + $is_set }}">
                 <div class="flex right spread and-cover">
-                    <x-shipyard.ui.button
+                    <x-shipyard::ui.button
                         label="Dodaj"
                         icon="plus"
                         action="none"

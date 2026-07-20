@@ -22,8 +22,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-if (file_exists(__DIR__.'/Shipyard/shipyard.php')) require __DIR__.'/Shipyard/shipyard.php';
-
 Route::controller(HomeController::class)->group(function(){
     Route::get("/", "index")->name("home");
 });

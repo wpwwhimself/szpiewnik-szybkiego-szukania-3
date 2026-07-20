@@ -4,17 +4,17 @@
 
 @section("content")
 
-<x-shipyard.app.form method="post" :action="route('ordinarius-edit')">
+<x-shipyard::app.form method="post" :action="route('ordinarius-edit')">
     <script src="{{ asset("js/note-transpose.js") }}"></script>
 
-<x-shipyard.app.section title="Nuty" icon="music-note">
+<x-shipyard::app.section title="Nuty" icon="music-note">
     <div id="variant-big-container">
     @foreach ($ordinarius->sheet_music_variants as $var_no => $notes)
         <div class="variant-container grid but-mobile-down" style="--col-count: 2;">
             <x-input type="TEXT" name="sheet_music[]" :var-no="$var_no" label="Nuty" value="{!! $notes !!}" rows="5" />
             <div>
                 <div id="note-transpose-{{ $var_no }}" class="flex right center wrap">
-                    <x-shipyard.ui.button
+                    <x-shipyard::ui.button
                         icon="music-note-plus"
                         pop="Transponuj w górę"
                         action="none"
@@ -22,7 +22,7 @@
                         name="up"
                         onclick="Hoch(this.closest(`.variant-container`).querySelector(`textarea[name^='sheet_music']`));"
                     />
-                    <x-shipyard.ui.button
+                    <x-shipyard::ui.button
                         icon="music-note-minus"
                         pop="Transponuj w dół"
                         action="none"
@@ -33,7 +33,7 @@
                 </div>
                 <div id="sheet-music-container-{{ $var_no }}"></div>
                 <div class="flex right spread and-cover">
-                    <x-shipyard.ui.button id="remove-variant" :var-no="$var_no"
+                    <x-shipyard::ui.button id="remove-variant" :var-no="$var_no"
                         label="Usuń wariant"
                         icon="delete"
                         action="none"
@@ -47,7 +47,7 @@
     @endforeach
     </div>
     <div class="flex right spread and-cover">
-        <x-shipyard.ui.button id="addVariantButton"
+        <x-shipyard::ui.button id="addVariantButton"
             label="Dodaj wariant"
             icon="plus"
             action="none"
@@ -55,19 +55,19 @@
             class="tertiary"
         />
     </div>
-</x-shipyard.app.section>
+</x-shipyard::app.section>
 
     <input type="hidden" name="color_code" value="{{ $ordinarius->color_code }}" />
     <input type="hidden" name="part" value="{{ $ordinarius->part }}" />
 
     <x-slot:actions>
-        <x-shipyard.ui.button
+        <x-shipyard::ui.button
             label="Zatwierdź i wróć"
             class="primary"
             action="submit"
         />
     </x-slot:actions>
-</x-shipyard.app.form>
+</x-shipyard::app.form>
 
 <script src="{{ asset("js/abcjs-basic-min.js") }}"></script>
 <script defer>
