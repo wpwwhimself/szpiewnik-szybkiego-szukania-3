@@ -7,7 +7,7 @@ use App\Http\Controllers\OrdinariusController;
 use App\Http\Controllers\PlaceController;
 use App\Http\Controllers\SetController;
 use App\Http\Controllers\SongController;
-use App\Http\Middleware\Shipyard\EnsureUserHasRole;
+use Wpwwhimself\Shipyard\Middleware\EnsureUserHasRole;
 use Illuminate\Auth\Middleware\Authenticate;
 use Illuminate\Support\Facades\Route;
 
