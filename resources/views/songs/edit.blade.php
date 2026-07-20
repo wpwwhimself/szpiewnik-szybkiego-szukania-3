@@ -21,7 +21,7 @@
         label="Moje notatki"
         hint="Notatki tutaj podane należą i są wyświetlane tylko dla Ciebie."
         icon="note"
-        :value="$song->notesForCurrentUser->first()->content"
+        :value="$song->notesForCurrentUser->first()?->content"
     />
   </div>
 
