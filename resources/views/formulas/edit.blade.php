@@ -1,4 +1,4 @@
-@extends("layouts.shipyard.admin")
+@extends("shipyard::layouts.admin")
 @section("title", $formula ?? "Nowa formuła")
 @section("subtitle", "Edycja formuły")
 

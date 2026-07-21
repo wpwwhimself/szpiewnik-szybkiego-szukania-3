@@ -1,4 +1,4 @@
-@extends("layouts.shipyard.admin")
+@extends("shipyard::layouts.admin")
 @section("title", $place ?? "Nowe miejsce")
 @section("subtitle", "Edycja miejsca")
 
