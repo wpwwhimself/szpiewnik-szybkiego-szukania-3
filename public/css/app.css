@@ -6,6 +6,7 @@ a:hover {
 .card, [role$="card"],
 .button,
 .alternative,
+table,
 #toast {
     border-radius: 0 !important;
 }
