@@ -56,8 +56,9 @@ class OrdinariusColor extends Model
                 "icon" => $this->icon ?? self::META["icon"],
                 "attributes" => new ComponentAttributeBag([
                     "role" => "card-title",
+                    "style" => "color: " . ($this->display_color ?? $this->name),
                 ]),
-                "slot" => $this->__toString(),
+                "slot" => $this,
             ])->render(),
         );
     }
@@ -65,9 +66,7 @@ class OrdinariusColor extends Model
     public function displaySubtitle(): Attribute
     {
         return Attribute::make(
-            get: fn () => view("shipyard::components.app.model.badges", [
-                "badges" => $this->badges,
-            ])->render(),
+            get: fn () => array_find(self::GROUPS, fn ($g) => $g["value"] == $this->group)["label"],
         );
     }
 
@@ -86,6 +85,29 @@ class OrdinariusColor extends Model
     use HasStandardFields;
 
     public const FIELDS = [
+        "name" => [
+            "type" => "text",
+            "label" => "Nazwa techniczna",
+            "icon" => "palette",
+            "required" => true,
+        ],
+        "display_name" => [
+            "type" => "text",
+            "label" => "Nazwa wyświetlana",
+            "icon" => "badge-account",
+            "hint" => "Nazwisko autora lub charakter",
+            "required" => true,
+        ],
+        "display_color" => [
+            "type" => "text",
+            "label" => "Kolor",
+            "icon" => "palette",
+        ],
+        "desc" => [
+            "type" => "TEXT",
+            "label" => "Opis",
+            "icon" => "text",
+        ],
         "ordering" => [
             "type" => "number",
             "label" => "Kolejność",
@@ -97,11 +119,7 @@ class OrdinariusColor extends Model
             "label" => "Grupa",
             "icon" => "format-list-group",
             "selectData" => [
-                "options" => [
-                    ["label" => "zwykłe", "value" => 0],
-                    ["label" => "melancholijne", "value" => 1],
-                    ["label" => "świąteczne", "value" => 2],
-                ],
+                "options" => self::GROUPS,
             ],
             "required" => true,
         ]
@@ -219,5 +237,10 @@ class OrdinariusColor extends Model
     #endregion
 
     #region helpers
+    public const GROUPS = [
+        ["label" => "zwykłe", "value" => 0],
+        ["label" => "melancholijne", "value" => 1],
+        ["label" => "świąteczne", "value" => 2],
+    ];
     #endregion
 }
