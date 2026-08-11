@@ -47,9 +47,7 @@ export function SongRender({song, title, forceLyricsVariant, dontHideEditBtns = 
         <div className="flex right center wrap">
             {songSong ?
             <div className="flex right center middle nowrap">
-                <div className="flex right center middle">
-                    <DummyInput label="Tonacja" value={songSong.key} />
-                </div>
+                <DummyInput label="Tonacja" value={songSong.key} />
                 <DummyInput label="Kategoria" value={songSong.category_desc} />
                 <DummyInput label="Numer w śpiewniku Preis" value={songSong.number_preis} />
             </div>
