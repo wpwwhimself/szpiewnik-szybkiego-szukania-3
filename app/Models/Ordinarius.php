@@ -33,7 +33,7 @@ class Ordinarius extends Model
     public function __toString(): string
     {
         return implode(", ", [
-            $this->color->display_name,
+            $this->color?->display_name ?? $this->color_code,
             $this->part,
         ]);
     }
