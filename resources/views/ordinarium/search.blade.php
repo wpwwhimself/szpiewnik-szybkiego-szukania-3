@@ -73,25 +73,29 @@ function search() {
         Wyszukiwarka części stałych szuka melodii na podstawie podanego jej konturu, tzn. czy linia melodyczna się wznosi czy opada z każdym kolejnym dźwiękiem.
     </x-shipyard::app.card>
 
-    <div class="input-container flex right nowrap middle" style="justify-content: flex-start;">
+    <div class="input-container flex right center">
         <label for="">
             <x-shipyard::app.icon-label-value icon="chart-line-variant">Kontur</x-shipyard::app.icon-label-value>
         </label>
 
-        <div class="flex down middle nowrap">
-            <span>↑</span>
-            <span>✳️</span>
-            <span>↓</span>
-        </div>
+        <div class="flex right middle nowrap" style="justify-content: flex-start;">
+            <div class="flex down middle nowrap">
+                <span>↑</span>
+                <span>✳️</span>
+                <span>↓</span>
+            </div>
 
-        @for ($i = 1; $i < 15; $i++)
-        <div class="flex down nowrap">
-            <input type="radio" name="contour[{{ $i }}]" value="+" onchange="enableNextContourBtns(this)" @disabled($i > 1) />
-            <input type="radio" name="contour[{{ $i }}]" value="0" onchange="enableNextContourBtns(this)" @disabled($i > 1) />
-            <input type="radio" name="contour[{{ $i }}]" value="-" onchange="enableNextContourBtns(this)" @disabled($i > 1) />
+            @for ($i = 1; $i < 13; $i++)
+            <div class="flex down nowrap">
+                <input type="radio" name="contour[{{ $i }}]" value="+" onchange="enableNextContourBtns(this)" @disabled($i > 1) />
+                <input type="radio" name="contour[{{ $i }}]" value="0" onchange="enableNextContourBtns(this)" @disabled($i > 1) />
+                <input type="radio" name="contour[{{ $i }}]" value="-" onchange="enableNextContourBtns(this)" @disabled($i > 1) />
+            </div>
+            @endfor
         </div>
-        @endfor
+    </div>
 
+    <div class="flex right center middle">
         <x-shipyard::ui.button
             icon="close"
             pop="Resetuj"
@@ -99,9 +103,6 @@ function search() {
             onclick="resetContour()"
             class="tertiary"
         />
-    </div>
-
-    <div class="flex right center middle">
         <x-shipyard::ui.button
             icon="magnify"
             label="Szukaj"
