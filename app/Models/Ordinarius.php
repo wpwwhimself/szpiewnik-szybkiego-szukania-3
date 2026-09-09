@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\View\ComponentAttributeBag;
+use Illuminate\Support\Str;
 
 class Ordinarius extends Model
 {
@@ -160,7 +161,8 @@ class Ordinarius extends Model
     }
 
     protected $appends = [
-        "sheet_music_variants"
+        "sheet_music_variants",
+        "contour",
     ];
 
     use HasStandardAttributes;
@@ -190,6 +192,38 @@ class Ordinarius extends Model
 
     public function getSheetMusicVariantsAttribute(){
         return explode(self::$VAR_SEP, $this->sheet_music);
+    }
+
+    public function contour(): Attribute
+    {
+        $music_strings = collect($this->sheet_music_variants)->map(fn ($sm) => Str::of(Str::of($sm)
+            ->matchAll("/^(?![A-Z]:).*$/m") // skip technical lines
+            ->join("")
+        )->replaceMatches("/!(fine|\w\.\w\.|fermata)!/", ""));
+        $contours = [];
+        foreach ($music_strings as $i => $ms) {
+            preg_match_all("/[A-Za-z][,']*/", $ms, $matches);
+            $contour = $matches[0];
+            // translate pitches to indices
+            $contour = array_map(
+                function ($note) {
+                    // just compare ord of note, lowercase are bigger anyway
+                    $ord = ord($note);
+                    $ord -= Str::substrCount($note, ",") * 32; // lower octaves
+                    $ord += Str::substrCount($note, "'") * 32; // upper octaves
+                    if (Str::match("/[ab]/i", $note)) $ord += 7; // put A and B in the right order
+                    return $ord;
+                },
+                $contour
+            );
+            // compare indices, write contour
+            $contour = collect($contour)->sliding(2)->map(fn ($comp) => [-1 => "+", 0 => "0", 1 => "-"][$comp->first() <=> $comp->last()])->join("");
+            $contours[$i] = substr($contour, 1); // first character may match randomly, skip it
+        }
+
+        return Attribute::make(
+            get: fn () => $contours,
+        );
     }
     #endregion
 

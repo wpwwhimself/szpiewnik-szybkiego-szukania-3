@@ -90,4 +90,25 @@ class OrdinariusController extends Controller
 
         return redirect()->route("ordinarium")->with("toast", ["success", "Część stała poprawiona"]);
     }
+
+    public function ordinariumSearch()
+    {
+        return view("ordinarium.search");
+    }
+
+    public function processSearch(Request $rq)
+    {
+        $contour = $rq->query("c");
+        $matches = Ordinarius::all()->select("part", "sheet_music_variants", "color_code", "contour")
+            ->filter(fn ($o) => array_reduce(
+                $o["contour"],
+                fn ($test, $c) => $test || Str::startsWith($c, $contour),
+                false
+            ));
+
+        return response()->json([
+            "data" => $matches,
+            "html" => view("components.ordinarium.search-results", compact("matches"))->render(),
+        ]);
+    }
 }

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\DataModController;
+use App\Http\Controllers\OrdinariusController;
 use App\Http\Controllers\SetController;
 use App\Http\Controllers\SongController;
 use Illuminate\Http\Request;
@@ -32,4 +33,8 @@ Route::controller(DataModController::class)->group(function(){
 Route::controller(SongController::class)->group(function(){
     Route::post("/song-autocomplete", "songAutocomplete")->name("get-song-autocomplete");
     Route::post("/song-random", "songRandom")->name("get-song-random");
+});
+
+Route::controller(OrdinariusController::class)->prefix("ordinarium")->group(function() {
+    Route::get("/search", "processSearch");
 });

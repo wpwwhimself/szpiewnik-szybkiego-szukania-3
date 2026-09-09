@@ -39,6 +39,7 @@ Route::controller(SongController::class)->prefix("songs")->group(function(){
 Route::controller(OrdinariusController::class)->prefix("ordinarium")->group(function(){
     Route::get("/", "ordinarium")->name("ordinarium");
     Route::get("/present/{color}", "ordinariusPresent")->name("ordinarius-present");
+    Route::get("/search", "ordinariumSearch")->name("ordinarium-search");
 });
 
 Route::middleware(Authenticate::class)->group(function(){

@@ -3,18 +3,29 @@
 
 @section("content")
 
-<p>
+<x-shipyard::app.card>
     Części stałe są pogrupowane w zestawy oznaczone kolorami, które luźno odpowiadają ich przeznaczeniu.
     Wybierz zestaw, aby wyświetlić jego elementy.
-</p>
+    
+    <div class="flex right center middle">
+        <x-shipyard::ui.button
+            icon="magnify"
+            label="Wyszukiwarka"
+            :action="route('ordinarium-search')"
+        />
+    </div>
+</x-shipyard::app.card>
 
 @foreach ([
     0 => "Zwykłe",
     1 => "Melancholijne",
     2 => "Świąteczne",
 ] as $color_group => $label)
-    <h1>{{ $label }}</h1>
-    <div class="grid but-mobile-down" style="--col-count: 3;">
+    <x-shipyard::app.section
+        :title="$label"
+        inner-class="grid but-mobile-down"
+        inner-style="--col-count: 3;"
+    >
         @foreach ($colors->filter(fn ($clr) => $clr->group === $color_group) as $color)
         <div class="ordTile">
             <div class="ordTitleBox" style="border-color: {{ $color->display_color }}">
@@ -37,12 +48,15 @@
             </div>
         </div>
         @endforeach
-    </div>
+    </x-shipyard::app.section>
 @endforeach
 
-
-<div class="grid but-mobile-down" style="--col-count: 2;">
-    @if (Auth::user()?->hasRole("ordinarius-manager"))
+@if (Auth::user()?->hasRole("ordinarius-manager"))
+<x-shipyard::app.section
+    title="Pozostałe"
+    inner-class="grid but-mobile-down"
+    inner-style="--col-count: 2;"
+>
     <div class="ordTile">
         <div class="ordTitleBox">
             <h1>Uniwersalne</h1>
@@ -69,7 +83,7 @@
             @endforeach
         </div>
     </div>
-    @endif
-</div>
+</x-shipyard::app.section>
+@endif
 
 @endsection
