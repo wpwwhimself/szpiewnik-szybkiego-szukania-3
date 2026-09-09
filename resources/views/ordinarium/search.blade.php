@@ -39,6 +39,17 @@ function search() {
         .then(res => res.json())
         .then(({data, html}) => {
             resultsContainer.querySelector(".contents").innerHTML = html;
+            Object.values(data).forEach(match => {
+                match.contour.forEach((cont, i) => {
+                    const input_name = `ordinarius_preview_${match.color_code}_${match.part}_${i}`;
+                    abcPreview(input_name);
+                    // hide other sheets in ordinarius which don't match
+                    if (contour != cont.substring(0, contour.length)) {
+                        document.querySelector(`input[name="${input_name}"] ~ .abc-preview`).classList.add("ghost");
+                    }
+                });
+            });
+
         })
         .catch((err) => {
             console.error(err);
@@ -73,7 +84,7 @@ function search() {
             <span>↓</span>
         </div>
 
-        @for ($i = 1; $i < 10; $i++)
+        @for ($i = 1; $i < 15; $i++)
         <div class="flex down nowrap">
             <input type="radio" name="contour[{{ $i }}]" value="+" onchange="enableNextContourBtns(this)" @disabled($i > 1) />
             <input type="radio" name="contour[{{ $i }}]" value="0" onchange="enableNextContourBtns(this)" @disabled($i > 1) />

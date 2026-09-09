@@ -72,8 +72,7 @@ class Ordinarius extends Model
     public function displayMiddlePart(): Attribute
     {
         return Attribute::make(
-            get: fn () => view("shipyard::components.app.model.connections-preview", [
-                "connections" => self::getConnections(),
+            get: fn () => view("components.ordinarium.melody-preview", [
                 "model" => $this,
             ])->render(),
         );
@@ -114,14 +113,16 @@ class Ordinarius extends Model
     ];
 
     public const ACTIONS = [
-        // [
-        //     "icon" => "",
-        //     "label" => "",
-        //     "show-on" => "<list|edit>",
-        //     "route" => "",
-        //     "role" => "",
-        //     "dangerous" => true,
-        // ],
+    ];
+
+    public const EXTRA_SECTIONS = [
+        "contour" => [
+            "title" => "Kontur",
+            "icon" => "chart-line-variant",
+            "component" => "ordinarium.contour-preview",
+            "show-on" => "edit",
+            "role" => "technical",
+        ],
     ];
     #endregion
 
@@ -197,9 +198,12 @@ class Ordinarius extends Model
     public function contour(): Attribute
     {
         $music_strings = collect($this->sheet_music_variants)->map(fn ($sm) => Str::of(Str::of($sm)
-            ->matchAll("/^(?![A-Z]:).*$/m") // skip technical lines
-            ->join("")
-        )->replaceMatches("/!(fine|\w\.\w\.|fermata)!/", ""));
+                ->matchAll("/^(?![A-Z]:).*$/m") // skip technical lines
+                ->join("")
+            )
+            ->replaceMatches("/!(fine|\w\.\w\.|fermata)!/", "")
+            ->replaceMatches('/"[A-H][\w#\/]{0,4}"/', "")
+        );
         $contours = [];
         foreach ($music_strings as $i => $ms) {
             preg_match_all("/[A-Za-z][,']*/", $ms, $matches);
@@ -218,7 +222,7 @@ class Ordinarius extends Model
             );
             // compare indices, write contour
             $contour = collect($contour)->sliding(2)->map(fn ($comp) => [-1 => "+", 0 => "0", 1 => "-"][$comp->first() <=> $comp->last()])->join("");
-            $contours[$i] = substr($contour, 1); // first character may match randomly, skip it
+            $contours[$i] = $contour;
         }
 
         return Attribute::make(

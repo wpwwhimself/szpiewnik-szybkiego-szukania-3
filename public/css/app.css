@@ -102,6 +102,11 @@ header > [role="bottom-part"] {
     padding-block: 5px;
 }
 
+/* hide transposers from ordinarius previews */
+input[name^="ordinarius_preview"] ~ .abc-preview > [role="options"] {
+    display: none;
+}
+
 #row-adder {
     display: none;
 }
