@@ -43,6 +43,14 @@ body {
     font-size: 14px;
 }
 
+[role="brand"] {
+    padding-block: 5em;
+
+    & .logo {
+        height: 10em;
+    }
+}
+
 .button {
     --button-color: light-dark(#d5d5d5, #4e4e4e);
 
