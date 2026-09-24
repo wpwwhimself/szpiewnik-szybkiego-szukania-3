@@ -8,11 +8,10 @@ class User extends ShipyardUser
 {
     public const FROM_SHIPYARD = true;
 
-    protected $fillable = [
-        "name",
-        "email",
-        "roles",
-        "p13n",
-        "default_place",
-    ];
+    public function __construct()
+    {
+        $this->mergeFillable([
+            "default_place",
+        ]);
+    }
 }
