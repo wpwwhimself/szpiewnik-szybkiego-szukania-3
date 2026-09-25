@@ -131,7 +131,7 @@ TUTORIAL
             ->pluck("value");
         if((strlen($rq->title) >= 3)){
             $titles = !in_array($initial, ["x", "!"])
-                ? Song::where("title", "like", "%$rq->title%")->pluck("title")
+                ? Song::whereRaw(implode(" regexp ", array_map(fn ($s) => "regexp_replace($s, '[\-,. ]', '')", ["title", "'$rq->title'"])))->pluck("title") // title matched with query, ignoring interpunction
                 : $mass_order
                     ->filter(fn($el) => preg_match("/$rq->title/i", $el))
                     ->values();
