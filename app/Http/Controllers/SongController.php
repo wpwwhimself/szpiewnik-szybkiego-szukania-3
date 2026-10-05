@@ -21,9 +21,11 @@ class SongController extends Controller
             $songs[$cat->name] = $cat->songs;
         }
 
+        $missing = Song::whereNull("sheet_music")->get();
+
         return view("songs.list", array_merge(
             ["title" => "Lista pieśni"],
-            compact("songs", "categories")
+            compact("songs", "categories", "missing")
         ));
     }
 

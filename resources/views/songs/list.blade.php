@@ -127,4 +127,21 @@ function filterReset() {
 @endforeach
 </div>
 
+@if ($missing->count())
+<x-shipyard::app.section role="missing"
+    title="Pieśni bez nut"
+    icon="file-hidden"
+    :extended="false"
+    inner-class="flex right center middle"
+>
+    @foreach ($missing as $song)
+    <x-shipyard::ui.button
+        :label="$song->title"
+        :icon="model_icon('songs')"
+        :action="route('song', ['title_slug' => Str::slug($song->title)])"
+    />
+    @endforeach
+</x-shipyard::app.section>
+@endif
+
 @endsection
