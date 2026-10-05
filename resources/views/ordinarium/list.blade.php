@@ -6,7 +6,7 @@
 <x-shipyard::app.card>
     Części stałe są pogrupowane w zestawy oznaczone kolorami, które luźno odpowiadają ich przeznaczeniu.
     Wybierz zestaw, aby wyświetlić jego elementy.
-    
+
     <div class="flex right center middle">
         <x-shipyard::ui.button
             icon="magnify"
@@ -83,6 +83,22 @@
             @endforeach
         </div>
     </div>
+</x-shipyard::app.section>
+@endif
+
+@if ($missing->count())
+<x-shipyard::app.section
+    title="Części stałe bez kompozytora"
+    icon="file-hidden"
+    :extended="false"
+>
+    @foreach ($missing as $ordinarius)
+    <x-shipyard::ui.button
+        :label="$ordinarius"
+        :icon="model_icon('ordinariuses')"
+        :action="route('ordinarius', ['color_code' => $ordinarius->color_code, 'part' => $ordinarius->part])"
+    />
+    @endforeach
 </x-shipyard::app.section>
 @endif
 

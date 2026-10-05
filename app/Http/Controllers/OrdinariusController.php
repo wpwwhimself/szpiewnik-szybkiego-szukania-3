@@ -44,9 +44,11 @@ class OrdinariusController extends Controller
             )
             ->get();
 
+        $missing = Ordinarius::where("sheet_music", "not regexp", "C:")->get();
+
         return view("ordinarium.list", array_merge(
             ["title" => "Lista mszy"],
-            compact("ordinarium", "colors")
+            compact("ordinarium", "colors", "missing")
         ));
     }
 
