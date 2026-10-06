@@ -44,7 +44,11 @@ class OrdinariusController extends Controller
             )
             ->get();
 
-        $missing = Ordinarius::where("sheet_music", "not regexp", "C:")->get();
+        $missing = Ordinarius::whereRaw(
+            "length(regexp_replace(sheet_music, '[^%]', '')) / 3 + 1 -- variant count
+	        >
+            (length(sheet_music) - length(regexp_replace(sheet_music, 'C:', ''))) / 2 -- composer fields filled"
+        )->get();
 
         return view("ordinarium.list", array_merge(
             ["title" => "Lista mszy"],
