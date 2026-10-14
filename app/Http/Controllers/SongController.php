@@ -31,7 +31,8 @@ class SongController extends Controller
 
     public function songPresent($title_slug){
         $song = Song::all()->filter(function($song) use ($title_slug){
-            return Str::slug($song->title) === $title_slug;
+            return Str::slug($song->title) === $title_slug
+                || in_array($title_slug, array_map('Str::slug', $song->alt_titles ?? []));
         })->first();
         if(!$song) return abort(404);
 

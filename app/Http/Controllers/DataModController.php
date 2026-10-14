@@ -36,7 +36,21 @@ class DataModController extends Controller
                 ["extras" => $formula->extras]
             ),
             "formulas" => Formula::all(),
-            "songs" => Song::with("notes")->get(),
+            "songs" => Song::with("notes")->get()
+                ->flatMap(function ($song) {
+                    $songs = collect([$song]);
+
+                    foreach ($song->alt_titles ?? [] as $altTitle) {
+                        $altSong = clone $song;
+                        $altSong->title = $altTitle;
+
+                        $songs->push($altSong);
+                    }
+
+                    return $songs;
+                })
+                ->sortBy("title")
+                ->values(),
             "categories" => SongCategory::all(),
             "place" => $place,
             "places" => Place::all(),
@@ -46,7 +60,8 @@ class DataModController extends Controller
     public function songData(Request $rq){
         $title_slug = $rq->title_slug;
         $song = Song::with("notes")->get()->filter(function($song) use ($title_slug){
-            return Str::slug($song->title) === $title_slug;
+            return Str::slug($song->title) === $title_slug
+                || in_array($title_slug, array_map('Str::slug', $song->alt_titles ?? []));
         })->first();
 
         return response()->json([
