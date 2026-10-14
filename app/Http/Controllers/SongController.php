@@ -135,7 +135,9 @@ TUTORIAL
             ->pluck("value");
         if((strlen($rq->title) >= 3)){
             $titles = !in_array($initial, ["x", "!"])
-                ? Song::whereRaw(implode(" regexp ", array_map(fn ($s) => "regexp_replace($s, '[\-,. ]', '')", ["title", "'$rq->title'"])))->pluck("title") // title matched with query, ignoring interpunction
+                ? Song::whereRaw(implode(" regexp ", array_map(fn ($s) => "regexp_replace($s, '[\-,. ]', '')", ["title", "'$rq->title'"]))) // title matched with query, ignoring interpunction
+                    ->orWhereRaw("json_search(regexp_replace(regexp_replace(lower(alt_titles), '[\-. ]', ''), '([a-z]+),([a-z]+)', '$1$2'), 'one', regexp_replace(lower('%Z rąk%'), '[\-,. ]', ''))") // alt titles matched with query, ignoring interpunction, mysql only
+                    ->pluck("title")
                 : $mass_order
                     ->filter(fn($el) => preg_match("/$rq->title/i", $el))
                     ->values();
