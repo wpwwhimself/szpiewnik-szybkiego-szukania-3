@@ -29,6 +29,7 @@ class Song extends Model
 
     protected $fillable = [
         "title",
+        "alt_titles",
         "song_category_id", "category_desc",
         "number_preis",
         "key", "preferences",
@@ -90,6 +91,15 @@ class Song extends Model
             "type" => "text",
             "label" => "Tytuł",
             "icon" => "badge-account",
+        ],
+        "alt_titles" => [
+            "type" => "JSON",
+            "columnTypes" => [
+                "Tytuł" => "text",
+            ],
+            "label" => "Alternatywne tytuły",
+            "icon" => "badge-account-outline",
+            "hint" => "Jeśli utwór ma więcej niż jeden tytuł (np. ta sama melodia, a inny tekst), podaj je tutaj.",
         ],
         "category_desc" => [
             "type" => "text",
@@ -178,7 +188,7 @@ class Song extends Model
     protected function casts(): array
     {
         return [
-            //
+            "alt_titles" => "array"
         ];
     }
 

@@ -11,6 +11,7 @@
 <x-shipyard::app.section title="Podstawowe informacje" :icon="model_icon('songs')">
   <div class="grid" style="--col-count: 2;">
     <x-shipyard::ui.field-input :model="$song" field-name="title" />
+    <x-shipyard::ui.field-input :model="$song" field-name="alt_titles" />
     <x-shipyard::ui.connection-input :model="$song" connection-name="category" />
     <x-shipyard::ui.field-input :model="$song" field-name="category_desc" />
     <x-shipyard::ui.field-input :model="$song" field-name="number_preis" />

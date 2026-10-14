@@ -120,6 +120,9 @@ function filterReset() {
             :data-prefs="$song->preferences"
         >
             {{ $song->title }}
+            @if ($song->alt_titles)
+            <br><small>({{ implode(", ", $song->alt_titles) }})</small>
+            @endif
         </x-list-element>
         @php $initial = substr($song->title, 0, 1) @endphp
     @endforeach

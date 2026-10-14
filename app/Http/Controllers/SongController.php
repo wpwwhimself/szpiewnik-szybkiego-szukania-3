@@ -71,6 +71,7 @@ class SongController extends Controller
             ChangeController::updateWithChange($song, "zmieniono", function () use ($rq, $song) {
                 $song->update([
                     "title" => $rq->title,
+                    "alt_titles" => json_decode($rq->alt_titles, true) ?: null,
                     "song_category_id" => $rq->song_category_id,
                     "category_desc" => $rq->category_desc,
                     "number_preis" => $rq->number_preis,
